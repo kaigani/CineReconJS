@@ -1,0 +1,106 @@
+{
+  "schema": "cinerecon-run-events-v1",
+  "run_id": "astra-native-continuation-20261015",
+  "event_count": 5,
+  "head_sha256": "00117a7061ba78979a530d8a3f2ed9e4f001835781829732b0acf5a331861cf6",
+  "provenance": {
+    "external_model_api_calls": 0,
+    "initial_agent_turn_dispatch_utc": "2026-10-15T16:36:06Z",
+    "initial_feedback": "24 MP4-decoded frames at the same indices as reference inputs",
+    "later_feedback": "24 original renderer PNGs at the same indices as reference inputs",
+    "model_identity_source": "platform model selection, same native session as baseline",
+    "model_requested": "gpt-6-astra",
+    "official_evaluator_executed": false,
+    "operational_safety_ceiling_minutes": 90,
+    "operational_safety_deadline_utc": "2026-10-15T18:05:00Z",
+    "protocol": "native-astra-goal-directed-continuation-v1",
+    "reasoning_effort_requested": "xhigh",
+    "reference_input_count": 24,
+    "reference_video_id": "video1",
+    "refinement_round_cap": null,
+    "representation_level": "L1"
+  },
+  "started_at": "2026-10-15T16:35:00Z",
+  "finished_at": null,
+  "elapsed_seconds": 898.962989,
+  "counts": {
+    "initial_generations": 0,
+    "scene_revisions": 1,
+    "inspection_only_decisions": 0,
+    "render_attempts": 0,
+    "infrastructure_retries": 0,
+    "model_turns": 1,
+    "provider_responses": 0
+  },
+  "baseline": {
+    "scene_sha256": "8ed841eb1631fa124e1044e452466784f2a62d8d6b601e3146bfa8dcb3b96066",
+    "counts": {
+      "initial_generations": 1,
+      "scene_revisions": 0,
+      "inspection_only_decisions": 0,
+      "render_attempts": 1,
+      "infrastructure_retries": 0,
+      "model_turns": 1,
+      "provider_responses": null
+    },
+    "provenance": {
+      "model_turn_count_meaning": "one native orchestration turn, not an underlying inference count",
+      "original_commit": "72ac248274c92e529afdcc2deaf9cf2598816221",
+      "response_sha256": "0e40218fff4307d2c345f38773e094842670a0ab3fec694a3a213000d7b486a6",
+      "transport_recovery_is_render": false,
+      "transport_recovery_job_count": 1
+    },
+    "render": {
+      "evidence": {
+        "github_run_url": "https://github.com/kaigani/CineReconJS/actions/runs/38761810743",
+        "render_sha256": "45520d14499938144e5e31f8ef4ac0e7124efea75c41a854945a55430310a2e7"
+      },
+      "outcome": "succeeded"
+    }
+  },
+  "current_scene_sha256": "6b0527053551af8112c83cfbd5a11ee0eba9a1910ef54279069dc9bdb2c50337",
+  "total_counts": {
+    "initial_generations": 1,
+    "scene_revisions": 1,
+    "inspection_only_decisions": 0,
+    "render_attempts": 1,
+    "infrastructure_retries": 0,
+    "model_turns": 2,
+    "provider_responses": null
+  },
+  "token_usage": {
+    "input_tokens": null,
+    "output_tokens": null,
+    "total_tokens": null
+  },
+  "known_token_usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0
+  },
+  "native_tool_calls": {
+    "runtime": {
+      "known_count": null,
+      "total_count": null,
+      "reported_turns": 0
+    },
+    "self_reported": {
+      "known_count": 50,
+      "total_count": 50,
+      "reported_turns": 1
+    }
+  },
+  "model_turns_by_interface": {
+    "native_orchestration": 1,
+    "provider_api": 0
+  },
+  "submission_render_sequence": null,
+  "pending_model_turns": [],
+  "pending_render_attempts": [],
+  "render_attempts_by_purpose": {
+    "scene": 0,
+    "preflight": 0
+  },
+  "stopping": null,
+  "status": "running"
+}

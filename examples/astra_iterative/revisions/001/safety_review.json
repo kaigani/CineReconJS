@@ -1,0 +1,14 @@
+{
+  "scene_sha256": "6b0527053551af8112c83cfbd5a11ee0eba9a1910ef54279069dc9bdb2c50337",
+  "approved_for_isolated_render": true,
+  "reviewed_at": "2026-10-15T16:49:58.959458+00:00",
+  "checks": [
+    "Exact source extracted without modification",
+    "node --check passed",
+    "All source changes reviewed against previously reviewed baseline",
+    "No imports, asset loads, network/filesystem/DOM access, eval, timers, or dynamic code",
+    "Finite primitive geometry loops; procedural GLSL only",
+    "Disposable network-isolated renderer and Chromium sandbox required"
+  ],
+  "scope": "static safety review, not a quality or determinism proof"
+}

@@ -1,0 +1,62 @@
+name: Astra iterative scene render
+on:
+  push:
+    paths:
+      - 'examples/astra_iterative/render_request.json'
+      - '.github/workflows/astra-iterative.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render-reviewed-scene:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            threejs
+            examples/astra_iterative
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Install pinned official runtime dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          npm ci --prefix threejs --ignore-scripts
+          (cd threejs && npx playwright install --with-deps chromium)
+      - name: Verify the reviewed immutable candidate
+        id: candidate
+        run: |
+          python examples/astra_iterative/artifact_io.py prepare
+          node --check runs/astra-iterative/scene.mjs
+      - name: Render full timeline in an isolated network namespace
+        run: |
+          sudo unshare --net -- bash -c '
+            set -e
+            ip link set lo up
+            ulimit -t 900
+            ulimit -f 2097152
+            exec runuser -u runner -- env -i PATH="$1" HOME="$2" \
+              node threejs/render.mjs \
+              --scene runs/astra-iterative/scene.mjs \
+              --output runs/astra-iterative \
+              --width 1910 --height 1080 --fps 24000/1001 --frames 384 --seed 0
+          ' _ "$PATH" "$HOME"
+      - name: Collect compact evidence and matching frames
+        if: always()
+        run: python examples/astra_iterative/artifact_io.py collect
+      - name: Upload render evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: astra-iterative-${{ steps.candidate.outputs.revision }}-${{ github.run_attempt }}
+          path: runs/astra-artifact
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 6
