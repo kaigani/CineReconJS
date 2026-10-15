@@ -1,0 +1,14 @@
+{
+  "decision_path": "revisions/005/decision.json",
+  "decision_sha256": "d242e321e30121e1a902dc82d14a9bf435339dae69eb27981d241afde8c35af5",
+  "submitted_revision": "004",
+  "submitted_scene_sha256": "c6da7d9b979cc800d301ecfb94b71aadcf2a75cc72a55ed15c7d1f185ecad3f4",
+  "decision_file_written_at": "2026-10-15T18:04:37.480130Z",
+  "completion_notification_observed_at": "2026-10-15T18:05:05Z",
+  "source_changed": false,
+  "inspection_only": true,
+  "same_native_session_as_baseline": true,
+  "model_requested": "gpt-6-astra",
+  "tracking_head_sha256": "a8183e6649c3103431ffdb31dd55a02e358dc6cb45e0b6add1395cecc6f38e16",
+  "token_usage": null
+}

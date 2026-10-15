@@ -6,7 +6,7 @@ CineReconJS adapts [CineRecon](https://github.com/Unc1eW4ng/CineRecon) into a Ja
 
 The Three.js workflow requires no Blender installation or Blender MCP server. It retains CineRecon's reference videos, L1/L2/L3 representation targets, annotations, and scoring code, while defining a separate **sampled-frame generation protocol**: `cinerecon-threejs-sampled-v1`.
 
-[Quickstart](#quickstart) · [Model comparisons](#compare-models) · [Scene API](#the-threejs-scene-contract) · [Full guide](docs/THREEJS.md) · [Validation](docs/THREEJS_VALIDATION.md)
+[Quickstart](#quickstart) · [Model comparisons](#compare-models) · [Scene API](#the-threejs-scene-contract) · [Revision tracking](#track-revisions-and-stopping) · [Full guide](docs/THREEJS.md) · [Validation](docs/THREEJS_VALIDATION.md)
 
 ## How the benchmark works
 
@@ -22,8 +22,8 @@ Complete reference video
 
 1. **Prepare the input.** Read the reference's exact resolution, rational frame rate, frame count, and decoded timestamps. Sample uniformly across the complete timeline, including its endpoints. Generation never reads evaluation annotations or their evidence-frame selections.
 2. **Generate editable code.** A vision-capable model returns a single JavaScript module defining geometry, materials, lighting, an animated camera, and object motion. L1/L2/L3 set the representation fidelity; they are not model reasoning-effort settings.
-3. **Render and refine.** The host advances the scene at explicit frame times and encodes a verified full-length MP4. Each remaining round supplies the previous source plus reference/render samples at matching times, or a scene error to repair. The fixed budget includes the initial request; two rounds mean one generation and one revision.
-4. **Record the result.** Only the final scheduled round is exported, without selecting a best round using evaluation labels. Source, responses, request hashes, video hashes, runtime versions, and failures remain available for inspection.
+3. **Render and refine.** The host advances the scene at explicit frame times and encodes a verified full-length MP4. The provided API harness uses a fixed request budget, including the initial request; two rounds allow one generation and one refinement request. Each remaining round supplies the previous source plus matching reference/render samples, or a scene error. A separately recorded native-agent controller can instead let the model inspect, revise, and explicitly choose when to submit.
+4. **Record the result.** The API harness exports the final scheduled round without selecting a best round using evaluation labels. Native-agent experiments separately record model submission or an operational stop. Source changes, inspection-only decisions, render attempts, retries, responses, hashes, runtime versions, and failures remain available for inspection.
 5. **Evaluate separately.** Export complete reconstructed videos to the unchanged CineRecon judge, which selects annotated clips, aligns evidence, and reports camera, static, and dynamic scores. Generation and judging are separate opt-in model costs.
 
 ### Representation levels
@@ -110,6 +110,23 @@ python -m cinerecon_threejs generate \
 Before executing model-generated code, prepare the [disposable isolation boundary](threejs/README.md#security-boundary); the harness does not create a container or VM for you. To make a live run, securely set `CINERECON_GENERATOR_API_KEY`, remove the preview redirection, and append `--execute`. This sends reference images and subsequent revision feedback to the selected provider and may incur charges. Never commit credentials. A trusted renderer preflight runs before the first model request; infrastructure failures abort instead of consuming additional scene-repair calls. API errors and refusals stop without automatic retries.
 
 The `seed` controls scene/render initialization, not provider-side model sampling. See the [full generation guide](docs/THREEJS.md) for archived-response imports and custom agents.
+
+## Track revisions and stopping
+
+Every executed API-harness run now maintains a hash-linked `tracking/` event ledger and a summary in `run.json`. Custom native controllers can use the same observation API. The [counting rules and controller example](docs/RUN_TRACKING.md) distinguish:
+
+- Initial generation from changed complete scene candidates (revisions).
+- Inspection-only decisions, including submission without another source change.
+- Render attempts from infrastructure retries and transport-only downloads.
+- Observable native-agent turns from provider API responses; unavailable internal inference counts and tokens remain unknown.
+
+A successful render is not a quality score. `model_submit`, fixed-budget completion, an operational safety ceiling, and a blocked run are different stopping reasons. Continuations keep the original baseline's counters and source separate rather than counting it as a new generation.
+
+### Recorded Astra experiment
+
+The [first-pass Astra baseline](examples/astra_baseline/) preserves one native `gpt-6-astra` generation of `video1` at L1 from 24 timestamped reference frames. The [goal-directed continuation](examples/astra_iterative/) preserves matching render feedback, every scene revision, explicit decisions, checksums, and the current/final tracking summary. Each successful scene covers all 384 frames at 1910×1080 and 24000/1001 FPS. No evaluator annotations or human quality critique are supplied to the generating model.
+
+These are native sampled-frame experiments with their own provenance, not API-harness leaderboard entries or paper-equivalent scores. Their records identify the actual stopping condition, known counters, missing token telemetry, and the operational safety ceiling. The original evaluator and paid judge were not run.
 
 ## Compare models
 
@@ -202,6 +219,7 @@ report.md                 # model's reconstruction report
 reconstruction.mp4        # full reference-length, exact-timeline render
 renderer-metadata.json    # runtime versions and frame hashes
 round_01/, round_02/, ...  # request previews, responses, sources, rendered frames
+tracking/                 # immutable, hash-linked observation events
 ```
 
 `scene.json` does not serialize JavaScript animation functions; keep `scene.mjs` to reproduce motion. Output directories can be large because each round retains every rendered frame.
@@ -211,6 +229,8 @@ round_01/, round_02/, ...  # request previews, responses, sources, rendered fram
 | Path | Role |
 |---|---|
 | [`cinerecon_threejs/`](cinerecon_threejs/) | Python preparation, model requests, bounded refinement, batch execution, and evaluator export. |
+| [`cinerecon_threejs/tracking.py`](cinerecon_threejs/tracking.py), [tracking guide](docs/RUN_TRACKING.md) | Revision, inspection, render, retry, usage, and stopping evidence. |
+| [`examples/astra_iterative/`](examples/astra_iterative/) | Preserved native Astra continuation, decisions, and per-revision provenance. |
 | [`threejs/`](threejs/) | Node host, restricted loopback server, Chromium/WebGL runtime, encoding, and verification. |
 | [`prompts/reconstruction/threejs/en/`](prompts/reconstruction/threejs/en/) | Three.js-specific L1/L2/L3 generation contracts. |
 | [`configs/threejs.batch.example.json`](configs/threejs.batch.example.json) | Multi-model generation matrix example. |
@@ -223,17 +243,17 @@ Start with the [full Three.js workflow](docs/THREEJS.md), [renderer reference](t
 
 ## Validation and current limits
 
-[CI run 38677842520](https://github.com/kaigani/CineReconJS/actions/runs/38677842520) passed on backend commit `ccf3d605c7d6be6439d007d598cecd00804d2ecb`:
+[CI run 38772744297](https://github.com/kaigani/CineReconJS/actions/runs/38772744297) passed on tracking commit `126ed2d052bcf18b4907e3bfbc22d060b2681031`:
 
-- **21 Python harness tests** and **26 Node/browser tests**, with zero browser skips.
+- **41 Python harness/tracking tests** and **26 Node/browser tests**, with zero browser skips.
 - Real Chromium rendering, repeated-render PNG hash equality, exact rational video timestamps, and negative scene/network-policy tests.
 - The complete authored generation smoke with **zero API calls**.
 
-All 50 reference videos were also independently decoded and checked against their manifest hashes during implementation. See [validation details and unexecuted checks](docs/THREEJS_VALIDATION.md). **No live model-generation results, paid judge results, or benchmark quality scores are bundled.**
+All 50 reference videos were also independently decoded and checked against their manifest hashes during implementation. See [validation details and unexecuted checks](docs/THREEJS_VALIDATION.md). The native Astra source/decision experiments are linked above; **no paid judge results or benchmark quality scores are claimed**. Their successful render jobs establish execution and exact video timing, not reconstruction quality.
 
 Important boundaries:
 
-- **Cross-backend scores are not protocol-equivalent.** Upstream's Blender agent sees the complete video and uses tools; this baseline sends sampled images through bounded API calls. Short events can fall between samples, and WebGL imaging differs from Cycles. Report the backend, input sampling, and budgets; do not relabel Blender rankings as Three.js results.
+- **Cross-backend scores are not protocol-equivalent.** Upstream's Blender agent sees the complete video and uses tools; the API-harness baseline sends sampled images through bounded API calls. Short events can fall between samples, and WebGL imaging differs from Cycles. Report the backend, input sampling, and budgets; do not relabel Blender rankings as Three.js results.
 - **This is a procedural single-module runtime.** External assets/imports, GLTF loaders, postprocessing addons, and a general-purpose tool-using agent are not bundled. A custom agent can target the scene API, but its protocol must be recorded separately.
 - **Deterministic scheduling is not universal pixel determinism.** Software/platform changes and nonconforming source can affect results. Arbitrary generated source is marked unaudited; source review is needed for absolute-time motion, editability, representation requirements, and prohibitions on reference replay. The video judge does not establish those properties.
 - **Generated JavaScript is untrusted.** Run it in a disposable OS/container sandbox without secrets or sensitive mounts, with resource limits and outbound networking disabled at that boundary. Chromium sandboxing, route restrictions, credential stripping, and timeouts are defense in depth, not a secure arbitrary-code sandbox. Do not weaken your everyday browser's security to run generated scenes.

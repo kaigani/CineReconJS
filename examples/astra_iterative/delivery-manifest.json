@@ -1,0 +1,17 @@
+[
+  {
+    "name": "CineReconJS-Astra-iterative-video1-L1.mp4",
+    "bytes": 4698110,
+    "sha256": "d994e7b95b4d2df27f871c2f7f1767c5320edf8bb5a8a371a6d91eb91249bce1"
+  },
+  {
+    "name": "CineReconJS-Astra-editable-scenes-and-history.zip",
+    "bytes": 24050580,
+    "sha256": "ca611b5571538235c64d6f755c0a2c32ad2e0dcb9eea1158be6beb211dfd770f"
+  },
+  {
+    "name": "CineReconJS-reference-baseline-final-comparison.mp4",
+    "bytes": 3944597,
+    "sha256": "b40da2915a262e9976ad960ec450890fee4be94e90e38f48aeb3a86586a50cce"
+  }
+]

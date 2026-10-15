@@ -6,6 +6,9 @@ session receives matching reference/reconstruction images, requests complete
 scene revisions, and chooses when to submit the most recently rendered scene.
 There is **no fixed number of revision rounds**.
 
+**Completed result:** Astra submitted revision 004 after four revisions and one
+inspection-only submission decision. See [results, counts, and limitations](RESULTS.md).
+
 ## Protocol
 
 - Inputs remain the original 24 timestamped reference images and standard

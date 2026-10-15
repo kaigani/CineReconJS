@@ -1,8 +1,8 @@
 {
   "schema": "cinerecon-run-events-v1",
   "run_id": "astra-native-continuation-20261015",
-  "event_count": 23,
-  "head_sha256": "9e01cae21e3d4d30c84d6cb1315ffe642ff14814161de300488bf686a5743151",
+  "event_count": 29,
+  "head_sha256": "a8183e6649c3103431ffdb31dd55a02e358dc6cb45e0b6add1395cecc6f38e16",
   "provenance": {
     "external_model_api_calls": 0,
     "initial_agent_turn_dispatch_utc": "2026-10-15T16:36:06Z",
@@ -21,15 +21,15 @@
     "representation_level": "L1"
   },
   "started_at": "2026-10-15T16:35:00Z",
-  "finished_at": null,
-  "elapsed_seconds": 4725.060669,
+  "finished_at": "2026-10-15T18:04:37.480130Z",
+  "elapsed_seconds": 5377.48013,
   "counts": {
     "initial_generations": 0,
     "scene_revisions": 4,
-    "inspection_only_decisions": 0,
-    "render_attempts": 3,
+    "inspection_only_decisions": 1,
+    "render_attempts": 4,
     "infrastructure_retries": 0,
-    "model_turns": 4,
+    "model_turns": 5,
     "provider_responses": 0
   },
   "baseline": {
@@ -62,10 +62,10 @@
   "total_counts": {
     "initial_generations": 1,
     "scene_revisions": 4,
-    "inspection_only_decisions": 0,
-    "render_attempts": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
     "infrastructure_retries": 0,
-    "model_turns": 5,
+    "model_turns": 6,
     "provider_responses": null
   },
   "token_usage": {
@@ -85,22 +85,34 @@
       "reported_turns": 0
     },
     "self_reported": {
-      "known_count": 195,
-      "total_count": 195,
-      "reported_turns": 4
+      "known_count": 222,
+      "total_count": 222,
+      "reported_turns": 5
     }
   },
   "model_turns_by_interface": {
-    "native_orchestration": 4,
+    "native_orchestration": 5,
     "provider_api": 0
   },
-  "submission_render_sequence": null,
+  "submission_render_sequence": 24,
   "pending_model_turns": [],
   "pending_render_attempts": [],
   "render_attempts_by_purpose": {
-    "scene": 3,
+    "scene": 4,
     "preflight": 0
   },
-  "stopping": null,
-  "status": "running"
+  "stopping": {
+    "detail": "I judge this rendered version sufficient for submission as an editable L1 geometric proxy: the principal scene structure, shot progression, and action are represented, and the targeted silhouette and framing corrections have been checked in rendered pixels. I am stopping with the remaining visual inaccuracies documented; this is a model-selected submission, not a claim of photorealistic or quantitatively evaluated accuracy.",
+    "evidence": {
+      "before_operational_safety_deadline": true,
+      "completion_notification_observed_at": "2026-10-15T18:05:05Z",
+      "decision_file_written_at": "2026-10-15T18:04:37.480130Z",
+      "decision_path": "revisions/005/decision.json",
+      "decision_sha256": "d242e321e30121e1a902dc82d14a9bf435339dae69eb27981d241afde8c35af5",
+      "submitted_revision": "004",
+      "submitted_scene_sha256": "c6da7d9b979cc800d301ecfb94b71aadcf2a75cc72a55ed15c7d1f185ecad3f4"
+    },
+    "reason": "model_submit"
+  },
+  "status": "stopped"
 }

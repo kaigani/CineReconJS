@@ -1,0 +1,26 @@
+CineReconJS Astra: independent review of selected reconstruction 004
+
+Scope
+All 24 matched reference, baseline and revision 004 images were visually inspected, with revision 003 alongside. Indices below are sample indices 0–23, not source-video frame numbers. This is a qualitative L1 assessment of layout, camera, poses, contact, action progression and silhouettes. Primitive geometry is appropriate; photorealism is not the criterion. “Selected reconstruction” does not assert that the model submitted it or identify the run's stopping condition.
+
+Overall finding
+The selected reconstruction is clearly more recognizable than the baseline. The strongest gains are shot composition, gun direction, opponent placement, arm orientation and the overhead ending. Revision 004 also repairs part of revision 003's early coat/leg-visibility regression. Important body-mechanics, camera-height, contact and impact-insert mismatches remain.
+
+Concrete gains over the baseline
+- Indices 0–4: character/background placement is closer in the opening shot. At 1–2 the wider stance and absence of the baseline's misplaced right-side helicopter improve the layout. At 3–4 the muzzle is on the correct side of the face, aimed into the camera, with tighter framing instead of the baseline's face-and-chest portrait.
+- Indices 5–10: the rooftop viewpoint and distant opponent placement are closer. Index 8 corrects the raised arm to screen right; index 9 has a more appropriate spread-arm silhouette. At 10 the helicopter appears at the left edge as in the reference.
+- Indices 12–18: the torso and limb volumes communicate the backward dodge more clearly than the baseline's box torso. At 16–17 the screen-right arm extends outward, and a broad coat mass trails beneath it instead of narrow strips.
+- Indices 22–23: the fallen figure is easier to read. Index 23 corrects the baseline's reversed arm arrangement, while the coat stays behind the upper body rather than continuing off the top as a long strip.
+
+What revision 004 changes
+Compared with 003, shorter, asymmetric early coat panels reveal the feet again, particularly at 5–7, and expose part of the leg/support silhouette at 8–9. This reduces the enclosed, skirt-like appearance without fixing the underlying crouch. Stronger haze at 1–2 brings the background obscuration closer to the reference, although conspicuous rounded patch boundaries remain. The main sampled compositions and late poses otherwise look substantially unchanged; no major new pose or framing regression was apparent. The improved opening facade and fuller, round-ended late coat from 003 are retained.
+
+Remaining failures and trade-offs
+- Index 0 still lacks the reference's forward-reaching hand gesture. At 5–12 the hip turn, torso lean, knee folding and asymmetric weight shift remain inaccurate. Visible feet improve readability, but the figure does not reproduce the reference's changing crouch.
+- At 10–14 the coat remains large, rigid-looking panels rather than following the body's compact silhouette and near-ground sweep. At 14 a foreground foot is cropped although visible in the reference.
+- At 16–18 the camera is too high/oblique for the reference's low, nearly horizontal body silhouette. The figure reads as a stiff bridge; convincing foot support and coat-floor contact are not established. The fuller coat improves overall mass but still behaves visually like a broad sheet.
+- Projectile trails around the figure are faint, weakening the relationship between passing shots and the dodge. Indices 20–21 remain unclear: a red oval on the torso followed by dark close-cropped geometry does not communicate the reference's impact well.
+- At 22–23 the hips and knees remain too symmetric, body rotation differs, and the coat is a flat extension rather than the reference's bunched lateral spread.
+
+Limits
+The stills support sampled composition and broad action-progression judgments, not claims about exact cut timing, continuous motion, collisions or between-sample contact. Baseline images are decoded video frames; revision images are original renderer PNGs. Compression/sharpness differences were not counted as improvements. No numerical score or formal judge result is assigned. No generated scene code, model self-critique, annotations or other solutions informed this review.
