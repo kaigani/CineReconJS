@@ -16,6 +16,7 @@ import time
 from fractions import Fraction
 from pathlib import Path
 from urllib.parse import urlsplit
+from .tracking import RunTracker
 
 ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL = "cinerecon-threejs-sampled-v1"
@@ -321,22 +322,44 @@ def run(task_path, output, configuration, model=None, endpoint=None, execute=Fal
               "seed": seed, "round_budget": rounds, "max_completion_tokens": max_tokens,
               "origin": "live_model" if execute else "imported_model_response" if response_file else "authored_scene_smoke",
               "status": "running", "attempts": [], "started_at_unix": time.time()}
-    save(output / "run.json", record)
+    tracker = RunTracker.create(output / "tracking",
+        run_id=f"{configuration}:{task['level']}:{task['video_id']}:{time.time_ns()}",
+        provenance={key: record[key] for key in ("protocol", "origin", "model", "task_fingerprint")})
+
+    def persist():
+        record["tracking"] = tracker.summary()
+        save(output / "run.json", record)
+
+    def tracked_render(source, destination, video, purpose="scene"):
+        sequence = tracker.render_attempt(purpose=purpose, source_sha256=sha(source),
+            evidence={"output": destination.relative_to(output).as_posix()})
+        persist()
+        try:
+            result = render(source, destination, video, seed, chromium, root)
+        except Exception as error:
+            tracker.render_result(sequence, outcome="scene_failed" if isinstance(error, SceneRenderError)
+                                  else "infrastructure_failed", evidence={"error_type": type(error).__name__})
+            raise
+        tracker.render_result(sequence, evidence={"metadata": (destination / "renderer-metadata.json").relative_to(output).as_posix()})
+        return result
+
+    persist()
     previous = None
     try:
         if execute:
             # Render only the trusted fixture before any paid request. A broken
             # browser, encoder, or host must not consume the model call budget.
             preflight_video = dict(width=64, height=64, frames=2, fps_rational="2", fps=2.0, duration=1.0)
-            render(Path(root) / "threejs/scenes/demo.mjs", output / "preflight", preflight_video, seed, chromium, root)
+            tracked_render(Path(root) / "threejs/scenes/demo.mjs", output / "preflight", preflight_video, purpose="preflight")
             record["renderer_preflight"] = "passed"
-            save(output / "run.json", record)
+            persist()
         for i in range(rounds):
             round_dir = output / f"round_{i + 1:02d}"
             round_dir.mkdir()
             attempt = {"round": i + 1, "status": "running"}
+            model_turn = None
             record["attempts"].append(attempt)
-            save(output / "run.json", record)
+            persist()
             if scene:
                 source, report = Path(scene).read_text(encoding="utf-8"), "Authored offline fixture; not a model result."
             else:
@@ -345,20 +368,51 @@ def run(task_path, output, configuration, model=None, endpoint=None, execute=Fal
                 if execute:
                     body = request_body(task, task_path.parent, model, max_tokens, previous, inline=True)
                     attempt["request_sha256"] = fingerprint(body)
-                    save(output / "run.json", record)
-                    raw = call_model(endpoint, body)
+                    model_turn = tracker.model_turn(interface="provider_api",
+                        evidence={"round": i + 1, "request_sha256": attempt["request_sha256"]})
+                    persist()
+                    try:
+                        raw = call_model(endpoint, body)
+                    except (json.JSONDecodeError, UnicodeDecodeError) as error:
+                        # The HTTP payload arrived, but call_model could not decode it.
+                        tracker.model_result(model_turn, outcome="invalid_response", response_received=True,
+                                             evidence={"error_type": type(error).__name__})
+                        raise
+                    except Exception as error:
+                        tracker.model_result(model_turn, outcome="failed", evidence={"error_type": type(error).__name__})
+                        raise
                 else:
                     raw = read(response_file)
-                save(round_dir / "response.json", raw)
-                attempt["response_model"] = raw.get("model")
-                attempt["usage"] = raw.get("usage")
-                source, report = decode_response(raw)
+                usage = raw.get("usage") if isinstance(raw, dict) else None
+                normalized = {target: usage.get(field) for field, target in (
+                    ("prompt_tokens", "input_tokens"), ("completion_tokens", "output_tokens"), ("total_tokens", "total_tokens"))
+                    if isinstance(usage, dict) and type(usage.get(field)) is int and usage[field] >= 0}
+                response_evidence = {"round": i + 1, "response_content_fingerprint": fingerprint(raw)}
+                try:
+                    save(round_dir / "response.json", raw)
+                    response_evidence["response_sha256"] = sha(round_dir / "response.json")
+                    require(isinstance(raw, dict), "Model response must be an object")
+                    attempt["response_model"] = raw.get("model")
+                    attempt["usage"] = usage
+                    source, report = decode_response(raw)
+                except Exception as error:
+                    if execute:
+                        tracker.model_result(model_turn, outcome="refused" if isinstance(error, PermissionError)
+                            else "invalid_response", usage=normalized or None, response_received=True,
+                            evidence={**response_evidence, "error_type": type(error).__name__})
+                    raise
+                if execute:
+                    tracker.model_result(model_turn, usage=normalized or None, response_received=True,
+                                         evidence=response_evidence)
             source_file = round_dir / "scene.mjs"
             source_file.write_text(source, encoding="utf-8")
             (round_dir / "report.md").write_text(report, encoding="utf-8")
             attempt["source_sha256"] = sha(source_file)
+            tracker.scene(source_file, turn_sequence=model_turn,
+                origin="model" if execute else "imported" if response_file else "authored",
+                evidence={"path": source_file.relative_to(output).as_posix(), "round": i + 1})
             try:
-                renderer = render(source_file, round_dir / "render", task["video"], seed, chromium, root)
+                renderer = tracked_render(source_file, round_dir / "render", task["video"])
                 attempt.update(status="rendered", renderer=renderer)
                 previous = {"source": source, "render_dir": str(round_dir / "render")}
             except SceneRenderError as error:
@@ -366,7 +420,7 @@ def run(task_path, output, configuration, model=None, endpoint=None, execute=Fal
                 previous = {"source": source, "error": attempt["error"]}
                 if i == rounds - 1:
                     raise
-            save(output / "run.json", record)
+            persist()
         # Only the final scheduled round is scored; never pick the best using evaluation labels.
         final = output / f"round_{rounds:02d}"
         for name in ("scene.mjs", "report.md"):
@@ -375,12 +429,16 @@ def run(task_path, output, configuration, model=None, endpoint=None, execute=Fal
             shutil.copyfile(final / "render" / name, output / name)
         record.update(status="success", generated=str(output / "reconstruction.mp4"),
                       generated_sha256=sha(output / "reconstruction.mp4"), finished_at_unix=time.time())
-        save(output / "run.json", record)
+        tracker.stop("scheduled_budget_complete", detail="fixed_round_budget_exhausted",
+                     evidence={"round_budget": rounds, "model_submit_protocol": False})
+        persist()
         return record
     except Exception as error:
         record.update(status="refused" if isinstance(error, PermissionError) else "failed",
                       error=type(error).__name__, reason=str(error)[-4000:], finished_at_unix=time.time())
-        save(output / "run.json", record)
+        if tracker.summary()["status"] == "running":
+            tracker.stop("blocked", detail=type(error).__name__)
+        persist()
         raise
 
 

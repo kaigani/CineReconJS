@@ -74,6 +74,8 @@ python -m cinerecon_threejs batch --spec configs/threejs.batch.example.json \
 
 Run directories are immutable. To retry a failed run, use a fresh directory; the harness never silently overwrites or reuses old model output. `batch-report.json` includes failures, and the command exits nonzero if any run fails. Missing and failed generations do not become zero scores.
 
+New executions also record an append-only [run and revision ledger](RUN_TRACKING.md). It distinguishes initial generation, changed complete scene candidates, render attempts, model interactions, and stopping reasons. Identical scene bytes do not count as another revision. Native continuations can preserve original baseline counts separately, while unavailable native token and internal inference counts stay unknown.
+
 ### Bring your own agent or archived response
 
 An external coding agent can inspect the complete reference and author the same scene-module API, while using the Three.js renderer for its own feedback loop. Record that distinct full-video/tool-using protocol separately from the bundled sampled-frame baseline.
@@ -112,6 +114,7 @@ reconstruction.mp4          # Full-size, exact-timeline video used by original e
 report.md                   # Model-written notes, not independently verified quality claims
 renderer-metadata.json      # Renderer/browser/configuration and verification details
 run.json                    # Protocol, hashes, inputs, attempts, origin, status, token usage
+tracking/000001.json ...     # Hash-linked immutable events; run.json contains a summary snapshot
 round_01/ ... round_NN/     # Responses, request previews, sources, per-frame PNGs
 ```
 

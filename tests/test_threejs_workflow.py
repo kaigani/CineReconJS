@@ -9,6 +9,7 @@ from cinerecon_threejs.workflow import (
     request_body, export_cases, run, call_model, probe, SceneRenderError, PROTOCOL,
 )
 from cinerecon_threejs.cli import batch
+from cinerecon_threejs.tracking import RunTracker, scene_hash, COUNTERS
 
 SOURCE = "export function createScene({THREE}) { return {}; }"
 
@@ -132,6 +133,8 @@ class WorkflowTests(unittest.TestCase):
                 result = run(task, root / "run", "test", scene=scene, rounds=1)
             self.assertEqual(result["status"], "success")
             self.assertEqual(result["origin"], "authored_scene_smoke")
+            self.assertEqual(result["tracking"]["counts"]["initial_generations"], 0)
+            self.assertEqual(result["tracking"]["counts"]["model_turns"], 0)
             with self.assertRaisesRegex(ValueError, "No successful model runs"):
                 export_cases(root, root / "cases.json")
 
@@ -192,6 +195,16 @@ class WorkflowTests(unittest.TestCase):
                 self.assertNotIn("YOUR RENDER", json.dumps(model.call_args_list[0].args[1]))
             self.assertEqual(len(result["attempts"]), 2)
             self.assertEqual(result["attempts"][1]["response_model"], "fixture-model")
+            tracked = result["tracking"]
+            self.assertEqual(tracked["counts"]["initial_generations"], 1)
+            self.assertEqual(tracked["counts"]["scene_revisions"], 0)  # Same returned bytes twice.
+            self.assertEqual(tracked["counts"]["model_turns"], 2)
+            self.assertEqual(tracked["counts"]["provider_responses"], 2)
+            self.assertEqual(tracked["counts"]["render_attempts"], 3)  # Includes preflight.
+            self.assertEqual(tracked["render_attempts_by_purpose"], {"preflight": 1, "scene": 2})
+            self.assertEqual(tracked["stopping"]["reason"], "scheduled_budget_complete")
+            self.assertIsNone(tracked["token_usage"]["total_tokens"])
+            self.assertEqual(RunTracker(root / "run/tracking").summary()["head_sha256"], tracked["head_sha256"])
 
     def test_scene_failure_is_repaired_within_remaining_budget(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -227,6 +240,9 @@ class WorkflowTests(unittest.TestCase):
             record = read_json(root / "run/run.json")
             self.assertEqual(record["status"], "failed")
             self.assertEqual(record["attempts"], [])
+            self.assertEqual(record["tracking"]["counts"]["model_turns"], 0)
+            self.assertEqual(record["tracking"]["counts"]["render_attempts"], 1)
+            self.assertEqual(record["tracking"]["stopping"]["reason"], "blocked")
 
     def test_last_round_failure_does_not_score_previous_success(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -306,6 +322,307 @@ class WorkflowTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "Duplicate"):
                     batch(root / "batch.json", root / "runs")
                 runner.assert_not_called()
+
+    def test_changed_api_candidate_counts_once_and_token_usage_is_recorded(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            task, _ = task_at(root / "task")
+            def fake_render(source, output, *args):
+                (output / "frames").mkdir(parents=True)
+                (output / "frames/frame_000000.png").write_bytes(b"PNG")
+                for name in ("reconstruction.mp4", "scene.json", "renderer-metadata.json"):
+                    (output / name).write_text("{}")
+                return {}
+            responses = [{"choices": [{"finish_reason": "stop", "message": {"content": json.dumps({
+                "scene_source": SOURCE + suffix, "report": "test"})}}],
+                "usage": {"prompt_tokens": 3, "completion_tokens": 5, "total_tokens": 8}}
+                for suffix in ("", "\n// revised")]
+            with patch("cinerecon_threejs.workflow.call_model", side_effect=responses), patch(
+                    "cinerecon_threejs.workflow.render", side_effect=fake_render):
+                result = run(task, root / "run", "test", model="fixture", endpoint="https://example.invalid/api",
+                             execute=True, rounds=2)
+            self.assertEqual(result["tracking"]["counts"]["scene_revisions"], 1)
+            self.assertEqual(result["tracking"]["token_usage"], {"input_tokens": 6, "output_tokens": 10, "total_tokens": 16})
+            first_result = next(event["data"] for event in RunTracker(root / "run/tracking").events()
+                                if event["kind"] == "model_result")
+            self.assertEqual(first_result["evidence"]["response_sha256"], sha(root / "run/round_01/response.json"))
+
+    def test_failed_api_request_still_counts_initiated_turn_without_fake_response(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            task, _ = task_at(root / "task")
+            with patch("cinerecon_threejs.workflow.call_model", side_effect=RuntimeError("transport failed")), patch(
+                    "cinerecon_threejs.workflow.render", return_value={}):
+                with self.assertRaisesRegex(RuntimeError, "transport failed"):
+                    run(task, root / "run", "test", model="fixture", endpoint="https://example.invalid/api", execute=True)
+            tracking = read_json(root / "run/run.json")["tracking"]
+            self.assertEqual(tracking["counts"]["model_turns"], 1)
+            self.assertEqual(tracking["counts"]["provider_responses"], 0)
+            self.assertEqual(tracking["pending_model_turns"], [])
+            self.assertEqual(tracking["stopping"]["reason"], "blocked")
+
+    def test_provider_refusal_and_invalid_response_are_received_but_not_completed(self):
+        for raw, expected in (({"choices": [{"message": {"refusal": "no"}}]}, "refused"),
+                              ({"choices": [{"finish_reason": "length"}]}, "invalid_response"),
+                              (["not an object"], "invalid_response")):
+            with self.subTest(expected=expected, raw=raw), tempfile.TemporaryDirectory() as temp:
+                root = Path(temp)
+                task, _ = task_at(root / "task")
+                with patch("cinerecon_threejs.workflow.call_model", return_value=raw), patch(
+                        "cinerecon_threejs.workflow.render", return_value={}):
+                    with self.assertRaises((ValueError, PermissionError)):
+                        run(task, root / "run", "test", model="fixture", endpoint="https://example.invalid/api", execute=True)
+                tracker = RunTracker(root / "run/tracking")
+                result = next(event["data"] for event in tracker.events() if event["kind"] == "model_result")
+                self.assertEqual(result["outcome"], expected)
+                self.assertTrue(result["response_received"])
+                self.assertEqual(tracker.summary()["counts"]["provider_responses"], 1)
+                self.assertEqual(tracker.summary()["pending_model_turns"], [])
+
+    def test_malformed_http_payload_counts_received_response(self):
+        for error in (json.JSONDecodeError("invalid payload", "{", 1),
+                      UnicodeDecodeError("utf-8", b"\xff", 0, 1, "invalid byte")):
+            with self.subTest(error=type(error).__name__), tempfile.TemporaryDirectory() as temp:
+                root = Path(temp)
+                task, _ = task_at(root / "task")
+                with patch("cinerecon_threejs.workflow.call_model", side_effect=error), patch(
+                        "cinerecon_threejs.workflow.render", return_value={}):
+                    with self.assertRaises(type(error)):
+                        run(task, root / "run", "test", model="fixture", endpoint="https://example.invalid/api", execute=True)
+                tracker = RunTracker(root / "run/tracking")
+                result = next(event["data"] for event in tracker.events() if event["kind"] == "model_result")
+                self.assertEqual(result["outcome"], "invalid_response")
+                self.assertTrue(result["response_received"])
+                self.assertEqual(tracker.summary()["counts"]["provider_responses"], 1)
+                self.assertEqual(tracker.summary()["pending_model_turns"], [])
+
+
+class TrackingTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.source = self.root / "scene.mjs"
+        self.source.write_text(SOURCE)
+
+    def tracker(self, **kwargs):
+        return RunTracker.create(self.root / "tracking", run_id="test-native",
+                                 provenance={"protocol": "native-continuation"}, **kwargs)
+
+    def completed_turn(self, tracker):
+        turn = tracker.model_turn()
+        tracker.model_result(turn)
+        return turn
+
+    def rendered(self, tracker):
+        attempt = tracker.render_attempt()
+        tracker.render_result(attempt)
+        return attempt
+
+    def baseline(self, rendered=True):
+        result = {"scene_sha256": scene_hash(self.source),
+                  "counts": {"initial_generations": 1, "scene_revisions": 0, "render_attempts": 1},
+                  "provenance": {"run_id": "original", "response_sha256": "0" * 64}}
+        if rendered:
+            result["render"] = {"outcome": "succeeded", "evidence": {"artifact": "baseline/render.mp4"}}
+        return result
+
+    def test_continuation_preserves_baseline_and_counts_changed_complete_candidates(self):
+        tracker = self.tracker(baseline=self.baseline())
+        turn = self.completed_turn(tracker)
+        tracker.scene(self.source, turn_sequence=turn)  # Existing baseline is not another generation.
+        tracker.decision("inspect", turn_sequence=turn)
+        second = self.completed_turn(tracker)
+        self.source.write_text(SOURCE + "\n// a complete changed candidate")
+        tracker.scene(self.source, turn_sequence=second)
+        tracker.scene(self.source, turn_sequence=second)  # Identical re-recording is not a revision.
+        tracker.decision("render", turn_sequence=second)
+        self.rendered(tracker)
+        third = self.completed_turn(tracker)
+        tracker.decision("submit", turn_sequence=third)
+        tracker.stop("model_submit")
+        summary = tracker.summary()
+        self.assertEqual(summary["counts"], dict(initial_generations=0, scene_revisions=1,
+            inspection_only_decisions=2, render_attempts=1, infrastructure_retries=0, model_turns=3, provider_responses=0))
+        self.assertEqual(summary["baseline"]["counts"]["initial_generations"], 1)
+        self.assertEqual(summary["total_counts"]["initial_generations"], 1)
+        self.assertEqual(summary["total_counts"]["scene_revisions"], 1)
+        self.assertEqual(summary["total_counts"]["render_attempts"], 2)
+        self.assertIsNone(summary["total_counts"]["model_turns"])
+        self.assertEqual(summary["model_turns_by_interface"], {"native_orchestration": 3, "provider_api": 0})
+        self.assertEqual(summary["current_scene_sha256"], scene_hash(self.source))
+        self.assertEqual(summary["stopping"]["reason"], "model_submit")
+
+    def test_initial_generation_and_return_to_previous_hash_are_counted(self):
+        tracker = self.tracker()
+        for suffix in ("", "\n// second", ""):
+            turn = self.completed_turn(tracker)
+            self.source.write_text(SOURCE + suffix)
+            tracker.scene(self.source, turn_sequence=turn)
+        self.assertEqual(tracker.summary()["counts"]["initial_generations"], 1)
+        self.assertEqual(tracker.summary()["counts"]["scene_revisions"], 2)
+
+    def test_infrastructure_retries_do_not_count_as_scene_revisions(self):
+        tracker = self.tracker(baseline=self.baseline())
+        attempt = tracker.render_attempt()
+        tracker.render_result(attempt, outcome="infrastructure_failed")
+        tracker.infrastructure_retry(attempt, reason="Browser unavailable; retry on repaired host")
+        with self.assertRaisesRegex(ValueError, "already started"):
+            tracker.infrastructure_retry(attempt, reason="Duplicate start")
+        self.rendered(tracker)
+        counts = tracker.summary()["counts"]
+        self.assertEqual(counts["scene_revisions"], 0)
+        self.assertEqual(counts["render_attempts"], 2)
+        self.assertEqual(counts["infrastructure_retries"], 1)
+        with self.assertRaisesRegex(ValueError, "failed infrastructure"):
+            tracker.infrastructure_retry(1, reason="Invalid unrelated transport recovery")
+
+    def test_submit_requires_rendered_current_hash(self):
+        tracker = self.tracker(baseline=self.baseline())
+        turn = self.completed_turn(tracker)
+        self.source.write_text(SOURCE + "\n// unrendered")
+        tracker.scene(self.source, turn_sequence=turn)
+        with self.assertRaisesRegex(ValueError, "successful render"):
+            tracker.decision("submit", turn_sequence=turn)
+        attempt = tracker.render_attempt()
+        with self.assertRaisesRegex(ValueError, "successful render"):
+            tracker.decision("submit", turn_sequence=turn)
+        tracker.render_result(attempt, outcome="scene_failed")
+        with self.assertRaisesRegex(ValueError, "successful render"):
+            tracker.decision("submit", turn_sequence=turn)
+        self.rendered(tracker)
+        tracker.decision("submit", turn_sequence=turn)
+        tracker.stop("model_submit")
+
+    def test_successful_baseline_can_be_submitted_but_latest_failed_render_blocks_it(self):
+        tracker = self.tracker(baseline=self.baseline())
+        turn = self.completed_turn(tracker)
+        tracker.decision("submit", turn_sequence=turn)
+        attempt = tracker.render_attempt()
+        tracker.render_result(attempt, outcome="infrastructure_failed")
+        with self.assertRaisesRegex(ValueError, "successful render"):
+            tracker.stop("model_submit")
+
+    def test_baseline_render_needs_explicit_evidence(self):
+        tracker = self.tracker(baseline=self.baseline(rendered=False))
+        turn = self.completed_turn(tracker)
+        with self.assertRaisesRegex(ValueError, "successful render"):
+            tracker.decision("submit", turn_sequence=turn)
+
+    def test_return_to_old_render_requires_rendering_the_current_candidate_again(self):
+        tracker = self.tracker()
+        turn = self.completed_turn(tracker)
+        tracker.scene(self.source, turn_sequence=turn)
+        self.rendered(tracker)
+        self.source.write_text(SOURCE + "\n// second")
+        tracker.scene(self.source, turn_sequence=turn)
+        self.rendered(tracker)
+        self.source.write_text(SOURCE)
+        tracker.scene(self.source, turn_sequence=turn)
+        with self.assertRaisesRegex(ValueError, "latest successful render"):
+            tracker.decision("submit", turn_sequence=turn)
+        self.rendered(tracker)
+        tracker.decision("submit", turn_sequence=turn)
+        tracker.stop("model_submit")
+
+    def test_baseline_submit_and_elapsed_time_use_observed_not_recorded_timestamps(self):
+        tracker = self.tracker(baseline=self.baseline(), started_at="2026-10-15T16:35:00Z")
+        turn = tracker.model_turn(observed_at="2026-10-15T16:36:06Z")
+        tracker.model_result(turn, observed_at="2026-10-15T16:37:00Z")
+        tracker.decision("submit", turn_sequence=turn, observed_at="2026-10-15T16:37:00Z")
+        tracker.stop("model_submit", observed_at="2026-10-15T16:38:00Z")
+        self.assertEqual(tracker.summary()["elapsed_seconds"], 180)
+        self.assertNotEqual(tracker.events()[0]["recorded_at"], tracker.events()[0]["observed_at"])
+
+    def test_native_usage_stays_unknown_and_tool_reports_are_labeled(self):
+        tracker = self.tracker()
+        turn = tracker.model_turn()
+        tracker.model_result(turn, native_tool_calls={"count": 7, "source": "self_reported"})
+        second = tracker.model_turn()
+        tracker.model_result(second, usage={"input_tokens": 5, "output_tokens": 6, "total_tokens": 11})
+        summary = tracker.summary()
+        self.assertIsNone(summary["token_usage"]["total_tokens"])
+        self.assertEqual(summary["known_token_usage"]["total_tokens"], 11)
+        self.assertEqual(summary["native_tool_calls"]["self_reported"],
+                         {"known_count": 7, "total_count": None, "reported_turns": 1})
+        self.assertIsNone(summary["native_tool_calls"]["runtime"]["known_count"])
+
+    def test_invalid_usage_unknown_references_and_duplicate_results_fail_without_append(self):
+        tracker = self.tracker()
+        turn = tracker.model_turn()
+        for usage in ({"total_tokens": -1}, {"total_tokens": True}, {"nonsense": 1}):
+            with self.assertRaisesRegex(ValueError, "token usage"):
+                tracker.model_result(turn, usage=usage)
+        with self.assertRaisesRegex(ValueError, "Native tool counts"):
+            tracker.model_result(turn, native_tool_calls={"count": 3})
+        with self.assertRaisesRegex(ValueError, "Unknown"):
+            tracker.model_result(999)
+        tracker.model_result(turn)
+        with self.assertRaisesRegex(ValueError, "already completed"):
+            tracker.model_result(turn)
+        self.assertEqual(tracker.summary()["event_count"], 3)
+
+    def test_reopen_is_durable_and_stopped_history_is_immutable_through_api(self):
+        tracker = self.tracker()
+        turn = tracker.model_turn()
+        before = (self.root / "tracking/000001.json").read_bytes()
+        reopened = RunTracker(self.root / "tracking")
+        reopened.model_result(turn)
+        reopened.stop("operational_safety_ceiling", detail="Safety deadline reached")
+        self.assertEqual((self.root / "tracking/000001.json").read_bytes(), before)
+        self.assertEqual(reopened.summary()["counts"]["model_turns"], 1)
+        with self.assertRaisesRegex(ValueError, "stopped"):
+            reopened.model_turn()
+        with self.assertRaises(FileExistsError):
+            self.tracker()
+
+    def test_corruption_and_missing_middle_event_fail_closed(self):
+        tracker = self.tracker()
+        self.completed_turn(tracker)
+        middle = self.root / "tracking/000002.json"
+        original = middle.read_text()
+        middle.write_text(original.replace("native_orchestration", "provider_api"))
+        with self.assertRaisesRegex(ValueError, "hash mismatch"):
+            RunTracker(self.root / "tracking")
+        middle.unlink()
+        with self.assertRaisesRegex(ValueError, "sequence"):
+            RunTracker(self.root / "tracking")
+
+    def test_failed_atomic_publish_leaves_prior_history_readable(self):
+        tracker = self.tracker()
+        head = tracker.summary()["head_sha256"]
+        with patch("cinerecon_threejs.tracking.os.link", side_effect=FileExistsError("collision")):
+            with self.assertRaises(FileExistsError):
+                tracker.model_turn()
+        self.assertEqual(tracker.summary()["head_sha256"], head)
+        self.assertEqual(list((self.root / "tracking").glob(".event-*")), [])
+
+    def test_summary_and_returned_events_cannot_mutate_saved_history(self):
+        tracker = self.tracker(baseline=self.baseline())
+        summary = tracker.summary()
+        summary["baseline"]["counts"]["scene_revisions"] = 100
+        events = tracker.events()
+        events[0]["data"]["provenance"]["protocol"] = "changed"
+        self.assertEqual(tracker.summary()["baseline"]["counts"]["scene_revisions"], 0)
+        self.assertEqual(tracker.summary()["provenance"]["protocol"], "native-continuation")
+
+    def test_baseline_unknown_fields_and_bad_counts_are_rejected(self):
+        for key, value in (("scene_revisions", -1), ("model_turns", True), ("imagined", 1)):
+            baseline = self.baseline()
+            baseline["counts"][key] = value
+            with self.assertRaisesRegex(ValueError, "baseline"):
+                self.tracker(baseline=baseline)
+        self.assertFalse((self.root / "tracking").exists())
+        with self.assertRaises(ValueError):
+            self.tracker(started_at="not a timestamp")
+        self.assertFalse((self.root / "tracking").exists())
+
+    def test_stop_without_model_decision_is_not_model_submit(self):
+        tracker = self.tracker()
+        with self.assertRaisesRegex(ValueError, "latest model turn"):
+            tracker.stop("model_submit")
+        tracker.stop("blocked", detail="Native execution unavailable")
+        self.assertEqual(tracker.summary()["counts"], dict.fromkeys(COUNTERS, 0))
 
 
 def read_json(path):

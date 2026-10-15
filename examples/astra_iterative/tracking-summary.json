@@ -1,8 +1,8 @@
 {
   "schema": "cinerecon-run-events-v1",
   "run_id": "astra-native-continuation-20261015",
-  "event_count": 5,
-  "head_sha256": "00117a7061ba78979a530d8a3f2ed9e4f001835781829732b0acf5a331861cf6",
+  "event_count": 6,
+  "head_sha256": "d44967c5631cefb2669862689b35808988c35adc6daaa4e3f40613a34c0556e6",
   "provenance": {
     "external_model_api_calls": 0,
     "initial_agent_turn_dispatch_utc": "2026-10-15T16:36:06Z",
@@ -22,12 +22,12 @@
   },
   "started_at": "2026-10-15T16:35:00Z",
   "finished_at": null,
-  "elapsed_seconds": 898.962989,
+  "elapsed_seconds": 1009.28387,
   "counts": {
     "initial_generations": 0,
     "scene_revisions": 1,
     "inspection_only_decisions": 0,
-    "render_attempts": 0,
+    "render_attempts": 1,
     "infrastructure_retries": 0,
     "model_turns": 1,
     "provider_responses": 0
@@ -63,7 +63,7 @@
     "initial_generations": 1,
     "scene_revisions": 1,
     "inspection_only_decisions": 0,
-    "render_attempts": 1,
+    "render_attempts": 2,
     "infrastructure_retries": 0,
     "model_turns": 2,
     "provider_responses": null
@@ -96,9 +96,11 @@
   },
   "submission_render_sequence": null,
   "pending_model_turns": [],
-  "pending_render_attempts": [],
+  "pending_render_attempts": [
+    6
+  ],
   "render_attempts_by_purpose": {
-    "scene": 0,
+    "scene": 1,
     "preflight": 0
   },
   "stopping": null,
