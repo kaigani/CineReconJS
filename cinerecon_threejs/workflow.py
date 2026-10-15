@@ -105,7 +105,7 @@ def extract(reference, indices, output):
     expression = "select=" + "+".join(f"eq(n\\,{index})" for index in indices)
     subprocess.run([
         os.environ.get("FFMPEG_BIN", "ffmpeg"), "-v", "error", "-nostdin", "-i", str(reference),
-        "-vf", expression + ",scale='min(960,iw)':-2", "-fps_mode", "vfr", "-q:v", "3",
+        "-vf", expression + ",scale='min(960,iw)':-2", "-vsync", "vfr", "-q:v", "3",
         "-start_number", "0", str(output / "sample_%06d.jpg")
     ], check=True, capture_output=True, timeout=600)
     files = sorted(output.glob("sample_*.jpg"))

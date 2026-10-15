@@ -49,7 +49,7 @@ export async function encodeFrames(config, framesDir) {
   const ffmpegArgs = ['-hide_banner', '-loglevel', 'error', '-nostdin', '-n',
     '-framerate', config.fps.rational, '-start_number', '0', '-i', path.join(framesDir, 'frame_%06d.png'),
     '-frames:v', String(config.frames), '-an', '-c:v', 'libx264', '-crf', '18', '-preset', 'medium',
-    '-pix_fmt', pixelFormat, '-threads', '1', '-fps_mode', 'cfr', '-r', config.fps.rational,
+    '-pix_fmt', pixelFormat, '-threads', '1', '-vsync', 'cfr', '-r', config.fps.rational,
     '-video_track_timescale', String(config.fps.numerator), '-map_metadata', '-1',
     '-fflags', '+bitexact', '-flags:v', '+bitexact', '-movflags', '+faststart', video];
   await atStage('encode', () => exec('ffmpeg', ffmpegArgs, {
