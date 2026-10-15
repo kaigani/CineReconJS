@@ -1,160 +1,245 @@
-# CineRecon • Three.js backend
+# CineReconJS
 
-This fork adds a runnable Three.js model benchmark: prepare reference samples, generate and refine editable JavaScript scenes with vision models, render exact-timeline videos in Chromium, and score them with CineRecon's original evaluator. Blender is not required for the new backend.
+**Test vision models by asking them to reconstruct video as editable, animated Three.js scenes.**
 
-**Start here: [Three.js setup, model runs, and evaluation](docs/THREEJS.md).**
+CineReconJS adapts [CineRecon](https://github.com/Unc1eW4ng/CineRecon) into a JavaScript/WebGL reconstruction benchmark. A model receives timestamped reference images, writes a Three.js scene module, and refines that module using rendered feedback. Headless Chromium renders the full animation; the resulting video can be exported to CineRecon's original evaluation pipeline.
 
-The original dataset and judge are preserved. This is a separate sampled-frame/WebGL generation baseline, so its results should not be presented as protocol-equivalent Blender rankings. No paid model runs or benchmark scores are included.
+The Three.js workflow requires no Blender installation or Blender MCP server. It retains CineRecon's reference videos, L1/L2/L3 representation targets, annotations, and scoring code, while defining a separate **sampled-frame generation protocol**: `cinerecon-threejs-sampled-v1`.
 
-The upstream documentation follows.
+[Quickstart](#quickstart) · [Model comparisons](#compare-models) · [Scene API](#the-threejs-scene-contract) · [Full guide](docs/THREEJS.md) · [Validation](docs/THREEJS_VALIDATION.md)
 
----
+## How the benchmark works
 
-<p align="center">
-  <img src="docs/assets/cinerecon-logo.png" width="96" height="96" alt="CineRecon logo">
-</p>
+```text
+Complete reference video
+  → generation-only frame sampling + L1/L2/L3 prompt
+  → model returns scene.mjs + reconstruction report
+  → Three.js renders every frame in headless Chromium
+  → synchronized render feedback or scene errors → bounded model revision
+  → final scene, full-length MP4, and provenance
+  → export successful videos for the original CineRecon judge
+```
 
-<h1 align="center">CineRecon: Benchmarking Frontier Models<br>for Agentic Cinematic Reconstruction</h1>
+1. **Prepare the input.** Read the reference's exact resolution, rational frame rate, frame count, and decoded timestamps. Sample uniformly across the complete timeline, including its endpoints. Generation never reads evaluation annotations or their evidence-frame selections.
+2. **Generate editable code.** A vision-capable model returns a single JavaScript module defining geometry, materials, lighting, an animated camera, and object motion. L1/L2/L3 set the representation fidelity; they are not model reasoning-effort settings.
+3. **Render and refine.** The host advances the scene at explicit frame times and encodes a verified full-length MP4. Each remaining round supplies the previous source plus reference/render samples at matching times, or a scene error to repair. The fixed budget includes the initial request; two rounds mean one generation and one revision.
+4. **Record the result.** Only the final scheduled round is exported, without selecting a best round using evaluation labels. Source, responses, request hashes, video hashes, runtime versions, and failures remain available for inspection.
+5. **Evaluate separately.** Export complete reconstructed videos to the unchanged CineRecon judge, which selects annotated clips, aligns evidence, and reports camera, static, and dynamic scores. Generation and judging are separate opt-in model costs.
 
-<p align="center">
-  <a href="https://arxiv.org/abs/2610.16577">
-    <img src="https://img.shields.io/badge/arXiv-2610.16577-B31B1B?style=flat-square&amp;logo=arxiv&amp;logoColor=white" alt="arXiv: 2610.16577">
-  </a>
-  &nbsp;
-  <a href="https://cinerecon.github.io/">
-    <img src="https://img.shields.io/badge/Demo_Page-315A70?style=flat-square&amp;logo=googlechrome&amp;logoColor=white" alt="Demo Page">
-  </a>
-  &nbsp;
-  <a href="https://huggingface.co/papers/2610.16577">
-    <img src="https://img.shields.io/badge/Hugging_Face-Paper-E5A628?style=flat-square&amp;logo=huggingface&amp;logoColor=white" alt="Hugging Face Paper">
-  </a>
-</p>
+### Representation levels
 
-![CineRecon task overview: a coding agent reconstructs an editable Blender scene through Blender MCP and revises it using rendered visual feedback.](docs/assets/figure1.png)
+| Level | Three.js reconstruction target |
+|---|---|
+| **L1 · Proxy** | Simple geometric proxies that preserve subjects, proportions, spatial relations, articulation, contacts, motion, and camera timing. |
+| **L2 · Simplified** | Low-complexity but recognizable subjects, silhouettes, important components, materials, and articulated actions. |
+| **L3 · Detailed** | Instance-specific geometry, appearance, actions, and visible imaging characteristics, within the runtime's supported capabilities. |
 
-**Figure 1. CineRecon task overview.** Given a complete reference video, an agent writes and revises Python code through Blender MCP, compares rendered frames with the reference, and reconstructs an editable dynamic scene. The Opus 5.5 Detailed example shows aligned reference and rendered frames, scene geometry, and the animated camera sequence. Camera labels indicate shot order.
+The level-specific [Three.js prompts](prompts/reconstruction/threejs/en/) define the full contract. All levels reconstruct the whole sequence, including intervals between sampled inputs.
 
-CineRecon provides reference videos, annotations, reconstruction prompts, and tools for evaluating rendered reconstruction videos. All annotations and prompts are in English.
+## Quickstart
 
-## Included
+### 1. Install
 
-- 50 reference videos and 360 evaluation clips defined by frame intervals.
-- 360 annotation files containing 35,836 distinct checklist records, or 49,668 checks expanded over L1/L2/L3.
-- Reference entity tables, identity context, evidence frames, and source-video checksums.
-- Judging instructions for Proxy (L1), Simplified (L2), and Detailed (L3).
-- Reconstruction prompt templates and a description of the three representation settings.
-- Frame selection, timestamp alignment, single-call judging, concurrent execution, resumption, and score aggregation.
+Use a Linux or macOS shell with:
 
-For the generation task, prompt placeholders, representation requirements, refinement instructions, and expected deliverables, see [generation prompts and settings](docs/GENERATION.md). The document also describes the [Blender MCP connection and runtime settings](docs/GENERATION.md#blender-mcp-and-runtime-settings), including worker isolation, timeouts, and rendering. Agent launchers are not included.
+- Python **3.10+** and Node.js **20+**.
+- **FFmpeg and ffprobe** on `PATH`, with H.264/libx264 encoding support.
+- A Chromium environment that supports WebGL and Chromium's sandbox. Playwright can install its pinned browser and required Linux system libraries.
 
-## Install and verify
-
-Use Python 3.10 or newer on Linux or macOS. Run from this directory; data remain in the checkout rather than inside the Python wheel.
+The CI-verified environment is Ubuntu 22.04, Python 3.12, and Node.js 22. Node dependencies are pinned to Three.js `0.180.0` and Playwright `1.56.1` in the lockfile.
 
 ```bash
+git clone --branch threejs-backend https://github.com/kaigani/CineReconJS.git
+cd CineReconJS
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -e .
-python -m cinerecon validate --media
-python examples/offline_smoke.py --output /tmp/cinerecon-smoke
-python -m unittest discover -s tests -v
+npm ci --prefix threejs --ignore-scripts
+(cd threejs && npx playwright install chromium)
 ```
 
-The offline example tests the workflow with a synthetic video and synthetic labels, without API calls. Use an empty output directory.
+On a clean Linux machine, use `(cd threejs && npx playwright install --with-deps chromium)` if browser system dependencies are missing; installing those libraries may require administrator privileges. FFmpeg/ffprobe must be installed separately. Run commands from the repository root: prompts and data live in the checkout, not in the Python wheel.
 
-## Evaluate a reconstruction
-
-The example below evaluates one selected clip. Pass the complete reconstruction video to `--generated`; the tool extracts the corresponding interval automatically.
+### 2. Verify rendering without a model or API key
 
 ```bash
-python -m cinerecon prepare \
-  --clip video1_cp001 --level L1 \
-  --reference media/reference/video1.mp4 \
-  --generated /path/to/reconstruction.mp4 \
-  --configuration my_model_high --output runs/evaluation/video1_L1_cp001
-
-# Preview locally without contacting a model service.
-python -m cinerecon judge --job runs/evaluation/video1_L1_cp001
-
-# Enter your OpenRouter API key (input is hidden).
-read -s CINERECON_API_KEY
-export CINERECON_API_KEY
-python -m cinerecon judge --job runs/evaluation/video1_L1_cp001 --execute
-python -m cinerecon summarize --jobs-root runs/evaluation --output runs/summary.json
+python examples/threejs_smoke.py --output runs/threejs-smoke
 ```
 
-The default route is OpenRouter at `https://openrouter.ai/api/v1/chat/completions`, using `openai/gpt-5.6-sol` with high reasoning effort, strict structured output, and streaming disabled. Requests are pinned to the OpenAI provider with fallbacks disabled and parameter support required. The key is read from `CINERECON_API_KEY` and is never saved.
+This creates a short animated Three.js reference, prepares sampled inputs, renders an authored reconstruction, and verifies the resulting video. It is a **synthetic pipeline check**, not a model result. The default smoke does not execute the original evaluator.
 
-Each request evaluates one clip under one setting using annotations and prompts, and saves the parsed ratings and run metadata.
+Use a fresh output directory for each run. To select an existing browser, append `--chromium /absolute/path/to/chromium`. Optional authored test suites:
 
-You can evaluate a single setting. For example, an L2-only run reports the available L2 dimension and category scores, while the configuration-wide overall score across L1/L2/L3 is `null`. A setting's overall score requires all three dimensions; a configuration-wide overall score requires all three setting scores. Missing, failed, refused, and absent-dimension values are never zero-filled.
+```bash
+python -m unittest discover -s tests -p test_threejs_workflow.py -v
+CINERECON_BROWSER_TESTS=1 npm test --prefix threejs
+```
 
-## Batch evaluation
+Without `CINERECON_BROWSER_TESTS=1`, the Node suite deliberately skips browser integration tests. A skipped browser test does not verify rendering.
 
-Prepare your complete reconstruction videos and specify their paths in the cases file. Videos may be stored anywhere and may have any filename. No manual clipping or alignment is needed: the evaluator automatically extracts frames at the corresponding times for each evaluation clip.
+### 3. Prepare a reference video
 
-Create a cases file using `configs/cases.example.json` as a template:
+The inherited dataset contains 50 complete reference videos and 360 annotated evaluation clips. The benchmark generates one complete reconstruction per video and representation level, not a separate scene for each evaluation clip.
 
-```json
-{
-  "cases": [
-    {
-      "configuration": "my_model_high",
-      "level": "L2",
-      "video_id": "video10",
-      "generated": "/path/to/video10/reconstruction.mp4"
+```bash
+python -m cinerecon_threejs prepare \
+  --reference media/reference/video1.mp4 \
+  --video-id video1 --level L1 --samples 24 \
+  --output runs/threejs/tasks/video1/L1
+```
+
+This writes a hashed `task.json`, a resolved generation prompt, and timestamped reference images. The model receives the sampled images rather than the entire video file; samples are downscaled for input, but the final reconstruction must match the source resolution and full timeline. Prepare separate tasks for L2 and L3. See [reference media and rights](#upstream-attribution-and-license) before sending dataset images to a provider.
+
+### 4. Preview a model run
+
+Choose a vision model and an explicit OpenAI-compatible Chat Completions endpoint supporting image inputs, JSON-object responses, and `max_completion_tokens`. Provider support varies; there is no default generation model or provider.
+
+```bash
+python -m cinerecon_threejs generate \
+  --task runs/threejs/tasks/video1/L1/task.json \
+  --configuration my_model_threejs_24frames_2rounds \
+  --model YOUR_VISION_MODEL_ID \
+  --endpoint https://api.openai.com/v1/chat/completions \
+  --rounds 2 --max-tokens 16000 --seed 0 \
+  --output runs/threejs/models/my_model/L1/video1 \
+  > request-preview.json
+```
+
+**This command only previews the request and call budget.** It does not contact a model, render generated code, or create the run directory. Replace the example endpoint if using another compatible provider.
+
+Before executing model-generated code, prepare the [disposable isolation boundary](threejs/README.md#security-boundary); the harness does not create a container or VM for you. To make a live run, securely set `CINERECON_GENERATOR_API_KEY`, remove the preview redirection, and append `--execute`. This sends reference images and subsequent revision feedback to the selected provider and may incur charges. Never commit credentials. A trusted renderer preflight runs before the first model request; infrastructure failures abort instead of consuming additional scene-repair calls. API errors and refusals stop without automatic retries.
+
+The `seed` controls scene/render initialization, not provider-side model sampling. See the [full generation guide](docs/THREEJS.md) for archived-response imports and custom agents.
+
+## Compare models
+
+Copy [the batch example](configs/threejs.batch.example.json) within `configs/`, then replace its model IDs and endpoints. Each row selects a prepared task, configuration, model, endpoint, round budget, token cap, and scene seed. Task paths are relative to the spec file. Add one row per model configuration, video, and level.
+
+```bash
+cp configs/threejs.batch.example.json configs/my_threejs_batch.json
+# Edit configs/my_threejs_batch.json before running.
+python -m cinerecon_threejs batch \
+  --spec configs/my_threejs_batch.json --output runs/threejs/models
+```
+
+Batch mode previews by default. Add `--execute` only after reviewing the matrix and costs. Runs execute sequentially. Use a new output root for a new trial; run directories and the saved batch plan are immutable.
+
+For a fair Three.js comparison:
+
+- Use the same reference cohort, representation levels, sampling policy, token cap, round budget, and runtime versions for every model.
+- Give each configuration a distinct name. Export rejects duplicate video/level cases and mixed model, protocol, budget, or sampling settings within one configuration.
+- Report generation success/failure coverage alongside judged quality. A failed or unstarted generation is not silently converted to a zero quality score.
+- Keep reference annotations, checklist answers, and judge outputs out of generation and refinement.
+
+After successful live runs, export evaluator inputs:
+
+```bash
+python -m cinerecon_threejs export-cases \
+  --runs-root runs/threejs/models \
+  --output runs/threejs/cases.json --common-only
+```
+
+`--common-only` selects the shared successful video/level intersection across configurations. Omit it to export all successes, and disclose the resulting unequal coverage. The companion `cases.generation.json` records the expected cohort, failed/unstarted runs, settings, hashes, and export selection. Preserve and report it with the quality summary; a shared-success subset does not erase generation failures.
+
+Authored fixtures are always excluded from model-case exports. Archived model responses have `unverified_import` provenance and are excluded by default; `--include-unverified-imports` is an explicit opt-in, not proof of the response's model, inputs, or budget. The synthetic quickstart therefore does not produce a model leaderboard.
+
+### Evaluate exported videos
+
+**Integration status:** the following commands use the retained original evaluator. Its source and input contract have been inspected, but original upstream Python regression tests, the dataset validator, and end-to-end evaluator integration have not been executed during this adaptation; that validation remains pending execution permission. The passing Three.js smoke covers generation/rendering only.
+
+```bash
+python -m cinerecon prepare-batch \
+  --cases runs/threejs/cases.json --output runs/threejs/evaluation
+python -m cinerecon judge --jobs-root runs/threejs/evaluation
+```
+
+Preparation creates aligned reference/render evidence for all applicable annotated clips. `judge` without `--execute` previews requests locally. The inherited judge defaults to OpenRouter with `openai/gpt-5.6-sol`; it is distinct from the model under test. Review [the evaluation protocol and provider settings](docs/EVALUATION.md) before making paid calls. Live judging separately requires `CINERECON_API_KEY` and `--execute`; generation credentials do not enable it.
+
+After judge results exist, aggregate them:
+
+```bash
+python -m cinerecon summarize \
+  --jobs-root runs/threejs/evaluation --output runs/threejs/summary.json
+```
+
+The original aggregation uses camera, static, and dynamic dimensions and L1/L2/L3 settings. A configuration-wide overall score requires all three levels; missing required dimensions or levels remain `null`. Preserve generation coverage and evaluation coverage alongside every reported score.
+
+## The Three.js scene contract
+
+The model returns a JSON object with exactly two string fields: `scene_source` and `report`. `scene_source` is a single ES module. Both its exported `createScene` factory and returned `update(time, frame)` function must be synchronous:
+
+```javascript
+export function createScene({ THREE, width, height, fps, duration, seed }) {
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+  camera.position.set(0, 2, 5);
+  camera.lookAt(0, 0, 0);
+  const subject = new THREE.Mesh(
+    new THREE.BoxGeometry(), new THREE.MeshNormalMaterial()
+  );
+  subject.name = 'Subject';
+  scene.add(subject);
+  return {
+    scene, camera,
+    update(time, frame) {
+      subject.rotation.y = time; // Absolute state, not a playback increment.
     }
-  ]
+  };
 }
 ```
 
-Each entry identifies one complete reconstruction video:
+This small example illustrates the API, not a reconstruction of a dataset video. The runtime supplies Three.js and owns the renderer. Generated code creates editable scene objects and updates geometry, joints, camera transforms, and shot changes from absolute time. It must not create its own render loop or use `requestAnimationFrame`.
 
-| Field | Meaning |
-|---|---|
-| `configuration` | A name for the model and experimental settings that produced the video, used to group results (e.g., `my_model_high`); use letters, digits, underscores, or hyphens. It does not change the judge model or API settings |
-| `level` | Representation setting: `L1`, `L2`, or `L3` |
-| `video_id` | Reference-video identifier in the dataset manifest |
-| `generated` | Path to the complete generated video; absolute paths are accepted, and relative paths resolve from the cases file's directory |
+The host samples frames `0` through `frames - 1` at exact rational intervals, saves full-resolution PNGs, and encodes H.264. It verifies dimensions, frame count, frame rate, duration, and every encoded frame timestamp. Rendering uses fixed sRGB/ACES settings and software WebGL via SwiftShader. See [renderer setup, API, and security](threejs/README.md).
 
-Add one entry for each model configuration, setting, and reference video you want to evaluate. Each combination must appear only once. You do not need to cut videos into clips or list individual clips. `prepare-batch` looks up every annotated clip for each reference video and prepares aligned frame pairs and the applicable checklist for each clip. Preparation is local and makes no model requests.
+Successful generation outputs include:
 
-After setting `CINERECON_API_KEY` as shown above, run:
-
-```bash
-python -m cinerecon prepare-batch --cases configs/cases.example.json --output runs/evaluation
-python -m cinerecon judge --jobs-root runs/evaluation --workers 8 --rpm 20 --execute
-python -m cinerecon summarize --jobs-root runs/evaluation --output runs/summary.json
+```text
+run.json                  # model, task, budgets, hashes, status, and attempts
+scene.mjs                 # editable scene and animation source
+scene.json                # geometry/material/camera snapshot at frame zero
+report.md                 # model's reconstruction report
+reconstruction.mp4        # full reference-length, exact-timeline render
+renderer-metadata.json    # runtime versions and frame hashes
+round_01/, round_02/, ...  # request previews, responses, sources, rendered frames
 ```
 
-Replace `configs/cases.example.json` with your cases file. Prepared jobs and their results are organized under `runs/evaluation/<configuration>/<level>/<clip_id>/`. The `judge` command sends one separate API request per clip, using up to **8 concurrent workers** and starting at most **20 requests per minute** by default within one process. Adjust these limits with `--workers` and `--rpm`; this is client-side concurrency, not the provider's asynchronous Batch API. Omit `--execute` to preview requests locally.
+`scene.json` does not serialize JavaScript animation functions; keep `scene.mjs` to reproduce motion. Output directories can be large because each round retains every rendered frame.
 
-Each completed request is saved separately. To resume, rerun the same `judge` command with the same inputs and settings; successful jobs are skipped. Add `--retry-failed` to retry failed or interrupted requests. Content safety refusals are not retried by this option. When changing a reconstruction video or judge settings, prepare jobs in a new output directory. The evaluator checks request fingerprints and image hashes before reusing results. Preparation failures are recorded in `preparation_report.json`; missing and failed results are reported separately and never counted as zero scores.
+## Architecture and documentation
 
-The summary reports L1/L2/L3 scores and valid clip/video counts for each configuration, with three dimension scores and an 11-category breakdown. Each category includes its score, contributing clip count, and scored item count. Missing categories have a `null` score. See [aggregation details](docs/EVALUATION.md#parsing-and-aggregation).
-
-Keep credentials in the environment. Do not put real API keys in cases files, source code, documentation, or committed files. Local `.env` files are excluded by `.gitignore` but are not automatically loaded by the evaluator.
-
-## Directory guide
-
-| Directory | Contents |
+| Path | Role |
 |---|---|
-| `data/` | Dataset manifest, schema, and annotations |
-| `media/reference/` | Reference videos; see [media availability](docs/DATASET.md#reference-media) |
-| `prompts/evaluation/en/` | Judge instructions for the three settings |
-| `prompts/reconstruction/en/` | Reconstruction prompt templates for L1/L2/L3 |
-| `configs/` | A reference record of default evaluator settings and a cases-file example |
-| `cinerecon/` | Preparation, judging, and aggregation code |
-| `tests/`, `examples/` | Regression tests and an offline demonstration |
+| [`cinerecon_threejs/`](cinerecon_threejs/) | Python preparation, model requests, bounded refinement, batch execution, and evaluator export. |
+| [`threejs/`](threejs/) | Node host, restricted loopback server, Chromium/WebGL runtime, encoding, and verification. |
+| [`prompts/reconstruction/threejs/en/`](prompts/reconstruction/threejs/en/) | Three.js-specific L1/L2/L3 generation contracts. |
+| [`configs/threejs.batch.example.json`](configs/threejs.batch.example.json) | Multi-model generation matrix example. |
+| [`examples/threejs_smoke.py`](examples/threejs_smoke.py) | No-API authored pipeline demo; optional evaluator fixture is separate. |
+| [`tests/test_threejs_workflow.py`](tests/test_threejs_workflow.py), [`threejs/test/`](threejs/test/) | Authored harness, encoding, browser, and failure-policy tests. |
+| [`cinerecon/`](cinerecon/), [`prompts/evaluation/en/`](prompts/evaluation/en/) | Retained original video evaluator and judge prompts. |
+| [`data/`](data/), [`media/reference/`](media/reference/) | Original manifest, annotations, and reference videos. |
 
-`configs/evaluator.json` records the default evaluation settings; the CLI does not automatically load this file. Set concurrency and request rate with `--workers` and `--rpm`.
+Start with the [full Three.js workflow](docs/THREEJS.md), [renderer reference](threejs/README.md), [dataset specification](docs/DATASET.md), and [evaluation protocol](docs/EVALUATION.md). [Original Blender generation documentation](docs/GENERATION.md) is retained for upstream context; it is not the CineReconJS setup guide.
 
-See [dataset specification](docs/DATASET.md), [generation prompts and settings](docs/GENERATION.md), and [evaluation protocol](docs/EVALUATION.md).
+## Validation and current limits
 
-## License
+[CI run 38677842520](https://github.com/kaigani/CineReconJS/actions/runs/38677842520) passed on backend commit `ccf3d605c7d6be6439d007d598cecd00804d2ecb`:
 
-Project-authored code, documentation, prompts, and annotations are released under the [MIT License](LICENSE). Third-party media, including reference frames reproduced in figures, retain their original rights.
+- **21 Python harness tests** and **26 Node/browser tests**, with zero browser skips.
+- Real Chromium rendering, repeated-render PNG hash equality, exact rational video timestamps, and negative scene/network-policy tests.
+- The complete authored generation smoke with **zero API calls**.
 
-### Reference video rights
+All 50 reference videos were also independently decoded and checked against their manifest hashes during implementation. See [validation details and unexecuted checks](docs/THREEJS_VALIDATION.md). **No live model-generation results, paid judge results, or benchmark quality scores are bundled.**
 
-Reference videos are excluded from the MIT License. Copyright remains with the respective rights holders. Their use and redistribution are subject to the applicable licenses and permissions.
+Important boundaries:
+
+- **Cross-backend scores are not protocol-equivalent.** Upstream's Blender agent sees the complete video and uses tools; this baseline sends sampled images through bounded API calls. Short events can fall between samples, and WebGL imaging differs from Cycles. Report the backend, input sampling, and budgets; do not relabel Blender rankings as Three.js results.
+- **This is a procedural single-module runtime.** External assets/imports, GLTF loaders, postprocessing addons, and a general-purpose tool-using agent are not bundled. A custom agent can target the scene API, but its protocol must be recorded separately.
+- **Deterministic scheduling is not universal pixel determinism.** Software/platform changes and nonconforming source can affect results. Arbitrary generated source is marked unaudited; source review is needed for absolute-time motion, editability, representation requirements, and prohibitions on reference replay. The video judge does not establish those properties.
+- **Generated JavaScript is untrusted.** Run it in a disposable OS/container sandbox without secrets or sensitive mounts, with resource limits and outbound networking disabled at that boundary. Chromium sandboxing, route restrictions, credential stripping, and timeouts are defense in depth, not a secure arbitrary-code sandbox. Do not weaken your everyday browser's security to run generated scenes.
+
+## Upstream attribution and license
+
+CineReconJS builds on [Unc1eW4ng/CineRecon](https://github.com/Unc1eW4ng/CineRecon), starting from upstream commit [`1d850319`](https://github.com/Unc1eW4ng/CineRecon/tree/1d850319c9cfcafca92c87a0a279edff4758f468). Credit the CineRecon contributors for the original dataset, annotations, representation requirements, and evaluation implementation. The original evaluator, annotations, evaluation prompts, and reference media are retained unchanged by this adaptation.
+
+Project-authored code, documentation, prompts, and annotations are covered by the [MIT License](LICENSE). **Reference videos and other third-party media are excluded from that license.** Copyright remains with their respective rights holders, and upstream notes that redistribution permissions remain under review. Review applicable rights before redistributing media or transmitting reference images to model providers. See [reference-media availability](docs/DATASET.md#reference-media).
