@@ -1,0 +1,22 @@
+{
+  "runs": [
+    {
+      "task": "../runs/threejs/tasks/video1/L1/task.json",
+      "configuration": "model_a_threejs_24frames_2rounds",
+      "model": "YOUR_VISION_MODEL_A",
+      "endpoint": "https://api.openai.com/v1/chat/completions",
+      "rounds": 2,
+      "max_tokens": 16000,
+      "seed": 0
+    },
+    {
+      "task": "../runs/threejs/tasks/video1/L1/task.json",
+      "configuration": "model_b_threejs_24frames_2rounds",
+      "model": "YOUR_VISION_MODEL_B",
+      "endpoint": "https://api.openai.com/v1/chat/completions",
+      "rounds": 2,
+      "max_tokens": 16000,
+      "seed": 0
+    }
+  ]
+}

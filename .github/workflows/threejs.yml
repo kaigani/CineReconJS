@@ -1,0 +1,58 @@
+name: Three.js offline checks
+on:
+  push:
+    paths:
+      - 'cinerecon_threejs/**'
+      - 'threejs/**'
+      - 'prompts/reconstruction/threejs/**'
+      - 'tests/test_threejs_workflow.py'
+      - 'examples/threejs_smoke.py'
+      - '.github/workflows/threejs.yml'
+  pull_request:
+    paths:
+      - 'cinerecon_threejs/**'
+      - 'threejs/**'
+      - 'prompts/reconstruction/threejs/**'
+      - 'examples/threejs_smoke.py'
+      - 'tests/test_threejs_workflow.py'
+      - '.github/workflows/threejs.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline:
+    # Standard public-repository runner. No model calls, secrets, paid runners,
+    # caches, or artifact uploads. Only the authored backend is executed here.
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            cinerecon_threejs
+            threejs
+            tests
+            examples
+            prompts/reconstruction/threejs
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Install official runtime dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          npm ci --prefix threejs --ignore-scripts
+          cd threejs
+          npx playwright install --with-deps chromium
+      - name: Python harness tests
+        run: python -m unittest discover -s tests -p test_threejs_workflow.py -v
+      - name: Renderer unit and browser tests
+        run: npm test --prefix threejs
+        env:
+          CINERECON_BROWSER_TESTS: '1'
+      - name: Full authored generation smoke
+        run: python examples/threejs_smoke.py --output runs/threejs-smoke

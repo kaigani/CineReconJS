@@ -1,3 +1,15 @@
+# CineRecon • Three.js backend
+
+This fork adds a runnable Three.js model benchmark: prepare reference samples, generate and refine editable JavaScript scenes with vision models, render exact-timeline videos in Chromium, and score them with CineRecon's original evaluator. Blender is not required for the new backend.
+
+**Start here: [Three.js setup, model runs, and evaluation](docs/THREEJS.md).**
+
+The original dataset and judge are preserved. This is a separate sampled-frame/WebGL generation baseline, so its results should not be presented as protocol-equivalent Blender rankings. No paid model runs or benchmark scores are included.
+
+The upstream documentation follows.
+
+---
+
 <p align="center">
   <img src="docs/assets/cinerecon-logo.png" width="96" height="96" alt="CineRecon logo">
 </p>

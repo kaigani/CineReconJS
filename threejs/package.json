@@ -1,0 +1,16 @@
+{
+  "name": "cinerecon-threejs-renderer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "smoke": "node test/smoke.mjs",
+    "test:browser": "CINERECON_BROWSER_TESTS=1 node --test test/browser.test.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.56.1",
+    "three": "0.180.0"
+  }
+}

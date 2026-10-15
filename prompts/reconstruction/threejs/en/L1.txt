@@ -1,0 +1,76 @@
+Reconstruct the reference video as an editable Three.js scene for the CineRecon Three.js sampled-frame baseline.
+
+Reference video identifier:
+<VIDEO_PATH>
+
+Harness output directory:
+<OUTPUT_DIR>
+
+Reference video metadata:
+<VIDEO_METADATA>
+
+Representation setting:
+<LEVEL>
+
+Input and protocol:
+
+The harness supplies timestamped reference images sampled regularly across the complete reference-video timeline, plus the metadata above. Use the supplied image pixels and their timestamps to reconstruct the whole sequence, including the intervals between samples. Do not treat samples as separate reconstruction tasks or as evaluation clips. The reference-video path identifies the source; it does not promise that you can open a file or use tools. Do not assume access to Blender, MCP, a shell, a browser, or additional reference frames.
+
+The harness may provide a bounded sequence of render-inspect-revise rounds. A feedback message may contain validation errors and reconstruction screenshots paired with reference samples at matching timestamps. Only use feedback actually supplied. Return an executable scene on the initial response and a complete replacement scene on each permitted revision. Do not return only a plan, request tool access, or invent inspection results.
+
+This adaptation uses the same reference data and scoring as CineRecon, but sampled-frame input, Three.js rendering, and bounded feedback change the generation protocol. It is a Three.js sampled-frame baseline, not a protocol-equivalent reproduction of Blender model rankings. L1/L2/L3 control representation fidelity, not model reasoning effort. All levels retain the same spatial, temporal, contact, articulated-action, and camera requirements.
+
+Core objective: L1 / Proxy
+
+Use simple geometric proxies to preserve the main subjects, spatial relations, motion, interaction events, and camera changes accurately, without pursuing realistic appearance detail.
+
+Modeling requirements:
+
+1. Represent main subjects and the environment with a small number of boxes, spheres, cylinders, cones, planes, or simple combinations. Do not imitate detailed modeling by stacking many tiny primitives.
+2. Preserve subject counts and persistent identity correspondence, coarse length/width/height proportions, relative size, position, and orientation. Use simple materials to match major colors and color differences needed to distinguish subjects.
+3. Separate moving parts whenever needed to express a pose, articulated action, or interaction. Simplified geometry must still express clearly visible joint or component movement; whole-object rigid motion cannot replace all articulation or erase key events.
+4. Do not add detailed category-specific shapes, facial features, detailed clothing, fine textures, or decorations. Appropriate proxy appearance is not an error to correct.
+
+Level-specific inspection:
+
+Check subject counts, coarse proportions, relative positions and orientations, occlusions, support and contact, main actions and interactions, camera composition, shot changes, and timing. Spend revision effort on those properties rather than unnecessary appearance detail.
+
+Shared reconstruction requirements:
+
+1. Preserve main-subject counts and persistent correspondence throughout the sequence. Match spatial and occlusion relations, support and contact, entries and exits, motion directions, starts and stops, turns, interactions, and event ordering.
+2. Match the reference frame rate, frame count, duration, resolution, aspect ratio, and timeline specified by the metadata. The harness renders and encodes the complete sequence. Each output frame must represent the same time, action phase, interaction, and camera composition as the corresponding reference frame. Do not retime the sequence, shift events, change speed, duplicate source samples as frozen frames, or use frame interpolation to hide mismatches. Analytical interpolation of modeled trajectories between observed states is allowed and must preserve event timing.
+3. Match camera composition, perspective, position, orientation, movement, framing, subject image sizes, and shot transitions. Do not substitute incorrect subject translation or scaling for necessary camera changes. Match abrupt cuts rather than smoothing them into camera travel.
+4. Strictly preserve image-left/image-right subject positions, orientations, motion directions, and interactions. Distinguish image directions from anatomical directions, keep correspondence across camera changes, and do not mirror the scene.
+5. Build the scene from editable 3D objects, components, materials, lights, and transforms. Use articulated hierarchies, skeletal motion, or editable deformation where the action requires them. Maintain plausible support and the observed contact points through motion; avoid unintended sliding, floating, or interpenetration.
+6. Never use the reference video or reference images, extracted pixels, or pre-rendered substitutes as the final output, background, projected image, texture billboard, or full-screen shader in place of 3D reconstruction. A procedural background and procedural materials are permitted when they represent the scene rather than replay its frames.
+7. Do not use external asset or generation services, network requests, local assets, other tasks' outputs, or evaluation-side annotations, entity tables, ground truth, evaluation clips, checklists, question banks, or answers. Do not add score labels, timestamps, comparison labels, or other diagnostic overlays to the reconstruction itself. Reproduce visible text only when it is part of the reference scene and relevant to the chosen level.
+
+Scene module contract:
+
+1. Return all scene implementation in one standalone ES module, which the harness saves as <OUTPUT_DIR>/scene.mjs. Its public entry point must be a named, synchronous export with this signature:
+   export function createScene({ THREE, width, height, fps, duration, seed })
+   It must return an object containing exactly the functional interface { scene, camera, update }, where scene is a THREE.Scene, camera is a THREE.Camera, and update is a function update(time, frame). Extra helper functions and local variables inside the module are allowed; no other files are required.
+2. Use the injected THREE namespace. The only optional import is from the bare module specifier 'three'; the harness resolves it. Do not import Three.js addons, other packages, CDN URLs, local files, or dynamically loaded code. Do not load images, fonts, models, audio, or other assets. Generate geometry, materials, and any needed texture pixels entirely in memory from code. Do not embed reference images or fetched assets as data URLs or encoded payloads.
+3. The harness owns the WebGLRenderer, canvas, render settings, frame scheduling, screenshots, video encoding, and output files. Do not instantiate a renderer, invoke rendering, create a render loop, use requestAnimationFrame or timers, manipulate the DOM, or access the network or filesystem. Do not assume a renderer global or change harness configuration. Use width / height for the camera aspect or equivalent projection framing, and initialize a scene ready for update(0, 0).
+4. The harness calls update(time, frame) before rendering, with time in seconds on the reference timeline and frame the zero-based output-frame index. Normal full-video sampling uses time = frame / fps; use the supplied metadata for the intended timeline rather than rescaling it to the number of reference samples. duration is the sequence duration in seconds. Respect the provided frame count; do not append an extra terminal frame or loop the action unless the reference does.
+5. update must be deterministic and absolute-sample: calling it at any valid time must produce that time's complete scene state, even after calls at later times or after repeated calls at the same time. Set animated transforms, joint poses, visibility, deformations, material and light changes, camera position, orientation, and projection directly from time/frame and initial constants. Do not accumulate rotations, integrate velocity using a previous frame, increment a time counter, or rely on playback order. Reset properties that change across shots so that seeking backward is correct.
+6. Use seed for any procedural randomness. Random choices must be stable for a given seed and independent of evaluation order; do not use unseeded Math.random, wall-clock time, or stateful random draws inside update. Physics-like motion must use deterministic analytical trajectories or precomputed deterministic data that can be sampled by absolute time.
+7. Keep the returned scene and camera object references stable. Implement shot changes by updating the existing camera and the appropriate scene objects, without returning a replacement from update. When camera projection parameters change, update the projection matrix. Do not create or delete objects cumulatively on successive samples.
+
+Render-inspect-revise procedure:
+
+1. Infer subjects, camera behavior, timeline, articulation, contacts, and the selected level's appearance from all supplied reference samples before producing the initial scene. Treat unobserved moments as inference, not as viewed evidence.
+2. When the harness supplies feedback, compare reconstruction and reference at the same timestamp. Inspect all supplied shots and important state changes; prioritize counts and correspondence, camera/framing, timing, occlusion, contact, and articulated motion, then the chosen level's appearance targets. Do not optimize only the inspection samples at the expense of intermediate motion.
+3. Correct executable-module errors and visible discrepancies within each available revision. Always return the entire revised module in the required JSON response. Do not rely on a patch, previous code, additional files, or unprovided tools.
+4. The harness, not the model, controls the finite inspection/revision budget and final rendering. Use the available feedback to improve the actual reconstruction; exhausting the budget is not proof that all fidelity requirements are met. At the last permitted response, return the best complete executable scene and truthfully report remaining discrepancies and unsampled uncertainties. Do not claim a render, file check, screenshot inspection, decoded video, or successful correction unless supplied evidence supports it.
+
+Response and deliverables:
+
+Return one valid JSON object with exactly two keys and string values:
+{"scene_source":"the complete executable scene.mjs source","report":"a concise plain-text report"}
+
+Escape newlines and quotes as required by JSON. Do not wrap the JSON in Markdown, add commentary outside it, or include any additional keys. scene_source must contain real implementation code, not a plan, pseudocode, a JSON-encoded file map, or instructions to another agent.
+
+The report must name the representation level and the Three.js sampled-frame baseline; summarize geometry, articulation, camera and timing choices; distinguish observed reference samples from inference; identify render feedback actually received, revisions made, and remaining discrepancies or unverified aspects. Do not invent scoring results or claim equivalence to Blender model rankings.
+
+The harness writes scene.mjs and report.md under <OUTPUT_DIR>, renders reconstruction.mp4 at the reference resolution and timeline, and performs its own artifact validation. You are responsible for the returned module and honest report, not for claiming to have created or verified those files yourself. Comparison artifacts, if produced by the harness, belong outside the reconstructed scene.

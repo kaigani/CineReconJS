@@ -4,14 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cinerecon"
-version = "0.2.0"
-description = "CineRecon dataset and single-call evaluator"
+version = "0.3.0"
+description = "CineRecon dataset, evaluator, and Three.js model-generation backend"
 license = {file = "LICENSE"}
 requires-python = ">=3.10"
 dependencies = ["Pillow==12.3.0", "imageio-ffmpeg==0.6.0"]
 
 [project.scripts]
 cinerecon = "cinerecon.cli:main"
+cinerecon-threejs = "cinerecon_threejs.cli:main"
 
 [tool.setuptools]
-packages = ["cinerecon"]
+packages = ["cinerecon", "cinerecon_threejs"]
