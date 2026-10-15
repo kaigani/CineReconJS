@@ -1,0 +1,61 @@
+# Recover the first, successful render without changing or executing the scene.
+name: Recover Astra baseline artifact
+on:
+  push:
+    paths: ['.github/workflows/astra-recover-output.yml']
+  workflow_dispatch:
+permissions:
+  actions: read
+jobs:
+  recover-original-render:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - name: Download the original successful render log
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # curl does not forward this Authorization header across host redirects.
+          curl --fail --silent --show-error --location \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H 'Accept: application/vnd.github+json' \
+            https://api.github.com/repos/kaigani/CineReconJS/actions/jobs/116514737843/logs \
+            --output original-render.log
+      - name: Recover and verify the exact output bundle
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, json, re, zipfile
+          from pathlib import Path
+          log = Path('original-render.log').read_text()
+          meta_matches = re.findall(r'ASTRA_BUNDLE_META:(\{[^\r\n]+\})\s*$', log, re.M)
+          assert len(meta_matches) == 1, 'Expected one bundle metadata record'
+          meta = json.loads(meta_matches[0])
+          records = re.findall(r'ASTRA_BUNDLE_DATA:(\d{6}):([A-Za-z0-9+/=]+)\s*$', log, re.M)
+          assert records and [int(i) for i, _ in records] == list(range(len(records)))
+          assert re.search(r'ASTRA_BUNDLE_END\s*$', log, re.M), 'Missing bundle terminator'
+          data = base64.b64decode(''.join(chunk for _, chunk in records), validate=True)
+          assert len(data) == meta['bytes'] <= 8 * 1024 * 1024
+          assert hashlib.sha256(data).hexdigest() == meta['sha256']
+          bundle = Path('astra-video1-l1-first-render.zip')
+          bundle.write_bytes(data)
+          with zipfile.ZipFile(bundle) as archive:
+              assert archive.testzip() is None
+              assert set(archive.namelist()) == set(meta['files'])
+          Path('recovery.json').write_text(json.dumps({
+              'original_run_id': 38761810743, 'original_job_id': 116514737843,
+              'original_commit': '72ac248274c92e529afdcc2deaf9cf2598816221',
+              'generation_attempts': 1, 'refinement_rounds': 0,
+              'recovery_executed_scene': False, **meta
+          }, indent=2) + '\n')
+          print(json.dumps(meta))
+          PY
+      - name: Upload the original render as a short-lived artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: astra-video1-l1-first-render
+          path: |
+            astra-video1-l1-first-render.zip
+            recovery.json
+          retention-days: 1
+          compression-level: 0
+          if-no-files-found: error
