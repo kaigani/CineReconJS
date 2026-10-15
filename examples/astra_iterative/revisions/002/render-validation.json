@@ -1,0 +1,14 @@
+{
+  "github_run_url": "https://github.com/kaigani/CineReconJS/actions/runs/38776429288",
+  "artifact_id": 11993838044,
+  "artifact_sha256": "66ae911723e74277a7ecbc5be074fcd26918a7586714895133c9ca7dd9731f04",
+  "source_sha256": "76020af5551d2d3c162107fb96e3594cd9575837ad8f47dd7923599845a1c670",
+  "video_sha256": "fabd8d7a1b32c3012b9c1653865d9759e9201b0e67b4d6338829eea60b624193",
+  "frames": 384,
+  "width": 1910,
+  "height": 1080,
+  "fps": "24000/1001",
+  "duration": 16.016,
+  "all_frame_pts_valid": true,
+  "matching_preview_frames": 24
+}
