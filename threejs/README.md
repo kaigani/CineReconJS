@@ -183,7 +183,16 @@ scripts. `CINERECON_ALLOW_NO_SANDBOX=1` is the test-script equivalent of the
 explicit isolation-only flag. `CINERECON_SMOKE_OUTPUT=/new/path` preserves smoke
 artifacts at a chosen location; otherwise the script prints its temporary path.
 
-### Validation in the initial implementation environment
+### Verified browser integration
+
+[GitHub Actions run 38677604750](https://github.com/kaigani/CineReconJS/actions/runs/38677604750)
+passed all 26 Node/runtime/browser tests with zero skips on Ubuntu 22.04, including
+two real Chromium renders with identical PNG hashes, exact MP4 timestamps,
+bare Three.js import resolution, and ten negative scene/network-policy tests.
+The full Python-authored generation smoke also passed with zero API calls.
+See [complete validation results](../docs/THREEJS_VALIDATION.md).
+
+### Initial implementation host limitation
 
 On 2026-10-15, fourteen non-browser tests passed, including real H.264 encoding and
 decoded timestamp validation at 30000/1001 for 64x48 and 65x49 frames. Twelve
@@ -192,5 +201,6 @@ aborted before page load at `process_singleton_posix.cc` because its Unix-domain
 `socket()` returned `EPERM`; approved elevated execution had the same result.
 An independent Node Unix-domain socket probe also returned `EPERM`, while all
 TCP-loopback server tests passed. No successful WebGL PNG/MP4 smoke result was
-claimed for that environment. Run the browser suite in a suitable isolated
-runtime before relying on it for benchmark generation.
+claimed for that particular environment. Browser validation subsequently passed
+on the GitHub runner as described above. Run the browser suite in your intended
+isolated runtime before starting model generation.
