@@ -1,0 +1,29 @@
+{
+  "protocol": "native-astra-goal-directed-continuation-v1",
+  "revision": "002",
+  "model_requested": "gpt-6-astra",
+  "same_native_session_as_baseline": true,
+  "scene_sha256": "76020af5551d2d3c162107fb96e3594cd9575837ad8f47dd7923599845a1c670",
+  "decision_sha256": "5f20e58faae4a83a5f44da310177f912f556c394336f8b6f3042355a67429b76",
+  "previous_scene_sha256": "6b0527053551af8112c83cfbd5a11ee0eba9a1910ef54279069dc9bdb2c50337",
+  "generation_completed_utc": "2026-10-15T17:17:41Z",
+  "source_modifications": [],
+  "reference_samples_provided": 24,
+  "reconstruction_samples_provided": 24,
+  "tool_counts_self_reported": {
+    "image_view_calls": 54,
+    "shell_calls": 1,
+    "self_reported": true
+  },
+  "token_usage": null,
+  "tracking_head_sha256": "c373d3003b6094a25a78cba9bd129ccf6d317b7c8d2244ccd36beb64cecec185",
+  "tracking_counts_at_candidate": {
+    "initial_generations": 0,
+    "scene_revisions": 2,
+    "inspection_only_decisions": 0,
+    "render_attempts": 1,
+    "infrastructure_retries": 0,
+    "model_turns": 2,
+    "provider_responses": 0
+  }
+}

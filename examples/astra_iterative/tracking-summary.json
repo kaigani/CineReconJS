@@ -1,8 +1,8 @@
 {
   "schema": "cinerecon-run-events-v1",
   "run_id": "astra-native-continuation-20261015",
-  "event_count": 6,
-  "head_sha256": "d44967c5631cefb2669862689b35808988c35adc6daaa4e3f40613a34c0556e6",
+  "event_count": 11,
+  "head_sha256": "c373d3003b6094a25a78cba9bd129ccf6d317b7c8d2244ccd36beb64cecec185",
   "provenance": {
     "external_model_api_calls": 0,
     "initial_agent_turn_dispatch_utc": "2026-10-15T16:36:06Z",
@@ -22,14 +22,14 @@
   },
   "started_at": "2026-10-15T16:35:00Z",
   "finished_at": null,
-  "elapsed_seconds": 1009.28387,
+  "elapsed_seconds": 2607.185229,
   "counts": {
     "initial_generations": 0,
-    "scene_revisions": 1,
+    "scene_revisions": 2,
     "inspection_only_decisions": 0,
     "render_attempts": 1,
     "infrastructure_retries": 0,
-    "model_turns": 1,
+    "model_turns": 2,
     "provider_responses": 0
   },
   "baseline": {
@@ -58,14 +58,14 @@
       "outcome": "succeeded"
     }
   },
-  "current_scene_sha256": "6b0527053551af8112c83cfbd5a11ee0eba9a1910ef54279069dc9bdb2c50337",
+  "current_scene_sha256": "76020af5551d2d3c162107fb96e3594cd9575837ad8f47dd7923599845a1c670",
   "total_counts": {
     "initial_generations": 1,
-    "scene_revisions": 1,
+    "scene_revisions": 2,
     "inspection_only_decisions": 0,
     "render_attempts": 2,
     "infrastructure_retries": 0,
-    "model_turns": 2,
+    "model_turns": 3,
     "provider_responses": null
   },
   "token_usage": {
@@ -85,20 +85,18 @@
       "reported_turns": 0
     },
     "self_reported": {
-      "known_count": 50,
-      "total_count": 50,
-      "reported_turns": 1
+      "known_count": 105,
+      "total_count": 105,
+      "reported_turns": 2
     }
   },
   "model_turns_by_interface": {
-    "native_orchestration": 1,
+    "native_orchestration": 2,
     "provider_api": 0
   },
   "submission_render_sequence": null,
   "pending_model_turns": [],
-  "pending_render_attempts": [
-    6
-  ],
+  "pending_render_attempts": [],
   "render_attempts_by_purpose": {
     "scene": 1,
     "preflight": 0
