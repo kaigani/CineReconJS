@@ -49,7 +49,7 @@ Use a Linux or macOS shell with:
 The CI-verified environment is Ubuntu 22.04, Python 3.12, and Node.js 22. Node dependencies are pinned to Three.js `0.180.0` and Playwright `1.56.1` in the lockfile.
 
 ```bash
-git clone --branch threejs-backend https://github.com/kaigani/CineReconJS.git
+git clone https://github.com/kaigani/CineReconJS.git
 cd CineReconJS
 python -m venv .venv
 source .venv/bin/activate

@@ -9,7 +9,7 @@ This is a **sampled-frame Three.js baseline**, not a reproduction of the publish
 Requirements: Python 3.10+, Node.js 20+, FFmpeg and FFprobe on PATH, and a Chromium browser with WebGL support. Run from the repository checkout; prompts and dataset stay in the checkout rather than inside the wheel.
 
 ```bash
-git clone --branch threejs-backend https://github.com/kaigani/CineReconJS.git
+git clone https://github.com/kaigani/CineReconJS.git
 cd CineReconJS
 python -m venv .venv
 source .venv/bin/activate
