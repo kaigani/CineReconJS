@@ -1,0 +1,135 @@
+{
+ "id": "video14",
+ "n": 14,
+ "reference": {
+  "video": "media/ref/video14.mp4",
+  "poster": "media/poster/ref/video14_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 477,
+  "fps": 29.97,
+  "duration": 15.916
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video14.mp4",
+   "poster": "media/poster/opus-5-5/video14_0.jpg",
+   "scene": "media/scene/opus-5-5/video14.mjs",
+   "final_round": "005",
+   "scene_sha256": "ca31af65f98e663571eb46cb16ff8ed081bc49d6d4119482e72dfff9356c956a",
+   "video_sha256": "67fde7bbc7866c9aa67868432879bc6e9ce6b8d9822c2109b73ae3d343adc1be",
+   "stop": "model_submit",
+   "revisions": 4,
+   "renders": 5,
+   "infra_retries": 0,
+   "turns": 6,
+   "pauses": 0,
+   "inferences": 25,
+   "output_tokens": 60544,
+   "cost": 2.39,
+   "cost_1h": 2.82,
+   "elapsed_seconds": 794,
+   "submit_reason": "Round 005 render matches course layout, camera composition, berm/jump timing and cockpit framing at L1 proxy fidelity; remaining gaps are appearance/fisheye detail",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene of the POV downhill run",
+     "rendered": true,
+     "report": "# Report: video14, L1 proxy, Three.js sampled-frame baseline (round 001)\n\nLevel: L1 (proxy). This is the Three.js sampled-frame baseline. It is not equivalent to the Blender CineRecon protocol.\n\nWhat the 24 samples show: one continuous helmet-cam POV shot of an urban downhill mountain-bike run with no cuts. The rider's own handlebar, white gloves, black sleeves, red fork and front tyre stay in the lower part of the frame throughout. In order, the course goes: a wide asphalt start area with cones and spectators (0-1.1 s); a narrow alley with a white corrugated fence on the right and a crowd behind Red Bull banners on the left (about 1.4 s); a steep narrow path beside cream, brick, grey and graffiti walls on the right, with a crowd on a lower street to the left and a hedge (2-4.8 s); a left merge onto a road (about 5.5 s); a long asphalt descent with barriers and a crowd on the left and a stone wall on the right (6.2-10.3 s); a curved wooden berm/wall ride at about 11-11.8 s, with a strong camera lean; a blurry drop or jump at about 12.4 s; and a steep cobblestone street with barriers and a crowd on both sides and colourful houses (13.1-15.9 s).\n\nGeometry: the course is a precomputed analytic centreline (heading and grade integrated per segment) built from 2 m chunks. Each chunk is made of box, cylinder and sphere proxies for the road surface, metal barriers, spectators (body cylinder plus head sphere, seeded colours), walls with zone colours, houses, a hedge, an inclined wooden berm, trees and cones. Distant city blocks are boxes. The sky is a flat blue background.\n\nRider rig: a rider group follows the path. It carries a bike sub-group (tyre torus, fork, stem, bar, gloves, arms) and the camera (vertical FOV 80, at head height). The head yaw and pitch, rider lean, camera roll, berm lateral offset and jump elevation are keyed at the sample times and smoothly interpolated. Arc-length progress is keyed piecewise-linearly, at about 6-8.5 m/s. update() is absolute in time and deterministic.\n\nInference vs observation: the zone boundaries, path curvature, speeds, roll and lean angles and berm geometry are estimated from the samples. Motion between samples is inferred.\n\nFeedback: none received yet; this is the initial render candidate."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix bike cockpit composition, ground gaps, scale of houses/crowd, berm and pitch",
+     "rendered": true,
+     "report": "# Report: video14, L1 proxy, Three.js sampled-frame baseline (round 002)\n\nLevel: L1 (proxy). This is the Three.js sampled-frame baseline. It is not equivalent to the Blender CineRecon protocol.\n\nWhat the 24 samples show: one continuous helmet-cam POV shot of an urban downhill mountain-bike run with no cuts. The rider's own handlebar, white gloves, black sleeves, red fork and front tyre stay in the lower part of the frame throughout. In order, the course goes: a wide asphalt start area with cones and spectators (0-1.1 s); a narrow alley with a white corrugated fence on the right and a crowd behind Red Bull banners on the left (about 1.4 s); a steep narrow path beside cream, brick, grey and graffiti walls on the right, with a crowd on a lower street to the left and a hedge (2-4.8 s); a left merge onto a road (about 5.5 s); a long asphalt descent with barriers and a crowd on the left and a stone wall on the right (6.2-10.3 s); a curved wooden berm/wall ride at about 11-11.8 s, with a strong camera lean; a blurry drop or jump at about 12.4 s; and a steep cobblestone street with barriers and a crowd on both sides and colourful houses (13.1-15.9 s).\n\nGeometry: the course is a precomputed analytic centreline (heading and grade integrated per segment) built from 2 m chunks. Each chunk is made of box, cylinder and sphere proxies for the road surface, metal barriers, spectators (body cylinder plus head sphere, seeded colours), walls with zone colours, houses, a hedge, an inclined wooden berm, trees and cones. Distant city blocks are boxes. The sky is a flat blue background.\n\nRider rig: a rider group follows the path. It carries a bike sub-group (tyre torus, fork, stem, bar, gloves, arms) and the camera (vertical FOV 80, at head height). The head yaw and pitch, rider lean, camera roll, berm lateral offset and jump elevation are keyed at the sample times and smoothly interpolated. Arc-length progress is keyed piecewise-linearly, at about 6-8.5 m/s. update() is absolute in time and deterministic.\n\nInference vs observation: the zone boundaries, path curvature, speeds, roll and lean angles and berm geometry are estimated from the samples. Motion between samples is inferred.\n\nFeedback: I received round 001 renders (24 paired samples). In response I rebuilt the bike cockpit in a head-attached level frame so the tyre, red fork, bar and white gloves sit near their reference image positions; filled sky gaps with continuous ground slabs; lowered and set back the houses; made the crowd denser and smaller; made the wooden berm continuous and banked, with a higher wall-ride lean; added a fake ground shadow of the rider; and steepened the head pitch to match the vanishing-point heights. Remaining: the GoPro fisheye distortion is not modelled, and path curvature is approximate."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Rider lateral placement, continuous berm, see-through barriers, shadow direction",
+     "rendered": true,
+     "report": "# Report: video14, L1 proxy, Three.js sampled-frame baseline (round 003)\n\nLevel: L1 (proxy). This is the Three.js sampled-frame baseline. It is not equivalent to the Blender CineRecon protocol.\n\nWhat the 24 samples show: one continuous helmet-cam POV shot of an urban downhill mountain-bike run with no cuts. The rider's own handlebar, white gloves, black sleeves, red fork and front tyre stay in the lower part of the frame throughout. In order, the course goes: a wide asphalt start area with cones and spectators (0-1.1 s); a narrow alley with a white corrugated fence on the right and a crowd behind Red Bull banners on the left (about 1.4 s); a steep narrow path beside cream, brick, grey and graffiti walls on the right, with a crowd on a lower street to the left and a hedge (2-4.8 s); a left merge onto a road (about 5.5 s); a long asphalt descent with barriers and a crowd on the left and a stone wall on the right (6.2-10.3 s); a curved wooden berm/wall ride at about 11-11.8 s, with a strong camera lean; a blurry drop or jump at about 12.4 s; and a steep cobblestone street with barriers and a crowd on both sides and colourful houses (13.1-15.9 s).\n\nGeometry: the course is a precomputed analytic centreline (heading and grade integrated per segment) built from 2 m chunks. Each chunk is made of box, cylinder and sphere proxies for the road surface, metal barriers, spectators (body cylinder plus head sphere, seeded colours), walls with zone colours, houses, a hedge, an inclined wooden berm, trees and cones. Distant city blocks are boxes. The sky is a flat blue background.\n\nRider rig: a rider group follows the path. It carries a bike sub-group (tyre torus, fork, stem, bar, gloves, arms) and the camera (vertical FOV 80, at head height). The head yaw and pitch, rider lean, camera roll, berm lateral offset and jump elevation are keyed at the sample times and smoothly interpolated. Arc-length progress is keyed piecewise-linearly, at about 6-8.5 m/s. update() is absolute in time and deterministic.\n\nInference vs observation: the zone boundaries, path curvature, speeds, roll and lean angles and berm geometry are estimated from the samples. Motion between samples is inferred.\n\nFeedback: I received round 001 renders (24 paired samples). In response I rebuilt the bike cockpit in a head-attached level frame so the tyre, red fork, bar and white gloves sit near their reference image positions; filled sky gaps with continuous ground slabs; lowered and set back the houses; made the crowd denser and smaller; made the wooden berm continuous and banked, with a higher wall-ride lean; added a fake ground shadow of the rider; and steepened the head pitch to match the vanishing-point heights. Remaining: the GoPro fisheye distortion is not modelled, and path curvature is approximate.\n\nRound 003 revision, based on the round 002 renders: barrier mesh panels are now see-through. On the road stretch (about 6-10.5 s) the rider is shifted toward the right edge, with a closer, taller stone wall and a narrower dirt shoulder. The wooden berm is now one continuous banked surface built in 0.5 m steps, and its turn is reduced to 45 deg. The wall-ride head yaw now looks inward. The fake rider shadow is now a bike-and-rider silhouette whose direction relative to the rider is keyed from the shadows visible in the samples. The tyre reads more clearly and the lighting is brighter."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Delay left merge, stronger roll on steep path, jump look-down, shadow keys",
+     "rendered": true,
+     "report": "# Report: video14, L1 proxy, Three.js sampled-frame baseline (round 004)\n\nLevel: L1 (proxy). This is the Three.js sampled-frame baseline. It is not equivalent to the Blender CineRecon protocol.\n\nWhat the 24 samples show: one continuous helmet-cam POV shot of an urban downhill mountain-bike run with no cuts. The rider's own handlebar, white gloves, black sleeves, red fork and front tyre stay in the lower part of the frame throughout. In order, the course goes: a wide asphalt start area with cones and spectators (0-1.1 s); a narrow alley with a white corrugated fence on the right and a crowd behind Red Bull banners on the left (about 1.4 s); a steep narrow path beside cream, brick, grey and graffiti walls on the right, with a crowd on a lower street to the left and a hedge (2-4.8 s); a left merge onto a road (about 5.5 s); a long asphalt descent with barriers and a crowd on the left and a stone wall on the right (6.2-10.3 s); a curved wooden berm/wall ride at about 11-11.8 s, with a strong camera lean; a blurry drop or jump at about 12.4 s; and a steep cobblestone street with barriers and a crowd on both sides and colourful houses (13.1-15.9 s).\n\nGeometry: the course is a precomputed analytic centreline (heading and grade integrated per segment) built from 2 m chunks. Each chunk is made of box, cylinder and sphere proxies for the road surface, metal barriers, spectators (body cylinder plus head sphere, seeded colours), walls with zone colours, houses, a hedge, an inclined wooden berm, trees and cones. Distant city blocks are boxes. The sky is a flat blue background.\n\nRider rig: a rider group follows the path. It carries a bike sub-group (tyre torus, fork, stem, bar, gloves, arms) and the camera (vertical FOV 80, at head height). The head yaw and pitch, rider lean, camera roll, berm lateral offset and jump elevation are keyed at the sample times and smoothly interpolated. Arc-length progress is keyed piecewise-linearly, at about 6-8.5 m/s. update() is absolute in time and deterministic.\n\nInference vs observation: the zone boundaries, path curvature, speeds, roll and lean angles and berm geometry are estimated from the samples. Motion between samples is inferred.\n\nFeedback: I received round 001 renders (24 paired samples). In response I rebuilt the bike cockpit in a head-attached level frame so the tyre, red fork, bar and white gloves sit near their reference image positions; filled sky gaps with continuous ground slabs; lowered and set back the houses; made the crowd denser and smaller; made the wooden berm continuous and banked, with a higher wall-ride lean; added a fake ground shadow of the rider; and steepened the head pitch to match the vanishing-point heights. Remaining: the GoPro fisheye distortion is not modelled, and path curvature is approximate.\n\nRound 003 revision, based on the round 002 renders: barrier mesh panels are now see-through. On the road stretch (about 6-10.5 s) the rider is shifted toward the right edge, with a closer, taller stone wall and a narrower dirt shoulder. The wooden berm is now one continuous banked surface built in 0.5 m steps, and its turn is reduced to 45 deg. The wall-ride head yaw now looks inward. The fake rider shadow is now a bike-and-rider silhouette whose direction relative to the rider is keyed from the shadows visible in the samples. The tyre reads more clearly and the lighting is brighter.\n\nRound 004 revision, based on the round 003 renders: the left merge onto the road now starts later (the steep walled path runs to 38 m, about 5.4 s), so the sample at 4.84 s still shows the straight path with the graffiti wall on the right and the hedge on the left. The rider leans and the camera rolls more on the steep path (2-2.8 s). The rider sits further right on the stone-wall road. The drop at 12.45 s has more elevation and a steeper downward head pitch. The late shadow keys are corrected to place the shadow ahead of the rider."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Bring stone wall closer on the road stretch",
+     "rendered": true,
+     "report": "# Report: video14, L1 proxy, Three.js sampled-frame baseline (round 005)\n\nLevel: L1 (proxy). This is the Three.js sampled-frame baseline. It is not equivalent to the Blender CineRecon protocol.\n\nWhat the 24 samples show: one continuous helmet-cam POV shot of an urban downhill mountain-bike run with no cuts. The rider's own handlebar, white gloves, black sleeves, red fork and front tyre stay in the lower part of the frame throughout. In order, the course goes: a wide asphalt start area with cones and spectators (0-1.1 s); a narrow alley with a white corrugated fence on the right and a crowd behind Red Bull banners on the left (about 1.4 s); a steep narrow path beside cream, brick, grey and graffiti walls on the right, with a crowd on a lower street to the left and a hedge (2-4.8 s); a left merge onto a road (about 5.5 s); a long asphalt descent with barriers and a crowd on the left and a stone wall on the right (6.2-10.3 s); a curved wooden berm/wall ride at about 11-11.8 s, with a strong camera lean; a blurry drop or jump at about 12.4 s; and a steep cobblestone street with barriers and a crowd on both sides and colourful houses (13.1-15.9 s).\n\nGeometry: the course is a precomputed analytic centreline (heading and grade integrated per segment) built from 2 m chunks. Each chunk is made of box, cylinder and sphere proxies for the road surface, metal barriers, spectators (body cylinder plus head sphere, seeded colours), walls with zone colours, houses, a hedge, an inclined wooden berm, trees and cones. Distant city blocks are boxes. The sky is a flat blue background.\n\nRider rig: a rider group follows the path. It carries a bike sub-group (tyre torus, fork, stem, bar, gloves, arms) and the camera (vertical FOV 80, at head height). The head yaw and pitch, rider lean, camera roll, berm lateral offset and jump elevation are keyed at the sample times and smoothly interpolated. Arc-length progress is keyed piecewise-linearly, at about 6-8.5 m/s. update() is absolute in time and deterministic.\n\nInference vs observation: the zone boundaries, path curvature, speeds, roll and lean angles and berm geometry are estimated from the samples. Motion between samples is inferred.\n\nFeedback: I received round 001 renders (24 paired samples). In response I rebuilt the bike cockpit in a head-attached level frame so the tyre, red fork, bar and white gloves sit near their reference image positions; filled sky gaps with continuous ground slabs; lowered and set back the houses; made the crowd denser and smaller; made the wooden berm continuous and banked, with a higher wall-ride lean; added a fake ground shadow of the rider; and steepened the head pitch to match the vanishing-point heights. Remaining: the GoPro fisheye distortion is not modelled, and path curvature is approximate.\n\nRound 003 revision, based on the round 002 renders: barrier mesh panels are now see-through. On the road stretch (about 6-10.5 s) the rider is shifted toward the right edge, with a closer, taller stone wall and a narrower dirt shoulder. The wooden berm is now one continuous banked surface built in 0.5 m steps, and its turn is reduced to 45 deg. The wall-ride head yaw now looks inward. The fake rider shadow is now a bike-and-rider silhouette whose direction relative to the rider is keyed from the shadows visible in the samples. The tyre reads more clearly and the lighting is brighter.\n\nRound 004 revision, based on the round 003 renders: the left merge onto the road now starts later (the steep walled path runs to 38 m, about 5.4 s), so the sample at 4.84 s still shows the straight path with the graffiti wall on the right and the hedge on the left. The rider leans and the camera rolls more on the steep path (2-2.8 s). The rider sits further right on the stone-wall road. The drop at 12.45 s has more elevation and a steeper downward head pitch. The late shadow keys are corrected to place the shadow ahead of the rider.\n\nRound 005 revision, based on the round 004 renders: the stone wall on the road stretch is moved closer to the riding line (narrower shoulder), so it fills more of the right half of the frame as it does in the reference.\n\nRemaining discrepancies (unverified or approximate): GoPro fisheye distortion is not modelled. Path curvature, zone boundaries and speeds are estimates. Crowd, building and graffiti detail is reduced to coloured proxies. The rider shadow is a keyed fake rather than real shadow mapping. The blurry jump at about 12.4 s is inferred. Motion between the 0.7 s samples is interpolated."
+    },
+    {
+     "round": "006",
+     "action": "submit",
+     "reason": "Round 005 render matches course layout, camera composition, berm/jump timing and cockpit framing at L1 proxy fidelity; remaining gaps are appearance/fisheye detail",
+     "rendered": false,
+     "report": "# Report: video14, L1 proxy, Three.js sampled-frame baseline (round 005)\n\nLevel: L1 (proxy). This is the Three.js sampled-frame baseline. It is not equivalent to the Blender CineRecon protocol.\n\nWhat the 24 samples show: one continuous helmet-cam POV shot of an urban downhill mountain-bike run with no cuts. The rider's own handlebar, white gloves, black sleeves, red fork and front tyre stay in the lower part of the frame throughout. In order, the course goes: a wide asphalt start area with cones and spectators (0-1.1 s); a narrow alley with a white corrugated fence on the right and a crowd behind Red Bull banners on the left (about 1.4 s); a steep narrow path beside cream, brick, grey and graffiti walls on the right, with a crowd on a lower street to the left and a hedge (2-4.8 s); a left merge onto a road (about 5.5 s); a long asphalt descent with barriers and a crowd on the left and a stone wall on the right (6.2-10.3 s); a curved wooden berm/wall ride at about 11-11.8 s, with a strong camera lean; a blurry drop or jump at about 12.4 s; and a steep cobblestone street with barriers and a crowd on both sides and colourful houses (13.1-15.9 s).\n\nGeometry: the course is a precomputed analytic centreline (heading and grade integrated per segment) built from 2 m chunks. Each chunk is made of box, cylinder and sphere proxies for the road surface, metal barriers, spectators (body cylinder plus head sphere, seeded colours), walls with zone colours, houses, a hedge, an inclined wooden berm, trees and cones. Distant city blocks are boxes. The sky is a flat blue background.\n\nRider rig: a rider group follows the path. It carries a bike sub-group (tyre torus, fork, stem, bar, gloves, arms) and the camera (vertical FOV 80, at head height). The head yaw and pitch, rider lean, camera roll, berm lateral offset and jump elevation are keyed at the sample times and smoothly interpolated. Arc-length progress is keyed piecewise-linearly, at about 6-8.5 m/s. update() is absolute in time and deterministic.\n\nInference vs observation: the zone boundaries, path curvature, speeds, roll and lean angles and berm geometry are estimated from the samples. Motion between samples is inferred.\n\nFeedback: I received round 001 renders (24 paired samples). In response I rebuilt the bike cockpit in a head-attached level frame so the tyre, red fork, bar and white gloves sit near their reference image positions; filled sky gaps with continuous ground slabs; lowered and set back the houses; made the crowd denser and smaller; made the wooden berm continuous and banked, with a higher wall-ride lean; added a fake ground shadow of the rider; and steepened the head pitch to match the vanishing-point heights. Remaining: the GoPro fisheye distortion is not modelled, and path curvature is approximate.\n\nRound 003 revision, based on the round 002 renders: barrier mesh panels are now see-through. On the road stretch (about 6-10.5 s) the rider is shifted toward the right edge, with a closer, taller stone wall and a narrower dirt shoulder. The wooden berm is now one continuous banked surface built in 0.5 m steps, and its turn is reduced to 45 deg. The wall-ride head yaw now looks inward. The fake rider shadow is now a bike-and-rider silhouette whose direction relative to the rider is keyed from the shadows visible in the samples. The tyre reads more clearly and the lighting is brighter.\n\nRound 004 revision, based on the round 003 renders: the left merge onto the road now starts later (the steep walled path runs to 38 m, about 5.4 s), so the sample at 4.84 s still shows the straight path with the graffiti wall on the right and the hedge on the left. The rider leans and the camera rolls more on the steep path (2-2.8 s). The rider sits further right on the stone-wall road. The drop at 12.45 s has more elevation and a steeper downward head pitch. The late shadow keys are corrected to place the shadow ahead of the rider.\n\nRound 005 revision, based on the round 004 renders: the stone wall on the road stretch is moved closer to the riding line (narrower shoulder), so it fills more of the right half of the frame as it does in the reference.\n\nRemaining discrepancies (unverified or approximate): GoPro fisheye distortion is not modelled. Path curvature, zone boundaries and speeds are estimates. Crowd, building and graffiti detail is reduced to coloured proxies. The rider shadow is a keyed fake rather than real shadow mapping. The blurry jump at about 12.4 s is inferred. Motion between the 0.7 s samples is interpolated."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.91,
+     5.89,
+     9.87,
+     13.85
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
+    "infrastructure_retries": 0,
+    "model_turns": 6,
+    "provider_responses": 0
+   }
+  }
+ }
+}

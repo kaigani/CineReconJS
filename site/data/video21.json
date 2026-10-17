@@ -1,0 +1,135 @@
+{
+ "id": "video21",
+ "n": 21,
+ "reference": {
+  "video": "media/ref/video21.mp4",
+  "poster": "media/poster/ref/video21_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 252,
+  "fps": 24.0,
+  "duration": 10.5
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video21.mp4",
+   "poster": "media/poster/opus-5-5/video21_0.jpg",
+   "scene": "media/scene/opus-5-5/video21.mjs",
+   "final_round": "005",
+   "scene_sha256": "e9dd82f888be25422d1a94b33766e0f711e5c36c4045ad330556dedcacab51d7",
+   "video_sha256": "b117e0771ac7a945dd212f10d19f650dd449ccb0ab28332644393efe756f22c0",
+   "stop": "model_submit",
+   "revisions": 4,
+   "renders": 5,
+   "infra_retries": 0,
+   "turns": 6,
+   "pauses": 0,
+   "inferences": 31,
+   "output_tokens": 107681,
+   "cost": 4.09,
+   "cost_1h": 4.79,
+   "elapsed_seconds": 1200,
+   "submit_reason": "Round 005 render matches shot structure, camera path, doorway scale/position, lamp and rifle placement across all 24 samples; remaining gaps are lighting/clutter detail beyond L1 priorities.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete proxy scene: FPS walk around painted corner into debris corridor toward lit doorway.",
+     "rendered": true,
+     "report": "Level L1 (proxy), CineRecon Three.js sampled-frame baseline. Round 001 (initial scene).\n\nObserved in the 24 reference samples: a single continuous first-person (FPS) handheld shot with no cuts. A dark rifle with a front sight stays at the bottom centre the whole time. From 0 to 1.4 s the camera is close to a wall painted orange below and grey above, with a dark vertical strip on it. To the left, past the wall corner, there is a bright window with a radiator and debris on the floor. Between 1.4 and 2.3 s the camera moves left and forward quickly (motion blur), rounds the corner and turns right. From then on it walks slowly down a long, dark, debris-strewn corridor. The right wall has pipes, a cream door, white vertical pipes and a pallet leaning against it. At the far end is a lit doorway (left leaf closed, right part open onto a bright room), with a wall lamp to its left, a ceiling strip light, hanging ceiling panels and cables. The camera sways left and right as it walks, and the doorway grows to roughly twice its size by 10.46 s.\n\nGeometry: boxes, cylinders and planes for the corridor (4 m wide, 3 m high, end wall at z=-12), the painted corner wall, the window, radiator, door, pipes, pallets, end doorway with its back room, the lamp, the strip light, hanging panels, a debris mound and about 38 seeded flat debris slabs. The rifle is a simple box proxy parented to the camera. The light sources are emissive or basic materials plus point and hemisphere lights.\n\nCamera: 60 deg vertical FOV. Position and yaw/pitch keyframes are placed at every sample time and joined with cubic Hermite interpolation. The keyframes were estimated from the corner position and from the doorway's image position and size. There is a small analytic walking bob after 1.6 s.\n\nInference vs. observation: the room layout (the window on the corridor's left wall, the corner geometry, the corridor length) was inferred so that it agrees with the parallax seen in the samples. Motion between samples is interpolated. No render feedback has been received yet, so lighting levels and framing are unverified."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Move window into a left alcove so it leaves frame in corridor, deepen corridor, darken lighting, fix rifle silhouette.",
+     "rendered": true,
+     "report": "Level L1 (proxy), CineRecon Three.js sampled-frame baseline. Round 002 (revision 1).\n\nObserved in the reference samples: a single continuous first-person shot with no cuts, and a rifle front sight at the bottom centre throughout. From 0 to 1.4 s the camera faces a corner wall painted ochre below and grey-green above, with a dark vertical strip; a bright window room is visible on the left. Between 1.4 and 2.3 s there is a fast blurred move left and forward around the corner, with a turn to the right. The camera then walks slowly down a dark, debris-strewn corridor. The right wall has pipes, a cream door, white pipes and pallets. The corridor ends in a lit doorway (left leaf closed, right part open) with a wall lamp to its left, a strip light and hanging ceiling panels. The camera sways left and right while walking.\n\nRound 001 feedback (24 reference/render pairs) and the changes made in response:\n- In the round 001 render, the window on the corridor's left wall stayed visible for the whole walk, which is wrong. The window now sits on the far wall of a side alcove, facing the start position. It is seen frontally at the start and leaves the frame once the camera is in the corridor.\n- The end doorway was too tall for its width and too close. It is now 2.8 m wide (closed leaf plus open part) and 2.0 m high, the end wall is at z=-14, and the camera path was rescaled to about 0.93 m/s from the doorway's image size.\n- The lighting and colours were too bright and saturated (the orange wall and the right corridor wall). Albedos and light intensities were reduced, and the debris and pallets were darkened.\n- The rifle read as a slanted slab. It is now a narrow barrel plus receiver aligned so it reads as a vertical silhouette at the bottom centre, with a front sight post.\n- The pallets, door and pipes were moved to positions estimated from the samples.\n\nRemaining or unverified: the room layout is inferred from parallax and is approximate. The geometry around the corridor mouth at 1.8 to 2.3 s is uncertain. There is no motion blur. The fine clutter (peeling paint, cables, scattered tiles) is only proxied."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Add initial downward pitch, move window alcove so it no longer shows mid-corridor, brighten first corridor segment and debris, tone down wall colours.",
+     "rendered": true,
+     "report": "Level L1 (proxy), CineRecon Three.js sampled-frame baseline. Round 003 (revision 2).\n\nObserved in the reference samples: a single continuous first-person shot with no cuts and a rifle front sight at the bottom centre. The camera starts facing a two-tone painted corner wall, with a bright window area to the left. Around 1.4 to 2.3 s it makes a fast move left and forward around the corner and turns right. It then walks slowly down a dark debris-filled corridor with pipes, a door and pallets on the right, towards a lit doorway at the far end with a lamp to its left. The camera sways side to side while walking.\n\nRound 002 feedback (24 pairs) and the changes made in response:\n- The alcove window was still visible on the left at about 4 to 6.4 s. The window wall was moved to z=-5.5 and the alcove opening narrowed, so geometrically the window is only visible from the start position. The alcove walls were darkened.\n- The window in the opening frames sat too low in the image. Analysis of the window, its sill and the floor line shows the camera is pitched down about 10 deg at the start. Pitch keyframes now go from -10 deg at the start to about -1.5 deg in the corridor. The paint line was moved to 1.63 m to match.\n- The first corridor segment and the floor debris were too dark compared with the reference. A ceiling light near the start of the corridor and a light under the strip light were added, and the debris and floor were brightened.\n- The painted wall was too saturated, so its colours were desaturated.\n- The rifle receiver was widened, and the door on the right wall was moved closer to the corridor mouth.\n\nRemaining or unverified: the room layout is inferred from parallax. There is no motion blur. The wider hall at the end and the clutter are only coarsely proxied. Camera sway between samples is interpolated."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Wider rifle silhouette with sight hood, larger start window, darker right wall upper and dimmer strip light in late corridor.",
+     "rendered": true,
+     "report": "Level L1 (proxy), CineRecon Three.js sampled-frame baseline. Round 004 (revision 3).\n\nObserved in the reference samples: a single continuous first-person shot with a rifle front sight at the bottom centre. The camera starts facing a two-tone painted corner wall (pitched down about 10 deg), with a window area on the left. Around 1.4 to 2.3 s it moves quickly around the corner and turns right. It then walks down a dark debris corridor towards a lit doorway with a lamp to its left, swaying side to side.\n\nRound 003 feedback (24 pairs) showed that the structure, framing and timing broadly match. In response:\n- The rifle read as too thin; the reference shows a wide dark body directly below a hooded front sight. The handguard and receiver were widened and two hood ears added around the post, with the post protruding slightly above the body.\n- The start window was too short and did not reach the corner. It now spans y 0.9 to 2.95 m and x -5.3 to -2.1.\n- In the later corridor the right wall's upper band was much brighter than in the reference. Its albedo was darkened, and the strip light was dimmed and moved left.\n\nRemaining or unverified: the room layout is inferred from parallax. The wider hall at the end, the fallen shelving and the dense rubble are only coarsely proxied. There is no motion blur. Sway between samples is interpolated."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Reposition door/pallets/pipes and strip light per feedback, darken far right wall, move debris mound left, add debris.",
+     "rendered": true,
+     "report": "Level L1 (proxy), CineRecon Three.js sampled-frame baseline. Round 005 (revision 4).\n\nObserved in the reference samples: a single continuous first-person shot with a hooded rifle front sight at the bottom centre. The camera starts facing a two-tone painted corner wall (pitched down about 10 deg), with a window area on the left. Around 1.4 to 2.3 s it moves quickly around the corner and turns right. It then walks down a dark debris corridor (about 0.93 m/s, swaying side to side) towards a lit doorway with a lamp on its left.\n\nGeometry: box, cylinder and sphere proxies.\n- Painted wall W1 and the corridor (4 m wide, 3 m high, 14 m long).\n- A window alcove at the corridor mouth.\n- Right-wall door, pipes, pallets and crate.\n- The end wall with a closed leaf, a lit opening and a bright back room.\n- The lamp, a strip light, hanging panels, cables, a rubble mound and seeded floor slabs.\n- A rifle proxy (body plus sight post and hood) parented to the camera.\n\nCamera: 60 deg vertical FOV. Hermite-interpolated keyframes for position, yaw and pitch at each sample time, plus an analytic walking bob.\n\nRound 004 feedback (24 pairs) and the changes made in response:\n- The door on the right wall was moved to z -1.4 to -2.3, and the pallets and white pipes were moved accordingly.\n- The strip light and hanging panel were moved further down the corridor, to z of about -8.8.\n- The right wall's upper band beyond z=-5 was darkened, because the reference's late right side is dark.\n- The rubble mound was moved left of the doorway, and more floor debris was added.\n\nRemaining or unverified: the room layout is inferred from parallax and approximate. The end hall is wider in the reference, and the fallen shelving and clutter are simplified. There is no motion blur. The fast transition between 1.4 and 2.3 s is interpolated between only two samples."
+    },
+    {
+     "round": "006",
+     "action": "submit",
+     "reason": "Round 005 render matches shot structure, camera path, doorway scale/position, lamp and rifle placement across all 24 samples; remaining gaps are lighting/clutter detail beyond L1 priorities.",
+     "rendered": false,
+     "report": "Level L1 (proxy), CineRecon Three.js sampled-frame baseline. Final report; the submitted scene is the round 005 render (revision 4).\n\nObserved in the 24 reference samples:\n- A single continuous first-person handheld shot with no cuts.\n- A dark rifle with a hooded front sight stays at the bottom centre throughout.\n- From 0 to 1.4 s the camera, pitched down about 10 deg, faces a corner wall painted ochre below and grey-green above, with a dark vertical strip. A bright window with a radiator and a debris floor is visible to the left.\n- Between 1.4 and 2.3 s the camera makes a fast, motion-blurred move left and forward around the corner and turns right.\n- It then walks slowly (about 0.93 m/s, estimated from the far doorway's image size) down a dark, debris-strewn corridor, swaying left and right. The right wall has pipes, a cream door, white vertical pipes and pallets.\n- At the end there is a lit doorway (closed left leaf, open right part showing a bright room) with a wall lamp to its left, a strip light, hanging ceiling panels and cables.\n\nGeometry: box, cylinder and sphere proxies.\n- Painted wall W1 and the corridor (4 m wide, 3 m high, 14 m long).\n- A window alcove positioned so the window is visible only at the start.\n- A right-wall door, pipes, pallets and crate.\n- The end wall with the closed leaf, the lit opening and a bright back room (basic material).\n- The lamp, strip light, hanging panels, cables, a rubble mound and seeded floor slabs.\n- A rifle proxy (receiver, handguard, sight post with hood ears) parented to the camera, with small analytic sway.\n\nCamera: 60 deg vertical FOV. Cubic Hermite keyframes for position, yaw and pitch at each sample time, plus an analytic walking bob. update() is fully time-absolute and deterministic.\n\nInference vs. observation: the room layout (alcove, corner, corridor length, door and pallet positions) was inferred from parallax, image size and position. It is approximate and partly a compromise between samples that disagree. Motion between samples is interpolated. The 1.4 to 2.3 s transition rests on only two blurred samples.\n\nFeedback received: rendered comparison pairs for rounds 001 to 005.\nRevisions made:\n- Moved the window into an alcove so it no longer shows mid-corridor.\n- Added the initial downward pitch.\n- Rescaled corridor depth and walking speed from the doorway size.\n- Reshaped the doorway.\n- Darkened and desaturated the lighting and materials.\n- Rebuilt the rifle silhouette.\n- Repositioned the door, pallets, pipes, strip light and mound.\n\nRemaining discrepancies:\n- The reference's first corridor segment is somewhat brighter and its end hall wider.\n- Peeling paint, dense rubble, fallen shelving and the wet floor sheen are only coarsely proxied or omitted.\n- There is no motion blur.\n- Exact camera sway between samples is unverified."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.26,
+     3.88,
+     6.51,
+     9.13
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
+    "infrastructure_retries": 0,
+    "model_turns": 6,
+    "provider_responses": 0
+   }
+  }
+ }
+}

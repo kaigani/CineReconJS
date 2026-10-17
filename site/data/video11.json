@@ -1,0 +1,122 @@
+{
+ "id": "video11",
+ "n": 11,
+ "reference": {
+  "video": "media/ref/video11.mp4",
+  "poster": "media/poster/ref/video11_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 720,
+  "fps": 29.97,
+  "duration": 24.057
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video11.mp4",
+   "poster": "media/poster/opus-5-5/video11_0.jpg",
+   "scene": "media/scene/opus-5-5/video11.mjs",
+   "final_round": "004",
+   "scene_sha256": "4bc0524369a54338ba9b8296acb14ce5abb5224a62dd783e25e9037193442997",
+   "video_sha256": "46b1d9cce14907e33bf3ca2156b595f3df23a7b6380ffdb92e4abf21dd802754",
+   "stop": "model_submit",
+   "revisions": 3,
+   "renders": 4,
+   "infra_retries": 0,
+   "turns": 5,
+   "pauses": 1,
+   "inferences": 33,
+   "output_tokens": 76356,
+   "cost": 3.05,
+   "cost_1h": 3.55,
+   "elapsed_seconds": 8664,
+   "submit_reason": "Camera roll/pitch/horizon framing matches all 24 samples; remaining differences are inferred layout and appearance details with low expected payoff.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete FPV grassland flight reconstruction with per-sample camera roll/pitch keyframes.",
+     "rendered": true,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy). Round 001 (initial scene).\n\nObserved from the 24 reference samples: one continuous FPV drone shot (no cuts) flying fast and low over dry tan grassland. The scene has dark juniper bushes (scattered and in rows), a few large bare trees, dirt tracks, a distant horizon of low buildings and tree lines, a pale hazy horizon with blue sky, and a low sun that casts long shadows. The camera rolls hard many times. It is sideways at 0 s, 6.3 s and 14.6 s, inverted at 8.3 s and 19.8 s, steeply nose-down at 23 s and 24 s, and near level elsewhere.\n\nGeometry: a large ground plane with a procedural seeded grass-clump DataTexture and low-frequency vertex-color patchiness. Juniper bushes are instanced ellipsoids. Bare trees are a cylinder trunk with a sphere crown. Two dirt-track ribbons and a pale water/flat strip near the horizon are included. Distant buildings are boxes and the horizon tree lines are flattened spheres. The sky is a gradient dome with a sun glow and disk. Long cast shadows are faked with flat dark ellipses pointing away from a sun at 20 degrees elevation. There are no articulated subjects; the drone itself is never visible.\n\nCamera and timing: a 70-degree vertical FOV perspective camera stands in for the wide action cam. Yaw, pitch and roll keyframes were estimated at every sample timestamp from horizon angle, horizon offset, and sun/shadow direction. They are interpolated with Catmull-Rom (YXZ Euler, roll unwrapped along the shortest path). Position comes from a deterministic integration of heading at 10 m/s, done once at construction, with an interpolated altitude of 1.2 to 12 m. Several featured bushes and trees are placed relative to the camera pose at sample times. Timeline uses time = frame/fps over 720 frames.\n\nInference vs observation: horizon roll and pitch at sample times are measured from the images. The roll direction between samples, headings, speed, altitude and the layout of vegetation are inferred. Fisheye distortion is not reproduced.\n\nFeedback received: none yet (initial round)."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix road ribbons, sky colour/sun placement, ground texture scale, tree clearance and two pitch keyframes.",
+     "rendered": true,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy). Round 002.\n\nObserved from the 24 reference samples: one continuous FPV drone shot (no cuts) flying fast and low over dry tan grassland. The scene has dark juniper bushes (scattered and in rows), a few large bare trees, dirt tracks, distant low buildings and tree lines, a pale hazy horizon under a deep blue sky, and a low sun that casts long shadows. The camera rolls hard. It is sideways at 0 s, 6.3 s and 14.6 s, inverted at 8.3 s and 19.8 s, steeply nose-down at 23 s and 24 s, and near level elsewhere.\n\nGeometry (L1 proxies): a ground plane with a seeded procedural grass-tuft DataTexture plus seeded low-frequency patchiness. Junipers are instanced dark ellipsoids. Bare trees are a trunk cylinder with a semi-transparent sphere crown. Dirt tracks are smoothed flat ribbons. There is a pale water/flat strip near the horizon, box buildings, and flattened-sphere tree lines on the horizon. The sky is a gradient dome with a small sun glow. Long cast shadows are flat dark ellipses pointing away from a sun at 25 degrees elevation. There are no articulated subjects; the drone itself is never visible.\n\nCamera and timing: a 70-degree vertical FOV perspective camera stands in for the wide action cam. Yaw, pitch and roll keyframes are set at all 24 sample timestamps from horizon angle and offset, and from sun/shadow direction. They are interpolated with Catmull-Rom (YXZ Euler, roll unwrapped along the shortest path). Position comes from a deterministic integration of heading at 10 m/s, precomputed once, with interpolated altitude of 1.2 to 12 m. Timeline uses time = frame/fps over 720 frames.\n\nFeedback received (round 001 render, 24 paired samples): horizon roll and offset matched most samples. Problems were dirt-track ribbons that followed the turning flight path and cut across the view (12.5 s, 14.6 s, 19.8 s, 20.9 s, 23 s, 24 s); a pale, sun-washed sky at 0 s where the reference is deep blue; a ground texture too coarse; opaque bare-tree crowns; and a juniper blocking the view at 20.9 s.\n\nRevisions in 002: dirt tracks are now smoothed control-point roads (one straight road ahead at 12.5 s, and one road the drone joins at about 18.8 s and follows to 22 s). The sun moved to the side and headings were shifted to match, so shadow directions are kept and the sun appears upper right near 3 s. Other changes: a deeper blue sky gradient with a smaller glow, a finer grass texture, stronger exclusion of bushes near the flight path, semi-transparent bare-tree crowns, darker shadows, and more nose-down pitch at 8.3 s and 9.4 s.\n\nRemaining or inferred: headings between samples, roll direction between samples, speed, altitude and vegetation layout are inferred. Fisheye curvature, tire-mark circles and fine grass detail are not reproduced."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Make roads visible, remove texture tiling grid and sun-glow artifact, fix late-sequence sun placement and tree appearance.",
+     "rendered": true,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy). Round 003.\n\nObserved from the 24 reference samples: one continuous FPV drone shot (no cuts) flying fast and low over dry tan grassland. The scene has dark juniper bushes (scattered and in rows), a few large bare trees, dirt tracks, distant low buildings and tree lines, a pale hazy horizon under a deep blue sky, and a low sun with long shadows. The camera rolls hard. It is sideways at 0 s, 6.3 s and 14.6 s, inverted at 8.3 s and 19.8 s, steeply nose-down at 23 s and 24 s, and near level elsewhere.\n\nGeometry (L1 proxies): a ground plane with a seeded fine grass-tuft DataTexture and seeded large-scale light/dark patchiness through vertex colors. Junipers are instanced dark ellipsoids. Bare trees are a trunk cylinder with a semi-transparent dark crown. Dirt roads are flat smoothed ribbons: a darker brown road ahead at 12.5 s, and a pale road the drone joins at about 18.8 s and follows to 22 s. There is a pale water strip near the horizon, box buildings, and flattened-sphere tree lines on the horizon. The sky is a gradient dome with a soft sun glow. Fake long cast shadows are flat dark ellipses pointing away from a sun at 20 degrees elevation. There are no articulated subjects; the drone is never visible.\n\nCamera and timing: a 70-degree vertical FOV perspective camera stands in for the wide action cam. Yaw, pitch and roll keyframes are set at all 24 sample timestamps from horizon angle and offset, and from sun/shadow direction. They are interpolated with Catmull-Rom (YXZ Euler, roll unwrapped along the shortest path). Position comes from a deterministic heading integration at 10 m/s, precomputed once, with altitude of 1.2 to 12 m. Timeline uses time = frame/fps over 720 frames.\n\nFeedback received:\n- Round 001: horizon roll and offset matched most samples. Problems were self-intersecting road ribbons, a pale sky, a coarse ground texture, opaque crowns, and a bush blocking the view at 20.9 s. Round 002 fixed these.\n- Round 002: the roads had become nearly invisible (same texture as the grass), the ground texture tiling showed as a grid at a distance, there was a hexagonal sun-glow artifact and a wrongly placed sun at 20.9 s, a pale translucent crown disc at 13.5 s, and too many large near bushes at 5.2 s.\n\nRevisions in 003: roads are now plain, contrasting dirt colors and wider. The ground texture keeps only fine-scale octaves, with stronger large-scale vertex-color patchiness. The sun glow is smooth on a denser dome, and headings at 20.9 to 24 s are rotated so the sun sits right of view. Crowns are darker and more opaque. The bare tree at 12.5 s is closer on image-left, two featured bushes were removed, and junipers are narrower.\n\nRemaining or inferred: headings, roll direction between samples, speed, altitude and vegetation layout are inferred. Fisheye curvature, tire-mark circles and grass detail are not reproduced."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Narrow/shorten the late dirt road and reduce ground texture tiling.",
+     "rendered": true,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy). Round 004.\n\nObserved from the 24 reference samples: one continuous FPV drone shot (no cuts) flying fast and low over dry tan grassland. The scene has dark juniper bushes (scattered and in rows), a few large bare trees, dirt tracks, distant low buildings and tree lines, a pale hazy horizon under a deep blue sky, and a low sun with long shadows. The camera rolls hard. It is sideways at 0 s, 6.3 s and 14.6 s, inverted at 8.3 s and 19.8 s, steeply nose-down at 23 s and 24 s, and near level elsewhere.\n\nGeometry (L1 proxies): a ground plane with a seeded fine grass-tuft DataTexture and seeded large-scale light/dark patchiness through vertex colors. Junipers are instanced dark ellipsoids. Bare trees are a trunk cylinder with a semi-transparent dark crown. Dirt roads are flat smoothed ribbons: a darker brown road ahead at 12.5 s, and a pale road the drone joins at about 18.8 s and follows to 22 s. There is a pale water strip near the horizon, box buildings, and flattened-sphere tree lines on the horizon. The sky is a gradient dome with a soft sun glow. Fake long cast shadows are flat dark ellipses pointing away from a sun at 20 degrees elevation. There are no articulated subjects; the drone is never visible.\n\nCamera and timing: a 70-degree vertical FOV perspective camera stands in for the wide action cam. Yaw, pitch and roll keyframes are set at all 24 sample timestamps from horizon angle and offset, and from sun/shadow direction. They are interpolated with Catmull-Rom (YXZ Euler, roll unwrapped along the shortest path). Position comes from a deterministic heading integration at 10 m/s, precomputed once, with altitude of 1.2 to 12 m. Timeline uses time = frame/fps over 720 frames.\n\nFeedback received:\n- Round 001: horizon roll and offset matched most samples. Problems were self-intersecting road ribbons, a pale sky, a coarse ground texture, opaque crowns, and a bush blocking the view at 20.9 s. Round 002 fixed these.\n- Round 002: the roads had become nearly invisible (same texture as the grass), the ground texture tiling showed as a grid at a distance, there was a hexagonal sun-glow artifact and a wrongly placed sun at 20.9 s, a pale translucent crown disc at 13.5 s, and too many large near bushes at 5.2 s.\n\nRevisions in 003: roads are now plain, contrasting dirt colors and wider. The ground texture keeps only fine-scale octaves, with stronger large-scale vertex-color patchiness. The sun glow is smooth on a denser dome, and headings at 20.9 to 24 s are rotated so the sun sits right of view. Crowns are darker and more opaque. The bare tree at 12.5 s is closer on image-left, two featured bushes were removed, and junipers are narrower.\n\nRemaining or inferred: headings, roll direction between samples, speed, altitude and vegetation layout are inferred. Fisheye curvature, tire-mark circles and grass detail are not reproduced.\n- Round 003: roads became visible, and sky and sun placement were improved. Remaining problems were road B being too wide and bright with a backward extension that crossed the 9.4 s view, and visible texture tiling at mid-distance.\n\nRevisions in 004: road B is narrower and darker, and its backward extension was shortened to 45 m. The grass texture is now 512 px over 6.4 m (the same feature size with a longer repeat period) to reduce visible tiling."
+    },
+    {
+     "round": "005",
+     "action": "submit",
+     "reason": "Camera roll/pitch/horizon framing matches all 24 samples; remaining differences are inferred layout and appearance details with low expected payoff.",
+     "rendered": false,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy). Round 004.\n\nObserved from the 24 reference samples: one continuous FPV drone shot (no cuts) flying fast and low over dry tan grassland. The scene has dark juniper bushes (scattered and in rows), a few large bare trees, dirt tracks, distant low buildings and tree lines, a pale hazy horizon under a deep blue sky, and a low sun with long shadows. The camera rolls hard. It is sideways at 0 s, 6.3 s and 14.6 s, inverted at 8.3 s and 19.8 s, steeply nose-down at 23 s and 24 s, and near level elsewhere.\n\nGeometry (L1 proxies): a ground plane with a seeded fine grass-tuft DataTexture and seeded large-scale light/dark patchiness through vertex colors. Junipers are instanced dark ellipsoids. Bare trees are a trunk cylinder with a semi-transparent dark crown. Dirt roads are flat smoothed ribbons: a darker brown road ahead at 12.5 s, and a pale road the drone joins at about 18.8 s and follows to 22 s. There is a pale water strip near the horizon, box buildings, and flattened-sphere tree lines on the horizon. The sky is a gradient dome with a soft sun glow. Fake long cast shadows are flat dark ellipses pointing away from a sun at 20 degrees elevation. There are no articulated subjects; the drone is never visible.\n\nCamera and timing: a 70-degree vertical FOV perspective camera stands in for the wide action cam. Yaw, pitch and roll keyframes are set at all 24 sample timestamps from horizon angle and offset, and from sun/shadow direction. They are interpolated with Catmull-Rom (YXZ Euler, roll unwrapped along the shortest path). Position comes from a deterministic heading integration at 10 m/s, precomputed once, with altitude of 1.2 to 12 m. Timeline uses time = frame/fps over 720 frames.\n\nFeedback received:\n- Round 001: horizon roll and offset matched most samples. Problems were self-intersecting road ribbons, a pale sky, a coarse ground texture, opaque crowns, and a bush blocking the view at 20.9 s. Round 002 fixed these.\n- Round 002: the roads had become nearly invisible (same texture as the grass), the ground texture tiling showed as a grid at a distance, there was a hexagonal sun-glow artifact and a wrongly placed sun at 20.9 s, a pale translucent crown disc at 13.5 s, and too many large near bushes at 5.2 s.\n\nRevisions in 003: roads are now plain, contrasting dirt colors and wider. The ground texture keeps only fine-scale octaves, with stronger large-scale vertex-color patchiness. The sun glow is smooth on a denser dome, and headings at 20.9 to 24 s are rotated so the sun sits right of view. Crowns are darker and more opaque. The bare tree at 12.5 s is closer on image-left, two featured bushes were removed, and junipers are narrower.\n\nRemaining or inferred: headings, roll direction between samples, speed, altitude and vegetation layout are inferred. Fisheye curvature, tire-mark circles and grass detail are not reproduced.\n- Round 003: roads became visible, and sky and sun placement were improved. Remaining problems were road B being too wide and bright with a backward extension that crossed the 9.4 s view, and visible texture tiling at mid-distance.\n\nRevisions in 004: road B is narrower and darker, and its backward extension was shortened to 45 m. The grass texture is now 512 px over 6.4 m (the same feature size with a longer repeat period) to reduce visible tiling.\n\nSubmission (round 005): the round 004 render is submitted. In that render the 9.4 s view no longer has the long road crossing, and texture tiling is less visible. Known remaining discrepancies:\n- Road B appears near image center at 15.6 s, where the reference shows the track at image right.\n- A side road from track A meets road B at 18.8 s.\n- Bare-tree crowns are solid proxies rather than see-through branches.\n- Junipers are smooth ellipsoids.\n- No fisheye curvature, tire-mark circles or tall-grass detail.\n- Headings and roll paths between samples are inferred."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     2.89,
+     8.9,
+     14.92,
+     20.93
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 3,
+    "inspection_only_decisions": 1,
+    "render_attempts": 4,
+    "infrastructure_retries": 0,
+    "model_turns": 5,
+    "provider_responses": 0
+   }
+  }
+ }
+}

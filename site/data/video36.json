@@ -1,0 +1,109 @@
+{
+ "id": "video36",
+ "n": 36,
+ "reference": {
+  "video": "media/ref/video36.mp4",
+  "poster": "media/poster/ref/video36_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 206,
+  "fps": 23.912,
+  "duration": 8.615
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video36.mp4",
+   "poster": "media/poster/opus-5-5/video36_0.jpg",
+   "scene": "media/scene/opus-5-5/video36.mjs",
+   "final_round": "003",
+   "scene_sha256": "fe8ed2f33f7c20dfa1b3688b15feb3b84e0512070aece96607dac78a51838f61",
+   "video_sha256": "5bb125ad774fe5cde184cf1af7738639128a4a851f5eb2c099953cb28ef0a6a5",
+   "stop": "model_submit",
+   "revisions": 2,
+   "renders": 3,
+   "infra_retries": 0,
+   "turns": 4,
+   "pauses": 1,
+   "inferences": 29,
+   "output_tokens": 139264,
+   "cost": 4.84,
+   "cost_1h": 5.61,
+   "elapsed_seconds": 11067,
+   "submit_reason": "Round 003 matches camera phases, subject positions, B jamb grip/release and A turn/walk timing; remaining gaps are appearance-level or inferred.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene: mirror over-shoulder, whip to doorway, whip back, retreating camera.",
+     "rendered": true,
+     "report": "# video36 - L1 proxy, CineRecon Three.js sampled-frame baseline (round 001, initial scene)\n\nRepresentation level: L1 (simple geometric proxies). Three.js sampled-frame baseline; not a Blender-protocol reproduction.\n\n## Observed in the 24 reference samples\n- One continuous handheld shot, letterboxed (~2.55:1 active area inside 16:9).\n- 0-1.3 s: over-the-shoulder view behind a red-haired woman in a white towel (A) facing a wall mirror framed by green tiles; her blurred head at image left, her reflection at image right.\n- ~1.3-2.9 s: fast whip pan to the left that settles on a doorway in a pink wall: a dark-haired woman in a red dress (B) stands in the doorway holding the right-hand jamb with her extended arm; blue hallway, beige panel and a far lit room behind her; towel shelf at left, sconce at right.\n- ~3.3-4.5 s: B lets go of the jamb and leans/steps toward image left and toward camera.\n- ~4.6-5.3 s: fast whip pan to the right back to A, now facing the camera with the mirror at image left (showing her back), tiles then a pink pillar and counter at right.\n- 5.6-7.1 s: A looks toward image left, then grimaces with eyes closed.\n- 7.4-8.6 s: A looks down with a hand at her chest while the background converges (camera retreats, A follows it); B re-enters from the image-right edge (~7.8 s) and moves behind A toward the right background; B also visible in the mirror.\n\n## Reconstruction choices\n- Geometry: box/cylinder/sphere room (pink walls, procedural green tile texture, banded black jamb, white trims, blue hallway, beige panel, dim far room with lamp, shower curtain proxy, counter, hand mirror, sconces).\n- Mirror: an opening in the tiled wall that looks into a z-mirrored copy of the room and both people (group with scale z = -1 about the mirror plane), plus a faint haze plane.\n- People: articulated proxies (hips, spine, neck/head, shoulders/elbows, hips/knees) - A with towel cylinders and auburn hair + bun, B with red dress, long dark hair block. B's left arm abducts to grip the jamb (1.65-3.3 s) then drops; A raises her right forearm to her chest and rubs (from 7.5 s). Simple analytic leg/arm swing while walking.\n- Camera: fixed lens (horizontal tan half-fov 0.4), yaw/position/pitch keyframed with monotone cubic interpolation: whip left ~160 deg (1.3-1.9 s, decelerating to 2.97 s), whip right ~200 deg (4.6-5.3 s), slow retreat 7.0-8.6 s. Letterbox bars are camera-attached black planes.\n- Lighting: hemisphere + ambient + point lights; the opening mirror segment is dimmed (light multiplier 0.38 before 1.35 s).\n\n## Inference vs observation\nExact room layout, door position relative to the mirror, the people's paths while off-screen (B walking from the doorway around the camera's right; A turning around during the doorway segment) and the whip-pan intermediate directions are inferred. Motion blur of whip pans is not reproduced.\n\n## Feedback\nNone received yet (initial round)."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix letterbox overdraw, darken mirror shot, hair/neck proxies, whip timing, 5.2 s framing, counter height, chest hand pose.",
+     "rendered": true,
+     "report": "# video36 - L1 proxy, CineRecon Three.js sampled-frame baseline (round 002)\n\nRepresentation level: L1 (simple geometric proxies). Three.js sampled-frame baseline; not a Blender-protocol reproduction.\n\n## Observed in the 24 reference samples\n- One continuous handheld shot, letterboxed (~2.55:1 active area inside 16:9).\n- 0-1.3 s: over-the-shoulder view behind a red-haired woman in a white towel (A) facing a wall mirror framed by green tiles; her blurred head at image left, her reflection at image right.\n- ~1.3-2.9 s: fast whip pan to the left that settles on a doorway in a pink wall: a dark-haired woman in a red dress (B) stands in the doorway holding the right-hand jamb with her extended arm; blue hallway, beige panel and a far lit room behind her; towel shelf at left, sconce at right.\n- ~3.3-4.5 s: B lets go of the jamb and leans/steps toward image left and toward camera.\n- ~4.6-5.3 s: fast whip pan to the right back to A, now facing the camera with the mirror at image left (showing her back), tiles then a pink pillar and counter at right.\n- 5.6-7.1 s: A looks toward image left, then grimaces with eyes closed.\n- 7.4-8.6 s: A looks down with a hand at her chest while the background converges (camera retreats, A follows it); B re-enters from the image-right edge (~7.8 s) and moves behind A toward the right background; B also visible in the mirror.\n\n## Reconstruction choices\n- Geometry: box/cylinder/sphere room (pink walls, procedural green tile texture, banded black jamb, white trims, blue hallway, beige panel, dim far room with lamp, shower curtain proxy, counter, hand mirror, sconces).\n- Mirror: an opening in the tiled wall that looks into a z-mirrored copy of the room and both people (group with scale z = -1 about the mirror plane), plus a faint haze plane.\n- People: articulated proxies (hips, spine, neck/head, shoulders/elbows, hips/knees) - A with towel cylinders and auburn hair + bun, B with red dress, long dark hair block. B's left arm abducts to grip the jamb (1.65-3.3 s) then drops; A raises her right forearm to her chest and rubs (from 7.5 s). Simple analytic leg/arm swing while walking.\n- Camera: fixed lens (horizontal tan half-fov 0.4), yaw/position/pitch keyframed with monotone cubic interpolation: whip left ~160 deg (1.3-1.9 s, decelerating to 2.97 s), whip right ~200 deg (4.6-5.3 s), slow retreat 7.0-8.6 s. Letterbox bars are camera-attached black planes.\n- Lighting: hemisphere + ambient + point lights; the opening mirror segment is dimmed (light multiplier 0.38 before 1.35 s).\n\n## Inference vs observation\nExact room layout, door position relative to the mirror, the people's paths while off-screen (B walking from the doorway around the camera's right; A turning around during the doorway segment) and the whip-pan intermediate directions are inferred. Motion blur of whip pans is not reproduced.\n\n## Feedback and revisions\n- Round 001 render feedback (24 paired frames) received. Composition of the mirror shot, the doorway shot and the return shot matched the reference framing reasonably; problems seen: the transparent mirror-haze plane drew over the letterbox matte (grey box), the opening mirror shot was far too bright, hair caps left the back of the heads bare (front/back of the proxies ambiguous), necks too long, whip-pan settling to the doorway lagged the reference at 1.88-2.22 s, the 5.23 s whip frame was too close/too far right, counter and hand mirror too low, A's hand pose pointed upward instead of resting at her chest.\n- Round 002 changes: matte made a transparent-pass object with top render order; mirror-shot light multiplier 0.2 (also applied to hallway/sconce lights); hair spheres enlarged and moved back to cover the back of the head; shorter necks and smaller shoulder joints; yaw keys at 1.88/2.22 s reduced; camera path through 5.23 s re-keyed (further from A, less yaw); counter raised to 1.18 m with hand mirror at 1.4 m; A's right arm uses an inward twist so the hand rests at her chest with a small rubbing oscillation; B's off-screen path moved east to keep her out of the mirror until she re-enters.\n\n## Remaining / unverified\nWhip-pan motion blur not modelled; B's reflection position in the final second, A's exact head/gaze angles, and off-screen paths remain inferred."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Fix A head yaw in return shot, B jamb release timing, hand mirror size, return-shot brightness.",
+     "rendered": true,
+     "report": "# video36 - L1 proxy, CineRecon Three.js sampled-frame baseline (round 003)\n\nRepresentation level: L1 (simple geometric proxies). Three.js sampled-frame baseline; not a Blender-protocol reproduction.\n\n## Observed in the 24 reference samples\n- One continuous handheld shot, letterboxed (~2.55:1 active area inside 16:9).\n- 0-1.3 s: over-the-shoulder view behind a red-haired woman in a white towel (A) facing a wall mirror framed by green tiles; her blurred head at image left, her reflection at image right.\n- ~1.3-2.9 s: fast whip pan to the left that settles on a doorway in a pink wall: a dark-haired woman in a red dress (B) stands in the doorway holding the right-hand jamb with her extended arm; blue hallway, beige panel and a far lit room behind her; towel shelf at left, sconce at right.\n- ~3.3-4.5 s: B lets go of the jamb and leans/steps toward image left and toward camera.\n- ~4.6-5.3 s: fast whip pan to the right back to A, now facing the camera with the mirror at image left (showing her back), tiles then a pink pillar and counter at right.\n- 5.6-7.1 s: A looks toward image left, then grimaces with eyes closed.\n- 7.4-8.6 s: A looks down with a hand at her chest while the background converges (camera retreats, A follows it); B re-enters from the image-right edge (~7.8 s) and moves behind A toward the right background; B also visible in the mirror.\n\n## Reconstruction choices\n- Geometry: box/cylinder/sphere room (pink walls, procedural green tile texture, banded black jamb, white trims, blue hallway, beige panel, dim far room with lamp, shower curtain proxy, counter, hand mirror, sconces).\n- Mirror: an opening in the tiled wall that looks into a z-mirrored copy of the room and both people (group with scale z = -1 about the mirror plane), plus a faint haze plane.\n- People: articulated proxies (hips, spine, neck/head, shoulders/elbows, hips/knees) - A with towel cylinders and auburn hair + bun, B with red dress, long dark hair block. B's left arm abducts to grip the jamb (1.65-3.3 s) then drops; A raises her right forearm to her chest and rubs (from 7.5 s). Simple analytic leg/arm swing while walking.\n- Camera: fixed lens (horizontal tan half-fov 0.4), yaw/position/pitch keyframed with monotone cubic interpolation: whip left ~160 deg (1.3-1.9 s, decelerating to 2.97 s), whip right ~200 deg (4.6-5.3 s), slow retreat 7.0-8.6 s. Letterbox bars are camera-attached black planes.\n- Lighting: hemisphere + ambient + point lights; the opening mirror segment is dimmed (light multiplier 0.38 before 1.35 s).\n\n## Inference vs observation\nExact room layout, door position relative to the mirror, the people's paths while off-screen (B walking from the doorway around the camera's right; A turning around during the doorway segment) and the whip-pan intermediate directions are inferred. Motion blur of whip pans is not reproduced.\n\n## Feedback and revisions\n- Round 001 feedback: letterbox overdraw by the mirror haze, over-bright mirror shot, bare backs of heads, long necks, whip settle lag at 1.88-2.22 s, 5.23 s framing, counter too low, hand pose. Fixed in round 002 (matte in transparent pass, light multiplier 0.2 in the mirror shot, larger rear hair spheres, shorter necks, re-keyed yaw/camera path, raised counter, twisted arm to rest the hand on the chest).\n- Round 002 feedback: framing of all three camera phases now matches closely (mirror edges, doorway jambs, B position, A position, pink pillar). Remaining: A's head in the return shot turned too far toward image left (hair covering half the face), hand mirror too large, B released the jamb too late (reference arm is already down at 3.35 s), return shot too bright with a hot spot on the pink pillar.\n- Round 003 changes: A's head yaw now nearly facing the camera with a slight left turn, smaller hand mirror, B's jamb release moved to 3.0-3.3 s, return-shot light multiplier 0.8 and weaker sconce, south sconce lowered.\n\n## Remaining / unverified\nNo motion blur on whip pans; B appears in the mirror at some frames where the reference does not show her and her reflection late in the shot is not where the reference shows it; the reflected background behind A in the opening shot is brighter and more detailed than the dark reference; head/gaze angles and off-screen paths are inferred."
+    },
+    {
+     "round": "004",
+     "action": "submit",
+     "reason": "Round 003 matches camera phases, subject positions, B jamb grip/release and A turn/walk timing; remaining gaps are appearance-level or inferred.",
+     "rendered": false,
+     "report": "# video36 - L1 proxy, CineRecon Three.js sampled-frame baseline (submitted: round 003 scene)\n\nRepresentation level: L1 (simple geometric proxies). Three.js sampled-frame baseline; not a Blender-protocol reproduction.\n\n## Observed in the 24 reference samples\n- One continuous handheld shot, letterboxed (~2.55:1 active area inside 16:9).\n- 0-1.3 s: over-the-shoulder view behind a red-haired woman in a white towel (A) facing a wall mirror framed by green tiles; her blurred head at image left, her reflection at image right.\n- ~1.3-2.9 s: fast whip pan to the left that settles on a doorway in a pink wall: a dark-haired woman in a red dress (B) stands in the doorway holding the right-hand jamb with her extended arm; blue hallway, beige panel and a far lit room behind her; towel shelf at left, sconce at right.\n- ~3.3-4.5 s: B lets go of the jamb and leans/steps toward image left and toward camera.\n- ~4.6-5.3 s: fast whip pan to the right back to A, now facing the camera with the mirror at image left (showing her back), tiles then a pink pillar and counter at right.\n- 5.6-7.1 s: A looks toward image left, then grimaces with eyes closed.\n- 7.4-8.6 s: A looks down with a hand at her chest while the background converges (camera retreats, A follows it); B re-enters from the image-right edge (~7.8 s) and moves behind A toward the right background; B also visible in the mirror.\n\n## Reconstruction choices\n- Geometry: box/cylinder/sphere room (pink walls, procedural green tile texture, banded black jamb, white trims, blue hallway, beige panel, dim far room with lamp, shower curtain proxy, counter, hand mirror, sconces).\n- Mirror: an opening in the tiled wall that looks into a z-mirrored copy of the room and both people (group with scale z = -1 about the mirror plane), plus a faint haze plane.\n- People: articulated proxies (hips, spine, neck/head, shoulders/elbows, hips/knees) - A with towel cylinders and auburn hair + bun, B with red dress, long dark hair block. B's left arm abducts to grip the jamb (1.65-3.3 s) then drops; A raises her right forearm to her chest and rubs (from 7.5 s). Simple analytic leg/arm swing while walking.\n- Camera: fixed lens (horizontal tan half-fov 0.4), yaw/position/pitch keyframed with monotone cubic interpolation: whip left ~160 deg (1.3-1.9 s, decelerating to 2.97 s), whip right ~200 deg (4.6-5.3 s), slow retreat 7.0-8.6 s. Letterbox bars are camera-attached black planes.\n- Lighting: hemisphere + ambient + point lights; the opening mirror segment is dimmed (light multiplier 0.38 before 1.35 s).\n\n## Inference vs observation\nExact room layout, door position relative to the mirror, the people's paths while off-screen (B walking from the doorway around the camera's right; A turning around during the doorway segment) and the whip-pan intermediate directions are inferred. Motion blur of whip pans is not reproduced.\n\n## Feedback and revisions\n- Round 001 feedback: letterbox overdraw by the mirror haze, over-bright mirror shot, bare backs of heads, long necks, whip settle lag at 1.88-2.22 s, 5.23 s framing, counter too low, hand pose. Fixed in round 002 (matte in transparent pass, light multiplier 0.2 in the mirror shot, larger rear hair spheres, shorter necks, re-keyed yaw/camera path, raised counter, twisted arm to rest the hand on the chest).\n- Round 002 feedback: framing of all three camera phases now matches closely (mirror edges, doorway jambs, B position, A position, pink pillar). Remaining: A's head in the return shot turned too far toward image left (hair covering half the face), hand mirror too large, B released the jamb too late (reference arm is already down at 3.35 s), return shot too bright with a hot spot on the pink pillar.\n- Round 003 changes: A's head yaw now nearly facing the camera with a slight left turn, smaller hand mirror, B's jamb release moved to 3.0-3.3 s, return-shot light multiplier 0.8 and weaker sconce, south sconce lowered.\n\n## Remaining / unverified\nNo motion blur on whip pans; B appears in the mirror at some frames where the reference does not show her and her reflection late in the shot is not where the reference shows it; the reflected background behind A in the opening shot is brighter and more detailed than the dark reference; head/gaze angles and off-screen paths are inferred.\n\n## Round 003 feedback (final inspection)\nA now faces the camera in the return shot with a slight left turn, B's arm is down by 3.35 s as in the reference, and the framing of all phases stays aligned. Submitted as is; the remaining items listed above (B visible in the mirror around 5.2-5.6 s, no whip-pan blur, brighter and more pastel colours than the dark magenta reference, inferred gaze and off-screen paths) are still unresolved."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.03,
+     3.19,
+     5.34,
+     7.5
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 2,
+    "inspection_only_decisions": 1,
+    "render_attempts": 3,
+    "infrastructure_retries": 0,
+    "model_turns": 4,
+    "provider_responses": 0
+   }
+  }
+ }
+}

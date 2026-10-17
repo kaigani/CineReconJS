@@ -1,0 +1,135 @@
+{
+ "id": "video29",
+ "n": 29,
+ "reference": {
+  "video": "media/ref/video29.mp4",
+  "poster": "media/poster/ref/video29_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 188,
+  "fps": 23.976,
+  "duration": 7.841
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video29.mp4",
+   "poster": "media/poster/opus-5-5/video29_0.jpg",
+   "scene": "media/scene/opus-5-5/video29.mjs",
+   "final_round": "005",
+   "scene_sha256": "7eeae9d61f2a69951a8c86d2cdc7b1d3e9f7b27d67ae659dcf687bf8b5da9782",
+   "video_sha256": "a079417549c25a50fd76350ca180e47ed9de98094d39dbd79e676b3f3f769371",
+   "stop": "model_submit",
+   "revisions": 4,
+   "renders": 5,
+   "infra_retries": 0,
+   "turns": 6,
+   "pauses": 0,
+   "inferences": 42,
+   "output_tokens": 113753,
+   "cost": 4.56,
+   "cost_1h": 5.29,
+   "elapsed_seconds": 1677,
+   "submit_reason": "Round 5 render matches subject, action phases, bar/orbit camera phase and floor/smoke layout well at L1; remaining differences are stylistic smoke and proxy-body detail",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol). Round 1, initial scene; no render feedback received yet.\n\nObserved in the 24 reference samples: a single continuous shot of one dancer (black T-shirt and trousers, bare forearms, grey bandana, blue sunglasses) on a dark, glossy stage floor in heavy white stage smoke. A row of horizontal white LED bars sits at about camera height behind him. The bar pattern sweeps steadily image-left (about 120 px per sample at 960 px width) for frames 0-65, slows to about 32 px per sample for frames 73-146, and stops after about frame 163. Action: kneeling on one knee with hands near the floor (f0-16) -> low lunge seen in right-facing profile (f24-33) -> standing with his back to camera (f41-49) -> left-facing profile, rising (f57) -> airborne facing camera, right arm raised and swept back, left arm angled down (f65-146) -> still airborne, turning to right profile (f163) and to his back (f179-187) with the arms spread.\n\nGeometry: boxes, cylinders and spheres. Dancer articulated with a root, spine, neck/head, shoulders, elbows, hips, knees and ankles. The bandana cap, bun and glasses are single primitives. The stage is a large dark disc. The bars are 22 emissive boxes on a 20 m ring at a height of 1.42 m, each with an additive glow plane. Floor reflections of the bars are procedural additive streaks recomputed from the camera position. The smoke is 46 seeded sprites using in-memory noise textures, with slow analytic drift and a time-based density envelope; sprites between the camera and the dancer are thinned.\n\nCamera: a 27.6 deg vertical-FOV perspective camera at 1.42 m with a slight downward pitch. It orbits the dancer to its own left. The orbit angle is precomputed per frame so that the bar phase behind the dancer matches the measured bar shifts at every sample. The leftward unwrap is inferred, because the bar pattern is periodic. The camera dollies in from 6.0 m to 5.1 m during frames 33-73, a choice inferred from the dancer's image size. A small lateral aim offset reproduces the dancer's measured horizontal image position. The dancer's facing direction is defined relative to the camera.\n\nTiming: keyframes at the sample frames on the 23.976 fps, 188-frame timeline, with Hermite interpolation. The take-off between f57 and f65, and all motion between samples, are inferred.\n\nUncertain or unverified: which leg kneels, the exact limb angles, the true camera path (orbit versus other motion), the smoke appearance, and the floor reflection look. This round includes no render feedback."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix floor glare, smoke look, crouch/stance poses and arm swing from round 1 feedback",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol). Round 2 revision, made after the round-1 render feedback (24 paired frames).\n\nFeedback received from round 1: the bar phase and spacing, the dancer's image position and scale, and the main action phases broadly matched the samples. The main mismatches were:\n- The floor rendered as a bright grey sheet with white, hard-edged streaks. The cause was specular glare from the rim light on a glossy standard material.\n- The smoke was a uniform grey haze covering the whole frame, where the reference shows bright white clumps against black.\n- In f33 the lunge was too upright.\n- In f57 the dancer was floating instead of standing on the floor.\n- In f171-187 the right arm was not swung back enough; in the reference it points backward, toward the camera, in the back view.\n\nRevisions made in round 2:\n- The floor is now unlit near-black, and the reflection streaks are dimmer and start a little further away.\n- The bars are thicker, with a brighter glow.\n- The smoke uses fewer, more concentrated, higher-contrast, whiter clumps within about 3 m of the dancer, with darker tops.\n- The torso is narrower and the legs thicker. The back of the head is now dark hair, so back views read differently from front views.\n- The f33 crouch is lower and leans further forward. At f57 the dancer is grounded, and the camera dolly now starts later (f41-73).\n- The right arm swings further back in the airborne phase and in the final turn.\n\nGeometry, camera and timing otherwise as in round 1:\n- The dancer is an articulated primitive proxy.\n- The camera is a 27.6 deg FOV orbit to its left at a height of 1.42 m. The orbit angle is precomputed per frame from the bar shifts measured at each sample; the leftward unwrap is inferred.\n- Keyframes are at the sample frames on the 188-frame, 23.976 fps timeline.\n\nInferred, not observed: motion between samples, the take-off between f57 and f65, which leg kneels, and the exact limb angles. The round-2 render has not yet been inspected."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Dim and soften floor streaks, concentrate smoke behind the dancer, lower camera, pose fixes",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol). Round 3 revision.\n\nFeedback received:\n- Round 1: floor glare, grey haze, and pose issues (see the round-2 report).\n- Round 2: the floor is now dark, but the bar reflection streaks were still too bright and hard-edged. The smoke still covered the whole frame, including the floor in front of the dancer, where the reference has bright clumps around and behind the dancer, black edges and corners, and a clearly visible reflective floor. Measuring dancer height against the bar horizon line in f41 and f57 showed the camera sits lower than modelled.\n\nRevisions made in round 3:\n- The camera and bar height are lowered to 1.32 m, and the dolly timing is adjusted.\n- The reflection streaks are dimmer, wider and softer, with a seven-column falloff.\n- The smoke is now mainly in the region behind the dancer along the whole camera path. A few low, faint clumps sit in front. Colours are brighter white, there are no dark clumps, and front-of-dancer opacity is lower.\n- The f33 lunge has its hips at about 0.86 m, the head bowed and a straight back leg.\n- In the airborne phase the legs are spread with the right knee bent.\n- At f0 the left arm reaches further out toward the floor.\n\nUnchanged:\n- The articulated primitive dancer.\n- The camera orbit to its left, with the angle derived per frame from bar shifts measured at each sample; the leftward unwrap is inferred.\n- Keyframes at the sample frames on the 188-frame, 23.976 fps timeline.\n\nInferred, not observed: motion between samples, the take-off timing, the exact limb angles, and the smoke structure. Round 3 has not yet been inspected."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Remove smoke/floor clipping band, brighter streaks, earlier turn, re-keyed right arm sweep",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol). Round 4 revision.\n\nFeedback received:\n- Rounds 1-3: paired renders.\n- Round 3 showed a much closer smoke and floor look, but three problems remained. The smoke sprites were cut by the floor depth, leaving a hard bright horizontal band across the floor. The reflection streaks were too faint. At f16 the dancer was still almost frontal, where the reference shows him already turned toward image-right.\n- The right arm in the airborne phase was too foreshortened at f130-154. In the reference it sweeps out laterally (in-plane) while he faces the camera. As he turns to right profile (f163) it stays pointing image-left, i.e. backward.\n\nRevisions made in round 4:\n- The floor no longer writes depth, so smoke is not clipped. Smoke sprites are kept above about 0.36 x their size, and are brighter and slightly cyan.\n- The floor streaks are brighter.\n- The early relative turn is larger (alpha 15 deg at f8 and 50 deg at f16).\n- The right arm swing is re-keyed: back at f65-73, lateral by f130-154, back again (relative to the body) at f163-179.\n\nUnchanged:\n- The articulated primitive dancer.\n- The camera at 1.32 m with a 27.6 deg FOV, orbiting to its left. The orbit angle is derived per frame from bar shifts measured at each sample; the leftward unwrap is inferred.\n- The dolly in during f41-73.\n- Keyframes at the sample frames on the 188-frame, 23.976 fps timeline.\n\nInferred, not observed: motion between samples, the take-off timing, the exact limb angles, and the smoke structure. Round 4 has not yet been inspected."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Soften reflection streak far edge, raise right arm at jump, refine lunge",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol). Round 5 revision.\n\nFeedback received:\n- Rounds 1-4: paired renders.\n- Round 4 showed the smoke, the floor reflection columns, the bar phase, the dancer's image placement and the action phases all broadly matching the reference.\n- Two problems remained. The far ends of the reflection streaks formed a hard continuous horizontal band. The right arm at f65-73 hung too low; in the reference it is raised to about shoulder height and swept back.\n\nRevisions made in round 5:\n- The streaks now fade in from their far edge, through a three-row strip, and are slightly narrower.\n- The right arm is raised at f65-73.\n- The f33 lunge has a little more forward lean with the head less bowed.\n\nModel summary:\n- Dancer: an articulated primitive proxy (root, spine, head, shoulders, elbows, hips, knees, ankles).\n- Lights: a ring of 22 emissive bars at 1.32 m.\n- Floor: dark, with view-dependent procedural reflection streaks.\n- Smoke: seeded noise sprites.\n- Camera: 27.6 deg FOV at 1.32 m, orbiting to its left, with the orbit angle precomputed per frame from bar shifts measured at each sample. The leftward unwrap of the periodic bar pattern is an inference. The camera dollies in during f41-73.\n- Keyframes at the sample frames on the 188-frame, 23.976 fps timeline.\n\nRemaining discrepancies:\n- The smoke is a stylised approximation, more uniform grey and less wispy.\n- The dancer is boxier than the real body, and some limb angles are approximate (for example the f171-179 right-arm fold).\n- The reference floor tile seams are not modelled.\n- Motion between samples, including the take-off timing between f57 and f65, is inferred."
+    },
+    {
+     "round": "006",
+     "action": "submit",
+     "reason": "Round 5 render matches subject, action phases, bar/orbit camera phase and floor/smoke layout well at L1; remaining differences are stylistic smoke and proxy-body detail",
+     "rendered": false,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol). Round 5 scene, submitted at turn 6 after inspecting its render (smoothly faded streak ends, raised right arm at f73 confirmed in the paired frames).\n\nFeedback received:\n- Rounds 1-4: paired renders.\n- Round 4 showed the smoke, the floor reflection columns, the bar phase, the dancer's image placement and the action phases all broadly matching the reference.\n- Two problems remained. The far ends of the reflection streaks formed a hard continuous horizontal band. The right arm at f65-73 hung too low; in the reference it is raised to about shoulder height and swept back.\n\nRevisions made in round 5:\n- The streaks now fade in from their far edge, through a three-row strip, and are slightly narrower.\n- The right arm is raised at f65-73.\n- The f33 lunge has a little more forward lean with the head less bowed.\n\nModel summary:\n- Dancer: an articulated primitive proxy (root, spine, head, shoulders, elbows, hips, knees, ankles).\n- Lights: a ring of 22 emissive bars at 1.32 m.\n- Floor: dark, with view-dependent procedural reflection streaks.\n- Smoke: seeded noise sprites.\n- Camera: 27.6 deg FOV at 1.32 m, orbiting to its left, with the orbit angle precomputed per frame from bar shifts measured at each sample. The leftward unwrap of the periodic bar pattern is an inference. The camera dollies in during f41-73.\n- Keyframes at the sample frames on the 188-frame, 23.976 fps timeline.\n\nRemaining discrepancies:\n- The smoke is a stylised approximation, more uniform grey and less wispy.\n- The dancer is boxier than the real body, and some limb angles are approximate (for example the f171-179 right-arm fold).\n- The reference floor tile seams are not modelled.\n- Motion between samples, including the take-off timing between f57 and f65, is inferred."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     0.94,
+     2.9,
+     4.86,
+     6.82
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
+    "infrastructure_retries": 0,
+    "model_turns": 6,
+    "provider_responses": 0
+   }
+  }
+ }
+}

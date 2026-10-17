@@ -1,0 +1,135 @@
+{
+ "id": "video50",
+ "n": 50,
+ "reference": {
+  "video": "media/ref/video50.mp4",
+  "poster": "media/poster/ref/video50_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 960,
+  "fps": 59.94,
+  "duration": 16.016
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video50.mp4",
+   "poster": "media/poster/opus-5-5/video50_0.jpg",
+   "scene": "media/scene/opus-5-5/video50.mjs",
+   "final_round": "005",
+   "scene_sha256": "068c28d57085641276fea329ad9964633345c1f2ff428c143efb0ad50aaf606e",
+   "video_sha256": "317acf1804e83177b303aaacc5ae364e841d2da8ecf13d078f95205bc8572a80",
+   "stop": "model_submit",
+   "revisions": 4,
+   "renders": 5,
+   "infra_retries": 0,
+   "turns": 6,
+   "pauses": 0,
+   "inferences": 31,
+   "output_tokens": 96218,
+   "cost": 3.76,
+   "cost_1h": 4.42,
+   "elapsed_seconds": 1564,
+   "submit_reason": "Camera, subject placement, occlusion and beast motion match all 24 samples at L1 proxy fidelity; remaining differences are appearance detail.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete proxy scene for first render and comparison.",
+     "rendered": true,
+     "report": "L1 proxy reconstruction, CineRecon Three.js sampled-frame baseline (video50, 1280x720, 960 frames at 59.94 fps, 16.016 s).\n\nObserved from the 24 reference samples: a single continuous over-the-shoulder shot with no cuts. A bald warrior stands in the left foreground with his back to the camera. He carries an axe on his back and holds a spear with a red cloth in his right hand. An archer at full draw stands ahead of him, slightly to image-right. A large pale big-cat beast with gold armor and a rider stands in the background-right in front of a stone gate with glowing wooden stakes. Red-leaved trees fill the top and a large green root-covered mass sits on the right. From about 4 s the beast prowls toward image-right and the camera yaws right (about 35 degrees) to follow it. The archer becomes hidden behind the warrior at about 5.5 s. From about 11 s the beast turns to face the camera and edges forward among red mushrooms. Near the end the camera pushes in and tilts down slightly.\n\nGeometry: boxes, spheres, cylinders and cones for the warrior (torso, head, legs, cylinder-limb arms, axe handle and blade, spear, cloth), the archer (torso, skirt, hair, drawn arms, bow, string, arrow), the beast (body, chest, gold head, horns, saddle, spikes, four pivoting legs, tail) and the rider (torso, head, legs, arms). The environment is a ground plane, a plaza disk, a root ring, the gate, a wall, crates, a barrel, canopy spheres, trunk cylinders and mushroom cylinders.\n\nArticulation: the beast's legs swing in a diagonal gait whose amplitude follows a walk-weight curve, and its tail sways. The warrior's right arm raises the spear between about 6.3 and 8.2 s. The rider's right arm gestures outward from about 13 s. The archer holds a static drawn pose and turns to track the beast.\n\nCamera and timing: a third-person rig. Yaw, the warrior's screen bearing, distance and pitch are keyframed at every sample time from measured screen positions and interpolated with monotone cubics. The beast's path, its heading relative to the camera, and the archer's slow leftward drift are also keyframed at sample times. Everything is computed from absolute time.\n\nInference: motion between samples, depth and scale (estimated from a 40-degree vertical FOV), and the archer's state after she becomes occluded.\n\nFeedback: none received yet (initial round)."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix warrior proportions, lighting/palette, beast bulk and clutter seen in round 1 feedback.",
+     "rendered": true,
+     "report": "L1 proxy reconstruction, CineRecon Three.js sampled-frame baseline (video50, 1280x720, 960 frames at 59.94 fps, 16.016 s).\n\nObserved from the 24 reference samples: a single continuous over-the-shoulder shot with no cuts. A bald warrior stands in the left foreground with his back to the camera, carrying an axe on his back and a spear with a red cloth in his right hand. An archer at full draw stands ahead of him at image-right of center. A pale armored big-cat beast with a rider stands in the background-right, in front of a stone gate with glowing stakes. Red canopy fills the top and a green root mass sits on the right. From about 4 s the beast prowls to image-right and the camera yaws right about 35 degrees to follow it. The archer is hidden behind the warrior from about 5.5 s. From about 11 s the beast turns to face the camera and edges forward among red mushrooms. At the end the camera pushes in and tilts down.\n\nGeometry: primitive proxies for the warrior (torso, trapezius, head, legs, arms, axe, strap, spear, cloth), the archer (torso, skirt, hair, drawn arms, bow, string, arrow), the beast (body, chest, gold head, horns, saddle, spikes, four pivoting legs, tail) and the rider. The environment is a ground plane, plaza, root ring, gate, walls, crates, canopy spheres, root-mass cylinders and mushrooms.\n\nArticulation: the beast's legs follow a diagonal gait and its tail sways. The warrior's right arm raises the spear between about 6.3 and 8.2 s. The rider's right arm gestures outward from about 13 s. The archer holds her draw while tracking the beast.\n\nCamera and timing: a third-person orbit rig. Yaw, the warrior's screen bearing, distance and pitch are keyframed at all 24 sample times and interpolated with monotone cubics, and every state is computed from absolute time.\n\nFeedback received for round 1, comparing all 24 pairs. Subject placement, camera yaw and the beast's path matched the reference well. Problems were an oversized warrior head that sat too high, an over-wide torso, a dark orange-heavy palette with the archer nearly black, dark tree trunks obscuring the centre, a thin table-like beast, oversized mushrooms and a slightly steep spear.\n\nRound 2 revisions: a smaller and lower head with a slimmer torso; brighter, cooler lighting with a teal-green ground and a lighter archer; trunks removed; a bulkier, lower beast; smaller mushrooms; a flatter spear; and the archer staying visible longer at about 4.9 s.\n\nRemaining uncertainties: motion between samples, absolute scale (40-degree FOV assumption), and the archer's state while she is occluded."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Fix early beast heading, beast shape, rider height and final push-in from round 2 feedback.",
+     "rendered": true,
+     "report": "L1 proxy reconstruction, CineRecon Three.js sampled-frame baseline (video50, 1280x720, 960 frames at 59.94 fps, 16.016 s).\n\nObserved from the 24 reference samples: a single continuous over-the-shoulder shot with no cuts. A bald warrior stands in the left foreground with his back to the camera, carrying an axe on his back and a spear with a red cloth in his right hand. An archer at full draw stands ahead of him at image-right of center. A pale armored big-cat beast with a rider stands in the background-right, in front of a stone gate with glowing stakes. Red canopy fills the top and a green root mass sits on the right. From about 4 s the beast prowls to image-right and the camera yaws right about 35 degrees to follow it. The archer is hidden behind the warrior from about 5.5 s. From about 11 s the beast turns to face the camera and edges forward among red mushrooms. At the end the camera pushes in and tilts down.\n\nGeometry: primitive proxies for the warrior (torso, trapezius, head, legs, arms, axe, strap, spear, cloth), the archer (torso, skirt, hair, drawn arms, bow, string, arrow), the beast (body, chest, gold head, horns, saddle, spikes, four pivoting legs, tail) and the rider. The environment is a ground plane, plaza, root ring, gate, walls, crates, canopy spheres, root-mass cylinders and mushrooms.\n\nArticulation: the beast's legs follow a diagonal gait and its tail sways. The warrior's right arm raises the spear between about 6.3 and 8.2 s. The rider's right arm gestures outward from about 13 s. The archer holds her draw while tracking the beast.\n\nCamera and timing: a third-person orbit rig. Yaw, the warrior's screen bearing, distance and pitch are keyframed at all 24 sample times and interpolated with monotone cubics, and every state is computed from absolute time.\n\nFeedback received for round 1, comparing all 24 pairs. Subject placement, camera yaw and the beast's path matched the reference well. Problems were an oversized warrior head that sat too high, an over-wide torso, a dark orange-heavy palette with the archer nearly black, dark tree trunks obscuring the centre, a thin table-like beast, oversized mushrooms and a slightly steep spear.\n\nRound 2 revisions (made in response to round 1): a smaller and lower head with a slimmer torso; brighter, cooler lighting with a teal-green ground and a lighter archer; trunks removed; a bulkier, lower beast; smaller mushrooms; a flatter spear; and the archer staying visible longer at about 4.9 s.\n\nRemaining uncertainties: motion between samples, absolute scale (40-degree FOV assumption), and the archer's state while she is occluded.\n\nFeedback received for round 2: framing, the archer's position, the beast's path, the mushrooms and the spear all lined up closely with the reference. Problems were the beast facing camera-right in samples 0-3, when the reference shows it facing camera-left toward the archer and only turning right at about 2.8 s; a boxy beast body; a rider sitting slightly high; an olive-looking root mass; and an end framing (t=16 s) that was not tight or low enough.\n\nRound 3 revisions: corrected the beast heading curve (it faces camera-left first, then turns right between about 2.1 and 4.2 s); made the beast's body and chest ellipsoids; lowered the rider and saddle; darkened the root mass; adjusted head and camera height slightly; and strengthened the final push-in and tilt-down."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Correct beast distance and lateral position in the second half per round 3 feedback.",
+     "rendered": true,
+     "report": "L1 proxy reconstruction, CineRecon Three.js sampled-frame baseline (video50, 1280x720, 960 frames at 59.94 fps, 16.016 s).\n\nObserved from the 24 reference samples: a single continuous over-the-shoulder shot with no cuts. A bald warrior stands in the left foreground with his back to the camera, carrying an axe on his back and a spear with a red cloth in his right hand. An archer at full draw stands ahead of him at image-right of center. A pale armored big-cat beast with a rider stands in the background-right, in front of a stone gate with glowing stakes. Red canopy fills the top and a green root mass sits on the right. From about 4 s the beast prowls to image-right and the camera yaws right about 35 degrees to follow it. The archer is hidden behind the warrior from about 5.5 s. From about 11 s the beast turns to face the camera and edges forward among red mushrooms. At the end the camera pushes in and tilts down.\n\nGeometry: primitive proxies for the warrior (torso, trapezius, head, legs, arms, axe, strap, spear, cloth), the archer (torso, skirt, hair, drawn arms, bow, string, arrow), the beast (body, chest, gold head, horns, saddle, spikes, four pivoting legs, tail) and the rider. The environment is a ground plane, plaza, root ring, gate, walls, crates, canopy spheres, root-mass cylinders and mushrooms.\n\nArticulation: the beast's legs follow a diagonal gait and its tail sways. The warrior's right arm raises the spear between about 6.3 and 8.2 s. The rider's right arm gestures outward from about 13 s. The archer holds her draw while tracking the beast.\n\nCamera and timing: a third-person orbit rig. Yaw, the warrior's screen bearing, distance and pitch are keyframed at all 24 sample times and interpolated with monotone cubics, and every state is computed from absolute time.\n\nFeedback received for round 1, comparing all 24 pairs. Subject placement, camera yaw and the beast's path matched the reference well. Problems were an oversized warrior head that sat too high, an over-wide torso, a dark orange-heavy palette with the archer nearly black, dark tree trunks obscuring the centre, a thin table-like beast, oversized mushrooms and a slightly steep spear.\n\nRound 2 revisions (made in response to round 1): a smaller and lower head with a slimmer torso; brighter, cooler lighting with a teal-green ground and a lighter archer; trunks removed; a bulkier, lower beast; smaller mushrooms; a flatter spear; and the archer staying visible longer at about 4.9 s.\n\nRemaining uncertainties: motion between samples, absolute scale (40-degree FOV assumption), and the archer's state while she is occluded.\n\nFeedback received for round 2: framing, the archer's position, the beast's path, the mushrooms and the spear all lined up closely with the reference. Problems were the beast facing camera-right in samples 0-3 (the reference shows it facing camera-left, turning right at about 2.8 s), a boxy beast body, a slightly high rider, an olive root mass and a weak final push-in. Round 3 corrected the heading curve, made the beast's body and chest ellipsoids, lowered the rider, darkened the root mass and strengthened the push-in and tilt.\n\nFeedback received for round 3: the early heading now matches (camera-left at 0.7 s, turning right by 3.5 s), the warrior and archer framing matches, and the end framing is close. From about 10 s to the end, though, the beast appeared about 1.2x too large (too close) and slightly too far image-right. In the reference it circles slightly away before turning to face the camera.\n\nRound 4 revisions: pushed the beast's late-path keyframes (10.4-16 s) about 5-22% further from the camera and rotated them about 2.5-3.5 degrees toward image-left, and moved the mushroom cluster and root ring slightly further away."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Minor archer position correction for samples 1-2 from round 4 feedback.",
+     "rendered": true,
+     "report": "L1 proxy reconstruction, CineRecon Three.js sampled-frame baseline (video50, 1280x720, 960 frames at 59.94 fps, 16.016 s).\n\nObserved from the 24 reference samples: a single continuous over-the-shoulder shot with no cuts. A bald warrior stands in the left foreground with his back to the camera, carrying an axe on his back and a spear with a red cloth in his right hand. An archer at full draw stands ahead of him at image-right of center. A pale armored big-cat beast with a rider stands in the background-right, in front of a stone gate with glowing stakes. Red canopy fills the top and a green root mass sits on the right. From about 4 s the beast prowls to image-right and the camera yaws right about 35 degrees to follow it. The archer is hidden behind the warrior from about 5.5 s. From about 11 s the beast turns to face the camera and edges forward among red mushrooms. At the end the camera pushes in and tilts down.\n\nGeometry: primitive proxies for the warrior (torso, trapezius, head, legs, arms, axe, strap, spear, cloth), the archer (torso, skirt, hair, drawn arms, bow, string, arrow), the beast (body, chest, gold head, horns, saddle, spikes, four pivoting legs, tail) and the rider. The environment is a ground plane, plaza, root ring, gate, walls, crates, canopy spheres, root-mass cylinders and mushrooms.\n\nArticulation: the beast's legs follow a diagonal gait and its tail sways. The warrior's right arm raises the spear between about 6.3 and 8.2 s. The rider's right arm gestures outward from about 13 s. The archer holds her draw while tracking the beast.\n\nCamera and timing: a third-person orbit rig. Yaw, the warrior's screen bearing, distance and pitch are keyframed at all 24 sample times and interpolated with monotone cubics, and every state is computed from absolute time.\n\nFeedback received for round 1, comparing all 24 pairs. Subject placement, camera yaw and the beast's path matched the reference well. Problems were an oversized warrior head that sat too high, an over-wide torso, a dark orange-heavy palette with the archer nearly black, dark tree trunks obscuring the centre, a thin table-like beast, oversized mushrooms and a slightly steep spear.\n\nRound 2 revisions (made in response to round 1): a smaller and lower head with a slimmer torso; brighter, cooler lighting with a teal-green ground and a lighter archer; trunks removed; a bulkier, lower beast; smaller mushrooms; a flatter spear; and the archer staying visible longer at about 4.9 s.\n\nRemaining uncertainties: motion between samples, absolute scale (40-degree FOV assumption), and the archer's state while she is occluded.\n\nFeedback received for round 2: framing, the archer's position, the beast's path, the mushrooms and the spear all lined up closely with the reference. Problems were the beast facing camera-right in samples 0-3 (the reference shows it facing camera-left, turning right at about 2.8 s), a boxy beast body, a slightly high rider, an olive root mass and a weak final push-in. Round 3 corrected the heading curve, made the beast's body and chest ellipsoids, lowered the rider, darkened the root mass and strengthened the push-in and tilt.\n\nFeedback received for round 3: the early heading now matches (camera-left at 0.7 s, turning right by 3.5 s), the warrior and archer framing matches, and the end framing is close. From about 10 s to the end, though, the beast appeared about 1.2x too large (too close) and slightly too far image-right. In the reference it circles slightly away before turning to face the camera.\n\nRound 4 revisions: pushed the beast's late-path keyframes (10.4-16 s) about 5-22% further from the camera and rotated them about 2.5-3.5 degrees toward image-left, and moved the mushroom cluster and root ring slightly further away.\n\nFeedback received for round 4: the late beast distance and screen position now match the reference closely (samples 16, 19 and 23), as do the warrior centring at about 5.6 s and the beast's position there. The archer sat about 25 px too far image-right at 0.7-1.4 s.\n\nRound 5 revision: shifted the archer's early keyframes (0.7 and 1.4 s) slightly toward image-left. Nothing else changed.\n\nRemaining discrepancies (L1 appearance, not corrected): the proxies are blocky and lack fine detail, the warrior's red tattoo and the vine/root textures are not modelled, the beast's legs read as simple posts, and the background masses are simplified. Motion between samples is interpolated, and the archer's behaviour while occluded after about 5.5 s is inferred."
+    },
+    {
+     "round": "006",
+     "action": "submit",
+     "reason": "Camera, subject placement, occlusion and beast motion match all 24 samples at L1 proxy fidelity; remaining differences are appearance detail.",
+     "rendered": false,
+     "report": "L1 proxy reconstruction, CineRecon Three.js sampled-frame baseline (video50, 1280x720, 960 frames at 59.94 fps, 16.016 s).\n\nObserved from the 24 reference samples: a single continuous over-the-shoulder shot with no cuts. A bald warrior stands in the left foreground with his back to the camera, carrying an axe on his back and a spear with a red cloth in his right hand. An archer at full draw stands ahead of him at image-right of center. A pale armored big-cat beast with a rider stands in the background-right, in front of a stone gate with glowing stakes. Red canopy fills the top and a green root mass sits on the right. From about 4 s the beast prowls to image-right and the camera yaws right about 35 degrees to follow it. The archer is hidden behind the warrior from about 5.5 s. From about 11 s the beast turns to face the camera and edges forward among red mushrooms. At the end the camera pushes in and tilts down.\n\nGeometry: primitive proxies for the warrior (torso, trapezius, head, legs, arms, axe, strap, spear, cloth), the archer (torso, skirt, hair, drawn arms, bow, string, arrow), the beast (body, chest, gold head, horns, saddle, spikes, four pivoting legs, tail) and the rider. The environment is a ground plane, plaza, root ring, gate, walls, crates, canopy spheres, root-mass cylinders and mushrooms.\n\nArticulation: the beast's legs follow a diagonal gait and its tail sways. The warrior's right arm raises the spear between about 6.3 and 8.2 s. The rider's right arm gestures outward from about 13 s. The archer holds her draw while tracking the beast.\n\nCamera and timing: a third-person orbit rig. Yaw, the warrior's screen bearing, distance and pitch are keyframed at all 24 sample times and interpolated with monotone cubics, and every state is computed from absolute time.\n\nFeedback received for round 1, comparing all 24 pairs. Subject placement, camera yaw and the beast's path matched the reference well. Problems were an oversized warrior head that sat too high, an over-wide torso, a dark orange-heavy palette with the archer nearly black, dark tree trunks obscuring the centre, a thin table-like beast, oversized mushrooms and a slightly steep spear.\n\nRound 2 revisions (made in response to round 1): a smaller and lower head with a slimmer torso; brighter, cooler lighting with a teal-green ground and a lighter archer; trunks removed; a bulkier, lower beast; smaller mushrooms; a flatter spear; and the archer staying visible longer at about 4.9 s.\n\nRemaining uncertainties: motion between samples, absolute scale (40-degree FOV assumption), and the archer's state while she is occluded.\n\nFeedback received for round 2: framing, the archer's position, the beast's path, the mushrooms and the spear all lined up closely with the reference. Problems were the beast facing camera-right in samples 0-3 (the reference shows it facing camera-left, turning right at about 2.8 s), a boxy beast body, a slightly high rider, an olive root mass and a weak final push-in. Round 3 corrected the heading curve, made the beast's body and chest ellipsoids, lowered the rider, darkened the root mass and strengthened the push-in and tilt.\n\nFeedback received for round 3: the early heading now matches (camera-left at 0.7 s, turning right by 3.5 s), the warrior and archer framing matches, and the end framing is close. From about 10 s to the end, though, the beast appeared about 1.2x too large (too close) and slightly too far image-right. In the reference it circles slightly away before turning to face the camera.\n\nRound 4 revisions: pushed the beast's late-path keyframes (10.4-16 s) about 5-22% further from the camera and rotated them about 2.5-3.5 degrees toward image-left, and moved the mushroom cluster and root ring slightly further away.\n\nFeedback received for round 4: the late beast distance and screen position now match the reference closely (samples 16, 19 and 23), as do the warrior centring at about 5.6 s and the beast's position there. The archer sat about 25 px too far image-right at 0.7-1.4 s.\n\nRound 5 revision: shifted the archer's early keyframes (0.7 and 1.4 s) slightly toward image-left. Nothing else changed.\n\nRemaining discrepancies (L1 appearance, not corrected): the proxies are blocky and lack fine detail, the warrior's red tattoo and the vine/root textures are not modelled, the beast's legs read as simple posts, and the background masses are simplified. Motion between samples is interpolated, and the archer's behaviour while occluded after about 5.5 s is inferred.\n\nFeedback received for round 5: the archer's position at 0.7-1.4 s moved closer to the reference (still about 15 px image-right at 1.4 s), and no other changes or regressions were visible. Submitting round 5 as the final scene. The subject counts, camera framing, timing, occlusion of the archer and the beast's heading and path across all 24 samples match the reference at L1 proxy fidelity. The remaining differences are appearance detail and inferred motion between samples."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.92,
+     5.93,
+     9.93,
+     13.93
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
+    "infrastructure_retries": 0,
+    "model_turns": 6,
+    "provider_responses": 0
+   }
+  }
+ }
+}

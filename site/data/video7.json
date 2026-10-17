@@ -1,0 +1,161 @@
+{
+ "id": "video7",
+ "n": 7,
+ "reference": {
+  "video": "media/ref/video7.mp4",
+  "poster": "media/poster/ref/video7_0.jpg",
+  "width": 1280,
+  "height": 576,
+  "frames": 576,
+  "fps": 23.962,
+  "duration": 24.038
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video7.mp4",
+   "poster": "media/poster/opus-5-5/video7_0.jpg",
+   "scene": "media/scene/opus-5-5/video7.mjs",
+   "final_round": "007",
+   "scene_sha256": "0dfb13bf600828def42b6f65404c4b5bcf5e5eb18e01c1b4254e5353d02082a9",
+   "video_sha256": "960ff286bd759185c4e463b7db529dcd20d9b53cfca8f8ac42d4bd77edab69da",
+   "stop": "model_submit",
+   "revisions": 6,
+   "renders": 7,
+   "infra_retries": 0,
+   "turns": 8,
+   "pauses": 1,
+   "inferences": 63,
+   "output_tokens": 178233,
+   "cost": 7.34,
+   "cost_1h": 8.25,
+   "elapsed_seconds": 9295,
+   "submit_reason": "Round 007 matches shot structure, camera framing, jogger placement/articulation and object passing timing; remaining gaps are proxy-level appearance detail.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 scene: rotating centrifuge drum, articulated jogger, three-shot camera plan.",
+     "rendered": true,
+     "report": "# Report - round 001 (initial)\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native protocol); not equivalent to Blender model rankings.\n\nObserved (from the 24 reference samples): a single jogger (black T-shirt, white shorts, white socks) runs along the curved floor of a centrifuge-like ring corridor. Three shots: (1) 0 to ~7.8 s high rear follow shot looking down the curving walkway past consoles and black swivel chairs, with occasional raised-fist gestures; (2) ~7.8 to ~15.1 s low frontal camera looking up at the jogger who shadowboxes toward the camera while hibernation pods recede up the curve behind him; (3) ~15.1 s to end, low rear camera following him toward the hibernation pods; lighting gets bluer at the end. Two large rounded overhead fixtures with blue glow stay fixed in frame in all shots.\n\nGeometry: drum floor = inner surface of a cylinder (R 5.5 m) with flat end walls; consoles, cabinets and pod frames are boxes bent along the floor; chairs are box/cylinder proxies; pods are scaled spheres in dark frames; the overhead fixtures are non-rotating discs with ring trim, and the blue glow is emissive side panels.\n\nArticulation: jogger hierarchy (hips, torso, head, shoulders/elbows, hips/knees/ankles) with an analytical running cycle (1.4 Hz), arm swing in shots 1/3, guard plus alternating upward punches in shot 2 timed to the samples.\n\nCamera and timing: the jogger stays at the drum bottom while the drum rotates analytically (about 0.4 rad/s in shots 1 and 3, 0.29 rad/s in shot 2) so the environment streams past at the observed rates; per-shot fixed camera rigs, hard cuts at 7.85 s and 15.1 s (cut times are inferred between samples). Sector A (consoles) is shown in shot 1 and sector B (pods) in shots 2 and 3; the ring layout is not claimed to be globally consistent across cuts.\n\nInferred / unverified: exact cut frames, motion between samples, punch timings between samples, lens FOV (55 deg vertical assumed). No render feedback received yet."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Refit all three camera rigs, enlarge overhead housings per shot, fix posture/arms and lighting contrast.",
+     "rendered": true,
+     "report": "# Report - round 002\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native protocol); not equivalent to Blender model rankings.\n\nObserved (24 reference samples): one jogger (black T-shirt, white shorts, white socks) running along the curved floor of a centrifuge ring corridor. Shot 1 (0 to ~7.8 s): high rear follow view looking down on him past consoles and black swivel chairs, occasional raised-fist gestures. Shot 2 (~7.8 to ~15.1 s): low frontal camera looking up at him shadowboxing with high knees while hibernation pods recede up the curve behind him. Shot 3 (~15.1 s to end): low rear camera close behind him, pods approaching on both sides; light turns bluer at the end. Two big rounded overhead housings with blue glow stay at the top left/right in every shot.\n\nGeometry: drum floor = inner surface of a cylinder (R 5.5 m) with flat end walls; consoles, cabinets, pod frames are boxes bent along the floor; chairs are box/cylinder proxies; pods are scaled spheres in dark frames; overhead housings are flat elliptical discs with a rim ring and a blue glow disc behind.\n\nArticulation: jogger hierarchy (hips, torso, head, shoulders/elbows, hips/knees/ankles) with analytical running cycle (1.4 Hz); forward lean in shots 1/3 (strong in 3), high-knee jog with guard and alternating upward punches in shot 2, timed to samples.\n\nCamera and timing: jogger fixed at drum bottom; drum rotates analytically (0.4 rad/s shots 1 and 3, 0.29 rad/s shot 2). Cameras were re-fitted in this round from jogger landmarks with a 50 deg vertical FOV: shot 1 at 3.2 m high, 2.8 m behind, pitch -32 deg; shot 2 0.55 m high, 1.4 m in front, pitch +24.5 deg; shot 3 0.8 m high, 0.55 m behind, pitch +28 deg. Hard cuts at 7.85 s and 15.1 s (inferred between samples). Console sector shown in shot 1, pod sector in shots 2/3 (ring layout not globally consistent across cuts). The overhead housings are placed per shot to hold their observed framing (not physically consistent across shots).\n\nFeedback received (round 001 render): cameras were too low/flat in shot 1 and too far in shot 3, housings too small/central, lighting too flat and white, boxing arms too high, jogger too upright. Revisions in this round address those. Remaining unverified: exact cut frames, inter-sample motion, lens FOV."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Recalibrated drum speeds and object timing, fixed shot 2/3 camera distance, rebuilt overhead housings.",
+     "rendered": true,
+     "report": "# Report - round 003\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native protocol); not equivalent to Blender model rankings.\n\nObserved (24 reference samples): one jogger (black T-shirt, white shorts, white socks) running along the curved floor of a centrifuge ring corridor. Shot 1 (0 to ~7.8 s): high rear follow view looking down on him past consoles and black swivel chairs, occasional raised-fist gestures. Shot 2 (~7.8 to ~15.1 s): low frontal camera looking up at him shadowboxing with high knees while hibernation pods recede up the curve behind him. Shot 3 (~15.1 s to end): low rear camera close behind him, pods approaching on both sides; light turns bluer at the end. Two big rounded overhead housings with blue glow stay at the top left/right in every shot.\n\nGeometry: drum floor = inner surface of a cylinder (R 5.5 m) with flat end walls; consoles, cabinets, pod frames are boxes bent along the floor; chairs are box/cylinder proxies; pods are scaled spheres in dark frames; overhead housings are flat elliptical discs with a rim ring and a blue glow disc behind.\n\nArticulation: jogger hierarchy (hips, torso, head, shoulders/elbows, hips/knees/ankles) with analytical running cycle (1.4 Hz); forward lean in shots 1/3 (strong in 3), high-knee jog with guard and alternating upward punches in shot 2, timed to samples.\n\nCamera and timing: jogger fixed at drum bottom; drum rotates analytically (0.4 rad/s shots 1 and 3, 0.29 rad/s shot 2). Cameras were re-fitted in this round from jogger landmarks with a 50 deg vertical FOV: shot 1 at 3.2 m high, 2.8 m behind, pitch -32 deg; shot 2 0.55 m high, 1.4 m in front, pitch +24.5 deg; shot 3 0.8 m high, 0.55 m behind, pitch +28 deg. Hard cuts at 7.85 s and 15.1 s (inferred between samples). Console sector shown in shot 1, pod sector in shots 2/3 (ring layout not globally consistent across cuts). The overhead housings are placed per shot to hold their observed framing (not physically consistent across shots).\n\nFeedback received (round 001 render): cameras were too low/flat in shot 1 and too far in shot 3, housings too small/central, lighting too flat and white, boxing arms too high, jogger too upright. Revisions in this round address those. Remaining unverified: exact cut frames, inter-sample motion, lens FOV.\n\nRound 003 changes (from round 002 feedback): re-measured drum speeds against the new camera rigs using tracked chairs/pods (shot 1 about 0.22 rad/s, shot 2 0.26 rad/s, shot 3 0.40 rad/s) and re-placed chairs, consoles, washroom alcove and pods to match their observed passing times; shot 2 camera moved to 0.65 m high, 1.1 m in front, pitch 28.7 deg; shot 3 camera to 0.65 m high, 0.95 m behind, pitch 35.7 deg (round 002 was far too close); reduced chair count in shot 1; overhead housings rebuilt as hood + oval face + rim + blue glow layers per shot; darker bluish lighting in shot 1."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Two-radius ring sets so pods match shot 2/3 framing, refit shot 3 pitch, shot 2 drift, recalibrated drum speeds.",
+     "rendered": true,
+     "report": "# Report - round 004\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native protocol); not equivalent to Blender model rankings.\n\nObserved (24 reference samples): one jogger (black T-shirt, white shorts, white socks) running along the curved floor of a centrifuge ring. Shot 1 (0 to ~7.8 s): high rear follow view down onto him past consoles and black swivel chairs, two raised-fist gestures (~1.0 s left arm, ~4.2 s right arm). Shot 2 (~7.8 to ~15.1 s): low frontal camera looking up at him shadowboxing with high knees; hibernation pods recede up the curve behind him; a black chair sweeps past the camera near 13.5 s. Shot 3 (~15.1 s to end): low rear camera close behind him, pods approach on both sides; light turns bluer at the end. Two big rounded overhead housings with blue skylight glow sit at the top left/right in every shot.\n\nGeometry: drum floor = inner cylinder surface with flat end walls; consoles, cabinets and pod recesses are boxes bent along the floor; chairs are box/cylinder proxies; pods are scaled spheres in dark recesses with small display boxes; overhead housings are flat elliptical hood/face/rim/glow layers.\n\nArticulation: jogger hierarchy (hips, torso, head, shoulders/elbows, hips/knees/ankles) with an analytical running cycle; arm swing in shots 1/3, guard plus alternating upward punches in shot 2 timed to samples.\n\nCamera and timing: jogger fixed at the drum bottom while the drum rotates analytically. Cameras fitted from jogger landmarks (50 deg vertical FOV): shot 1 3.25 m high, 2.95 m behind, pitch -31 deg; shot 2 0.65 m high, 1.1 m in front, pitch 28.7 deg rising 1 deg/s while the jogger drops back 5 cm/s; shot 3 0.8 m high, 0.575 m behind, pitch 45 deg. Hard cuts at 7.85 s and 15.1 s (inferred between samples). Drum speeds/phases fitted to tracked chairs and pods: shot 1 0.22 rad/s, shot 2 0.30 rad/s, shot 3 0.38 rad/s.\n\nKnown inconsistency: the pod sizes/positions in shots 2-3 only fit a much tighter ring than the console set in shot 1, so this round uses two ring sets (R 5.5 m for the shot-1 console sector, R 3.2 m for the shot-2/3 pod sector) and per-shot placement of the overhead housings. Floor speeds of both sets are similar (about 1.0-1.2 m/s).\n\nFeedback received: rounds 001-003 renders. Fixed so far: camera heights/pitches, housing size/placement, chair counts and passing times, shot-3 camera distance, lighting contrast, boxing guard height. Remaining unverified: exact cut frames, inter-sample motion, true lens FOV."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Fix shot 3 framing (camera further back), re-fit pod timing, reduce shot-1 chair clutter.",
+     "rendered": true,
+     "report": "# Report - round 005\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native protocol); not equivalent to Blender model rankings.\n\nObserved (24 reference samples): one jogger (black T-shirt, white shorts, white socks) running along the curved floor of a centrifuge ring. Shot 1 (0 to ~7.8 s): high rear follow view down onto him past consoles and black swivel chairs, two raised-fist gestures (~1.0 s left arm, ~4.2 s right arm). Shot 2 (~7.8 to ~15.1 s): low frontal camera looking up at him shadowboxing with high knees; hibernation pods recede up the curve behind him; a black chair sweeps past the camera near 13.5 s. Shot 3 (~15.1 s to end): low rear camera close behind him, pods approach on both sides; light turns bluer at the end. Two big rounded overhead housings with blue skylight glow sit at the top left/right in every shot.\n\nGeometry: drum floor = inner cylinder surface with flat end walls; consoles, cabinets and pod recesses are boxes bent along the floor; chairs are box/cylinder proxies; pods are scaled spheres in dark recesses with small display boxes; overhead housings are flat elliptical hood/face/rim/glow layers.\n\nArticulation: jogger hierarchy (hips, torso, head, shoulders/elbows, hips/knees/ankles) with an analytical running cycle; arm swing in shots 1/3, guard plus alternating upward punches in shot 2 timed to samples.\n\nCamera and timing: jogger fixed at the drum bottom while the drum rotates analytically. Cameras fitted from jogger landmarks (50 deg vertical FOV): shot 1 3.25 m high, 2.95 m behind, pitch -31 deg; shot 2 0.65 m high, 1.1 m in front, pitch 28.7 deg rising 1 deg/s while the jogger drops back 5 cm/s; shot 3 0.8 m high, 0.575 m behind, pitch 45 deg. Hard cuts at 7.85 s and 15.1 s (inferred between samples). Drum speeds/phases fitted to tracked chairs and pods: shot 1 0.22 rad/s, shot 2 0.30 rad/s, shot 3 0.38 rad/s.\n\nKnown inconsistency: the pod sizes/positions in shots 2-3 only fit a much tighter ring than the console set in shot 1, so this round uses two ring sets (R 5.5 m for the shot-1 console sector, R 3.2 m for the shot-2/3 pod sector) and per-shot placement of the overhead housings. Floor speeds of both sets are similar (about 1.0-1.2 m/s).\n\nFeedback received: rounds 001-003 renders. Fixed so far: camera heights/pitches, housing size/placement, chair counts and passing times, shot-3 camera distance, lighting contrast, boxing guard height. Remaining unverified: exact cut frames, inter-sample motion, true lens FOV.\n\nRound 005 changes (from round 004 feedback): shot 3 jogger was still too large and too high in frame, so the shot-3 camera moved to 0.75 m high, 1.0 m behind, pitch 40 deg, and pod phases/speed re-fitted for that camera (0.40 rad/s); shot 2 phase adjusted to match; shot-2 near-camera console back panel made white (was a large black block not seen in the reference); shot 1 left chair count reduced to two and the desk panel narrowed."
+    },
+    {
+     "round": "006",
+     "action": "render",
+     "reason": "Re-time the pod-sector +x chair to remove a spurious black foreground wedge in shot 2.",
+     "rendered": true,
+     "report": "# Report - round 006\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native protocol); not equivalent to Blender model rankings.\n\nObserved (24 reference samples): one jogger (black T-shirt, white shorts, white socks) running along the curved floor of a centrifuge ring. Shot 1 (0 to ~7.8 s): high rear follow view down onto him past consoles and black swivel chairs, two raised-fist gestures (~1.0 s left arm, ~4.2 s right arm). Shot 2 (~7.8 to ~15.1 s): low frontal camera looking up at him shadowboxing with high knees; hibernation pods recede up the curve behind him; a black chair sweeps past the camera near 13.5 s. Shot 3 (~15.1 s to end): low rear camera close behind him, pods approach on both sides; light turns bluer at the end. Two big rounded overhead housings with blue skylight glow sit at the top left/right in every shot.\n\nGeometry: drum floor = inner cylinder surface with flat end walls; consoles, cabinets and pod recesses are boxes bent along the floor; chairs are box/cylinder proxies; pods are scaled spheres in dark recesses with small display boxes; overhead housings are flat elliptical hood/face/rim/glow layers.\n\nArticulation: jogger hierarchy (hips, torso, head, shoulders/elbows, hips/knees/ankles) with an analytical running cycle; arm swing in shots 1/3, guard plus alternating upward punches in shot 2 timed to samples.\n\nCamera and timing: jogger fixed at the drum bottom while the drum rotates analytically. Cameras fitted from jogger landmarks (50 deg vertical FOV): shot 1 3.25 m high, 2.95 m behind, pitch -31 deg; shot 2 0.65 m high, 1.1 m in front, pitch 28.7 deg rising 1 deg/s while the jogger drops back 5 cm/s; shot 3 0.8 m high, 0.575 m behind, pitch 45 deg. Hard cuts at 7.85 s and 15.1 s (inferred between samples). Drum speeds/phases fitted to tracked chairs and pods: shot 1 0.22 rad/s, shot 2 0.30 rad/s, shot 3 0.38 rad/s.\n\nKnown inconsistency: the pod sizes/positions in shots 2-3 only fit a much tighter ring than the console set in shot 1, so this round uses two ring sets (R 5.5 m for the shot-1 console sector, R 3.2 m for the shot-2/3 pod sector) and per-shot placement of the overhead housings. Floor speeds of both sets are similar (about 1.0-1.2 m/s).\n\nFeedback received: rounds 001-003 renders. Fixed so far: camera heights/pitches, housing size/placement, chair counts and passing times, shot-3 camera distance, lighting contrast, boxing guard height. Remaining unverified: exact cut frames, inter-sample motion, true lens FOV.\n\nRound 005 changes (from round 004 feedback): shot 3 jogger was still too large and too high in frame, so the shot-3 camera moved to 0.75 m high, 1.0 m behind, pitch 40 deg, and pod phases/speed re-fitted for that camera (0.40 rad/s); shot 2 phase adjusted to match; shot-2 near-camera console back panel made white (was a large black block not seen in the reference); shot 1 left chair count reduced to two and the desk panel narrowed.\n\nRound 006 changes (from round 005 feedback): shot 3 framing now matches well (jogger head near frame middle, pods visible above). The +x chair of the pod sector was re-timed (alpha 3.75) so it no longer sweeps past the shot-2 camera at the same moment as the -x chair (round 005 showed two large black wedges at 13.56 s where the reference has only one, on image right); it still passes the jogger and then the camera early in shot 3 as observed."
+    },
+    {
+     "round": "007",
+     "action": "render",
+     "reason": "Shot-specific loose chairs so near-camera chair appears on the observed side in shots 2 and 3.",
+     "rendered": true,
+     "report": "# Report - round 007\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native protocol); not equivalent to Blender model rankings.\n\nObserved (24 reference samples): one jogger (black T-shirt, white shorts, white socks) running along the curved floor of a centrifuge ring. Shot 1 (0 to ~7.8 s): high rear follow view down onto him past consoles and black swivel chairs, two raised-fist gestures (~1.0 s left arm, ~4.2 s right arm). Shot 2 (~7.8 to ~15.1 s): low frontal camera looking up at him shadowboxing with high knees; hibernation pods recede up the curve behind him; a black chair sweeps past the camera near 13.5 s. Shot 3 (~15.1 s to end): low rear camera close behind him, pods approach on both sides; light turns bluer at the end. Two big rounded overhead housings with blue skylight glow sit at the top left/right in every shot.\n\nGeometry: drum floor = inner cylinder surface with flat end walls; consoles, cabinets and pod recesses are boxes bent along the floor; chairs are box/cylinder proxies; pods are scaled spheres in dark recesses with small display boxes; overhead housings are flat elliptical hood/face/rim/glow layers.\n\nArticulation: jogger hierarchy (hips, torso, head, shoulders/elbows, hips/knees/ankles) with an analytical running cycle; arm swing in shots 1/3, guard plus alternating upward punches in shot 2 timed to samples.\n\nCamera and timing: jogger fixed at the drum bottom while the drum rotates analytically. Cameras fitted from jogger landmarks (50 deg vertical FOV): shot 1 3.25 m high, 2.95 m behind, pitch -31 deg; shot 2 0.65 m high, 1.1 m in front, pitch 28.7 deg rising 1 deg/s while the jogger drops back 5 cm/s; shot 3 0.8 m high, 0.575 m behind, pitch 45 deg. Hard cuts at 7.85 s and 15.1 s (inferred between samples). Drum speeds/phases fitted to tracked chairs and pods: shot 1 0.22 rad/s, shot 2 0.30 rad/s, shot 3 0.38 rad/s.\n\nKnown inconsistency: the pod sizes/positions in shots 2-3 only fit a much tighter ring than the console set in shot 1, so this round uses two ring sets (R 5.5 m for the shot-1 console sector, R 3.2 m for the shot-2/3 pod sector) and per-shot placement of the overhead housings. Floor speeds of both sets are similar (about 1.0-1.2 m/s).\n\nFeedback received: rounds 001-003 renders. Fixed so far: camera heights/pitches, housing size/placement, chair counts and passing times, shot-3 camera distance, lighting contrast, boxing guard height. Remaining unverified: exact cut frames, inter-sample motion, true lens FOV.\n\nRound 005 changes (from round 004 feedback): shot 3 jogger was still too large and too high in frame, so the shot-3 camera moved to 0.75 m high, 1.0 m behind, pitch 40 deg, and pod phases/speed re-fitted for that camera (0.40 rad/s); shot 2 phase adjusted to match; shot-2 near-camera console back panel made white (was a large black block not seen in the reference); shot 1 left chair count reduced to two and the desk panel narrowed.\n\nRound 006 changes (from round 005 feedback): shot 3 framing now matches well (jogger head near frame middle, pods visible above). The +x chair of the pod sector was re-timed (alpha 3.75) so it no longer sweeps past the shot-2 camera at the same moment as the -x chair (round 005 showed two large black wedges at 13.56 s where the reference has only one, on image right); it still passes the jogger and then the camera early in shot 3 as observed.\n\nRound 007 changes (from round 006 feedback): the shot-2 near-camera chair is on image right (-x) while the shot-3 near-camera chair is on image right (+x) in the opposite view, so they are different chairs; the pod-sector chairs are now shot-specific props (-x chair shown only in shot 2, +x chair at alpha 3.95 shown only in shot 3), removing the spurious left-side black wedges at 13.56 s and 17.74 s. This is a declared prop-visibility simplification, not an observed event."
+    },
+    {
+     "round": "008",
+     "action": "submit",
+     "reason": "Round 007 matches shot structure, camera framing, jogger placement/articulation and object passing timing; remaining gaps are proxy-level appearance detail.",
+     "rendered": false,
+     "report": "# Report - final (submitted round 007 render)\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native protocol); not equivalent to Blender model rankings.\n\nObserved (24 reference samples): one jogger (black T-shirt, white shorts, white socks) running along the curved floor of a centrifuge ring. Shot 1 (0 to ~7.8 s): high rear follow view down onto him past consoles and black swivel chairs, two raised-fist gestures (~1.0 s left arm, ~4.2 s right arm). Shot 2 (~7.8 to ~15.1 s): low frontal camera looking up at him shadowboxing with high knees; hibernation pods recede up the curve behind him; a black chair sweeps past the camera near 13.5 s. Shot 3 (~15.1 s to end): low rear camera close behind him, pods approach on both sides; light turns bluer at the end. Two big rounded overhead housings with blue skylight glow sit at the top left/right in every shot.\n\nGeometry: drum floor = inner cylinder surface with flat end walls; consoles, cabinets and pod recesses are boxes bent along the floor; chairs are box/cylinder proxies; pods are scaled spheres in dark recesses with small display boxes; overhead housings are flat elliptical hood/face/rim/glow layers.\n\nArticulation: jogger hierarchy (hips, torso, head, shoulders/elbows, hips/knees/ankles) with an analytical running cycle; arm swing in shots 1/3, guard plus alternating upward punches in shot 2 timed to samples.\n\nCamera and timing: jogger fixed at the drum bottom while the drum rotates analytically. Cameras fitted from jogger landmarks (50 deg vertical FOV): shot 1 3.25 m high, 2.95 m behind, pitch -31 deg; shot 2 0.65 m high, 1.1 m in front, pitch 28.7 deg rising 1 deg/s while the jogger drops back 5 cm/s; shot 3 0.8 m high, 0.575 m behind, pitch 45 deg. Hard cuts at 7.85 s and 15.1 s (inferred between samples). Drum speeds/phases fitted to tracked chairs and pods: shot 1 0.22 rad/s, shot 2 0.30 rad/s, shot 3 0.38 rad/s.\n\nKnown inconsistency: the pod sizes/positions in shots 2-3 only fit a much tighter ring than the console set in shot 1, so this round uses two ring sets (R 5.5 m for the shot-1 console sector, R 3.2 m for the shot-2/3 pod sector) and per-shot placement of the overhead housings. Floor speeds of both sets are similar (about 1.0-1.2 m/s).\n\nFeedback received: rounds 001-003 renders. Fixed so far: camera heights/pitches, housing size/placement, chair counts and passing times, shot-3 camera distance, lighting contrast, boxing guard height. Remaining unverified: exact cut frames, inter-sample motion, true lens FOV.\n\nRound 005 changes (from round 004 feedback): shot 3 jogger was still too large and too high in frame, so the shot-3 camera moved to 0.75 m high, 1.0 m behind, pitch 40 deg, and pod phases/speed re-fitted for that camera (0.40 rad/s); shot 2 phase adjusted to match; shot-2 near-camera console back panel made white (was a large black block not seen in the reference); shot 1 left chair count reduced to two and the desk panel narrowed.\n\nRound 006 changes (from round 005 feedback): shot 3 framing now matches well (jogger head near frame middle, pods visible above). The +x chair of the pod sector was re-timed (alpha 3.75) so it no longer sweeps past the shot-2 camera at the same moment as the -x chair (round 005 showed two large black wedges at 13.56 s where the reference has only one, on image right); it still passes the jogger and then the camera early in shot 3 as observed.\n\nRound 007 changes (from round 006 feedback): the shot-2 near-camera chair is on image right (-x) while the shot-3 near-camera chair is on image right (+x) in the opposite view, so they are different chairs; the pod-sector chairs are now shot-specific props (-x chair shown only in shot 2, +x chair at alpha 3.95 shown only in shot 3), removing the spurious left-side black wedges at 13.56 s and 17.74 s. This is a declared prop-visibility simplification, not an observed event.\n\nSubmission: round 007 render confirmed the near-camera chair now appears on image right at 13.56 s and 17.74 s, as in the reference. Remaining discrepancies: proxy appearance (flat colours, boxy jogger, no floor dot pattern or panel detail); shot-1 side clutter and console shapes are approximate; jogger in shot 2 is less foreshortened than the reference (thighs smaller in frame); overhead housings are flat layered ellipses placed per shot; two ring radii and shot-specific loose chairs are declared simplifications; cut frames and all motion between samples are inferred."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     2.88,
+     8.89,
+     14.9,
+     20.91
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ],
+     "006": [
+      "r006_0.jpg",
+      "r006_1.jpg",
+      "r006_2.jpg",
+      "r006_3.jpg"
+     ],
+     "007": [
+      "r007_0.jpg",
+      "r007_1.jpg",
+      "r007_2.jpg",
+      "r007_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 6,
+    "inspection_only_decisions": 1,
+    "render_attempts": 7,
+    "infrastructure_retries": 0,
+    "model_turns": 8,
+    "provider_responses": 0
+   }
+  }
+ }
+}

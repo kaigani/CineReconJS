@@ -1,0 +1,135 @@
+{
+ "id": "video39",
+ "n": 39,
+ "reference": {
+  "video": "media/ref/video39.mp4",
+  "poster": "media/poster/ref/video39_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 972,
+  "fps": 60.0,
+  "duration": 16.2
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video39.mp4",
+   "poster": "media/poster/opus-5-5/video39_0.jpg",
+   "scene": "media/scene/opus-5-5/video39.mjs",
+   "final_round": "005",
+   "scene_sha256": "9b8f91f58a5b6fe62ed201702c4d87250c77fd88e326a20f7184bae27006b57f",
+   "video_sha256": "4766046c968578227aa0bcd7c9fa3d84bccd1cf3adb723cfa876b1e4bedd3be1",
+   "stop": "model_submit",
+   "revisions": 4,
+   "renders": 5,
+   "infra_retries": 0,
+   "turns": 6,
+   "pauses": 0,
+   "inferences": 37,
+   "output_tokens": 88853,
+   "cost": 3.42,
+   "cost_1h": 3.92,
+   "elapsed_seconds": 1402,
+   "submit_reason": "Figure, pillars, railings, landmarks and camera yaw path align closely with the reference samples; remaining differences are proxy-level appearance.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene: follow shot of the walking woman along the bridge.",
+     "rendered": true,
+     "report": "# Report: video39, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nRepresentation level: L1 (proxy). This is the Three.js sampled-frame baseline. It is not equivalent to the Blender protocol.\n\nWhat the 24 samples show (0.0 to 16.18 s): a single continuous third-person follow shot with no cuts. A woman in a pointed brown hat, a pale blouse, a dark bodice and a long brown skirt walks away from the camera. She starts on a dirt path, passes between two brick entrance pillars (around t of 1.5 to 2 s) and walks along a long stone bridge. The bridge has a salmon arched railing on the left and a darker stone railing on the right. She stays at about x = 0.32 of the image width and at a constant image size for the whole shot. The background holds a rocky hill with a tree on top in the centre, layered cliffs and a misty lake on the left, and a grassy plateau with a big dark boulder on the right.\n\nGeometry: the woman uses boxes, cylinders and spheres: skirt, torso, vest, head and hair, braid, hat brim and cone, two-segment arms and two-segment legs with boots. The bridge is a deck box, two railings built from beams and posts, a ledge and two pillars with moss caps. The terrain is boxes and planes: a near field with a dirt path, land beyond the far end, a raised right plateau, and the water plane. The mountains are hazed boxes and cylinders, and the tree is a sphere crown. The sky is a procedural gradient dome.\n\nArticulation: there is a hip and knee gait with a 1.0 s cycle, arm swing opposite the legs, and pelvis drop so the stance foot stays on the ground. The skirt sways slightly.\n\nCamera and timing: the camera follows rigidly about 3.2 m behind her, 0.91 m to her right and at a height of 1.31 m, with a 50-degree vertical FOV. The camera yaw starts 13.6 degrees left of the bridge axis, because she approaches diagonally from the right. It turns smoothly to about 2 degrees right of the axis by 3.8 s. Her lateral position eases onto the bridge's left lane by 3.5 s. Her speed is a constant 1.3 m/s along the bridge. Everything is analytic in absolute time.\n\nInference vs observation: the poses and camera at the sample times are estimated from the images. The gait phase, step period and the motion between samples are inferred.\n\nFeedback: none received yet (initial round)."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix figure proportions, camera height, railing placement, plateau height and haze.",
+     "rendered": true,
+     "report": "# Report: video39, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nRepresentation level: L1 (proxy). This is the Three.js sampled-frame baseline. It is not equivalent to the Blender protocol.\n\nObserved in the 24 samples: one continuous third-person follow shot with no cuts. A woman in a pointed hat, a pale blouse, a dark bodice and a long high-waisted brown skirt walks away from the camera. She goes from a dirt path, between two brick entrance pillars (about 2 s) and along a long stone bridge. The bridge has a salmon arched railing on the left and a darker rounded stone railing on the right. She holds about x = 0.32 of the image width at a constant size. The background shows a rocky central hill topped by a tree, hazy cliffs and a lake on the left, and a low grassy plateau with a big dark boulder and a small ruin arch on the right.\n\nGeometry: the woman is built from primitives: skirt, blouse, bodice, head and hair, braid, hat brim and cone, two-segment arms and legs with boots. The bridge is a deck box, railings made of beams and posts, a left ledge and the entrance pillars. The terrain is boxes and planes. The mountains are hazed boxes and cylinders. The sky is a procedural gradient dome.\n\nArticulation: a hip and knee gait with a 1.05 s cycle, opposite arm swing, and pelvis drop so the stance foot stays on the ground.\n\nCamera and timing: the camera follows rigidly 3.05 m behind her, 0.87 m to her right and 1.15 m high (about her waist height, which matches the horizon passing through her waist), with a 50-degree vertical FOV. The yaw starts 13.6 degrees left of the bridge axis and turns to about 2 degrees right by 3.8 s. The pitch goes from -0.3 to +1.7 degrees. She walks at a constant 1.2 m/s, and her lateral position eases from the path onto the bridge's left lane by 3.5 s. Everything is analytic in absolute time.\n\nRound 1 feedback (24 pairs) and the changes made:\n- Her waist was too low. The skirt is now high-waisted, from 1.15 m down to 0.15 m.\n- The camera was too high. It is lowered to 1.15 m.\n- The right railing was too far from the camera. It is moved inward and lowered.\n- The pillars are now 0.75 m tall.\n- The right plateau is lowered so its grassy top is visible.\n- The background is lightened and hazed more, and the left-side land is reduced so the lake shows beyond the left railing.\n- Her speed is reduced to match the timing of the pillar passage.\n\nInferred, not observed: the gait phase, the step period and the motion between samples."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Refine figure size and proportions, railing positions, walking speed and lake visibility.",
+     "rendered": true,
+     "report": "# Report: video39, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nRepresentation level: L1 (proxy). This is the Three.js sampled-frame baseline. It is not equivalent to the Blender protocol.\n\nObserved in the 24 samples: one continuous third-person follow shot with no cuts. A woman in a pointed hat, a pale blouse, a dark bodice and a long brown skirt walks away from the camera. She goes from a dirt path, between two brick entrance pillars (about 2 s) and along a long stone bridge. The bridge has a salmon arched railing on the left and a darker rounded stone railing on the right. She holds about x = 0.32 of the image width at a constant size. The background shows a rocky central hill topped by a tree, hazy cliffs and a lake on the left, and a low grassy plateau with a big dark boulder and a small ruin arch on the right.\n\nGeometry: the woman is built from primitives: skirt, blouse, bodice, head and hair, braid, hat brim and cone, two-segment arms and legs with boots. The bridge is a deck box, railings made of beams and posts, a left ledge and the entrance pillars. The terrain is boxes and planes. The mountains are hazed boxes and cylinders. The sky is a procedural gradient dome.\n\nArticulation: a hip and knee gait with a 1.05 s cycle, opposite arm swing, and pelvis drop so the stance foot stays on the ground.\n\nCamera and timing: the camera follows rigidly 3.3 m behind her, 0.94 m to her right and 1.18 m high (the horizon crosses her just above the waist), with a 50-degree vertical FOV. The yaw starts 13.6 degrees left of the bridge axis and turns to about 2 degrees right by 3.8 s. The pitch goes from -0.3 to +1.7 degrees. She walks at a constant 1.35 m/s, and her lateral position eases from the path onto the bridge's left lane by 3.5 s. Everything is analytic in absolute time.\n\nRound 1 feedback (24 pairs) and the changes made:\n- Her waist was too low. The skirt is now high-waisted, from 1.15 m down to 0.15 m.\n- The camera was too high. It is lowered to 1.15 m.\n- The right railing was too far from the camera. It is moved inward and lowered.\n- The pillars are now 0.75 m tall.\n- The right plateau is lowered so its grassy top is visible.\n- The background is lightened and hazed more, and the left-side land is reduced so the lake shows beyond the left railing.\n- Her speed is reduced to match the timing of the pillar passage.\n\nInferred, not observed: the gait phase, the step period and the motion between samples.\n\nRound 2 feedback (24 pairs) and the changes made:\n- The figure was slightly too large and the skirt too wide. The camera is moved back to 3.3 m, the skirt is narrowed, and her waist is lowered to 1.05 m.\n- The right railing still sat too far right. It is moved closer to the camera.\n- The left railing is lowered to 0.85 m.\n- At t = 2.1 s the left pillar was still in frame. The speed is raised to 1.35 m/s so the pillar passage happens earlier, and the bridge is extended to 30 m.\n- A near cliff block that hid the lake on the left is removed.\n- The haze is stronger.\n- A gap in the ground on the right of the entrance is filled."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Recalibrate camera height, pitch, yaw path and diagonal approach; reposition railings and background landmarks.",
+     "rendered": true,
+     "report": "# Report: video39, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nRepresentation level: L1 (proxy). This is the Three.js sampled-frame baseline. It is not equivalent to the Blender protocol.\n\nObserved in the 24 samples: one continuous third-person follow shot with no cuts. A woman in a pointed hat, a pale blouse, a dark bodice and a long brown skirt walks away from the camera. She starts on a dirt path to the right of the bridge axis, crosses diagonally between two brick entrance pillars (about 2.1 s) and then walks straight along a long stone bridge. The bridge has a salmon arched railing on the left and a bulkier dark rounded railing on the right. She holds about x = 0.32 of the image width at a constant size. The background shows a rocky central hill topped by a tree, hazy cliffs and a lake on the left, and a low grassy plateau with a big dark boulder and a small ruin on the right.\n\nGeometry: the woman is built from primitives: skirt, blouse, bodice, head and hair, braid, hat brim and cone, two-segment arms and legs with boots. The bridge is a deck box, railings made of beams and posts, a left ledge and the pillars. The terrain is boxes and planes. The mountains are hazed boxes and cylinders. The sky is a procedural gradient dome.\n\nArticulation: a hip and knee gait with a 1.05 s cycle, opposite arm swing, pelvis drop for foot contact, and slight skirt sway.\n\nCamera and timing: the camera orbits and follows her rigidly: 3.3 m behind, 0.94 m to her right, 1.34 m high, 50-degree vertical FOV, pitch -0.8 degrees. The camera yaw comes from the bearing of the hilltop tree in each sample: 22.7, 20.8, 12.4, 4.5 and -1.0 degrees at 0, 0.7, 1.4, 2.12 and 2.82 s, and about -1.5 degrees afterwards. It is interpolated with a monotone cubic. She walks at 1.3 m/s. Her heading starts about 46 degrees left of the bridge axis and turns onto the axis between 0.9 and 2.6 s. Her path is a deterministic precomputed integral of that analytic heading, sampled by absolute time.\n\nFeedback from rounds 1 to 3 and what it changed:\n- Overlays of the reference and the render showed the horizon (the railing vanishing point) near y = 0.48 of the frame. That fixed the camera height at about 1.34 m with a waist of 1.15 m.\n- They also showed the right railing crest about 0.9 m right of the camera and the left railing about 2.1 m left.\n- The opening yaw was too small, about 14 degrees against about 23 degrees in the reference, and the woman has to cut diagonally to pass between the pillars.\n- The boulder, the ruin and the hill tree were moved to match their sampled bearings.\n\nInferred, not observed: the motion between samples, the gait phase and the step period."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Minor: lantern post position and layered left cliffs.",
+     "rendered": true,
+     "report": "# Report: video39, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nRepresentation level: L1 (proxy). This is the Three.js sampled-frame baseline. It is not equivalent to the Blender protocol.\n\nObserved in the 24 samples: one continuous third-person follow shot with no cuts. A woman in a pointed hat, a pale blouse, a dark bodice and a long brown skirt walks away from the camera. She starts on a dirt path to the right of the bridge axis, crosses diagonally between two brick entrance pillars (about 2.1 s) and then walks straight along a long stone bridge. The bridge has a salmon arched railing on the left and a bulkier dark rounded railing on the right. She holds about x = 0.32 of the image width at a constant size. The background shows a rocky central hill topped by a tree, hazy cliffs and a lake on the left, and a low grassy plateau with a big dark boulder and a small ruin on the right.\n\nGeometry: the woman is built from primitives: skirt, blouse, bodice, head and hair, braid, hat brim and cone, two-segment arms and legs with boots. The bridge is a deck box, railings made of beams and posts, a left ledge and the pillars. The terrain is boxes and planes. The mountains are hazed boxes and cylinders. The sky is a procedural gradient dome.\n\nArticulation: a hip and knee gait with a 1.05 s cycle, opposite arm swing, pelvis drop for foot contact, and slight skirt sway.\n\nCamera and timing: the camera orbits and follows her rigidly: 3.3 m behind, 0.94 m to her right, 1.34 m high, 50-degree vertical FOV, pitch -0.8 degrees. The camera yaw comes from the bearing of the hilltop tree in each sample: 22.7, 20.8, 12.4, 4.5 and -1.0 degrees at 0, 0.7, 1.4, 2.12 and 2.82 s, and about -1.5 degrees afterwards. It is interpolated with a monotone cubic. She walks at 1.3 m/s. Her heading starts about 46 degrees left of the bridge axis and turns onto the axis between 0.9 and 2.6 s. Her path is a deterministic precomputed integral of that analytic heading, sampled by absolute time.\n\nFeedback from rounds 1 to 3 and what it changed:\n- Overlays of the reference and the render showed the horizon (the railing vanishing point) near y = 0.48 of the frame. That fixed the camera height at about 1.34 m with a waist of 1.15 m.\n- They also showed the right railing crest about 0.9 m right of the camera and the left railing about 2.1 m left.\n- The opening yaw was too small, about 14 degrees against about 23 degrees in the reference, and the woman has to cut diagonally to pass between the pillars.\n- The boulder, the ruin and the hill tree were moved to match their sampled bearings.\n\nInferred, not observed: the motion between samples, the gait phase and the step period.\n\nRound 4 feedback: overlays of the reference and the render at 0, 0.7, 1.4, 2.12, 2.82, 3.52, 9.85 and 16.18 s show close alignment of the figure, the pillars, the railings, the hilltop tree and the boulder. Small changes in round 5: the lantern post is moved 0.4 m left (it sat about 30 to 70 px too far right early on), and the left cliff block is split into two stepped tiers.\n\nRemaining discrepancies:\n- The background relief is very coarse (blocky hazed boxes rather than layered cliffs).\n- There are no grass, flowers or birds.\n- The railing arches are simplified to posts.\n- The exact gait phase is not verifiable at the 0.7 s sampling."
+    },
+    {
+     "round": "006",
+     "action": "submit",
+     "reason": "Figure, pillars, railings, landmarks and camera yaw path align closely with the reference samples; remaining differences are proxy-level appearance.",
+     "rendered": false,
+     "report": "# Report: video39, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nRepresentation level: L1 (proxy). This is the Three.js sampled-frame baseline. It is not equivalent to the Blender protocol.\n\nObserved in the 24 samples: one continuous third-person follow shot with no cuts. A woman in a pointed hat, a pale blouse, a dark bodice and a long brown skirt walks away from the camera. She starts on a dirt path to the right of the bridge axis, crosses diagonally between two brick entrance pillars (about 2.1 s) and then walks straight along a long stone bridge. The bridge has a salmon arched railing on the left and a bulkier dark rounded railing on the right. She holds about x = 0.32 of the image width at a constant size. The background shows a rocky central hill topped by a tree, hazy cliffs and a lake on the left, and a low grassy plateau with a big dark boulder and a small ruin on the right.\n\nGeometry: the woman is built from primitives: skirt, blouse, bodice, head and hair, braid, hat brim and cone, two-segment arms and legs with boots. The bridge is a deck box, railings made of beams and posts, a left ledge and the pillars. The terrain is boxes and planes. The mountains are hazed boxes and cylinders. The sky is a procedural gradient dome.\n\nArticulation: a hip and knee gait with a 1.05 s cycle, opposite arm swing, pelvis drop for foot contact, and slight skirt sway.\n\nCamera and timing: the camera orbits and follows her rigidly: 3.3 m behind, 0.94 m to her right, 1.34 m high, 50-degree vertical FOV, pitch -0.8 degrees. The camera yaw comes from the bearing of the hilltop tree in each sample: 22.7, 20.8, 12.4, 4.5 and -1.0 degrees at 0, 0.7, 1.4, 2.12 and 2.82 s, and about -1.5 degrees afterwards. It is interpolated with a monotone cubic. She walks at 1.3 m/s. Her heading starts about 46 degrees left of the bridge axis and turns onto the axis between 0.9 and 2.6 s. Her path is a deterministic precomputed integral of that analytic heading, sampled by absolute time.\n\nFeedback from rounds 1 to 3 and what it changed:\n- Overlays of the reference and the render showed the horizon (the railing vanishing point) near y = 0.48 of the frame. That fixed the camera height at about 1.34 m with a waist of 1.15 m.\n- They also showed the right railing crest about 0.9 m right of the camera and the left railing about 2.1 m left.\n- The opening yaw was too small, about 14 degrees against about 23 degrees in the reference, and the woman has to cut diagonally to pass between the pillars.\n- The boulder, the ruin and the hill tree were moved to match their sampled bearings.\n\nInferred, not observed: the motion between samples, the gait phase and the step period.\n\nRound 4 feedback: overlays of the reference and the render at 0, 0.7, 1.4, 2.12, 2.82, 3.52, 9.85 and 16.18 s show close alignment of the figure, the pillars, the railings, the hilltop tree and the boulder. Small changes in round 5: the lantern post is moved 0.4 m left (it sat about 30 to 70 px too far right early on), and the left cliff block is split into two stepped tiers.\n\nRemaining discrepancies:\n- The background relief is very coarse (blocky hazed boxes rather than layered cliffs).\n- There are no grass, flowers or birds.\n- The railing arches are simplified to posts.\n- The exact gait phase is not verifiable at the 0.7 s sampling.\n\nRound 5 feedback: the render shows the moved lantern post (now about 40 px from its reference position at 0.7 s) and the stepped left cliffs, with no regressions in the frames inspected. Submitting this round-5 scene."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.94,
+     5.99,
+     10.04,
+     14.09
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
+    "infrastructure_retries": 0,
+    "model_turns": 6,
+    "provider_responses": 0
+   }
+  }
+ }
+}

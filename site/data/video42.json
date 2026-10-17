@@ -1,0 +1,148 @@
+{
+ "id": "video42",
+ "n": 42,
+ "reference": {
+  "video": "media/ref/video42.mp4",
+  "poster": "media/poster/ref/video42_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 295,
+  "fps": 23.976,
+  "duration": 12.304
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video42.mp4",
+   "poster": "media/poster/opus-5-5/video42_0.jpg",
+   "scene": "media/scene/opus-5-5/video42.mjs",
+   "final_round": "006",
+   "scene_sha256": "13b0fc2aaa0b5e523a3b9c166f8d7667d11ccb8e1a1b51b03bc2f930d357ad47",
+   "video_sha256": "aa5a60871fdbdf15e4085faa2c5a431eb912bd38790eb86d4e58913534396d1e",
+   "stop": "model_submit",
+   "revisions": 5,
+   "renders": 6,
+   "infra_retries": 0,
+   "turns": 7,
+   "pauses": 0,
+   "inferences": 36,
+   "output_tokens": 148265,
+   "cost": 5.54,
+   "cost_1h": 6.39,
+   "elapsed_seconds": 1807,
+   "submit_reason": "Round 6 matches the overhead track, stair-to-bed layout, figure positions and final tilt at L1 proxy fidelity; remaining differences are mostly appearance and lighting.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene: overhead tracking shot from stairwell to bedroom with two articulated figures.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-equivalent protocol).\n\nObserved (24 reference samples): one continuous overhead (top-down) tracking shot, no cuts, letterboxed 2.40:1. 0-1.1 s: two blonde figures tumble on a stairwell (stairs run along image vertical, window at top-left, green right wall). 1.1-5.3 s: camera travels image-right over a cutaway divider (fluorescent tubes, dark near-camera beam and railing rods pass), revealing a bedroom with a white turntable, wooden floor and a bed (orange/green striped blanket, cream sheet, green duvet). The olive-sweater figure (A) pursues the pale cream-clothed figure (V) across the floor. 5.9-9.6 s: V falls back onto the bed end and lies supine, head to image-right; A kneels astride her, leaning over with hands on her chest; the camera descends slightly. 9.6-12.3 s: camera rises and tilts toward the back wall, revealing the toy shelf, a plate and a bright lamp at image-right.\n\nGeometry: boxes/spheres/cylinders for stairs, walls, window, tubes, turntable, bed layers, shelf, lamp, back wall. Two articulated figures (pelvis root, spine, neck/head/hair, shoulders, elbows, hips, knees) posed by keyframes at sample times and linearly interpolated.\nCamera: perspective 36 deg vertical FOV, up vector = -Z, Hermite-spline track through per-sample positions estimated from object image positions; tilt toward the back wall only in the last ~2.6 s.\nTiming: absolute-time sampling at the metadata timeline (295 frames, 23.976 fps).\n\nInference / uncertainty: the stair-phase tumble, exact subject poses between samples, stair direction and heights, and the possibility of a third person in the early stair frames (treated as two subjects) are inferred. Camera roll visible in some transit frames is not modelled.\n\nRender feedback: none yet (initial round)."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Darker lighting, corrected early camera travel and stair layout, larger hair/lean for A, wider end-of-shot framing.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-equivalent protocol).\n\nObserved (24 reference samples): one continuous overhead tracking shot, no cuts, letterboxed 2.40:1. 0-1.1 s two blonde figures tumble on a stairwell; 1.1-5.3 s camera travels image-right over a cutaway divider (near-camera fluorescent tube, dark beam and railing rods pass) into a dim bedroom with a white turntable and a bed (orange/green striped blanket, cream sheet, green duvet); the olive-sweater figure (A) pursues the cream-clothed figure (V). 5.9-9.6 s V lies supine on the bed end (head image-right), A kneels astride leaning over her with hands on her chest. 9.6-12.3 s camera rises and tilts toward the back wall, toy shelf, plate and bright lamp.\n\nGeometry: boxes/spheres/cylinders for stairs, walls, window, tubes, turntable, bed layers, shelf, lamp, wall pipe, back/right walls. Two articulated figures (pelvis root, spine, neck/head/hair, shoulders, elbows, hips, knees), keyframed at sample times, linearly interpolated.\nCamera: 36 deg vertical FOV, up vector -Z, Hermite-spline track; tilt toward back wall in last ~2.6 s.\nTiming: absolute-time sampling, 295 frames at 23.976 fps.\n\nRender feedback received: round 1 pairs (all 24 inspected in part). Revisions in this round: much darker practical lighting (scene was flat and over-bright); stairwell moved image-right and early camera travel slowed after finding the vertical fluorescent tube is near camera height (high parallax); figure positions in the stair phase recomputed; A darker olive with larger hair mass and deeper forward lean so hair covers her back as in the reference; end-of-shot camera raised/pulled back and shelf/lamp/turntable repositioned so the shelf, lamp, plate, turntable and figures share the frame as in the last samples.\n\nInference / uncertainty: stair-phase tumble choreography, poses between samples, stair direction/heights, and a possible third person in the early stair frames (treated as two subjects) are inferred. Camera roll in some transit frames and the darkness that hides the figures around 3.2 s are not modelled."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Refit stairwell parallax and early figure positions, fix stray beam, soften bed key light, add left record player for final frames.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-equivalent protocol).\n\nObserved (24 reference samples): one continuous overhead tracking shot, no cuts, letterboxed 2.40:1. 0-1.1 s two blonde figures tumble on a stairwell; 1.1-5.3 s camera travels image-right over a cutaway divider (fluorescent tubes, dark beam and railing rods pass) into a dim bedroom with a white turntable panel and a bed (orange/green striped blanket, cream sheet, green duvet); the olive-sweater figure (A) pursues the cream-clothed figure (V). 5.9-9.6 s V lies supine on the bed end (head image-right), A kneels astride leaning over her with hands on her chest. 9.6-12.3 s camera rises and tilts toward the back wall, revealing a record player (left), toy shelf, plate and bright lamp (right).\n\nGeometry: boxes/spheres/cylinders for stairs, walls, window, tubes, turntable and record player, bed layers, shelf, lamp, back/right walls. Two articulated figures (pelvis root, spine, neck/head/hair, shoulders, elbows, hips, knees), keyframed at sample times, linearly interpolated.\nCamera: 36 deg vertical FOV, up vector -Z, Hermite-spline track; tilt toward the back wall over the last ~2.6 s.\nTiming: absolute-time sampling, 295 frames at 23.976 fps.\n\nRender feedback received: rounds 1 and 2. Round 2 changes: darker lighting, slowed early camera, end-of-shot pull-back, bigger hair/lean for A. Round 3 changes: early stair layout re-fitted (vertical fluorescent tube placed at 2.0 m so stairs, handrail, tubes and figures share consistent parallax; stairwell moved image-left), short narrow beam instead of a long diagonal slab that wrongly appeared at t=0, railing crossbar shortened, bed key light moved higher to stop washing out A, hair mass rounded, second record player added at left for the final frames, back wall moved closer, wall pipe removed.\n\nInference / uncertainty: stair-phase tumble choreography, poses between samples, stair direction/heights, and a possible third person in the early stair frames (treated as two subjects) are inferred. Camera roll in transit frames and the darkness that hides the figures around 3.2 s are not modelled."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Single turntable restored, tall shelf/lamp for final tilt, re-solved end camera, hair covers A's head.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-equivalent protocol).\n\nObserved (24 reference samples): one continuous overhead tracking shot, no cuts, letterboxed 2.40:1. 0-1.1 s two blonde figures tumble on a stairwell; 1.1-5.3 s camera travels image-right over a cutaway divider (fluorescent tubes, dark beam and railing rods pass) into a dim bedroom with a white turntable panel and a bed (orange/green striped blanket, cream sheet, green duvet); the olive-sweater figure (A) pursues the cream-clothed figure (V). 5.9-9.6 s V lies supine on the bed end (head image-right), A kneels astride leaning over her with hands on her chest. 9.6-12.3 s camera rises and tilts toward the back wall, revealing a record player (left), toy shelf, plate and bright lamp (right).\n\nGeometry: boxes/spheres/cylinders for stairs, walls, window, tubes, turntable and record player, bed layers, shelf, lamp, back/right walls. Two articulated figures (pelvis root, spine, neck/head/hair, shoulders, elbows, hips, knees), keyframed at sample times, linearly interpolated.\nCamera: 36 deg vertical FOV, up vector -Z, Hermite-spline track; tilt toward the back wall over the last ~2.6 s.\nTiming: absolute-time sampling, 295 frames at 23.976 fps.\n\nRender feedback received: rounds 1-3. Round 2: darker lighting, slowed early camera, end pull-back, bigger hair/lean for A. Round 3: stair layout refit for consistent parallax, short beam, higher bed key light, second record player, closer back wall. Round 4: removed the second record player (it wrongly appeared during the transit at ~2 s; the final-frame record is now taken to be the big-disc end of the single turntable panel, restored to its round-1 position), made the toy shelf a tall cubby unit with the lamp and plate on top so the final tilt matches the reference scale, re-solved the last three camera keys, enlarged and centred A's hair so it covers her head from above, and enlarged the window glow.\n\nInference / uncertainty: stair-phase tumble choreography, poses between samples, stair direction/heights, and a possible third person in the early stair frames (treated as two subjects) are inferred. Camera roll in transit frames and the darkness that hides the figures around 3.2 s are not modelled."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Window moved onto left wall face; final two camera keys pulled back to fix oversized shelf/lamp.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-equivalent protocol).\n\nObserved (24 reference samples): one continuous overhead tracking shot, no cuts, letterboxed 2.40:1. 0-1.1 s two blonde figures tumble on a stairwell; 1.1-5.3 s camera travels image-right over a cutaway divider (fluorescent tubes, dark beam and railing rods pass) into a dim bedroom with a white turntable panel and a bed (orange/green striped blanket, cream sheet, green duvet); the olive-sweater figure (A) pursues the cream-clothed figure (V). 5.9-9.6 s V lies supine on the bed end (head image-right), A kneels astride leaning over her with hands on her chest. 9.6-12.3 s camera rises and tilts toward the back wall, revealing a record player (left), toy shelf, plate and bright lamp (right).\n\nGeometry: boxes/spheres/cylinders for stairs, walls, window, tubes, turntable and record player, bed layers, shelf, lamp, back/right walls. Two articulated figures (pelvis root, spine, neck/head/hair, shoulders, elbows, hips, knees), keyframed at sample times, linearly interpolated.\nCamera: 36 deg vertical FOV, up vector -Z, Hermite-spline track; tilt toward the back wall over the last ~2.6 s.\nTiming: absolute-time sampling, 295 frames at 23.976 fps.\n\nRender feedback received: rounds 1-3. Round 2: darker lighting, slowed early camera, end pull-back, bigger hair/lean for A. Round 3: stair layout refit for consistent parallax, short beam, higher bed key light, second record player, closer back wall. Round 4: removed the second record player (it wrongly appeared during the transit at ~2 s; the final-frame record is now taken to be the big-disc end of the single turntable panel, restored to its round-1 position), made the toy shelf a tall cubby unit with the lamp and plate on top so the final tilt matches the reference scale, re-solved the last three camera keys, enlarged and centred A's hair so it covers her head from above, and enlarged the window glow. Round 5: window glow moved onto the inner face of the left stairwell wall (it was off-frame, leaving a black void), and the last two camera keys raised and pulled back because the shelf, plate and lamp rendered about 1.3-1.7x too large at 11.7-12.3 s.\n\nInference / uncertainty: stair-phase tumble choreography, poses between samples, stair direction/heights, and a possible third person in the early stair frames (treated as two subjects) are inferred. Camera roll in transit frames and the darkness that hides the figures around 3.2 s are not modelled."
+    },
+    {
+     "round": "006",
+     "action": "render",
+     "reason": "Raise back and right walls to remove void above them in the final tilted frames.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-equivalent protocol).\n\nObserved (24 reference samples): one continuous overhead tracking shot, no cuts, letterboxed 2.40:1. 0-1.1 s two blonde figures tumble on a stairwell; 1.1-5.3 s camera travels image-right over a cutaway divider (fluorescent tubes, dark beam and railing rods pass) into a dim bedroom with a white turntable panel and a bed (orange/green striped blanket, cream sheet, green duvet); the olive-sweater figure (A) pursues the cream-clothed figure (V). 5.9-9.6 s V lies supine on the bed end (head image-right), A kneels astride leaning over her with hands on her chest. 9.6-12.3 s camera rises and tilts toward the back wall, revealing a record player (left), toy shelf, plate and bright lamp (right).\n\nGeometry: boxes/spheres/cylinders for stairs, walls, window, tubes, turntable and record player, bed layers, shelf, lamp, back/right walls. Two articulated figures (pelvis root, spine, neck/head/hair, shoulders, elbows, hips, knees), keyframed at sample times, linearly interpolated.\nCamera: 36 deg vertical FOV, up vector -Z, Hermite-spline track; tilt toward the back wall over the last ~2.6 s.\nTiming: absolute-time sampling, 295 frames at 23.976 fps.\n\nRender feedback received: rounds 1-3. Round 2: darker lighting, slowed early camera, end pull-back, bigger hair/lean for A. Round 3: stair layout refit for consistent parallax, short beam, higher bed key light, second record player, closer back wall. Round 4: removed the second record player (it wrongly appeared during the transit at ~2 s; the final-frame record is now taken to be the big-disc end of the single turntable panel, restored to its round-1 position), made the toy shelf a tall cubby unit with the lamp and plate on top so the final tilt matches the reference scale, re-solved the last three camera keys, enlarged and centred A's hair so it covers her head from above, and enlarged the window glow. Round 5: window glow moved onto the inner face of the left stairwell wall (it was off-frame, leaving a black void), and the last two camera keys raised and pulled back because the shelf, plate and lamp rendered about 1.3-1.7x too large at 11.7-12.3 s. Round 6: back and right room walls raised to 3.6 m so no empty void shows above them in the final tilted frames.\n\nInference / uncertainty: stair-phase tumble choreography, poses between samples, stair direction/heights, and a possible third person in the early stair frames (treated as two subjects) are inferred. Camera roll in transit frames and the darkness that hides the figures around 3.2 s are not modelled."
+    },
+    {
+     "round": "007",
+     "action": "submit",
+     "reason": "Round 6 matches the overhead track, stair-to-bed layout, figure positions and final tilt at L1 proxy fidelity; remaining differences are mostly appearance and lighting.",
+     "rendered": false,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-equivalent protocol).\n\nObserved (24 reference samples): one continuous overhead tracking shot, no cuts, letterboxed 2.40:1. 0-1.1 s two blonde figures tumble on a stairwell; 1.1-5.3 s camera travels image-right over a cutaway divider (fluorescent tubes, dark beam and railing rods pass) into a dim bedroom with a white turntable panel and a bed (orange/green striped blanket, cream sheet, green duvet); the olive-sweater figure (A) pursues the cream-clothed figure (V). 5.9-9.6 s V lies supine on the bed end (head image-right), A kneels astride leaning over her with hands on her chest. 9.6-12.3 s camera rises and tilts toward the back wall, revealing a record player (left), toy shelf, plate and bright lamp (right).\n\nGeometry: boxes/spheres/cylinders for stairs, walls, window, tubes, turntable and record player, bed layers, shelf, lamp, back/right walls. Two articulated figures (pelvis root, spine, neck/head/hair, shoulders, elbows, hips, knees), keyframed at sample times, linearly interpolated.\nCamera: 36 deg vertical FOV, up vector -Z, Hermite-spline track; tilt toward the back wall over the last ~2.6 s.\nTiming: absolute-time sampling, 295 frames at 23.976 fps.\n\nRender feedback received: rounds 1-3. Round 2: darker lighting, slowed early camera, end pull-back, bigger hair/lean for A. Round 3: stair layout refit for consistent parallax, short beam, higher bed key light, second record player, closer back wall. Round 4: removed the second record player (it wrongly appeared during the transit at ~2 s; the final-frame record is now taken to be the big-disc end of the single turntable panel, restored to its round-1 position), made the toy shelf a tall cubby unit with the lamp and plate on top so the final tilt matches the reference scale, re-solved the last three camera keys, enlarged and centred A's hair so it covers her head from above, and enlarged the window glow. Round 5: window glow moved onto the inner face of the left stairwell wall (it was off-frame, leaving a black void), and the last two camera keys raised and pulled back because the shelf, plate and lamp rendered about 1.3-1.7x too large at 11.7-12.3 s. Round 6: back and right room walls raised to 3.6 m so no empty void shows above them in the final tilted frames; round 6 render confirmed the void is gone. Submitted after round 6. Remaining discrepancies: proxy figures are bulkier and lit more evenly than the reference; the hair mass of A reads as two blobs rather than one; the figures stay visible (rather than in darkness) around 3.2 s and at the bottom edge around 11.7 s; camera roll and motion blur in the 1-3 s transit are not modelled; the early stair-phase tumble poses and the third blonde blob are uncertain.\n\nInference / uncertainty: stair-phase tumble choreography, poses between samples, stair direction/heights, and a possible third person in the early stair frames (treated as two subjects) are inferred. Camera roll in transit frames and the darkness that hides the figures around 3.2 s are not modelled."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.48,
+     4.55,
+     7.63,
+     10.7
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ],
+     "006": [
+      "r006_0.jpg",
+      "r006_1.jpg",
+      "r006_2.jpg",
+      "r006_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 5,
+    "inspection_only_decisions": 1,
+    "render_attempts": 6,
+    "infrastructure_retries": 0,
+    "model_turns": 7,
+    "provider_responses": 0
+   }
+  }
+ }
+}

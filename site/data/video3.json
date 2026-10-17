@@ -1,0 +1,148 @@
+{
+ "id": "video3",
+ "n": 3,
+ "reference": {
+  "video": "media/ref/video3.mp4",
+  "poster": "media/poster/ref/video3_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 501,
+  "fps": 23.976,
+  "duration": 20.944
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video3.mp4",
+   "poster": "media/poster/opus-5-5/video3_0.jpg",
+   "scene": "media/scene/opus-5-5/video3.mjs",
+   "final_round": "006",
+   "scene_sha256": "7e14e3777ad61213110cd9688d04f19c4ccf3bce2687d43b5aa0539605782f54",
+   "video_sha256": "b6e9b6ef29d0e5889c303b7bedc486d43241e48f284fd8e1cd57fb0890d7d8d8",
+   "stop": "model_submit",
+   "revisions": 5,
+   "renders": 6,
+   "infra_retries": 0,
+   "turns": 7,
+   "pauses": 0,
+   "inferences": 54,
+   "output_tokens": 160404,
+   "cost": 6.83,
+   "cost_1h": 7.75,
+   "elapsed_seconds": 1725,
+   "submit_reason": "All shots, both figures, POV dolly-zoom with hands on rail, and cut structure are represented; remaining gaps are proxy-appearance level.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 scene: tower stairwell, two articulated figures, 16 shots with POV dolly-zoom.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved (from 24 reference samples, 1280x720, 23.976 fps, 501 frames): a dark bell-tower stair climb. A man in a dark suit with grey hair climbs a square wooden stairwell inside a stone tower; a woman in a grey suit with light hair appears in dark intercut shots. Shots include a high-angle look down (f0), a high-angle shot of the man climbing toward camera (f22-f43), medium shots beside a dark beam with a bright arched opening (f65-f87, f283-f304, f326-f348, f391-f435), two over-the-rail POV shots straight down the shaft (f109-f130 with hands on the rail and a dolly-zoom; f370 without hands), several very dark shots (f174-f239), a two-person shot (f261), a low-angle climb beside a diagonal rail (f457) and a low angle up the stairwell (f478-f500).\n\nGeometry: stone tower (4 wall boxes, brick floor), 12 extruded stair flights in a clockwise square spiral around an open 2.2 m well, corner landings, sloped hand rails, four well-corner posts, arched bright window planes. Close-up shots use a small kit of flat wall/beam/arch proxies placed in each shot's base camera framing. People are articulated proxies (pelvis, two-segment legs, torso with shirt/tie strip, neck/head with hair cap, two-segment arms with hands); two-bone IK places hands on the rail (POV), at the face, and for reaches.\n\nCamera and timing: 16 shots with hard cuts placed at midpoints between samples whose content changes; within shots, camera pans/tilts and subject motion are interpolated analytically between sampled states. The first POV uses an analytic dolly-zoom (FOV widens while the camera closes on the rail so hands stay constant and the shaft bottom shrinks). Letterbox bars of the source are reproduced as black camera-attached strips. update(time) is absolute and deterministic; seed is unused (no randomness).\n\nInference vs observation: exact cut frames, motion between samples, the identity of the figure in the darkest shots (f174, f196 assigned to the woman; f217, f239 to the man), and the tower layout are inferred.\n\nFeedback: none received yet (initial round). Remaining uncertainties: lighting levels under the harness renderer, exact framing of tower shots (A, B, M, P), and the precise cut times."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix POV occlusion, stale figure in dark shots, reframe B/M/P, darken close-up exposure.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved (from 24 reference samples, 1280x720, 23.976 fps, 501 frames): a dark bell-tower stair climb. A man in a dark suit with grey hair climbs a square wooden stairwell inside a stone tower; a woman in a grey suit with light hair appears in dark intercut shots. Shots include a high-angle look down (f0), a high-angle shot of the man climbing toward camera (f22-f43), medium shots beside a dark beam with a bright arched opening (f65-f87, f283-f304, f326-f348, f391-f435), two over-the-rail POV shots straight down the shaft (f109-f130 with hands on the rail and a dolly-zoom; f370 without hands), several very dark shots (f174-f239), a two-person shot (f261), a low-angle climb beside a diagonal rail (f457) and a low angle up the stairwell (f478-f500).\n\nGeometry: stone tower (4 wall boxes, brick floor), 12 extruded stair flights in a clockwise square spiral around an open 2.2 m well, corner landings, sloped hand rails, four well-corner posts, arched bright window planes. Close-up shots use a small kit of flat wall/beam/arch proxies placed in each shot's base camera framing. People are articulated proxies (pelvis, two-segment legs, torso with shirt/tie strip, neck/head with hair cap, two-segment arms with hands); two-bone IK places hands on the rail (POV), at the face, and for reaches.\n\nCamera and timing: 16 shots with hard cuts placed at midpoints between samples whose content changes; within shots, camera pans/tilts and subject motion are interpolated analytically between sampled states. The first POV uses an analytic dolly-zoom (FOV widens while the camera closes on the rail so hands stay constant and the shaft bottom shrinks). Letterbox bars of the source are reproduced as black camera-attached strips. update(time) is absolute and deterministic; seed is unused (no randomness).\n\nInference vs observation: exact cut frames, motion between samples, the identity of the figure in the darkest shots (f174, f196 assigned to the woman; f217, f239 to the man), and the tower layout are inferred.\n\nFeedback received: round 1 render pairs (24 samples). Revisions in round 2: POV shots were blocked by the forearm proxies (now only hands are shown in POV); shots F and G showed the man left over from the previous shot (update now hides any figure not placed by the current shot, keeping seeking absolute); shot B re-framed as a close high angle aimed at the climbing man; shot M camera moved over the open well; shot P re-staged looking up from a low landing with the man climbing toward camera and a window right of the posts; close-up flats darkened to the reference exposure; stair treads/risers shaded by vertex colour; skin and shirt toned down. Remaining: exact framing of tower shots, figure poses in close-ups, cut times are inferred."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Darken tower, fix POV hands, re-stage final low-angle shot, move window for high-angle climb.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved (from 24 reference samples, 1280x720, 23.976 fps, 501 frames): a dark bell-tower stair climb. A man in a dark suit with grey hair climbs a square wooden stairwell inside a stone tower; a woman in a grey suit with light hair appears in dark intercut shots. Shots include a high-angle look down (f0), a high-angle shot of the man climbing toward camera (f22-f43), medium shots beside a dark beam with a bright arched opening (f65-f87, f283-f304, f326-f348, f391-f435), two over-the-rail POV shots straight down the shaft (f109-f130 with hands on the rail and a dolly-zoom; f370 without hands), several very dark shots (f174-f239), a two-person shot (f261), a low-angle climb beside a diagonal rail (f457) and a low angle up the stairwell (f478-f500).\n\nGeometry: stone tower (4 wall boxes, brick floor), 12 extruded stair flights in a clockwise square spiral around an open 2.2 m well, corner landings, sloped hand rails, four well-corner posts, arched bright window planes. Close-up shots use a small kit of flat wall/beam/arch proxies placed in each shot's base camera framing. People are articulated proxies (pelvis, two-segment legs, torso with shirt/tie strip, neck/head with hair cap, two-segment arms with hands); two-bone IK places hands on the rail (POV), at the face, and for reaches.\n\nCamera and timing: 16 shots with hard cuts placed at midpoints between samples whose content changes; within shots, camera pans/tilts and subject motion are interpolated analytically between sampled states. The first POV uses an analytic dolly-zoom (FOV widens while the camera closes on the rail so hands stay constant and the shaft bottom shrinks). Letterbox bars of the source are reproduced as black camera-attached strips. update(time) is absolute and deterministic; seed is unused (no randomness).\n\nInference vs observation: exact cut frames, motion between samples, the identity of the figure in the darkest shots (f174, f196 assigned to the woman; f217, f239 to the man), and the tower layout are inferred.\n\nFeedback received: round 1 and round 2 render pairs (24 samples each). Round 2 revisions: POV shots were blocked by the forearm proxies (now only hands are shown in POV); shots F and G showed the man left over from the previous shot (update now hides any figure not placed by the current shot, keeping seeking absolute); shot B re-framed as a close high angle aimed at the climbing man; shot M camera moved over the open well; shot P re-staged looking up from a low landing with the man climbing toward camera and a window right of the posts; close-up flats darkened to the reference exposure; stair treads/risers shaded by vertex colour; skin and shirt toned down. Round 3 revisions: tower exposure and materials darkened toward the reference; POV camera raised so both hands sit small at the bottom on the rail; rail baluster moved off the hand area; a window re-placed so it appears near top-centre in the high-angle climb; the final low-angle shot re-staged with posts, an arched lit opening, a sky slit and the man climbing at lower right. Remaining: exact framing of tower shots, figure poses in close-ups, cut times are inferred."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Tone down tower exposure, refine POV hands, face-up climb pose, darker final shot.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved (from 24 reference samples, 1280x720, 23.976 fps, 501 frames): a dark bell-tower stair climb. A man in a dark suit with grey hair climbs a square wooden stairwell inside a stone tower; a woman in a grey suit with light hair appears in dark intercut shots. Shots include a high-angle look down (f0), a high-angle shot of the man climbing toward camera (f22-f43), medium shots beside a dark beam with a bright arched opening (f65-f87, f283-f304, f326-f348, f391-f435), two over-the-rail POV shots straight down the shaft (f109-f130 with hands on the rail and a dolly-zoom; f370 without hands), several very dark shots (f174-f239), a two-person shot (f261), a low-angle climb beside a diagonal rail (f457) and a low angle up the stairwell (f478-f500).\n\nGeometry: stone tower (4 wall boxes, brick floor), 12 extruded stair flights in a clockwise square spiral around an open 2.2 m well, corner landings, sloped hand rails, four well-corner posts, arched bright window planes. Close-up shots use a small kit of flat wall/beam/arch proxies placed in each shot's base camera framing. People are articulated proxies (pelvis, two-segment legs, torso with shirt/tie strip, neck/head with hair cap, two-segment arms with hands); two-bone IK places hands on the rail (POV), at the face, and for reaches.\n\nCamera and timing: 16 shots with hard cuts placed at midpoints between samples whose content changes; within shots, camera pans/tilts and subject motion are interpolated analytically between sampled states. The first POV uses an analytic dolly-zoom (FOV widens while the camera closes on the rail so hands stay constant and the shaft bottom shrinks). Letterbox bars of the source are reproduced as black camera-attached strips. update(time) is absolute and deterministic; seed is unused (no randomness).\n\nInference vs observation: exact cut frames, motion between samples, the identity of the figure in the darkest shots (f174, f196 assigned to the woman; f217, f239 to the man), and the tower layout are inferred.\n\nFeedback received: round 1 and round 2 render pairs (24 samples each). Round 2 revisions: POV shots were blocked by the forearm proxies (now only hands are shown in POV); shots F and G showed the man left over from the previous shot (update now hides any figure not placed by the current shot, keeping seeking absolute); shot B re-framed as a close high angle aimed at the climbing man; shot M camera moved over the open well; shot P re-staged looking up from a low landing with the man climbing toward camera and a window right of the posts; close-up flats darkened to the reference exposure; stair treads/risers shaded by vertex colour; skin and shirt toned down. Round 3 revisions: tower exposure and materials darkened toward the reference; POV camera raised so both hands sit small at the bottom on the rail; rail baluster moved off the hand area; a window re-placed so it appears near top-centre in the high-angle climb; the final low-angle shot re-staged with posts, an arched lit opening, a sky slit and the man climbing at lower right. Round 4 revisions: tower stairs, stone and brick toned down and tower lighting reduced; POV camera moved higher above the rail so the two hands are smaller and closer together near bottom-centre; climbing man in the high-angle shot tilts his face up toward the camera; final-shot posts and arch darkened. Remaining: exact framing of tower shots, figure poses in close-ups, cut times are inferred."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Keep both POV hands in frame on the rail.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved (from 24 reference samples, 1280x720, 23.976 fps, 501 frames): a dark bell-tower stair climb. A man in a dark suit with grey hair climbs a square wooden stairwell inside a stone tower; a woman in a grey suit with light hair appears in dark intercut shots. Shots include a high-angle look down (f0), a high-angle shot of the man climbing toward camera (f22-f43), medium shots beside a dark beam with a bright arched opening (f65-f87, f283-f304, f326-f348, f391-f435), two over-the-rail POV shots straight down the shaft (f109-f130 with hands on the rail and a dolly-zoom; f370 without hands), several very dark shots (f174-f239), a two-person shot (f261), a low-angle climb beside a diagonal rail (f457) and a low angle up the stairwell (f478-f500).\n\nGeometry: stone tower (4 wall boxes, brick floor), 12 extruded stair flights in a clockwise square spiral around an open 2.2 m well, corner landings, sloped hand rails, four well-corner posts, arched bright window planes. Close-up shots use a small kit of flat wall/beam/arch proxies placed in each shot's base camera framing. People are articulated proxies (pelvis, two-segment legs, torso with shirt/tie strip, neck/head with hair cap, two-segment arms with hands); two-bone IK places hands on the rail (POV), at the face, and for reaches.\n\nCamera and timing: 16 shots with hard cuts placed at midpoints between samples whose content changes; within shots, camera pans/tilts and subject motion are interpolated analytically between sampled states. The first POV uses an analytic dolly-zoom (FOV widens while the camera closes on the rail so hands stay constant and the shaft bottom shrinks). Letterbox bars of the source are reproduced as black camera-attached strips. update(time) is absolute and deterministic; seed is unused (no randomness).\n\nInference vs observation: exact cut frames, motion between samples, the identity of the figure in the darkest shots (f174, f196 assigned to the woman; f217, f239 to the man), and the tower layout are inferred.\n\nFeedback received: round 1 and round 2 render pairs (24 samples each). Round 2 revisions: POV shots were blocked by the forearm proxies (now only hands are shown in POV); shots F and G showed the man left over from the previous shot (update now hides any figure not placed by the current shot, keeping seeking absolute); shot B re-framed as a close high angle aimed at the climbing man; shot M camera moved over the open well; shot P re-staged looking up from a low landing with the man climbing toward camera and a window right of the posts; close-up flats darkened to the reference exposure; stair treads/risers shaded by vertex colour; skin and shirt toned down. Round 3 revisions: tower exposure and materials darkened toward the reference; POV camera raised so both hands sit small at the bottom on the rail; rail baluster moved off the hand area; a window re-placed so it appears near top-centre in the high-angle climb; the final low-angle shot re-staged with posts, an arched lit opening, a sky slit and the man climbing at lower right. Round 4 revisions: tower stairs, stone and brick toned down and tower lighting reduced; POV camera moved higher above the rail so the two hands are smaller and closer together near bottom-centre; climbing man in the high-angle shot tilts his face up toward the camera; final-shot posts and arch darkened. Round 5 revision: both hands brought closer together on the rail so the second hand is no longer pushed out of the bottom of the POV frame by the rail slope. Remaining: exact framing of tower shots, figure poses in close-ups, cut times are inferred."
+    },
+    {
+     "round": "006",
+     "action": "render",
+     "reason": "Fix POV body orientation so both hands grip the rail.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved (from 24 reference samples, 1280x720, 23.976 fps, 501 frames): a dark bell-tower stair climb. A man in a dark suit with grey hair climbs a square wooden stairwell inside a stone tower; a woman in a grey suit with light hair appears in dark intercut shots. Shots include a high-angle look down (f0), a high-angle shot of the man climbing toward camera (f22-f43), medium shots beside a dark beam with a bright arched opening (f65-f87, f283-f304, f326-f348, f391-f435), two over-the-rail POV shots straight down the shaft (f109-f130 with hands on the rail and a dolly-zoom; f370 without hands), several very dark shots (f174-f239), a two-person shot (f261), a low-angle climb beside a diagonal rail (f457) and a low angle up the stairwell (f478-f500).\n\nGeometry: stone tower (4 wall boxes, brick floor), 12 extruded stair flights in a clockwise square spiral around an open 2.2 m well, corner landings, sloped hand rails, four well-corner posts, arched bright window planes. Close-up shots use a small kit of flat wall/beam/arch proxies placed in each shot's base camera framing. People are articulated proxies (pelvis, two-segment legs, torso with shirt/tie strip, neck/head with hair cap, two-segment arms with hands); two-bone IK places hands on the rail (POV), at the face, and for reaches.\n\nCamera and timing: 16 shots with hard cuts placed at midpoints between samples whose content changes; within shots, camera pans/tilts and subject motion are interpolated analytically between sampled states. The first POV uses an analytic dolly-zoom (FOV widens while the camera closes on the rail so hands stay constant and the shaft bottom shrinks). Letterbox bars of the source are reproduced as black camera-attached strips. update(time) is absolute and deterministic; seed is unused (no randomness).\n\nInference vs observation: exact cut frames, motion between samples, the identity of the figure in the darkest shots (f174, f196 assigned to the woman; f217, f239 to the man), and the tower layout are inferred.\n\nFeedback received: round 1 and round 2 render pairs (24 samples each). Round 2 revisions: POV shots were blocked by the forearm proxies (now only hands are shown in POV); shots F and G showed the man left over from the previous shot (update now hides any figure not placed by the current shot, keeping seeking absolute); shot B re-framed as a close high angle aimed at the climbing man; shot M camera moved over the open well; shot P re-staged looking up from a low landing with the man climbing toward camera and a window right of the posts; close-up flats darkened to the reference exposure; stair treads/risers shaded by vertex colour; skin and shirt toned down. Round 3 revisions: tower exposure and materials darkened toward the reference; POV camera raised so both hands sit small at the bottom on the rail; rail baluster moved off the hand area; a window re-placed so it appears near top-centre in the high-angle climb; the final low-angle shot re-staged with posts, an arched lit opening, a sky slit and the man climbing at lower right. Round 4 revisions: tower stairs, stone and brick toned down and tower lighting reduced; POV camera moved higher above the rail so the two hands are smaller and closer together near bottom-centre; climbing man in the high-angle shot tilts his face up toward the camera; final-shot posts and arch darkened. Round 5 revision: both hands brought closer together on the rail so the second hand is no longer pushed out of the bottom of the POV frame by the rail slope. Round 6 revision: fixed a bug where the over-the-rail POV pose faced along the flight instead of toward the well (the face-the-well yaw table duplicated the climb yaws), which left one hand unable to reach the rail; both hands are now IK-placed on the rail near bottom-centre. Remaining: exact framing of tower shots, figure poses in close-ups, cut times are inferred."
+    },
+    {
+     "round": "007",
+     "action": "submit",
+     "reason": "All shots, both figures, POV dolly-zoom with hands on rail, and cut structure are represented; remaining gaps are proxy-appearance level.",
+     "rendered": false,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved (from 24 reference samples, 1280x720, 23.976 fps, 501 frames): a dark bell-tower stair climb. A man in a dark suit with grey hair climbs a square wooden stairwell inside a stone tower; a woman in a grey suit with light hair appears in dark intercut shots. Shots include a high-angle look down (f0), a high-angle shot of the man climbing toward camera (f22-f43), medium shots beside a dark beam with a bright arched opening (f65-f87, f283-f304, f326-f348, f391-f435), two over-the-rail POV shots straight down the shaft (f109-f130 with hands on the rail and a dolly-zoom; f370 without hands), several very dark shots (f174-f239), a two-person shot (f261), a low-angle climb beside a diagonal rail (f457) and a low angle up the stairwell (f478-f500).\n\nGeometry: stone tower (4 wall boxes, brick floor), 12 extruded stair flights in a clockwise square spiral around an open 2.2 m well, corner landings, sloped hand rails, four well-corner posts, arched bright window planes. Close-up shots use a small kit of flat wall/beam/arch proxies placed in each shot's base camera framing. People are articulated proxies (pelvis, two-segment legs, torso with shirt/tie strip, neck/head with hair cap, two-segment arms with hands); two-bone IK places hands on the rail (POV), at the face, and for reaches.\n\nCamera and timing: 16 shots with hard cuts placed at midpoints between samples whose content changes; within shots, camera pans/tilts and subject motion are interpolated analytically between sampled states. The first POV uses an analytic dolly-zoom (FOV widens while the camera closes on the rail so hands stay constant and the shaft bottom shrinks). Letterbox bars of the source are reproduced as black camera-attached strips. update(time) is absolute and deterministic; seed is unused (no randomness).\n\nInference vs observation: exact cut frames, motion between samples, the identity of the figure in the darkest shots (f174, f196 assigned to the woman; f217, f239 to the man), and the tower layout are inferred.\n\nFeedback received: round 1 and round 2 render pairs (24 samples each). Round 2 revisions: POV shots were blocked by the forearm proxies (now only hands are shown in POV); shots F and G showed the man left over from the previous shot (update now hides any figure not placed by the current shot, keeping seeking absolute); shot B re-framed as a close high angle aimed at the climbing man; shot M camera moved over the open well; shot P re-staged looking up from a low landing with the man climbing toward camera and a window right of the posts; close-up flats darkened to the reference exposure; stair treads/risers shaded by vertex colour; skin and shirt toned down. Round 3 revisions: tower exposure and materials darkened toward the reference; POV camera raised so both hands sit small at the bottom on the rail; rail baluster moved off the hand area; a window re-placed so it appears near top-centre in the high-angle climb; the final low-angle shot re-staged with posts, an arched lit opening, a sky slit and the man climbing at lower right. Round 4 revisions: tower stairs, stone and brick toned down and tower lighting reduced; POV camera moved higher above the rail so the two hands are smaller and closer together near bottom-centre; climbing man in the high-angle shot tilts his face up toward the camera; final-shot posts and arch darkened. Round 5 revision: both hands brought closer together on the rail so the second hand is no longer pushed out of the bottom of the POV frame by the rail slope. Round 6 revision: fixed a bug where the over-the-rail POV pose faced along the flight instead of toward the well (the face-the-well yaw table duplicated the climb yaws), which left one hand unable to reach the rail; both hands are now IK-placed on the rail near bottom-centre. Round 6 render confirmed both hands on the rail in the dolly-zoom POV. Submitted: the round 6 scene. Remaining discrepancies (visible in the round 6 feedback): close-up sets are flat proxy panels, not textured stone or wood; tower stair layout and well proportions only approximate the reference; in the high-angle climb the man shows more of the top of his head than his face; figure poses in close-ups are approximate; the identity of the figures in the darkest shots and all cut times between samples are inferred. Motion between samples is unverified because only 24 sample pairs were inspected."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     2.51,
+     7.75,
+     12.99,
+     18.22
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ],
+     "006": [
+      "r006_0.jpg",
+      "r006_1.jpg",
+      "r006_2.jpg",
+      "r006_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 5,
+    "inspection_only_decisions": 1,
+    "render_attempts": 6,
+    "infrastructure_retries": 0,
+    "model_turns": 7,
+    "provider_responses": 0
+   }
+  }
+ }
+}

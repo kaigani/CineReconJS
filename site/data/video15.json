@@ -1,0 +1,135 @@
+{
+ "id": "video15",
+ "n": 15,
+ "reference": {
+  "video": "media/ref/video15.mp4",
+  "poster": "media/poster/ref/video15_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 450,
+  "fps": 30.0,
+  "duration": 15.0
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video15.mp4",
+   "poster": "media/poster/opus-5-5/video15_0.jpg",
+   "scene": "media/scene/opus-5-5/video15.mjs",
+   "final_round": "005",
+   "scene_sha256": "8872a6039655774fb75a0c160e8ee69015ee55e7908fe9e3bc7f043d6b859661",
+   "video_sha256": "2d5c074bc5685020e8bb4934c1bb455cb252367cf560351b30d20fbc1a1f1c31",
+   "stop": "model_submit",
+   "revisions": 4,
+   "renders": 5,
+   "infra_retries": 0,
+   "turns": 6,
+   "pauses": 0,
+   "inferences": 37,
+   "output_tokens": 87398,
+   "cost": 3.65,
+   "cost_1h": 4.24,
+   "elapsed_seconds": 1015,
+   "submit_reason": "Round 5 render matches course layout, fence sides, gates, roll/bank and ski-tip events across all samples at L1 proxy fidelity; remaining differences are mostly appearance and fine terrain shape",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete proxy scene of the POV downhill run",
+     "rendered": true,
+     "report": "# Report: video15, L1 proxy, Three.js sampled-frame baseline\n\nRepresentation level: L1 (proxy). This is the CineRecon Three.js sampled-frame baseline. It is not equivalent to the Blender protocol.\n\nObserved in the 24 reference samples: a single continuous helmet-camera point-of-view shot of a downhill ski run in heavy fog, lasting 15 s at 30 fps. The broadcast captions read Mausefalle, Karussellkurve and Steilhang. The scene has:\n- white snow with blue dye lines\n- white A1 advertising boards, and red Generali and dark Hahnenkamm banners along the course edges\n- red/orange safety netting\n- snow-covered conifers and spectators\n- teal distance signs and a lattice tower\n- orange gates with a black label\n- the rider's red ski tips, which appear at the bottom of the frame in some samples\n\nGeometry: the course is a procedural snow ribbon built along a precomputed centreline, using heading, slope, bank and side-hill tables. Fences are instanced boxes, and the netting uses translucent boxes. Trees are instanced cones. Gates are cylinders plus a box panel. Signs, the tower and the spectators are boxes and cylinders. Broadcast overlays (captions and logo) are not reproduced, because they are not scene content.\n\nCamera and timing: the camera rides the centreline at a constant 26 m/s, about 1.15 m above the snow. It follows the path heading and the local slope, plus keyframed yaw, pitch and roll offsets and a lateral offset fitted at each sample time. The ski tips are two red boxes attached to the camera. Their image position and visibility are keyframed from the samples. I modelled the clip as one shot with no cuts.\n\nInference: the course geometry between samples, the speed, and the exact turn radii are inferred. The section layout comes from fence sides and horizon slants in the samples.\n\nFeedback: none received yet. This is the initial round."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix fog, pitch, bank/roll, fence placement and ski tips after round 1 comparison",
+     "rendered": true,
+     "report": "# Report: video15, L1 proxy, Three.js sampled-frame baseline\n\nRepresentation level: L1 (proxy). This is the CineRecon Three.js sampled-frame baseline. It is not equivalent to the Blender protocol.\n\nObserved in the 24 reference samples: a single continuous helmet-camera point-of-view shot of a downhill ski run in heavy fog, lasting 15 s at 30 fps. The broadcast captions read Mausefalle, Karussellkurve and Steilhang. The scene has:\n- white snow with blue dye lines\n- white A1 advertising boards, and red Generali and dark Hahnenkamm banners along the course edges\n- red/orange safety netting\n- snow-covered conifers and spectators\n- teal distance signs and a lattice tower\n- orange gates with a black label\n- the rider's red ski tips, which appear at the bottom of the frame in some samples\n\nGeometry: the course is a procedural snow ribbon built along a precomputed centreline, using heading, slope, bank and side-hill tables. Fences are instanced boxes, and the netting uses translucent boxes. Trees are instanced cones. Gates are cylinders plus a box panel. Signs, the tower and the spectators are boxes and cylinders. Broadcast overlays (captions and logo) are not reproduced, because they are not scene content.\n\nCamera and timing: the camera rides the centreline at a constant 26 m/s, about 1.15 m above the snow. It follows the path heading and the local slope, plus keyframed yaw, pitch and roll offsets and a lateral offset fitted at each sample time. The ski tips are two red boxes attached to the camera. Their image position and visibility are keyframed from the samples. I modelled the clip as one shot with no cuts.\n\nInference: the course geometry between samples, the speed, and the exact turn radii are inferred. The section layout comes from fence sides and horizon slants in the samples.\n\nFeedback received: the round 1 render pairs. In response, this revision makes the fog denser and the snow bluer, adds more downward camera pitch, adds roll and cross-slope bank for each section, moves the fences closer in the Karussell and Steilhang sections, makes the course turn right after the Steilhang crest, and keyframes ski-tip positions in image space with the tips placed in camera space."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Fix Steilhang course direction, fence placement, roll and tree appearance after round 2 comparison",
+     "rendered": true,
+     "report": "# Report: video15, L1 proxy, Three.js sampled-frame baseline\n\nRepresentation level: L1 (proxy). This is the CineRecon Three.js sampled-frame baseline. It is not equivalent to the Blender protocol.\n\nObserved in the 24 reference samples: a single continuous helmet-camera point-of-view shot of a downhill ski run in heavy fog, lasting 15 s at 30 fps. The broadcast captions read Mausefalle, Karussellkurve and Steilhang. The scene has:\n- white snow with blue dye lines\n- white A1 advertising boards, and red Generali and dark Hahnenkamm banners along the course edges\n- red/orange safety netting\n- snow-covered conifers and spectators\n- teal distance signs and a lattice tower\n- orange gates with a black label\n- the rider's red ski tips, which appear at the bottom of the frame in some samples\n\nGeometry: the course is a procedural snow ribbon built along a precomputed centreline, using heading, slope, bank and side-hill tables. Fences are instanced boxes, and the netting uses translucent boxes. Trees are instanced cones. Gates are cylinders plus a box panel. Signs, the tower and the spectators are boxes and cylinders. Broadcast overlays (captions and logo) are not reproduced, because they are not scene content.\n\nCamera and timing: the camera rides the centreline at a constant 26 m/s, about 1.15 m above the snow. It follows the path heading and the local slope, plus keyframed yaw, pitch and roll offsets and a lateral offset fitted at each sample time. The ski tips are two red boxes attached to the camera. Their image position and visibility are keyframed from the samples. I modelled the clip as one shot with no cuts.\n\nInference: the course geometry between samples, the speed, and the exact turn radii are inferred. The section layout comes from fence sides and horizon slants in the samples.\n\nFeedback received: the round 1 and round 2 render pairs. Round 2 changed the fog, colours, pitch, roll and bank. Round 3 makes the course turn left after the Steilhang crest, so the cross fence becomes the right-side fence and the left Generali fence comes close later. It also places fences along the course edges, flattens the bank at the start of the Karussell, moves the first gate earlier, lightens and slims the trees, increases roll in the Mausefalle exit and the Karussell traverse, and narrows the skis."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Retune crest/Steilhang layout, Karussell bank and roll, first gate after round 3 comparison",
+     "rendered": true,
+     "report": "# Report: video15, L1 proxy, Three.js sampled-frame baseline\n\nRepresentation level: L1 (proxy). This is the CineRecon Three.js sampled-frame baseline. It is not equivalent to the Blender protocol.\n\nObserved in the 24 reference samples: a single continuous helmet-camera point-of-view shot of a downhill ski run in heavy fog, lasting 15 s at 30 fps. The broadcast captions read Mausefalle, Karussellkurve and Steilhang. The scene has:\n- white snow with blue dye lines\n- white A1 advertising boards, and red Generali and dark Hahnenkamm banners along the course edges\n- red/orange safety netting\n- snow-covered conifers and spectators\n- teal distance signs and a lattice tower\n- orange gates with a black label\n- the rider's red ski tips, which appear at the bottom of the frame in some samples\n\nGeometry: the course is a procedural snow ribbon built along a precomputed centreline, using heading, slope, bank and side-hill tables. Fences are instanced boxes, and the netting uses translucent boxes. Trees are instanced cones. Gates are cylinders plus a box panel. Signs, the tower and the spectators are boxes and cylinders. Broadcast overlays (captions and logo) are not reproduced, because they are not scene content.\n\nCamera and timing: the camera rides the centreline at a constant 26 m/s, about 1.15 m above the snow. It follows the path heading and the local slope, plus keyframed yaw, pitch and roll offsets and a lateral offset fitted at each sample time. The ski tips are two red boxes attached to the camera. Their image position and visibility are keyframed from the samples. I modelled the clip as one shot with no cuts.\n\nInference: the course geometry between samples, the speed, and the exact turn radii are inferred. The section layout comes from fence sides and horizon slants in the samples.\n\nFeedback received: render pairs from rounds 1 to 3. Round 4 makes these changes:\n- The first gate is now earlier and further left.\n- The Steilhang left turn now starts at the crest, with a narrower right edge, so the outside fence is visible ahead.\n- The left side is open at the crest.\n- The Karussell traverse has a steeper side hill and bank.\n- Roll is retuned in the Karussell.\n- Trees are wider and darker."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Bring end-of-clip Steilhang fence closer and lighten trees",
+     "rendered": true,
+     "report": "# Report: video15, L1 proxy, Three.js sampled-frame baseline\n\nRepresentation level: L1 (proxy). This is the CineRecon Three.js sampled-frame baseline. It is not equivalent to the Blender protocol.\n\nObserved in the 24 reference samples: a single continuous helmet-camera point-of-view shot of a downhill ski run in heavy fog, lasting 15 s at 30 fps. The broadcast captions read Mausefalle, Karussellkurve and Steilhang. The scene has:\n- white snow with blue dye lines\n- white A1 advertising boards, and red Generali and dark Hahnenkamm banners along the course edges\n- red/orange safety netting\n- snow-covered conifers and spectators\n- teal distance signs and a lattice tower\n- orange gates with a black label\n- the rider's red ski tips, which appear at the bottom of the frame in some samples\n\nGeometry: the course is a procedural snow ribbon built along a precomputed centreline, using heading, slope, bank and side-hill tables. Fences are instanced boxes, and the netting uses translucent boxes. Trees are instanced cones. Gates are cylinders plus a box panel. Signs, the tower and the spectators are boxes and cylinders. Broadcast overlays (captions and logo) are not reproduced, because they are not scene content.\n\nCamera and timing: the camera rides the centreline at a constant 26 m/s, about 1.15 m above the snow. It follows the path heading and the local slope, plus keyframed yaw, pitch and roll offsets and a lateral offset fitted at each sample time. The ski tips are two red boxes attached to the camera. Their image position and visibility are keyframed from the samples. I modelled the clip as one shot with no cuts.\n\nInference: the course geometry between samples, the speed, and the exact turn radii are inferred. The section layout comes from fence sides and horizon slants in the samples.\n\nFeedback received: render pairs from rounds 1 to 3. Round 4 makes these changes:\n- The first gate is now earlier and further left.\n- The Steilhang left turn now starts at the crest, with a narrower right edge, so the outside fence is visible ahead.\n- The left side is open at the crest.\n- The Karussell traverse has a steeper side hill and bank.\n- Roll is retuned in the Karussell.\n- Trees are wider and darker.\n\nRound 5 brings the left Steilhang fence closer by the end of the clip and lightens the trees slightly."
+    },
+    {
+     "round": "006",
+     "action": "submit",
+     "reason": "Round 5 render matches course layout, fence sides, gates, roll/bank and ski-tip events across all samples at L1 proxy fidelity; remaining differences are mostly appearance and fine terrain shape",
+     "rendered": false,
+     "report": "# Report: video15, L1 proxy, Three.js sampled-frame baseline\n\nRepresentation level: L1 (proxy). This is the CineRecon Three.js sampled-frame baseline. It is not equivalent to the Blender protocol.\n\nObserved in the 24 reference samples: a single continuous helmet-camera point-of-view shot of a downhill ski run in heavy fog, lasting 15 s at 30 fps. The broadcast captions read Mausefalle, Karussellkurve and Steilhang. The scene has:\n- white snow with blue dye lines\n- white A1 advertising boards, and red Generali and dark Hahnenkamm banners along the course edges\n- red/orange safety netting\n- snow-covered conifers and spectators\n- teal distance signs and a lattice tower\n- orange gates with a black label\n- the rider's red ski tips, which appear at the bottom of the frame in some samples\n\nGeometry: the course is a procedural snow ribbon built along a precomputed centreline, using heading, slope, bank and side-hill tables. Fences are instanced boxes, and the netting uses translucent boxes. Trees are instanced cones. Gates are cylinders plus a box panel. Signs, the tower and the spectators are boxes and cylinders. Broadcast overlays (captions and logo) are not reproduced, because they are not scene content.\n\nCamera and timing: the camera rides the centreline at a constant 26 m/s, about 1.15 m above the snow. It follows the path heading and the local slope, plus keyframed yaw, pitch and roll offsets and a lateral offset fitted at each sample time. The ski tips are two red boxes attached to the camera. Their image position and visibility are keyframed from the samples. I modelled the clip as one shot with no cuts.\n\nInference: the course geometry between samples, the speed, and the exact turn radii are inferred. The section layout comes from fence sides and horizon slants in the samples.\n\nFeedback received: render pairs from rounds 1 to 3. Round 4 makes these changes:\n- The first gate is now earlier and further left.\n- The Steilhang left turn now starts at the crest, with a narrower right edge, so the outside fence is visible ahead.\n- The left side is open at the crest.\n- The Karussell traverse has a steeper side hill and bank.\n- Roll is retuned in the Karussell.\n- Trees are wider and darker.\n\nRound 5 brings the left Steilhang fence closer by the end of the clip and lightens the trees slightly.\n\nSubmission: the round 5 render is submitted. In the side-by-side pairs it matches the references on these points:\n- course direction, fence sides and colours\n- the gate passages at about 3.3 s, 7.2 s and 12.4 s\n- the cross-slope and roll in the Karussell traverse\n- the left turn after the crest, followed by the close left-side Generali fence in the Steilhang\n- the visibility of the ski tips at the bottom of the frame\n\nRemaining discrepancies:\n- The trees are pale geometric cones, not snow-laden conifers.\n- Banner text, broadcast captions and the logo are not reproduced.\n- Several horizon slants are approximated with camera roll rather than true terrain shape, so the trees do not stay perfectly vertical.\n- In some frames the right-side hill and the fence distances differ from the reference.\n- Speed is held constant, and the geometry between samples is inferred."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.8,
+     5.55,
+     9.3,
+     13.05
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
+    "infrastructure_retries": 0,
+    "model_turns": 6,
+    "provider_responses": 0
+   }
+  }
+ }
+}

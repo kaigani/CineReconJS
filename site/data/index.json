@@ -1,0 +1,1077 @@
+{
+ "models": [
+  {
+   "id": "opus-5-5",
+   "name": "Claude Opus 5.5",
+   "short": "Opus 5.5",
+   "level": "L1",
+   "protocol": "native-threejs-inspect-revise-submit",
+   "interface": "Claude Code subagent (native orchestration, subscription; no provider API)",
+   "samples": 24,
+   "ceiling": "10 changed revisions (disclosed to the model); never reached",
+   "note": "Full cohort: all 50 reference videos, each ended by the model's own submit decision."
+  },
+  {
+   "id": "gpt-6-astra",
+   "name": "GPT-6 Astra",
+   "short": "Astra",
+   "level": "L1",
+   "protocol": "native-astra-goal-directed-continuation-v1",
+   "interface": "Native session (token and inference telemetry unavailable)",
+   "samples": 24,
+   "ceiling": "90-minute operational ceiling; submitted about 23 s before it",
+   "note": "Single-video experiment: video1 only. The other 49 videos were not run."
+  }
+ ],
+ "clips": [
+  {
+   "id": "video1",
+   "n": 1,
+   "reference": {
+    "poster": "media/poster/ref/video1_0.jpg",
+    "width": 1910,
+    "height": 1080,
+    "duration": 16.057
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video1_0.jpg",
+     "revisions": 5,
+     "renders": 6,
+     "cost": 6.14,
+     "stop": "model_submit"
+    },
+    "gpt-6-astra": {
+     "poster": "media/poster/gpt-6-astra/video1_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": null,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video2",
+   "n": 2,
+   "reference": {
+    "poster": "media/poster/ref/video2_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 17.647
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video2_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 5.16,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video3",
+   "n": 3,
+   "reference": {
+    "poster": "media/poster/ref/video3_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 20.944
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video3_0.jpg",
+     "revisions": 5,
+     "renders": 6,
+     "cost": 6.83,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video4",
+   "n": 4,
+   "reference": {
+    "poster": "media/poster/ref/video4_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 24.024
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video4_0.jpg",
+     "revisions": 5,
+     "renders": 7,
+     "cost": 4.58,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video5",
+   "n": 5,
+   "reference": {
+    "poster": "media/poster/ref/video5_0.jpg",
+    "width": 1280,
+    "height": 534,
+    "duration": 24.024
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video5_0.jpg",
+     "revisions": 5,
+     "renders": 6,
+     "cost": 6.28,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video6",
+   "n": 6,
+   "reference": {
+    "poster": "media/poster/ref/video6_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 24.024
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video6_0.jpg",
+     "revisions": 9,
+     "renders": 11,
+     "cost": 7.85,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video7",
+   "n": 7,
+   "reference": {
+    "poster": "media/poster/ref/video7_0.jpg",
+    "width": 1280,
+    "height": 576,
+    "duration": 24.038
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video7_0.jpg",
+     "revisions": 6,
+     "renders": 7,
+     "cost": 7.34,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video8",
+   "n": 8,
+   "reference": {
+    "poster": "media/poster/ref/video8_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 12.0
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video8_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 4.79,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video9",
+   "n": 9,
+   "reference": {
+    "poster": "media/poster/ref/video9_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 24.0
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video9_0.jpg",
+     "revisions": 3,
+     "renders": 4,
+     "cost": 4.37,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video10",
+   "n": 10,
+   "reference": {
+    "poster": "media/poster/ref/video10_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 24.065
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video10_0.jpg",
+     "revisions": 3,
+     "renders": 4,
+     "cost": 5.63,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video11",
+   "n": 11,
+   "reference": {
+    "poster": "media/poster/ref/video11_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 24.057
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video11_0.jpg",
+     "revisions": 3,
+     "renders": 4,
+     "cost": 3.05,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video12",
+   "n": 12,
+   "reference": {
+    "poster": "media/poster/ref/video12_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 24.024
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video12_0.jpg",
+     "revisions": 2,
+     "renders": 3,
+     "cost": 4.12,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video13",
+   "n": 13,
+   "reference": {
+    "poster": "media/poster/ref/video13_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 17.8
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video13_0.jpg",
+     "revisions": 1,
+     "renders": 2,
+     "cost": 4.55,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video14",
+   "n": 14,
+   "reference": {
+    "poster": "media/poster/ref/video14_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 15.916
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video14_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 2.39,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video15",
+   "n": 15,
+   "reference": {
+    "poster": "media/poster/ref/video15_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 15.0
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video15_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 3.65,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video16",
+   "n": 16,
+   "reference": {
+    "poster": "media/poster/ref/video16_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 5.36
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video16_0.jpg",
+     "revisions": 5,
+     "renders": 7,
+     "cost": 7.82,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video17",
+   "n": 17,
+   "reference": {
+    "poster": "media/poster/ref/video17_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 19.482
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video17_0.jpg",
+     "revisions": 5,
+     "renders": 6,
+     "cost": 8.9,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video18",
+   "n": 18,
+   "reference": {
+    "poster": "media/poster/ref/video18_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 24.0
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video18_0.jpg",
+     "revisions": 6,
+     "renders": 7,
+     "cost": 4.51,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video19",
+   "n": 19,
+   "reference": {
+    "poster": "media/poster/ref/video19_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 5.839
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video19_0.jpg",
+     "revisions": 3,
+     "renders": 4,
+     "cost": 3.09,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video20",
+   "n": 20,
+   "reference": {
+    "poster": "media/poster/ref/video20_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 12.7
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video20_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 3.96,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video21",
+   "n": 21,
+   "reference": {
+    "poster": "media/poster/ref/video21_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 10.5
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video21_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 4.09,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video22",
+   "n": 22,
+   "reference": {
+    "poster": "media/poster/ref/video22_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 24.0
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video22_0.jpg",
+     "revisions": 5,
+     "renders": 6,
+     "cost": 6.47,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video23",
+   "n": 23,
+   "reference": {
+    "poster": "media/poster/ref/video23_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 12.9
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video23_0.jpg",
+     "revisions": 5,
+     "renders": 6,
+     "cost": 4.98,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video24",
+   "n": 24,
+   "reference": {
+    "poster": "media/poster/ref/video24_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 24.024
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video24_0.jpg",
+     "revisions": 3,
+     "renders": 4,
+     "cost": 4.85,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video25",
+   "n": 25,
+   "reference": {
+    "poster": "media/poster/ref/video25_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 24.023
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video25_0.jpg",
+     "revisions": 3,
+     "renders": 4,
+     "cost": 3.96,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video26",
+   "n": 26,
+   "reference": {
+    "poster": "media/poster/ref/video26_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 10.9
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video26_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 3.94,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video27",
+   "n": 27,
+   "reference": {
+    "poster": "media/poster/ref/video27_0.jpg",
+    "width": 660,
+    "height": 480,
+    "duration": 19.169
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video27_0.jpg",
+     "revisions": 5,
+     "renders": 6,
+     "cost": 4.39,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video28",
+   "n": 28,
+   "reference": {
+    "poster": "media/poster/ref/video28_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 20.9
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video28_0.jpg",
+     "revisions": 6,
+     "renders": 7,
+     "cost": 6.25,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video29",
+   "n": 29,
+   "reference": {
+    "poster": "media/poster/ref/video29_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 7.841
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video29_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 4.56,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video30",
+   "n": 30,
+   "reference": {
+    "poster": "media/poster/ref/video30_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 10.01
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video30_0.jpg",
+     "revisions": 6,
+     "renders": 7,
+     "cost": 7.04,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video31",
+   "n": 31,
+   "reference": {
+    "poster": "media/poster/ref/video31_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 8.5
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video31_0.jpg",
+     "revisions": 3,
+     "renders": 4,
+     "cost": 4.18,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video32",
+   "n": 32,
+   "reference": {
+    "poster": "media/poster/ref/video32_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 4.9
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video32_0.jpg",
+     "revisions": 5,
+     "renders": 6,
+     "cost": 6.27,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video33",
+   "n": 33,
+   "reference": {
+    "poster": "media/poster/ref/video33_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 18.7
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video33_0.jpg",
+     "revisions": 2,
+     "renders": 3,
+     "cost": 8.15,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video34",
+   "n": 34,
+   "reference": {
+    "poster": "media/poster/ref/video34_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 7.9
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video34_0.jpg",
+     "revisions": 5,
+     "renders": 6,
+     "cost": 5.54,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video35",
+   "n": 35,
+   "reference": {
+    "poster": "media/poster/ref/video35_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 7.7
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video35_0.jpg",
+     "revisions": 3,
+     "renders": 4,
+     "cost": 5.23,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video36",
+   "n": 36,
+   "reference": {
+    "poster": "media/poster/ref/video36_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 8.615
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video36_0.jpg",
+     "revisions": 2,
+     "renders": 3,
+     "cost": 4.84,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video37",
+   "n": 37,
+   "reference": {
+    "poster": "media/poster/ref/video37_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 18.403
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video37_0.jpg",
+     "revisions": 1,
+     "renders": 2,
+     "cost": 3.05,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video38",
+   "n": 38,
+   "reference": {
+    "poster": "media/poster/ref/video38_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 12.679
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video38_0.jpg",
+     "revisions": 5,
+     "renders": 6,
+     "cost": 3.69,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video39",
+   "n": 39,
+   "reference": {
+    "poster": "media/poster/ref/video39_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 16.2
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video39_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 3.42,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video40",
+   "n": 40,
+   "reference": {
+    "poster": "media/poster/ref/video40_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 6.7
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video40_0.jpg",
+     "revisions": 7,
+     "renders": 8,
+     "cost": 8.14,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video41",
+   "n": 41,
+   "reference": {
+    "poster": "media/poster/ref/video41_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 8.8
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video41_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 2.57,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video42",
+   "n": 42,
+   "reference": {
+    "poster": "media/poster/ref/video42_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 12.304
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video42_0.jpg",
+     "revisions": 5,
+     "renders": 6,
+     "cost": 5.54,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video43",
+   "n": 43,
+   "reference": {
+    "poster": "media/poster/ref/video43_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 4.922
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video43_0.jpg",
+     "revisions": 8,
+     "renders": 10,
+     "cost": 4.91,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video44",
+   "n": 44,
+   "reference": {
+    "poster": "media/poster/ref/video44_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 17.208
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video44_0.jpg",
+     "revisions": 5,
+     "renders": 6,
+     "cost": 4.7,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video45",
+   "n": 45,
+   "reference": {
+    "poster": "media/poster/ref/video45_0.jpg",
+    "width": 1280,
+    "height": 536,
+    "duration": 14.3
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video45_0.jpg",
+     "revisions": 6,
+     "renders": 7,
+     "cost": 7.27,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video46",
+   "n": 46,
+   "reference": {
+    "poster": "media/poster/ref/video46_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 10.6
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video46_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 4.49,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video47",
+   "n": 47,
+   "reference": {
+    "poster": "media/poster/ref/video47_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 10.511
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video47_0.jpg",
+     "revisions": 3,
+     "renders": 4,
+     "cost": 3.43,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video48",
+   "n": 48,
+   "reference": {
+    "poster": "media/poster/ref/video48_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 13.514
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video48_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 3.98,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video49",
+   "n": 49,
+   "reference": {
+    "poster": "media/poster/ref/video49_0.jpg",
+    "width": 1152,
+    "height": 720,
+    "duration": 6.3
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video49_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 6.26,
+     "stop": "model_submit"
+    }
+   }
+  },
+  {
+   "id": "video50",
+   "n": 50,
+   "reference": {
+    "poster": "media/poster/ref/video50_0.jpg",
+    "width": 1280,
+    "height": 720,
+    "duration": 16.016
+   },
+   "models": {
+    "opus-5-5": {
+     "poster": "media/poster/opus-5-5/video50_0.jpg",
+     "revisions": 4,
+     "renders": 5,
+     "cost": 3.76,
+     "stop": "model_submit"
+    }
+   }
+  }
+ ],
+ "summary": {
+  "opus-5-5": {
+   "runs": 50,
+   "stops": {
+    "model_submit": 50
+   },
+   "paused_runs": 18,
+   "revision_histogram": {
+    "0": 0,
+    "1": 2,
+    "2": 3,
+    "3": 9,
+    "4": 14,
+    "5": 14,
+    "6": 5,
+    "7": 1,
+    "8": 1,
+    "9": 1,
+    "10": 0
+   },
+   "revisions": {
+    "sum": 215,
+    "mean": 4.3,
+    "median": 4.0,
+    "min": 1,
+    "max": 9
+   },
+   "renders": {
+    "sum": 269,
+    "mean": 5.38,
+    "median": 5.0,
+    "min": 2,
+    "max": 11
+   },
+   "inferences": {
+    "sum": 1985,
+    "mean": 39.7,
+    "median": 37.0,
+    "min": 20,
+    "max": 70
+   },
+   "output_tokens": {
+    "sum": 6529822,
+    "mean": 130596.44,
+    "median": 121327.0,
+    "min": 60544,
+    "max": 241195
+   },
+   "cost_5m": {
+    "sum": 270.89,
+    "mean": 5.42,
+    "median": 4.96,
+    "min": 2.39,
+    "max": 9.52
+   },
+   "cost_1h": {
+    "sum": 319.13,
+    "mean": 6.38,
+    "median": 6.03,
+    "min": 2.82,
+    "max": 11.65
+   },
+   "adj_cost_5m": {
+    "sum": 254.96,
+    "mean": 5.1,
+    "median": 4.745,
+    "min": 2.39,
+    "max": 8.9
+   },
+   "adj_cost_1h": {
+    "sum": 293.25,
+    "mean": 5.87,
+    "median": 5.505,
+    "min": 2.82,
+    "max": 10.01
+   },
+   "pricing_usd_per_mtok": {
+    "input": 4.0,
+    "output": 20.0,
+    "cache_read": 0.2,
+    "cache_write_5m": 5.0,
+    "cache_write_1h": 8.0
+   }
+  }
+ },
+ "pricing": {
+  "input": 4.0,
+  "output": 20.0,
+  "cache_read": 0.2,
+  "cache_write_5m": 5.0,
+  "cache_write_1h": 8.0
+ }
+}

@@ -1,0 +1,96 @@
+{
+ "id": "video13",
+ "n": 13,
+ "reference": {
+  "video": "media/ref/video13.mp4",
+  "poster": "media/poster/ref/video13_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 445,
+  "fps": 25.0,
+  "duration": 17.8
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video13.mp4",
+   "poster": "media/poster/opus-5-5/video13_0.jpg",
+   "scene": "media/scene/opus-5-5/video13.mjs",
+   "final_round": "002",
+   "scene_sha256": "3e9de1e1e5655930053ecc7375f11170b68b29d5c90dc2e27f6edb09e578d54a",
+   "video_sha256": "f5094ac7dfee1a1bcab116daba859e2c803b4c8cbdfd159cbc4c543d63bd41e9",
+   "stop": "model_submit",
+   "revisions": 1,
+   "renders": 2,
+   "infra_retries": 0,
+   "turns": 3,
+   "pauses": 1,
+   "inferences": 45,
+   "output_tokens": 116175,
+   "cost": 4.55,
+   "cost_1h": 5.21,
+   "elapsed_seconds": 8521,
+   "submit_reason": "Round 2 render matches camera, shot cut, subject positions, ball path and goal event across all 24 samples; remaining differences are minor appearance details.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete scene: landmark-fitted rail camera with cut at 4.26 s, tracked players, counter-attack goal.",
+     "rendered": true,
+     "report": "# video13 - L1 proxy reconstruction (CineRecon Three.js sampled-frame baseline)\n\nRepresentation level: L1 (simple geometric proxies). This is the Three.js sampled-frame baseline, not a Blender-protocol reproduction.\n\n## Content inferred from the 24 reference samples\n- Football match in a covered arena: green/white home team, blue/black away team, yellow referee, an orange-kit keeper at the left goal and a red-kit keeper at the right goal. Three red-bibbed substitutes warm up beside the near touchline, and there are photographers and stewards behind the left goal.\n- Shot A (0 to about 4.26 s): a wide camera high above the near stand that pans from the stands toward the pitch (yaw about 115 deg to 39 deg). Shot B (about 4.26 to 17.8 s): a tracking rail camera at the same height that follows play from the right penalty area to the left goal and zooms in at the end. The cut time between the 3.88 s and 4.64 s samples is inferred.\n- Action: the home side attacks the right goal, with a header around 5.4 s. The away team wins the ball, and a blue midfielder (#22) dribbles the length of the pitch. At about 11.8 s he passes to a blue winger on the near side, who crosses at about 15.15 s. At the far post a blue forward who sprinted along the far side scores (about 16.4 to 16.7 s) as the keeper dives and a green defender slides. The ball ends in the net, the scorer runs on behind the goal, and #22 walks up to the goal.\n\n## Method\n- I computed camera poses by fitting pitch-line landmarks (penalty boxes, goal areas, D arcs, halfway line, centre circle, corners) at every sample with a pinhole PnP fit. The camera position came out as about (x, 16.3, 42.5) in every sample, so the camera was modelled as a rail camera. Shot A uses x = 52 - 4.66 t, a 61 deg vertical FOV, and spline-interpolated yaw and pitch. Shot B uses per-sample x, yaw, pitch and FOV (26 to 45 deg, ending at 12.6 deg) with Catmull-Rom interpolation.\n- I back-projected player foot points onto the pitch through the fitted cameras and linked them into identities across samples, mostly automatically with manual fixes for the key players. Positions between samples are spline-interpolated. Before a player's first sample or after the last, motion is extrapolated and then held; this is inference, not observation.\n- Players are box and cylinder proxies with articulated hips and shoulders. Gait phase comes from the distance covered, the body leans with speed, and heading follows velocity. There are kick swings for the pass, cross and shot, a keeper dive pose, a sliding defender, raised arms for the celebration and the scorer climbing onto the boards. The ball follows keyframes, with an analytic parabola for the cross.\n- The environment is a striped turf plane with all standard pitch markings, goals with translucent nets, advertising board strips, sloped stand quads with procedural crowd and grey-seat DataTextures (the left-end lower tier is grey and empty), a roof ring and screens.\n\n## Uncertainty and known discrepancies\n- Shot A frames have strong wide-angle distortion (landmark fit rms about 8 px), so pitch-line alignment there is approximate. Player positions in shot A are extrapolated from shot B tracks, not measured.\n- Players outside the camera view are unobserved. The ball is airborne around 4.6 to 5.8 s and its heights are estimated. The exact touch that scores, and the ball's path inside the net, are inferred.\n- No render feedback has been received yet (initial round)."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix colours, player scale, near-stand geometry and final keeper/defender poses seen in round 1 feedback.",
+     "rendered": true,
+     "report": "# video13 - L1 proxy reconstruction (CineRecon Three.js sampled-frame baseline)\n\nRepresentation level: L1 (simple geometric proxies). This is the Three.js sampled-frame baseline, not a Blender-protocol reproduction.\n\n## Content inferred from the 24 reference samples\n- Football match in a covered arena: green/white home team, blue/black away team, yellow referee, an orange-kit keeper at the left goal and a red-kit keeper at the right goal. Three red-bibbed substitutes warm up beside the near touchline, and there are photographers and stewards behind the left goal.\n- Shot A (0 to about 4.26 s): a wide camera high above the near stand that pans from the stands toward the pitch (yaw about 115 deg to 39 deg). Shot B (about 4.26 to 17.8 s): a tracking rail camera at the same height that follows play from the right penalty area to the left goal and zooms in at the end. The cut time between the 3.88 s and 4.64 s samples is inferred.\n- Action: the home side attacks the right goal, with a header around 5.4 s. The away team wins the ball, and a blue midfielder (#22) dribbles the length of the pitch. At about 11.8 s he passes to a blue winger on the near side, who crosses at about 15.15 s. At the far post a blue forward who sprinted along the far side scores (about 16.4 to 16.7 s) as the keeper dives and a green defender slides. The ball ends in the net, the scorer runs on behind the goal, and #22 walks up to the goal.\n\n## Method\n- I computed camera poses by fitting pitch-line landmarks (penalty boxes, goal areas, D arcs, halfway line, centre circle, corners) at every sample with a pinhole PnP fit. The camera position came out as about (x, 16.3, 42.5) in every sample, so the camera was modelled as a rail camera. Shot A uses x = 52 - 4.66 t, a 61 deg vertical FOV, and spline-interpolated yaw and pitch. Shot B uses per-sample x, yaw, pitch and FOV (26 to 45 deg, ending at 12.6 deg) with Catmull-Rom interpolation.\n- I back-projected player foot points onto the pitch through the fitted cameras and linked them into identities across samples, mostly automatically with manual fixes for the key players. Positions between samples are spline-interpolated. Before a player's first sample or after the last, motion is extrapolated and then held; this is inference, not observation.\n- Players are box and cylinder proxies with articulated hips and shoulders. Gait phase comes from the distance covered, the body leans with speed, and heading follows velocity. There are kick swings for the pass, cross and shot, a keeper dive pose, a sliding defender, raised arms for the celebration and the scorer climbing onto the boards. The ball follows keyframes, with an analytic parabola for the cross.\n- The environment is a striped turf plane with all standard pitch markings, goals with translucent nets, advertising board strips, sloped stand quads with procedural crowd and grey-seat DataTextures (the left-end lower tier is grey and empty), a roof ring and screens.\n\n## Uncertainty and known discrepancies\n- Shot A frames have strong wide-angle distortion (landmark fit rms about 8 px), so pitch-line alignment there is approximate. Player positions in shot A are extrapolated from shot B tracks, not measured.\n- Players outside the camera view are unobserved. The ball is airborne around 4.6 to 5.8 s and its heights are estimated. The exact touch that scores, and the ball's path inside the net, are inferred.\n- Round 1 render feedback (24 paired frames) showed that the camera framing and pitch-line registration match closely in both shots, and that player and ball positions follow the reference well. Discrepancies found: turf too saturated with strong stripes, crowd too bright and speckled, players about 15-20% too large, the near-stand upper-tier edge in the wrong place in the opening shot, and wrong end poses (keeper standing instead of crouching, sliding defender standing up).\n- Round 2 changes: unlit, reference-matched turf, crowd, seat and board colours; players scaled to 0.87; near-stand tiers re-fitted to the balcony edge seen at t=0; keeper kneels after the dive; sliding defender stays down inside the goal; lower cross apex."
+    },
+    {
+     "round": "003",
+     "action": "submit",
+     "reason": "Round 2 render matches camera, shot cut, subject positions, ball path and goal event across all 24 samples; remaining differences are minor appearance details.",
+     "rendered": false,
+     "report": "# video13 - L1 proxy reconstruction (CineRecon Three.js sampled-frame baseline)\n\nRepresentation level: L1 (simple geometric proxies). This is the Three.js sampled-frame baseline, not a Blender-protocol reproduction.\n\n## Content inferred from the 24 reference samples\n- Football match in a covered arena: green/white home team, blue/black away team, yellow referee, an orange-kit keeper at the left goal and a red-kit keeper at the right goal. Three red-bibbed substitutes warm up beside the near touchline, and there are photographers and stewards behind the left goal.\n- Shot A (0 to about 4.26 s): a wide camera high above the near stand that pans from the stands toward the pitch (yaw about 115 deg to 39 deg). Shot B (about 4.26 to 17.8 s): a tracking rail camera at the same height that follows play from the right penalty area to the left goal and zooms in at the end. The cut time between the 3.88 s and 4.64 s samples is inferred.\n- Action: the home side attacks the right goal, with a header around 5.4 s. The away team wins the ball, and a blue midfielder (#22) dribbles the length of the pitch. At about 11.8 s he passes to a blue winger on the near side, who crosses at about 15.15 s. At the far post a blue forward who sprinted along the far side scores (about 16.4 to 16.7 s) as the keeper dives and a green defender slides. The ball ends in the net, the scorer runs on behind the goal, and #22 walks up to the goal.\n\n## Method\n- I computed camera poses by fitting pitch-line landmarks (penalty boxes, goal areas, D arcs, halfway line, centre circle, corners) at every sample with a pinhole PnP fit. The camera position came out as about (x, 16.3, 42.5) in every sample, so the camera was modelled as a rail camera. Shot A uses x = 52 - 4.66 t, a 61 deg vertical FOV, and spline-interpolated yaw and pitch. Shot B uses per-sample x, yaw, pitch and FOV (26 to 45 deg, ending at 12.6 deg) with Catmull-Rom interpolation.\n- I back-projected player foot points onto the pitch through the fitted cameras and linked them into identities across samples, mostly automatically with manual fixes for the key players. Positions between samples are spline-interpolated. Before a player's first sample or after the last, motion is extrapolated and then held; this is inference, not observation.\n- Players are box and cylinder proxies with articulated hips and shoulders. Gait phase comes from the distance covered, the body leans with speed, and heading follows velocity. There are kick swings for the pass, cross and shot, a keeper dive pose, a sliding defender, raised arms for the celebration and the scorer climbing onto the boards. The ball follows keyframes, with an analytic parabola for the cross.\n- The environment is a striped turf plane with all standard pitch markings, goals with translucent nets, advertising board strips, sloped stand quads with procedural crowd and grey-seat DataTextures (the left-end lower tier is grey and empty), a roof ring and screens.\n\n## Uncertainty and known discrepancies\n- Shot A frames have strong wide-angle distortion (landmark fit rms about 8 px), so pitch-line alignment there is approximate. Player positions in shot A are extrapolated from shot B tracks, not measured.\n- Players outside the camera view are unobserved. The ball is airborne around 4.6 to 5.8 s and its heights are estimated. The exact touch that scores, and the ball's path inside the net, are inferred.\n- Round 1 render feedback (24 paired frames) showed that the camera framing and pitch-line registration match closely in both shots, and that player and ball positions follow the reference well. Discrepancies found: turf too saturated with strong stripes, crowd too bright and speckled, players about 15-20% too large, the near-stand upper-tier edge in the wrong place in the opening shot, and wrong end poses (keeper standing instead of crouching, sliding defender standing up).\n- Round 2 changes: unlit, reference-matched turf, crowd, seat and board colours; players scaled to 0.87; near-stand tiers re-fitted to the balcony edge seen at t=0; keeper kneels after the dive; sliding defender stays down inside the goal; lower cross apex.\n- Round 2 render feedback: turf, crowd and board colours are close to the reference. Player sizes now match. The camera framing, the dribble, pass, cross and goal timing, the keeper dive and kneel, the sliding defender ending in the goal, and the scorer climbing behind the goal all line up with the reference samples at 16.2, 17.0 and 17.76 s.\n- Remaining discrepancies: the turf mowing stripes are somewhat stronger than in the reference. The opening wide shot has no lens distortion, so stand edges deviate slightly. The stands are flat textured slopes, with no VIP boxes, banners or text. Off-screen players are extrapolated rather than observed.\n- Submitted: the round 2 scene."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     2.14,
+     6.59,
+     11.04,
+     15.49
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 1,
+    "inspection_only_decisions": 1,
+    "render_attempts": 2,
+    "infrastructure_retries": 0,
+    "model_turns": 3,
+    "provider_responses": 0
+   }
+  }
+ }
+}

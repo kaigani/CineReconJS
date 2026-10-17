@@ -1,0 +1,135 @@
+{
+ "id": "video26",
+ "n": 26,
+ "reference": {
+  "video": "media/ref/video26.mp4",
+  "poster": "media/poster/ref/video26_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 327,
+  "fps": 30.0,
+  "duration": 10.9
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video26.mp4",
+   "poster": "media/poster/opus-5-5/video26_0.jpg",
+   "scene": "media/scene/opus-5-5/video26.mjs",
+   "final_round": "005",
+   "scene_sha256": "7f8b082a39b54ed1c7b98bc5a8b2e11052243c6224447a027fb311fcd54621a3",
+   "video_sha256": "9266037855042fc983d0ac0dc80c6c09327120db9de6d898f78a4cba82bdd82b",
+   "stop": "model_submit",
+   "revisions": 4,
+   "renders": 5,
+   "infra_retries": 0,
+   "turns": 6,
+   "pauses": 1,
+   "inferences": 32,
+   "output_tokens": 117362,
+   "cost": 3.94,
+   "cost_1h": 4.36,
+   "elapsed_seconds": 110542,
+   "submit_reason": "Counts, shot structure, car orientations, screen positions, sizes and main backgrounds match the samples well; remaining differences are secondary track-shape details.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete five-shot proxy reconstruction.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline, native inspect-revise protocol.\n\nObserved in reference samples: a blue open-wheel race car (hero) seen through five TV-camera shots, with a red car following it in shot 1, a red car and three blue/yellow cars in shot 4, and only the blue car in shots 2, 3 and 5. Cut positions are inferred between samples: about frame 36 (1.20 s), frame 78 (2.60 s), frame 149 (4.97 s) and frame 234 (7.80 s).\n\nShots: (1) a high camera with the car approaching head-on and turning right, the red car close behind, a blue/white kerb on the car's left; (2) a side pass with the car moving image-left and the camera panning; (3) a high rear view of the car going away, with the kerb and green run-off paint on its left; (4) a low, wide telephoto at a corner, with a black FANATEC wall, a fence and banner, a white Reiza board, two blue/yellow cars passing near the camera at about 5.7 s, and the red car and a third blue/yellow car following; (5) a low trackside camera as the car approaches, passes very close (side close-up at about 9.9 s) and goes away to the right, with a white striped barrier beyond.\n\nGeometry: each car is built from boxes, cylinders and a sphere: floor, tub, nose, sidepods, engine cover, front and rear wings, helmet, and 4 separate wheels. The wheels spin with distance travelled and the front wheels steer from path curvature. The track is an asphalt ribbon generated along each shot's car path, with white edge lines, striped blue/white kerbs, green paint and a grass plane.\n\nCamera and timing: each shot uses a fixed camera position. The car path is integrated deterministically from keyframed speed and the car-to-camera relative azimuth estimated from samples, so motion between samples is analytic. The camera pans and tilts to hold the car at the observed screen position, and zoom (fov) is set from the observed car image size. Track-side features are placed by unprojecting observed screen positions. Other cars follow the hero path at fixed gaps.\n\nInference: speeds, camera heights, gaps and cut frames are estimates. Logos, text, fences and stands are omitted or reduced to plain proxies.\n\nRender feedback: none received yet (initial round)."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix missing track surfaces (depth fighting), lower camera elevations, rework shot 4 and 5 backgrounds.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline, native inspect-revise protocol.\n\nObserved in reference samples: a blue open-wheel race car (hero) seen through five TV-camera shots, with a red car following it in shot 1, a red car and three blue/yellow cars in shot 4, and only the blue car in shots 2, 3 and 5. Cut positions are inferred between samples: about frame 36 (1.20 s), frame 78 (2.60 s), frame 149 (4.97 s) and frame 234 (7.80 s).\n\nShots: (1) a high camera with the car approaching head-on and turning right, the red car close behind, a blue/white kerb on the car's left; (2) a side pass with the car moving image-left and the camera panning; (3) a high rear view of the car going away, with the kerb and green run-off paint on its left; (4) a low, wide telephoto at a corner, with a black FANATEC wall, a fence and banner, a white Reiza board, two blue/yellow cars passing near the camera at about 5.7 s, and the red car and a third blue/yellow car following; (5) a low trackside camera as the car approaches, passes very close (side close-up at about 9.9 s) and goes away to the right, with a white striped barrier beyond.\n\nGeometry: each car is built from boxes, cylinders and a sphere: floor, tub, nose, sidepods, engine cover, front and rear wings, helmet, and 4 separate wheels. The wheels spin with distance travelled and the front wheels steer from path curvature. The track is an asphalt ribbon generated along each shot's car path, with white edge lines, striped blue/white kerbs, green paint and a grass plane.\n\nCamera and timing: each shot uses a fixed camera position. The car path is integrated deterministically from keyframed speed and the car-to-camera relative azimuth estimated from samples, so motion between samples is analytic. The camera pans and tilts to hold the car at the observed screen position, and zoom (fov) is set from the observed car image size. Track-side features are placed by unprojecting observed screen positions. Other cars follow the hero path at fixed gaps.\n\nInference: speeds, camera heights, gaps and cut frames are estimates. Logos, text, fences and stands are omitted or reduced to plain proxies.\n\nRender feedback: round 001 pairs (all 24) were inspected. Round 002 changes: the track surfaces were missing in some frames because of depth fighting with the ground, so each shot now gets its own subdivided grass plane, and the track layers are raised and use polygon offset. Camera elevations were lowered in shots 1 and 3 (the reference uses long lenses with shallower angles), and the shot 2 camera was raised slightly. The red-car gap was increased (shot 1 from 6.5 m to 9.5 m, shot 4 from 15 m to 18 m). Shot 4 now uses a farther, more telephoto camera with faster cars; the two near cars appear only around 5.4-6.0 s; the fence colour is lighter, the banner taller and the board white. In shot 5, the oversized far-side barrier was replaced by a path-following striped barrier only beside the later part of the pass, and the approach path now bends left behind the car. The misplaced orange rail in shot 2 was moved behind the kerb."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Lower camera elevations, longer lens in shot 4, animated camera height in shot 5.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline, native inspect-revise protocol.\n\nObserved in reference samples: a blue open-wheel race car (hero) seen through five TV-camera shots, with a red car following it in shot 1, a red car and three blue/yellow cars in shot 4, and only the blue car in shots 2, 3 and 5. Cut positions are inferred between samples: about frame 36 (1.20 s), frame 78 (2.60 s), frame 149 (4.97 s) and frame 234 (7.80 s).\n\nShots: (1) a high camera with the car approaching head-on and turning right, the red car close behind, a blue/white kerb on the car's left; (2) a side pass with the car moving image-left and the camera panning; (3) a high rear view of the car going away, with the kerb and green run-off paint on its left; (4) a low, wide telephoto at a corner, with a black FANATEC wall, a fence and banner, a white Reiza board, two blue/yellow cars passing near the camera at about 5.7 s, and the red car and a third blue/yellow car following; (5) a low trackside camera as the car approaches, passes very close (side close-up at about 9.9 s) and goes away to the right, with a white striped barrier beyond.\n\nGeometry: each car is built from boxes, cylinders and a sphere: floor, tub, nose, sidepods, engine cover, front and rear wings, helmet, and 4 separate wheels. The wheels spin with distance travelled and the front wheels steer from path curvature. The track is an asphalt ribbon generated along each shot's car path, with white edge lines, striped blue/white kerbs, green paint and a grass plane.\n\nCamera and timing: each shot uses a fixed camera position. The car path is integrated deterministically from keyframed speed and the car-to-camera relative azimuth estimated from samples, so motion between samples is analytic. The camera pans and tilts to hold the car at the observed screen position, and zoom (fov) is set from the observed car image size. Track-side features are placed by unprojecting observed screen positions. Other cars follow the hero path at fixed gaps.\n\nInference: speeds, camera heights, gaps and cut frames are estimates. Logos, text, fences and stands are omitted or reduced to plain proxies.\n\nRender feedback: round 001 pairs (all 24) were inspected. Round 002 changes: the track surfaces were missing in some frames because of depth fighting with the ground, so each shot now gets its own subdivided grass plane, and the track layers are raised and use polygon offset. Camera elevations were lowered in shots 1 and 3 (the reference uses long lenses with shallower angles), and the shot 2 camera was raised slightly. The red-car gap was increased (shot 1 from 6.5 m to 9.5 m, shot 4 from 15 m to 18 m). Shot 4 now uses a farther, more telephoto camera with faster cars; the two near cars appear only around 5.4-6.0 s; the fence colour is lighter, the banner taller and the board white. In shot 5, the oversized far-side barrier was replaced by a path-following striped barrier only beside the later part of the pass, and the approach path now bends left behind the car. The misplaced orange rail in shot 2 was moved behind the kerb.\n\nRound 003 changes (from round 002 feedback): reference cars look flatter (lower view angle), so the camera elevation was lowered further in shot 1 (h 8.8 m, red gap 12 m) and shot 3 (h 14 m). The shot 4 camera is farther and higher, giving a longer lens, closer to the reference compression. Shot 4 gaps are now red 24 m and third blue/yellow car 50 m, so the following cars spread around the curve. The FANATEC wall now has a taller fence and banner. In shot 5 the camera height is animated, higher during the approach (no sky visible) and lower at the close side pass. The approach bend behind the car is gentler."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Shot 5 background refinements (bend, kerb extent, barrier, removed floating board).",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline, native inspect-revise protocol.\n\nObserved in reference samples: a blue open-wheel race car (hero) seen through five TV-camera shots, with a red car following it in shot 1, a red car and three blue/yellow cars in shot 4, and only the blue car in shots 2, 3 and 5. Cut positions are inferred between samples: about frame 36 (1.20 s), frame 78 (2.60 s), frame 149 (4.97 s) and frame 234 (7.80 s).\n\nShots: (1) a high camera with the car approaching head-on and turning right, the red car close behind, a blue/white kerb on the car's left; (2) a side pass with the car moving image-left and the camera panning; (3) a high rear view of the car going away, with the kerb and green run-off paint on its left; (4) a low, wide telephoto at a corner, with a black FANATEC wall, a fence and banner, a white Reiza board, two blue/yellow cars passing near the camera at about 5.7 s, and the red car and a third blue/yellow car following; (5) a low trackside camera as the car approaches, passes very close (side close-up at about 9.9 s) and goes away to the right, with a white striped barrier beyond.\n\nGeometry: each car is built from boxes, cylinders and a sphere: floor, tub, nose, sidepods, engine cover, front and rear wings, helmet, and 4 separate wheels. The wheels spin with distance travelled and the front wheels steer from path curvature. The track is an asphalt ribbon generated along each shot's car path, with white edge lines, striped blue/white kerbs, green paint and a grass plane.\n\nCamera and timing: each shot uses a fixed camera position. The car path is integrated deterministically from keyframed speed and the car-to-camera relative azimuth estimated from samples, so motion between samples is analytic. The camera pans and tilts to hold the car at the observed screen position, and zoom (fov) is set from the observed car image size. Track-side features are placed by unprojecting observed screen positions. Other cars follow the hero path at fixed gaps.\n\nInference: speeds, camera heights, gaps and cut frames are estimates. Logos, text, fences and stands are omitted or reduced to plain proxies.\n\nRender feedback: round 001 pairs (all 24) were inspected. Round 002 changes: the track surfaces were missing in some frames because of depth fighting with the ground, so each shot now gets its own subdivided grass plane, and the track layers are raised and use polygon offset. Camera elevations were lowered in shots 1 and 3 (the reference uses long lenses with shallower angles), and the shot 2 camera was raised slightly. The red-car gap was increased (shot 1 from 6.5 m to 9.5 m, shot 4 from 15 m to 18 m). Shot 4 now uses a farther, more telephoto camera with faster cars; the two near cars appear only around 5.4-6.0 s; the fence colour is lighter, the banner taller and the board white. In shot 5, the oversized far-side barrier was replaced by a path-following striped barrier only beside the later part of the pass, and the approach path now bends left behind the car. The misplaced orange rail in shot 2 was moved behind the kerb.\n\nRound 003 changes (from round 002 feedback): reference cars look flatter (lower view angle), so the camera elevation was lowered further in shot 1 (h 8.8 m, red gap 12 m) and shot 3 (h 14 m). The shot 4 camera is farther and higher, giving a longer lens, closer to the reference compression. Shot 4 gaps are now red 24 m and third blue/yellow car 50 m, so the following cars spread around the curve. The FANATEC wall now has a taller fence and banner. In shot 5 the camera height is animated, higher during the approach (no sky visible) and lower at the close side pass. The approach bend behind the car is gentler.\n\nRound 004 changes (from round 003 feedback): in shot 5 the approach bend behind the car is gentler, the far-side kerb starts only near the pass (the approach frames show a plain white edge), and the striped barrier starts earlier so it shows in the background during the approach. A trackside board that appeared to float near the horizon was removed."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Extend and heighten the shot 5 barrier, add the fence layer.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline, native inspect-revise protocol.\n\nObserved in reference samples: a blue open-wheel race car (hero) seen through five TV-camera shots, with a red car following it in shot 1, a red car and three blue/yellow cars in shot 4, and only the blue car in shots 2, 3 and 5. Cut positions are inferred between samples: about frame 36 (1.20 s), frame 78 (2.60 s), frame 149 (4.97 s) and frame 234 (7.80 s).\n\nShots: (1) a high camera with the car approaching head-on and turning right, the red car close behind, a blue/white kerb on the car's left; (2) a side pass with the car moving image-left and the camera panning; (3) a high rear view of the car going away, with the kerb and green run-off paint on its left; (4) a low, wide telephoto at a corner, with a black FANATEC wall, a fence and banner, a white Reiza board, two blue/yellow cars passing near the camera at about 5.7 s, and the red car and a third blue/yellow car following; (5) a low trackside camera as the car approaches, passes very close (side close-up at about 9.9 s) and goes away to the right, with a white striped barrier beyond.\n\nGeometry: each car is built from boxes, cylinders and a sphere: floor, tub, nose, sidepods, engine cover, front and rear wings, helmet, and 4 separate wheels. The wheels spin with distance travelled and the front wheels steer from path curvature. The track is an asphalt ribbon generated along each shot's car path, with white edge lines, striped blue/white kerbs, green paint and a grass plane.\n\nCamera and timing: each shot uses a fixed camera position. The car path is integrated deterministically from keyframed speed and the car-to-camera relative azimuth estimated from samples, so motion between samples is analytic. The camera pans and tilts to hold the car at the observed screen position, and zoom (fov) is set from the observed car image size. Track-side features are placed by unprojecting observed screen positions. Other cars follow the hero path at fixed gaps.\n\nInference: speeds, camera heights, gaps and cut frames are estimates. Logos, text, fences and stands are omitted or reduced to plain proxies.\n\nRender feedback: round 001 pairs (all 24) were inspected. Round 002 changes: the track surfaces were missing in some frames because of depth fighting with the ground, so each shot now gets its own subdivided grass plane, and the track layers are raised and use polygon offset. Camera elevations were lowered in shots 1 and 3 (the reference uses long lenses with shallower angles), and the shot 2 camera was raised slightly. The red-car gap was increased (shot 1 from 6.5 m to 9.5 m, shot 4 from 15 m to 18 m). Shot 4 now uses a farther, more telephoto camera with faster cars; the two near cars appear only around 5.4-6.0 s; the fence colour is lighter, the banner taller and the board white. In shot 5, the oversized far-side barrier was replaced by a path-following striped barrier only beside the later part of the pass, and the approach path now bends left behind the car. The misplaced orange rail in shot 2 was moved behind the kerb.\n\nRound 003 changes (from round 002 feedback): reference cars look flatter (lower view angle), so the camera elevation was lowered further in shot 1 (h 8.8 m, red gap 12 m) and shot 3 (h 14 m). The shot 4 camera is farther and higher, giving a longer lens, closer to the reference compression. Shot 4 gaps are now red 24 m and third blue/yellow car 50 m, so the following cars spread around the curve. The FANATEC wall now has a taller fence and banner. In shot 5 the camera height is animated, higher during the approach (no sky visible) and lower at the close side pass. The approach bend behind the car is gentler.\n\nRound 004 changes (from round 003 feedback): in shot 5 the approach bend behind the car is gentler, the far-side kerb starts only near the pass (the approach frames show a plain white edge), and the striped barrier starts earlier so it shows in the background during the approach. A trackside board that appeared to float near the horizon was removed.\n\nRound 005 changes (from round 004 feedback): the shot 5 striped barrier was extended past the end of the shot so its end is no longer visible. It is now taller, with four dark bands, and a grey fence layer above it replaces the visible sky in the close and departing frames."
+    },
+    {
+     "round": "006",
+     "action": "submit",
+     "reason": "Counts, shot structure, car orientations, screen positions, sizes and main backgrounds match the samples well; remaining differences are secondary track-shape details.",
+     "rendered": false,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline, native inspect-revise protocol.\n\nObserved in reference samples: a blue open-wheel race car (hero) seen through five TV-camera shots, with a red car following it in shot 1, a red car and three blue/yellow cars in shot 4, and only the blue car in shots 2, 3 and 5. Cut positions are inferred between samples: about frame 36 (1.20 s), frame 78 (2.60 s), frame 149 (4.97 s) and frame 234 (7.80 s).\n\nShots: (1) a high camera with the car approaching head-on and turning right, the red car close behind, a blue/white kerb on the car's left; (2) a side pass with the car moving image-left and the camera panning; (3) a high rear view of the car going away, with the kerb and green run-off paint on its left; (4) a low, wide telephoto at a corner, with a black FANATEC wall, a fence and banner, a white Reiza board, two blue/yellow cars passing near the camera at about 5.7 s, and the red car and a third blue/yellow car following; (5) a low trackside camera as the car approaches, passes very close (side close-up at about 9.9 s) and goes away to the right, with a white striped barrier beyond.\n\nGeometry: each car is built from boxes, cylinders and a sphere: floor, tub, nose, sidepods, engine cover, front and rear wings, helmet, and 4 separate wheels. The wheels spin with distance travelled and the front wheels steer from path curvature. The track is an asphalt ribbon generated along each shot's car path, with white edge lines, striped blue/white kerbs, green paint and a grass plane.\n\nCamera and timing: each shot uses a fixed camera position. The car path is integrated deterministically from keyframed speed and the car-to-camera relative azimuth estimated from samples, so motion between samples is analytic. The camera pans and tilts to hold the car at the observed screen position, and zoom (fov) is set from the observed car image size. Track-side features are placed by unprojecting observed screen positions. Other cars follow the hero path at fixed gaps.\n\nInference: speeds, camera heights, gaps and cut frames are estimates. Logos, text, fences and stands are omitted or reduced to plain proxies.\n\nRender feedback: round 001 pairs (all 24) were inspected. Round 002 changes: the track surfaces were missing in some frames because of depth fighting with the ground, so each shot now gets its own subdivided grass plane, and the track layers are raised and use polygon offset. Camera elevations were lowered in shots 1 and 3 (the reference uses long lenses with shallower angles), and the shot 2 camera was raised slightly. The red-car gap was increased (shot 1 from 6.5 m to 9.5 m, shot 4 from 15 m to 18 m). Shot 4 now uses a farther, more telephoto camera with faster cars; the two near cars appear only around 5.4-6.0 s; the fence colour is lighter, the banner taller and the board white. In shot 5, the oversized far-side barrier was replaced by a path-following striped barrier only beside the later part of the pass, and the approach path now bends left behind the car. The misplaced orange rail in shot 2 was moved behind the kerb.\n\nRound 003 changes (from round 002 feedback): reference cars look flatter (lower view angle), so the camera elevation was lowered further in shot 1 (h 8.8 m, red gap 12 m) and shot 3 (h 14 m). The shot 4 camera is farther and higher, giving a longer lens, closer to the reference compression. Shot 4 gaps are now red 24 m and third blue/yellow car 50 m, so the following cars spread around the curve. The FANATEC wall now has a taller fence and banner. In shot 5 the camera height is animated, higher during the approach (no sky visible) and lower at the close side pass. The approach bend behind the car is gentler.\n\nRound 004 changes (from round 003 feedback): in shot 5 the approach bend behind the car is gentler, the far-side kerb starts only near the pass (the approach frames show a plain white edge), and the striped barrier starts earlier so it shows in the background during the approach. A trackside board that appeared to float near the horizon was removed.\n\nRound 005 changes (from round 004 feedback): the shot 5 striped barrier was extended past the end of the shot so its end is no longer visible. It is now taller, with four dark bands, and a grey fence layer above it replaces the visible sky in the close and departing frames.\n\nSubmission (round 006): the round 005 render is submitted unchanged.\nRemaining discrepancies:\n- Track layouts are generated along the integrated car paths, so kerb and edge shapes only roughly match the reference (shot 3 kerb curvature, the shot 4 corner and the shot 1 frame-28 view).\n- The shot 4 wall leaves the frame earlier than in the reference at 7.1-7.6 s.\n- The shot 5 barrier is somewhat too prominent at the close side pass (9.9 s), and the fence above it is darker than the reference.\n- Car proxies are blocky, and logos and text are omitted, as L1 allows.\n- Cut frames, speeds, and car behaviour between samples are inferred. Only sampled frames were checked; frames between samples were not inspected."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.31,
+     4.03,
+     6.76,
+     9.48
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
+    "infrastructure_retries": 0,
+    "model_turns": 6,
+    "provider_responses": 0
+   }
+  }
+ }
+}

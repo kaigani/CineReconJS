@@ -1,0 +1,122 @@
+{
+ "id": "video24",
+ "n": 24,
+ "reference": {
+  "video": "media/ref/video24.mp4",
+  "poster": "media/poster/ref/video24_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 720,
+  "fps": 29.97,
+  "duration": 24.024
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video24.mp4",
+   "poster": "media/poster/opus-5-5/video24_0.jpg",
+   "scene": "media/scene/opus-5-5/video24.mjs",
+   "final_round": "004",
+   "scene_sha256": "16e566a0d93bd1736a8f089e7389371e5885270c06ae9839781d2ab19d194a1d",
+   "video_sha256": "4156483f3749fe519f1a8886f884adad5e7b6d6758cbfac669230bd788eaad06",
+   "stop": "model_submit",
+   "revisions": 3,
+   "renders": 4,
+   "infra_retries": 0,
+   "turns": 5,
+   "pauses": 1,
+   "inferences": 36,
+   "output_tokens": 123518,
+   "cost": 4.85,
+   "cost_1h": 5.66,
+   "elapsed_seconds": 110992,
+   "submit_reason": "Counts, left/right correspondence, shot structure, framing and main actions match the samples reasonably; further changes would mainly affect proxy appearance.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete proxy reconstruction for first render feedback.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol).\n\nSubjects (observed in all 24 samples): two male fighters on a burning, coin-strewn wooden ship deck. Fighter A (\"Nate\", blue-grey T-shirt, dark jeans, holster) is kept on image-left in almost every shot; fighter B (\"Rafe\", black shirt/trousers) on image-right or centre. Each is a proxy humanoid (box pelvis/torso, sphere head + hair cap, cylinder upper/lower arms and legs, box feet) with two-bone IK on arms and legs driven by per-key hand/foot targets, plus torso lean/twist/side and root yaw/tilt (tilt used for lying on the deck). Two swords (blade box, guard, grip) attach to the right hand or lie on the floor according to a timeline.\n\nEnvironment: 30 m wood-plank floor with a seeded procedural plank+coin DataTexture (emissive coins), coin heaps, dark walls, pillars with panels, two staircases and a railing, patterned crates, a metal rack used in the final close-ups, additive flame cones (deterministic flicker), flickering orange point lights, fog, drifting embers.\n\nTimeline/camera (inferred from samples; cut times between samples are estimates): 0-1.55 over-shoulder, Rafe's downward swing staggers Nate; 1.55-2.62 top-down, Nate on his back with Rafe over him, sword raised; 2.62-3.65 rotated top-down, Rafe kneels and stabs the deck, Nate rolled aside; 3.65-4.7 low shot behind Nate getting up while Rafe's legs walk in; 4.7-8.85 over-shoulder: swords, clash (~5.75) and swords dropped, fist fight, Nate charges Rafe (~8.3); 8.85-9.9 higher angle, Nate doubled over, Rafe grabbing; 9.9-12.0 close behind them grappling; 12.0-13.05 high angle, both bent recovering swords; 13.05-20.3 over-shoulder sword duel with Rafe lunging; 20.3-21.4 whip-pan of Nate spinning; 21.4-22.4 close shot behind Nate, Rafe facing camera; 22.4-24.02 reverse close-up, Nate (left) shoving Rafe (right, back to camera) by a rack. Characters are re-placed across hard cuts where the reference staging requires it. Motion between keys is smoothstep interpolation of absolute keyed states; update() is absolute-time and deterministic.\n\nObserved vs inferred: positions/poses at the 24 sample times are estimated from the images; in-between actions (strike timing, sword drop/pick-up, cut points) are inference. Identity of the low figure at 12.5 s and the pose at 9.4 s are uncertain.\n\nFeedback: none received yet (initial render candidate). Framing and subject image sizes are unverified."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix exposure, subject framing/occlusion and close-up staging from round 1 feedback.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol).\n\nSubjects (observed in all 24 samples): two male fighters on a burning, coin-strewn wooden ship deck. Fighter A (\"Nate\", blue-grey T-shirt, dark jeans, holster) is kept on image-left in almost every shot; fighter B (\"Rafe\", black shirt/trousers) on image-right or centre. Each is a proxy humanoid (box pelvis/torso, sphere head + hair cap, cylinder upper/lower arms and legs, box feet) with two-bone IK on arms and legs driven by per-key hand/foot targets, plus torso lean/twist/side and root yaw/tilt (tilt used for lying on the deck). Two swords (blade box, guard, grip) attach to the right hand or lie on the floor according to a timeline.\n\nEnvironment: 30 m wood-plank floor with a seeded procedural plank+coin DataTexture (emissive coins), coin heaps, dark walls, pillars with panels, two staircases and a railing, patterned crates, a metal rack used in the final close-ups, additive flame cones (deterministic flicker), flickering orange point lights, fog, drifting embers.\n\nTimeline/camera (inferred from samples; cut times between samples are estimates): 0-1.55 over-shoulder, Rafe's downward swing staggers Nate; 1.55-2.62 top-down, Nate on his back with Rafe over him, sword raised; 2.62-3.65 rotated top-down, Rafe kneels and stabs the deck, Nate rolled aside; 3.65-4.7 low shot behind Nate getting up while Rafe's legs walk in; 4.7-8.85 over-shoulder: swords, clash (~5.75) and swords dropped, fist fight, Nate charges Rafe (~8.3); 8.85-9.9 higher angle, Nate doubled over, Rafe grabbing; 9.9-12.0 close behind them grappling; 12.0-13.05 high angle, both bent recovering swords; 13.05-20.3 over-shoulder sword duel with Rafe lunging; 20.3-21.4 whip-pan of Nate spinning; 21.4-22.4 close shot behind Nate, Rafe facing camera; 22.4-24.02 reverse close-up, Nate (left) shoving Rafe (right, back to camera) by a rack. Characters are re-placed across hard cuts where the reference staging requires it. Motion between keys is smoothstep interpolation of absolute keyed states; update() is absolute-time and deterministic.\n\nObserved vs inferred: positions/poses at the 24 sample times are estimated from the images; in-between actions (strike timing, sword drop/pick-up, cut points) are inference. Identity of the low figure at 12.5 s and the pose at 9.4 s are uncertain.\n\nFeedback received: round 001 render pairs for all 24 samples. Observed problems: image far too bright (walls, floor coins, heaps), Nate placed too close to frame centre so he occluded Rafe, Rafe too small/distant, large coin heaps cluttering the foreground, top-down shots too far away, final close-ups too small and the rack missing. Revision 2: darker materials/fog/lights and sparser dimmer coins; heaps reduced to two small ones; characters in most shots now placed by screen-x and depth relative to the shot camera (measured from the reference samples: Nate about 20-30% from the left at ~1.7 m, Rafe centre-right at ~3-4.5 m); closer top-down cameras; J1/J2 close-ups re-staged with the rack behind Nate on the left. Not yet verified by render."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Refine fighter orientation, close-up framing and prop brightness from round 2 feedback.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol).\n\nSubjects (observed in all 24 samples): two male fighters on a burning, coin-strewn wooden ship deck. Fighter A (\"Nate\", blue-grey T-shirt, dark jeans, holster) is kept on image-left in almost every shot; fighter B (\"Rafe\", black shirt/trousers) on image-right or centre. Each is a proxy humanoid (box pelvis/torso, sphere head + hair cap, cylinder upper/lower arms and legs, box feet) with two-bone IK on arms and legs driven by per-key hand/foot targets, plus torso lean/twist/side and root yaw/tilt (tilt used for lying on the deck). Two swords (blade box, guard, grip) attach to the right hand or lie on the floor according to a timeline.\n\nEnvironment: 30 m wood-plank floor with a seeded procedural plank+coin DataTexture (emissive coins), coin heaps, dark walls, pillars with panels, two staircases and a railing, patterned crates, a metal rack used in the final close-ups, additive flame cones (deterministic flicker), flickering orange point lights, fog, drifting embers.\n\nTimeline/camera (inferred from samples; cut times between samples are estimates): 0-1.55 over-shoulder, Rafe's downward swing staggers Nate; 1.55-2.62 top-down, Nate on his back with Rafe over him, sword raised; 2.62-3.65 rotated top-down, Rafe kneels and stabs the deck, Nate rolled aside; 3.65-4.7 low shot behind Nate getting up while Rafe's legs walk in; 4.7-8.85 over-shoulder: swords, clash (~5.75) and swords dropped, fist fight, Nate charges Rafe (~8.3); 8.85-9.9 higher angle, Nate doubled over, Rafe grabbing; 9.9-12.0 close behind them grappling; 12.0-13.05 high angle, both bent recovering swords; 13.05-20.3 over-shoulder sword duel with Rafe lunging; 20.3-21.4 whip-pan of Nate spinning; 21.4-22.4 close shot behind Nate, Rafe facing camera; 22.4-24.02 reverse close-up, Nate (left) shoving Rafe (right, back to camera) by a rack. Characters are re-placed across hard cuts where the reference staging requires it. Motion between keys is smoothstep interpolation of absolute keyed states; update() is absolute-time and deterministic.\n\nObserved vs inferred: positions/poses at the 24 sample times are estimated from the images; in-between actions (strike timing, sword drop/pick-up, cut points) are inference. Identity of the low figure at 12.5 s and the pose at 9.4 s are uncertain.\n\nFeedback received: round 001 render pairs for all 24 samples. Observed problems: image far too bright (walls, floor coins, heaps), Nate placed too close to frame centre so he occluded Rafe, Rafe too small/distant, large coin heaps cluttering the foreground, top-down shots too far away, final close-ups too small and the rack missing. Revision 2: darker materials/fog/lights and sparser dimmer coins; heaps reduced to two small ones; characters in most shots now placed by screen-x and depth relative to the shot camera (measured from the reference samples: Nate about 20-30% from the left at ~1.7 m, Rafe centre-right at ~3-4.5 m); closer top-down cameras; J1/J2 close-ups re-staged with the rack behind Nate on the left. Not yet verified by render.\n\nRound 002 feedback (received): exposure and occlusion much improved; remaining issues were Nate shown from the back rather than in right-facing three-quarter profile in over-shoulder shots, Nate centred and seen from behind in the 4.2 s low shot, F2 grapple too far from camera, J1/J2 close-ups too small with Nate too close to centre, crates and rack contents too bright. Revision 3: Nate yaw offset toward image-right in shots A/D/H, low-shot Nate turned to face right and moved left, F2 camera distance reduced, J1/J2 fighters moved closer and wider apart in frame, crates/rack darkened, floor coin glow and ambient slightly raised, Rafe moved closer over Nate in the top-down shot. Not yet verified by render."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Head facing readability, rising pose at 4.2 s and top-down framing from round 3 feedback.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol).\n\nSubjects (observed in all 24 samples): two male fighters on a burning, coin-strewn wooden ship deck. Fighter A (\"Nate\", blue-grey T-shirt, dark jeans, holster) is kept on image-left in almost every shot; fighter B (\"Rafe\", black shirt/trousers) on image-right or centre. Each is a proxy humanoid (box pelvis/torso, sphere head + hair cap, cylinder upper/lower arms and legs, box feet) with two-bone IK on arms and legs driven by per-key hand/foot targets, plus torso lean/twist/side and root yaw/tilt (tilt used for lying on the deck). Two swords (blade box, guard, grip) attach to the right hand or lie on the floor according to a timeline.\n\nEnvironment: 30 m wood-plank floor with a seeded procedural plank+coin DataTexture (emissive coins), coin heaps, dark walls, pillars with panels, two staircases and a railing, patterned crates, a metal rack used in the final close-ups, additive flame cones (deterministic flicker), flickering orange point lights, fog, drifting embers.\n\nTimeline/camera (inferred from samples; cut times between samples are estimates): 0-1.55 over-shoulder, Rafe's downward swing staggers Nate; 1.55-2.62 top-down, Nate on his back with Rafe over him, sword raised; 2.62-3.65 rotated top-down, Rafe kneels and stabs the deck, Nate rolled aside; 3.65-4.7 low shot behind Nate getting up while Rafe's legs walk in; 4.7-8.85 over-shoulder: swords, clash (~5.75) and swords dropped, fist fight, Nate charges Rafe (~8.3); 8.85-9.9 higher angle, Nate doubled over, Rafe grabbing; 9.9-12.0 close behind them grappling; 12.0-13.05 high angle, both bent recovering swords; 13.05-20.3 over-shoulder sword duel with Rafe lunging; 20.3-21.4 whip-pan of Nate spinning; 21.4-22.4 close shot behind Nate, Rafe facing camera; 22.4-24.02 reverse close-up, Nate (left) shoving Rafe (right, back to camera) by a rack. Characters are re-placed across hard cuts where the reference staging requires it. Motion between keys is smoothstep interpolation of absolute keyed states; update() is absolute-time and deterministic.\n\nObserved vs inferred: positions/poses at the 24 sample times are estimated from the images; in-between actions (strike timing, sword drop/pick-up, cut points) are inference. Identity of the low figure at 12.5 s and the pose at 9.4 s are uncertain.\n\nFeedback received: round 001 render pairs for all 24 samples. Observed problems: image far too bright (walls, floor coins, heaps), Nate placed too close to frame centre so he occluded Rafe, Rafe too small/distant, large coin heaps cluttering the foreground, top-down shots too far away, final close-ups too small and the rack missing. Revision 2: darker materials/fog/lights and sparser dimmer coins; heaps reduced to two small ones; characters in most shots now placed by screen-x and depth relative to the shot camera (measured from the reference samples: Nate about 20-30% from the left at ~1.7 m, Rafe centre-right at ~3-4.5 m); closer top-down cameras; J1/J2 close-ups re-staged with the rack behind Nate on the left. Not yet verified by render.\n\nRound 002 feedback (received): exposure and occlusion much improved; remaining issues were Nate shown from the back rather than in right-facing three-quarter profile in over-shoulder shots, Nate centred and seen from behind in the 4.2 s low shot, F2 grapple too far from camera, J1/J2 close-ups too small with Nate too close to centre, crates and rack contents too bright. Revision 3: Nate yaw offset toward image-right in shots A/D/H, low-shot Nate turned to face right and moved left, F2 camera distance reduced, J1/J2 fighters moved closer and wider apart in frame, crates/rack darkened, floor coin glow and ambient slightly raised, Rafe moved closer over Nate in the top-down shot. Not yet verified by render.\n\nRound 003 feedback (received): over-shoulder orientation and close-up framing improved; remaining: hair cap read as symmetric so heads showed skin on the back (facing ambiguous), Nate at 4.2 s still crawling flat instead of rising, top-down 2.1 s framing placed Nate too high and Rafe too far above. Revision 4: hair cap tilted to the back of the head, Nate rises to a crouch by 4.17 s, top-down camera aim and Rafe position adjusted. Not yet verified by render."
+    },
+    {
+     "round": "005",
+     "action": "submit",
+     "reason": "Counts, left/right correspondence, shot structure, framing and main actions match the samples reasonably; further changes would mainly affect proxy appearance.",
+     "rendered": false,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol).\n\nSubjects (observed in all 24 samples): two male fighters on a burning, coin-strewn wooden ship deck. Fighter A (\"Nate\", blue-grey T-shirt, dark jeans, holster) is kept on image-left in almost every shot; fighter B (\"Rafe\", black shirt/trousers) on image-right or centre. Each is a proxy humanoid (box pelvis/torso, sphere head + hair cap, cylinder upper/lower arms and legs, box feet) with two-bone IK on arms and legs driven by per-key hand/foot targets, plus torso lean/twist/side and root yaw/tilt (tilt used for lying on the deck). Two swords (blade box, guard, grip) attach to the right hand or lie on the floor according to a timeline.\n\nEnvironment: 30 m wood-plank floor with a seeded procedural plank+coin DataTexture (emissive coins), coin heaps, dark walls, pillars with panels, two staircases and a railing, patterned crates, a metal rack used in the final close-ups, additive flame cones (deterministic flicker), flickering orange point lights, fog, drifting embers.\n\nTimeline/camera (inferred from samples; cut times between samples are estimates): 0-1.55 over-shoulder, Rafe's downward swing staggers Nate; 1.55-2.62 top-down, Nate on his back with Rafe over him, sword raised; 2.62-3.65 rotated top-down, Rafe kneels and stabs the deck, Nate rolled aside; 3.65-4.7 low shot behind Nate getting up while Rafe's legs walk in; 4.7-8.85 over-shoulder: swords, clash (~5.75) and swords dropped, fist fight, Nate charges Rafe (~8.3); 8.85-9.9 higher angle, Nate doubled over, Rafe grabbing; 9.9-12.0 close behind them grappling; 12.0-13.05 high angle, both bent recovering swords; 13.05-20.3 over-shoulder sword duel with Rafe lunging; 20.3-21.4 whip-pan of Nate spinning; 21.4-22.4 close shot behind Nate, Rafe facing camera; 22.4-24.02 reverse close-up, Nate (left) shoving Rafe (right, back to camera) by a rack. Characters are re-placed across hard cuts where the reference staging requires it. Motion between keys is smoothstep interpolation of absolute keyed states; update() is absolute-time and deterministic.\n\nObserved vs inferred: positions/poses at the 24 sample times are estimated from the images; in-between actions (strike timing, sword drop/pick-up, cut points) are inference. Identity of the low figure at 12.5 s and the pose at 9.4 s are uncertain.\n\nFeedback received: round 001 render pairs for all 24 samples. Observed problems: image far too bright (walls, floor coins, heaps), Nate placed too close to frame centre so he occluded Rafe, Rafe too small/distant, large coin heaps cluttering the foreground, top-down shots too far away, final close-ups too small and the rack missing. Revision 2: darker materials/fog/lights and sparser dimmer coins; heaps reduced to two small ones; characters in most shots now placed by screen-x and depth relative to the shot camera (measured from the reference samples: Nate about 20-30% from the left at ~1.7 m, Rafe centre-right at ~3-4.5 m); closer top-down cameras; J1/J2 close-ups re-staged with the rack behind Nate on the left.\n\nRound 002 feedback (received): exposure and occlusion much improved; remaining issues were Nate shown from the back rather than in right-facing three-quarter profile in over-shoulder shots, Nate centred and seen from behind in the 4.2 s low shot, F2 grapple too far from camera, J1/J2 close-ups too small with Nate too close to centre, crates and rack contents too bright. Revision 3: Nate yaw offset toward image-right in shots A/D/H, low-shot Nate turned to face right and moved left, F2 camera distance reduced, J1/J2 fighters moved closer and wider apart in frame, crates/rack darkened, floor coin glow and ambient slightly raised, Rafe moved closer over Nate in the top-down shot.\n\nRound 003 feedback (received): over-shoulder orientation and close-up framing improved; remaining: hair cap read as symmetric so heads showed skin on the back (facing ambiguous), Nate at 4.2 s still crawling flat instead of rising, top-down 2.1 s framing placed Nate too high and Rafe too far above. Revision 4: hair cap tilted to the back of the head, Nate rises to a crouch by 4.17 s, top-down camera aim and Rafe position adjusted.\n\nRound 004 feedback (received): the top-down 2.1 s shot now shows Rafe beside Nate with the sword raised; hair caps make head facing readable; Nate is crouched at 4.2 s. Submitted the round-004 scene. Remaining discrepancies: proxy bodies are blockier and stiffer than the reference; in over-shoulder shots Nate is shown more from behind and less in profile than the reference, and Rafe's wide lunges are narrower; in the 4.2 s low shot Nate is centred rather than left-of-centre; the reference's motion blur, detailed fire and coin highlights are only approximated; cut times between samples, strike/sword drop and pick-up timing, and the identities in the 9.4 s and 12.5 s samples are inferred, not observed."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     2.88,
+     8.89,
+     14.89,
+     20.9
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 3,
+    "inspection_only_decisions": 1,
+    "render_attempts": 4,
+    "infrastructure_retries": 0,
+    "model_turns": 5,
+    "provider_responses": 0
+   }
+  }
+ }
+}

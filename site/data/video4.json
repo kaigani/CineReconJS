@@ -1,0 +1,148 @@
+{
+ "id": "video4",
+ "n": 4,
+ "reference": {
+  "video": "media/ref/video4.mp4",
+  "poster": "media/poster/ref/video4_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 576,
+  "fps": 23.976,
+  "duration": 24.024
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video4.mp4",
+   "poster": "media/poster/opus-5-5/video4_0.jpg",
+   "scene": "media/scene/opus-5-5/video4.mjs",
+   "final_round": "006",
+   "scene_sha256": "de03e9589df3348d0b899072108d470a806f2ba73171b23f711bb986606458b5",
+   "video_sha256": "aa17b72dc681bd531a5167825e1072a929c87a72f50d7db48cf992f792ac54b9",
+   "stop": "model_submit",
+   "revisions": 5,
+   "renders": 7,
+   "infra_retries": 1,
+   "turns": 7,
+   "pauses": 0,
+   "inferences": 38,
+   "output_tokens": 113274,
+   "cost": 4.58,
+   "cost_1h": 5.34,
+   "elapsed_seconds": 1391,
+   "submit_reason": "Subject counts, identities, left/right placement, sizes and camera path match all 24 samples closely at proxy level; remaining differences are appearance detail and inferred in-between motion.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete proxy reconstruction of the continuous trench walk.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved in the 24 reference samples (0-23.98 s, 2.39:1 letterboxed, one continuous take, no cuts):\n- 0-6 s: a camera leading two helmeted WWI soldiers backwards through a narrow, dark timber-lined trench. The round-faced lead soldier (\"Blake\") is close to camera, his companion (\"Schofield\") behind him and image-right.\n- 6-9 s: the camera swings round the pair's right side (motion-blurred pan at 6.3 s, side view of the pair facing each other at 7.3 s, profile of Schofield at 8.3 s).\n- 9-24 s: the camera follows behind the soldiers down an open, sandbagged trench under an overcast sky, with spoil heaps, telegraph poles, dugouts and seated/standing/crouching soldiers on the right. A sergeant approaches facing them (9.4 s), turns and leads; Schofield drops back out of frame on the left (~11.5 s); the camera stays just behind Blake; the sergeant turns back to talk to him (19.8-20.9 s) and walks on.\n\nReconstruction:\n- Geometry: boxes/cylinders/spheres. Soldiers are articulated proxies (pelvis, torso, hips/knees, shoulders/elbows, neck/head with helmet dome+brim, webbing plate, pack, slung rifle on the observed shoulder). Trench: mud floor, earth walls, sandbag rows, half-buried cylinder spoil heaps, revetment posts, tall dark timber section for the opening, dugout openings with benches, fire step, telegraph poles with wires, distant closing mounds. 12 static extras (sitting/standing/crouching) plus two walkers further ahead.\n- Articulation: analytic walk cycle (hip/knee/arm swing, bob) whose amplitude follows each walker's world speed; head and body turns keyed for the 7.3 s exchange, Blake's 10.4 s glance at Schofield, and the sergeant's turn-around at ~10 s and turn-back to talk at ~20 s.\n- Camera: one continuous camera keyed relative to Blake from per-sample estimates of subject image position and helmet size (vertical FOV 48 deg for the 16:9 frame; black letterbox bars attached to the camera); Hermite interpolation between samples; small deterministic handheld shake/bob. Light intensity lowered for the timber section (about 2.5-6 s).\n- Timing: absolute-time update, 576 frames at 23.976 fps; Blake walks at a constant 0.9 m/s.\n\nInference vs. observation: subject placements at the 24 sample times are estimated from the images; the camera swing path between 6.3 and 9.4 s, Schofield's whereabouts after ~12 s, walking speed, and extras' exact positions are inferred.\n\nRender feedback: none received yet (initial generation)."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix trench bank shape, lighting, subject scale in the lead-in and overcrowding.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved in the 24 reference samples (0-23.98 s, 2.39:1 letterboxed, one continuous take, no cuts):\n- 0-6 s: a camera leading two helmeted WWI soldiers backwards through a narrow, dark timber-lined trench. The round-faced lead soldier (\"Blake\") is close to camera, his companion (\"Schofield\") behind him and image-right.\n- 6-9 s: the camera swings round the pair's right side (motion-blurred pan at 6.3 s, side view of the pair facing each other at 7.3 s, profile of Schofield at 8.3 s).\n- 9-24 s: the camera follows behind the soldiers down an open, sandbagged trench under an overcast sky, with spoil heaps, telegraph poles, dugouts and seated/standing/crouching soldiers on the right. A sergeant approaches facing them (9.4 s), turns and leads; Schofield drops back out of frame on the left (~11.5 s); the camera stays just behind Blake; the sergeant turns back to talk to him (19.8-20.9 s) and walks on.\n\nReconstruction:\n- Geometry: boxes/cylinders/spheres. Soldiers are articulated proxies (pelvis, torso, hips/knees, shoulders/elbows, neck/head with helmet dome+brim, webbing plate, pack, slung rifle on the observed shoulder). Trench: mud floor, earth walls, sandbag rows, half-buried cylinder spoil heaps, revetment posts, tall dark timber section for the opening, dugout openings with benches, fire step, telegraph poles with wires, distant closing mounds. 12 static extras (sitting/standing/crouching) plus two walkers further ahead.\n- Articulation: analytic walk cycle (hip/knee/arm swing, bob) whose amplitude follows each walker's world speed; head and body turns keyed for the 7.3 s exchange, Blake's 10.4 s glance at Schofield, and the sergeant's turn-around at ~10 s and turn-back to talk at ~20 s.\n- Camera: one continuous camera keyed relative to Blake from per-sample estimates of subject image position and helmet size (vertical FOV 48 deg for the 16:9 frame; black letterbox bars attached to the camera); Hermite interpolation between samples; small deterministic handheld shake/bob. Light intensity lowered for the timber section (about 2.5-6 s).\n- Timing: absolute-time update, 576 frames at 23.976 fps; Blake walks at a constant 0.9 m/s.\n\nInference vs. observation: subject placements at the 24 sample times are estimated from the images; the camera swing path between 6.3 and 9.4 s, Schofield's whereabouts after ~12 s, walking speed, and extras' exact positions are inferred.\n\nRender feedback received: round 001 pairs (all 24 samples). Revisions in round 002: replaced the cylinder spoil heaps (which formed tall vertical walls) with an extruded trench cross-section (wall face, sandbag step, sloping heap, ground) so more sky and sloped banks show; brighter overcast lighting (hemisphere+ambient+sun) and lighter earth/khaki colours; timber section shortened to end at z=-4.6 so 7-8 s views see lit earth walls; smaller lower-set helmets, dark hair at back of head to show facing, collar; camera pulled back ~15% in the 0-8 s lead-in where subjects were too large; extras reduced from 12 to 8 and ahead-walkers from 2 to 1 (render showed an over-crowded trench)."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Lower trench walls, camera height/pitch, extras placement.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved in the 24 reference samples (0-23.98 s, 2.39:1 letterboxed, one continuous take, no cuts):\n- 0-6 s: a camera leading two helmeted WWI soldiers backwards through a narrow, dark timber-lined trench. The round-faced lead soldier (\"Blake\") is close to camera, his companion (\"Schofield\") behind him and image-right.\n- 6-9 s: the camera swings round the pair's right side (motion-blurred pan at 6.3 s, side view of the pair facing each other at 7.3 s, profile of Schofield at 8.3 s).\n- 9-24 s: the camera follows behind the soldiers down an open, sandbagged trench under an overcast sky, with spoil heaps, telegraph poles, dugouts and seated/standing/crouching soldiers on the right. A sergeant approaches facing them (9.4 s), turns and leads; Schofield drops back out of frame on the left (~11.5 s); the camera stays just behind Blake; the sergeant turns back to talk to him (19.8-20.9 s) and walks on.\n\nReconstruction:\n- Geometry: boxes/cylinders/spheres. Soldiers are articulated proxies (pelvis, torso, hips/knees, shoulders/elbows, neck/head with helmet dome+brim, webbing plate, pack, slung rifle on the observed shoulder). Trench: mud floor, earth walls, sandbag rows, half-buried cylinder spoil heaps, revetment posts, tall dark timber section for the opening, dugout openings with benches, fire step, telegraph poles with wires, distant closing mounds. 12 static extras (sitting/standing/crouching) plus two walkers further ahead.\n- Articulation: analytic walk cycle (hip/knee/arm swing, bob) whose amplitude follows each walker's world speed; head and body turns keyed for the 7.3 s exchange, Blake's 10.4 s glance at Schofield, and the sergeant's turn-around at ~10 s and turn-back to talk at ~20 s.\n- Camera: one continuous camera keyed relative to Blake from per-sample estimates of subject image position and helmet size (vertical FOV 48 deg for the 16:9 frame; black letterbox bars attached to the camera); Hermite interpolation between samples; small deterministic handheld shake/bob. Light intensity lowered for the timber section (about 2.5-6 s).\n- Timing: absolute-time update, 576 frames at 23.976 fps; Blake walks at a constant 0.9 m/s.\n\nInference vs. observation: subject placements at the 24 sample times are estimated from the images; the camera swing path between 6.3 and 9.4 s, Schofield's whereabouts after ~12 s, walking speed, and extras' exact positions are inferred.\n\nRender feedback received: rounds 001 and 002 (all 24 sample pairs each). Round 002: extruded trench banks, brighter lighting, smaller helmets with hair to show facing, camera pulled back in the lead-in, fewer extras. Round 003: trench walls lowered (wall face 1.55 m, sandbag parapet to ~2.3 m) and camera raised to ~1.85 m and pitched down ~9 deg in the follow section so parapet tops sit near the horizon as in the reference; lead-in camera pitched down ~10 deg so heads sit higher in frame; overhead beams removed from the timber section; Schofield turned further away at 8.3 s; extras re-placed to match 13-15 s views; far walker pushed further ahead."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Lower parapet and heaps, raise follow camera, darken lead-in.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved in the 24 reference samples (0-23.98 s, 2.39:1 letterboxed, one continuous take, no cuts):\n- 0-6 s: a camera leading two helmeted WWI soldiers backwards through a narrow, dark timber-lined trench. The round-faced lead soldier (\"Blake\") is close to camera, his companion (\"Schofield\") behind him and image-right.\n- 6-9 s: the camera swings round the pair's right side (motion-blurred pan at 6.3 s, side view of the pair facing each other at 7.3 s, profile of Schofield at 8.3 s).\n- 9-24 s: the camera follows behind the soldiers down an open, sandbagged trench under an overcast sky, with spoil heaps, telegraph poles, dugouts and seated/standing/crouching soldiers on the right. A sergeant approaches facing them (9.4 s), turns and leads; Schofield drops back out of frame on the left (~11.5 s); the camera stays just behind Blake; the sergeant turns back to talk to him (19.8-20.9 s) and walks on.\n\nReconstruction:\n- Geometry: boxes/cylinders/spheres. Soldiers are articulated proxies (pelvis, torso, hips/knees, shoulders/elbows, neck/head with helmet dome+brim, webbing plate, pack, slung rifle on the observed shoulder). Trench: mud floor, earth walls, sandbag rows, half-buried cylinder spoil heaps, revetment posts, tall dark timber section for the opening, dugout openings with benches, fire step, telegraph poles with wires, distant closing mounds. 12 static extras (sitting/standing/crouching) plus two walkers further ahead.\n- Articulation: analytic walk cycle (hip/knee/arm swing, bob) whose amplitude follows each walker's world speed; head and body turns keyed for the 7.3 s exchange, Blake's 10.4 s glance at Schofield, and the sergeant's turn-around at ~10 s and turn-back to talk at ~20 s.\n- Camera: one continuous camera keyed relative to Blake from per-sample estimates of subject image position and helmet size (vertical FOV 48 deg for the 16:9 frame; black letterbox bars attached to the camera); Hermite interpolation between samples; small deterministic handheld shake/bob. Light intensity lowered for the timber section (about 2.5-6 s).\n- Timing: absolute-time update, 576 frames at 23.976 fps; Blake walks at a constant 0.9 m/s.\n\nInference vs. observation: subject placements at the 24 sample times are estimated from the images; the camera swing path between 6.3 and 9.4 s, Schofield's whereabouts after ~12 s, walking speed, and extras' exact positions are inferred.\n\nRender feedback received: rounds 001-003 (all 24 sample pairs each). Round 002: extruded trench banks, brighter lighting, smaller helmets with hair to show facing, camera pulled back in the lead-in, fewer extras. Round 003: trench walls lowered (wall face 1.55 m, sandbag parapet to ~2.3 m) and camera raised to ~1.85 m and pitched down ~9 deg in the follow section so parapet tops sit near the horizon as in the reference; lead-in camera pitched down ~10 deg so heads sit higher in frame; overhead beams removed from the timber section; Schofield turned further away at 8.3 s; extras re-placed to match 13-15 s views; far walker pushed further ahead. Round 004: parapet lowered further (sandbag tops ~2.0 m) with heaps set further back, follow camera at ~1.95 m so parapet lines run near the horizon as in the reference; sandbag rows toned down to reduce the shelf look; lead-in timber section darker."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Bulkier soldier proxies, closing heap ahead, lead-in roof and minor placement fixes.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved in the 24 reference samples (0-23.98 s, 2.39:1 letterboxed, one continuous take, no cuts):\n- 0-6 s: a camera leading two helmeted WWI soldiers backwards through a narrow, dark timber-lined trench. The round-faced lead soldier (\"Blake\") is close to camera, his companion (\"Schofield\") behind him and image-right.\n- 6-9 s: the camera swings round the pair's right side (motion-blurred pan at 6.3 s, side view of the pair facing each other at 7.3 s, profile of Schofield at 8.3 s).\n- 9-24 s: the camera follows behind the soldiers down an open, sandbagged trench under an overcast sky, with spoil heaps, telegraph poles, dugouts and seated/standing/crouching soldiers on the right. A sergeant approaches facing them (9.4 s), turns and leads; Schofield drops back out of frame on the left (~11.5 s); the camera stays just behind Blake; the sergeant turns back to talk to him (19.8-20.9 s) and walks on.\n\nReconstruction:\n- Geometry: boxes/cylinders/spheres. Soldiers are articulated proxies (pelvis, torso, hips/knees, shoulders/elbows, neck/head with helmet dome+brim, webbing plate, pack, slung rifle on the observed shoulder). Trench: mud floor, earth walls, sandbag rows, half-buried cylinder spoil heaps, revetment posts, tall dark timber section for the opening, dugout openings with benches, fire step, telegraph poles with wires, distant closing mounds. 12 static extras (sitting/standing/crouching) plus two walkers further ahead.\n- Articulation: analytic walk cycle (hip/knee/arm swing, bob) whose amplitude follows each walker's world speed; head and body turns keyed for the 7.3 s exchange, Blake's 10.4 s glance at Schofield, and the sergeant's turn-around at ~10 s and turn-back to talk at ~20 s.\n- Camera: one continuous camera keyed relative to Blake from per-sample estimates of subject image position and helmet size (vertical FOV 48 deg for the 16:9 frame; black letterbox bars attached to the camera); Hermite interpolation between samples; small deterministic handheld shake/bob. Light intensity lowered for the timber section (about 2.5-6 s).\n- Timing: absolute-time update, 576 frames at 23.976 fps; Blake walks at a constant 0.9 m/s.\n\nInference vs. observation: subject placements at the 24 sample times are estimated from the images; the camera swing path between 6.3 and 9.4 s, Schofield's whereabouts after ~12 s, walking speed, and extras' exact positions are inferred.\n\nRender feedback received: rounds 001-004 (all 24 sample pairs each). Round 002: extruded trench banks, brighter lighting, smaller helmets with hair to show facing, camera pulled back in the lead-in, fewer extras. Round 003: trench walls lowered (wall face 1.55 m, sandbag parapet to ~2.3 m) and camera raised to ~1.85 m and pitched down ~9 deg in the follow section so parapet tops sit near the horizon as in the reference; lead-in camera pitched down ~10 deg so heads sit higher in frame; overhead beams removed from the timber section; Schofield turned further away at 8.3 s; extras re-placed to match 13-15 s views; far walker pushed further ahead. Round 004: parapet lowered further (sandbag tops ~2.0 m) with heaps set further back, follow camera at ~1.95 m so parapet lines run near the horizon as in the reference; sandbag rows toned down to reduce the shelf look; lead-in timber section darker. Round 005: bulkier soldier torsos/packs (reference kit is wider than the first proxies), a spoil heap closing the trench ~45 m ahead (reference trench turns out of sight rather than running to the horizon), roof over the rear timber section to remove the sky gap when looking back, darker iron panel, telegraph poles shifted right, fire-step extra moved out of the dugout roof."
+    },
+    {
+     "round": "006",
+     "action": "render",
+     "reason": "Desaturate colours and remove rear-roof artifact in the lead-in.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved in the 24 reference samples (0-23.98 s, 2.39:1 letterboxed, one continuous take, no cuts):\n- 0-6 s: a camera leading two helmeted WWI soldiers backwards through a narrow, dark timber-lined trench. The round-faced lead soldier (\"Blake\") is close to camera, his companion (\"Schofield\") behind him and image-right.\n- 6-9 s: the camera swings round the pair's right side (motion-blurred pan at 6.3 s, side view of the pair facing each other at 7.3 s, profile of Schofield at 8.3 s).\n- 9-24 s: the camera follows behind the soldiers down an open, sandbagged trench under an overcast sky, with spoil heaps, telegraph poles, dugouts and seated/standing/crouching soldiers on the right. A sergeant approaches facing them (9.4 s), turns and leads; Schofield drops back out of frame on the left (~11.5 s); the camera stays just behind Blake; the sergeant turns back to talk to him (19.8-20.9 s) and walks on.\n\nReconstruction:\n- Geometry: boxes/cylinders/spheres. Soldiers are articulated proxies (pelvis, torso, hips/knees, shoulders/elbows, neck/head with helmet dome+brim, webbing plate, pack, slung rifle on the observed shoulder). Trench: mud floor, earth walls, sandbag rows, half-buried cylinder spoil heaps, revetment posts, tall dark timber section for the opening, dugout openings with benches, fire step, telegraph poles with wires, distant closing mounds. 12 static extras (sitting/standing/crouching) plus two walkers further ahead.\n- Articulation: analytic walk cycle (hip/knee/arm swing, bob) whose amplitude follows each walker's world speed; head and body turns keyed for the 7.3 s exchange, Blake's 10.4 s glance at Schofield, and the sergeant's turn-around at ~10 s and turn-back to talk at ~20 s.\n- Camera: one continuous camera keyed relative to Blake from per-sample estimates of subject image position and helmet size (vertical FOV 48 deg for the 16:9 frame; black letterbox bars attached to the camera); Hermite interpolation between samples; small deterministic handheld shake/bob. Light intensity lowered for the timber section (about 2.5-6 s).\n- Timing: absolute-time update, 576 frames at 23.976 fps; Blake walks at a constant 0.9 m/s.\n\nInference vs. observation: subject placements at the 24 sample times are estimated from the images; the camera swing path between 6.3 and 9.4 s, Schofield's whereabouts after ~12 s, walking speed, and extras' exact positions are inferred.\n\nRender feedback received: rounds 001-005 (all 24 sample pairs each). Round 002: extruded trench banks, brighter lighting, smaller helmets with hair to show facing, camera pulled back in the lead-in, fewer extras. Round 003: trench walls lowered (wall face 1.55 m, sandbag parapet to ~2.3 m) and camera raised to ~1.85 m and pitched down ~9 deg in the follow section so parapet tops sit near the horizon as in the reference; lead-in camera pitched down ~10 deg so heads sit higher in frame; overhead beams removed from the timber section; Schofield turned further away at 8.3 s; extras re-placed to match 13-15 s views; far walker pushed further ahead. Round 004: parapet lowered further (sandbag tops ~2.0 m) with heaps set further back, follow camera at ~1.95 m so parapet lines run near the horizon as in the reference; sandbag rows toned down to reduce the shelf look; lead-in timber section darker. Round 005: bulkier soldier torsos/packs (reference kit is wider than the first proxies), a spoil heap closing the trench ~45 m ahead (reference trench turns out of sight rather than running to the horizon), roof over the rear timber section to remove the sky gap when looking back, darker iron panel, telegraph poles shifted right, fire-step extra moved out of the dugout roof. Round 006: desaturated earth, sandbag and uniform colours toward the grey-brown overcast look of the reference; removed the rear roof (it showed as a black wedge at top of frame in the lead-in) and closed the rear trench with a taller heap instead."
+    },
+    {
+     "round": "007",
+     "action": "submit",
+     "reason": "Subject counts, identities, left/right placement, sizes and camera path match all 24 samples closely at proxy level; remaining differences are appearance detail and inferred in-between motion.",
+     "rendered": false,
+     "report": "Representation level: L1 (proxy). Three.js sampled-frame baseline (native inspect-revise protocol), not a Blender-equivalent reproduction.\n\nObserved in the 24 reference samples (0-23.98 s, 2.39:1 letterboxed, one continuous take, no cuts):\n- 0-6 s: a camera leading two helmeted WWI soldiers backwards through a narrow, dark timber-lined trench. The round-faced lead soldier (\"Blake\") is close to camera, his companion (\"Schofield\") behind him and image-right.\n- 6-9 s: the camera swings round the pair's right side (motion-blurred pan at 6.3 s, side view of the pair facing each other at 7.3 s, profile of Schofield at 8.3 s).\n- 9-24 s: the camera follows behind the soldiers down an open, sandbagged trench under an overcast sky, with spoil heaps, telegraph poles, dugouts and seated/standing/crouching soldiers on the right. A sergeant approaches facing them (9.4 s), turns and leads; Schofield drops back out of frame on the left (~11.5 s); the camera stays just behind Blake; the sergeant turns back to talk to him (19.8-20.9 s) and walks on.\n\nReconstruction:\n- Geometry: boxes/cylinders/spheres. Soldiers are articulated proxies (pelvis, torso, hips/knees, shoulders/elbows, neck/head with helmet dome+brim, webbing plate, pack, slung rifle on the observed shoulder). Trench: mud floor, earth walls, sandbag rows, half-buried cylinder spoil heaps, revetment posts, tall dark timber section for the opening, dugout openings with benches, fire step, telegraph poles with wires, distant closing mounds. 12 static extras (sitting/standing/crouching) plus two walkers further ahead.\n- Articulation: analytic walk cycle (hip/knee/arm swing, bob) whose amplitude follows each walker's world speed; head and body turns keyed for the 7.3 s exchange, Blake's 10.4 s glance at Schofield, and the sergeant's turn-around at ~10 s and turn-back to talk at ~20 s.\n- Camera: one continuous camera keyed relative to Blake from per-sample estimates of subject image position and helmet size (vertical FOV 48 deg for the 16:9 frame; black letterbox bars attached to the camera); Hermite interpolation between samples; small deterministic handheld shake/bob. Light intensity lowered for the timber section (about 2.5-6 s).\n- Timing: absolute-time update, 576 frames at 23.976 fps; Blake walks at a constant 0.9 m/s.\n\nInference vs. observation: subject placements at the 24 sample times are estimated from the images; the camera swing path between 6.3 and 9.4 s, Schofield's whereabouts after ~12 s, walking speed, and extras' exact positions are inferred.\n\nRender feedback received: rounds 001-006 (all 24 sample pairs each); the submitted scene is the round 006 render. Round 002: extruded trench banks, brighter lighting, smaller helmets with hair to show facing, camera pulled back in the lead-in, fewer extras. Round 003: trench walls lowered (wall face 1.55 m, sandbag parapet to ~2.3 m) and camera raised to ~1.85 m and pitched down ~9 deg in the follow section so parapet tops sit near the horizon as in the reference; lead-in camera pitched down ~10 deg so heads sit higher in frame; overhead beams removed from the timber section; Schofield turned further away at 8.3 s; extras re-placed to match 13-15 s views; far walker pushed further ahead. Round 004: parapet lowered further (sandbag tops ~2.0 m) with heaps set further back, follow camera at ~1.95 m so parapet lines run near the horizon as in the reference; sandbag rows toned down to reduce the shelf look; lead-in timber section darker. Round 005: bulkier soldier torsos/packs (reference kit is wider than the first proxies), a spoil heap closing the trench ~45 m ahead (reference trench turns out of sight rather than running to the horizon), roof over the rear timber section to remove the sky gap when looking back, darker iron panel, telegraph poles shifted right, fire-step extra moved out of the dugout roof. Round 006: desaturated earth, sandbag and uniform colours toward the grey-brown overcast look of the reference; removed the rear roof (it showed as a black wedge at top of frame in the lead-in) and closed the rear trench with a taller heap instead.\n\nRemaining discrepancies / unverified aspects (from the round 006 comparison):\n- Appearance is deliberately proxy-level: flat earth/sandbag/timber surfaces with no sandbag texture, cables or corrugation; soldiers are box/sphere proxies without faces (hair cap only marks the back of the head).\n- The lead-in timber trench is brighter and more uniform than the very dark reference; the open trench is still somewhat warmer than the grey-green reference grade.\n- The 6-9 s camera swing is an inferred path between three samples; Schofield's exact body/head orientation at 7.3 and 8.3 s and his position after he leaves frame (~11.5 s) are inferred.\n- The reference trench bends and has varied parapet heights, poles and wiring; the model uses a straight trench closed by a heap ~45 m ahead, and extras and poles only approximate the sampled positions.\n- Walk cycles are time-based (some foot sliding) and walking speed (0.9 m/s) is estimated."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     2.88,
+     8.89,
+     14.89,
+     20.9
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ],
+     "006": [
+      "r006_0.jpg",
+      "r006_1.jpg",
+      "r006_2.jpg",
+      "r006_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 5,
+    "inspection_only_decisions": 1,
+    "render_attempts": 7,
+    "infrastructure_retries": 1,
+    "model_turns": 7,
+    "provider_responses": 0
+   }
+  }
+ }
+}

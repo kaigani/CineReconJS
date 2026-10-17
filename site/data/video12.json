@@ -1,0 +1,109 @@
+{
+ "id": "video12",
+ "n": 12,
+ "reference": {
+  "video": "media/ref/video12.mp4",
+  "poster": "media/poster/ref/video12_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 720,
+  "fps": 29.97,
+  "duration": 24.024
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video12.mp4",
+   "poster": "media/poster/opus-5-5/video12_0.jpg",
+   "scene": "media/scene/opus-5-5/video12.mjs",
+   "final_round": "003",
+   "scene_sha256": "d26b64c93f52b8bcaba59c8caa43150bc407cb4e965d4708ce380d48751fcdd0",
+   "video_sha256": "6902c314e8a1de6cecaafbdb0ca198ab03e6fd1e0fb0db03fed18138051ea686",
+   "stop": "model_submit",
+   "revisions": 2,
+   "renders": 3,
+   "infra_retries": 0,
+   "turns": 4,
+   "pauses": 1,
+   "inferences": 27,
+   "output_tokens": 136352,
+   "cost": 4.12,
+   "cost_1h": 4.47,
+   "elapsed_seconds": 8821,
+   "submit_reason": "Round 003 matches the shot structure, course events and tunnel ending; remaining gaps are blurred-sample poses with diminishing returns.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene: stadium, gates, FPV camera path and tunnel.",
+     "rendered": true,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy). Round 001 (initial scene).\n\nInterpretation of the 24 reference samples (observed): one continuous onboard FPV drone-race shot (no cuts) inside a night-lit football stadium with teal seating, a green field ringed by an asphalt track and teal wall, inflatable white/pink pentagon gates with red bases, lit tower gates, a pink/yellow frame gate, a canopy roof with floodlights and corner video boards. The drone climbs the end stands (0-2 s), goes through a purple/yellow-lit concourse opening (3-4 s, two other lit racing drones visible), returns over the bowl and dives to the field (5-7 s), flies along the south sideline through a pentagon gate (8.3 s), climbs into the far-end stands and an upper concourse (9-11.5 s), flips back out over the stands (12.5-13.5 s), descends past a tower gate to the field (14.6-15.6 s), turns hard on the track (16.7-17.7 s), runs along the sideline toward the tunnel (18.8 s) and enters a purple service tunnel under the stands (19.8-24 s). A broadcast lower-third panel and the drone's own red propellers are visible at fixed screen positions in every frame.\n\nGeometry: rounded-rectangle (superellipse) stadium built from a few ribbon bands (wall, lower bowl, suite fascia with window texture, mezzanine, upper deck, canopy, facade), two concourse openings, primitive gates (pentagon = 5 boxes + bases, tower = 4 columns + platform, frame gates), corner boards as box + emissive panels, a box-section tunnel with a bend, procedural seat/grass/dash textures, point-cloud city lights. Two opponent drones (pink, green LEDs) follow the same racing line ahead of the camera. The camera carries proxy propeller blobs and a plain (text-free) lower-third panel.\n\nCamera/timing: camera path is a centripetal Catmull-Rom spline through one keyframe per reference sample (positions, look targets, roll), then a tunnel-centreline parametrisation from 19.82 s. All state is computed analytically from time; 720 frames at 29.97 fps.\n\nInference vs observation: gate positions, the global course layout, stadium dimensions and the path between samples are inferred; several samples (12.5 s, 13.5 s, 20.9 s) are heavily blurred so their poses are rough guesses. No render feedback has been received yet; nothing has been verified."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix tunnel bend occlusion, darken exposure, correct several sample poses.",
+     "rendered": true,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy). Round 002 (first revision).\n\nInterpretation of the 24 reference samples (observed): one continuous onboard FPV drone-race shot (no cuts) inside a night-lit football stadium with teal seating, a green field ringed by an asphalt track and teal wall, inflatable white/pink pentagon gates with red bases, lit tower gates, a pink/yellow frame gate, a canopy roof with floodlights and corner video boards. The drone climbs the end stands (0-2 s), goes through a purple/yellow-lit concourse opening (3-4 s, two other lit racing drones visible), returns over the bowl and dives to the field (5-7 s), flies along the south sideline through a pentagon gate (8.3 s), climbs into the far-end stands and an upper concourse (9-11.5 s), flips back out over the stands (12.5-13.5 s), descends past a tower gate to the field (14.6-15.6 s), turns hard on the track (16.7-17.7 s), runs along the sideline toward the tunnel (18.8 s) and enters a purple service tunnel under the stands (19.8-24 s). A broadcast lower-third panel and the drone's own red propellers are visible at fixed screen positions in every frame.\n\nGeometry: rounded-rectangle (superellipse) stadium built from a few ribbon bands (wall, lower bowl, suite fascia with window texture, mezzanine, upper deck, canopy, facade), two concourse openings, primitive gates (pentagon = 5 boxes + bases, tower = 4 columns + platform, frame gates), corner boards as box + emissive panels, a box-section tunnel with a bend, procedural seat/grass/dash textures, point-cloud city lights. Two opponent drones (pink, green LEDs) follow the same racing line ahead of the camera. The camera carries proxy propeller blobs and a plain (text-free) lower-third panel.\n\nCamera/timing: camera path is a centripetal Catmull-Rom spline through one keyframe per reference sample (positions, look targets, roll), then a tunnel-centreline parametrisation from 19.82 s. All state is computed analytically from time; 720 frames at 29.97 fps.\n\nInference vs observation: gate positions, the global course layout, stadium dimensions and the path between samples are inferred; several samples (12.5 s, 13.5 s, 20.9 s) are heavily blurred so their poses are rough guesses. Round 001 render feedback (24 paired frames) was received. Revisions in round 002: fixed the tunnel bend (straight wall extensions blocked the corridor at 20.9-21.9 s; walls are now mitred), darkened the tunnel, suite fascia, canopy and trims to match the night exposure, pointed the 4.2 s camera out into the purple concourse structure, pitched the 9.4 s camera up toward the canopy and video board, moved 12.5 s and 13.5 s poses closer to the stands, corrected the 17.7 s roll (track running up the frame), moved concourse stairs to the image-left side at 11.5 s. Remaining: global course layout and blurred-sample poses are still inferred; the reference fisheye distortion, motion blur and broadcast text are not reproduced."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Refine blurred mid-sequence poses and concourse lighting.",
+     "rendered": true,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy). Round 003 (second revision).\n\nInterpretation of the 24 reference samples (observed): one continuous onboard FPV drone-race shot (no cuts) inside a night-lit football stadium with teal seating, a green field ringed by an asphalt track and teal wall, inflatable white/pink pentagon gates with red bases, lit tower gates, a pink/yellow frame gate, a canopy roof with floodlights and corner video boards. The drone climbs the end stands (0-2 s), goes through a purple/yellow-lit concourse opening (3-4 s, two other lit racing drones visible), returns over the bowl and dives to the field (5-7 s), flies along the south sideline through a pentagon gate (8.3 s), climbs into the far-end stands and an upper concourse (9-11.5 s), flips back out over the stands (12.5-13.5 s), descends past a tower gate to the field (14.6-15.6 s), turns hard on the track (16.7-17.7 s), runs along the sideline toward the tunnel (18.8 s) and enters a purple service tunnel under the stands (19.8-24 s). A broadcast lower-third panel and the drone's own red propellers are visible at fixed screen positions in every frame.\n\nGeometry: rounded-rectangle (superellipse) stadium built from a few ribbon bands (wall, lower bowl, suite fascia with window texture, mezzanine, upper deck, canopy, facade), two concourse openings, primitive gates (pentagon = 5 boxes + bases, tower = 4 columns + platform, frame gates), corner boards as box + emissive panels, a box-section tunnel with a bend, procedural seat/grass/dash textures, point-cloud city lights. Two opponent drones (pink, green LEDs) follow the same racing line ahead of the camera. The camera carries proxy propeller blobs and a plain (text-free) lower-third panel.\n\nCamera/timing: camera path is a centripetal Catmull-Rom spline through one keyframe per reference sample (positions, look targets, roll), then a tunnel-centreline parametrisation from 19.82 s. All state is computed analytically from time; 720 frames at 29.97 fps.\n\nInference vs observation: gate positions, the global course layout, stadium dimensions and the path between samples are inferred; several samples (12.5 s, 13.5 s, 20.9 s) are heavily blurred so their poses are rough guesses. Round 001 render feedback (24 paired frames) was received. Revisions in round 002: fixed the tunnel bend (straight wall extensions blocked the corridor at 20.9-21.9 s; walls are now mitred), darkened the tunnel, suite fascia, canopy and trims to match the night exposure, pointed the 4.2 s camera out into the purple concourse structure, pitched the 9.4 s camera up toward the canopy and video board, moved 12.5 s and 13.5 s poses closer to the stands, corrected the 17.7 s roll (track running up the frame), moved concourse stairs to the image-left side at 11.5 s. Remaining: global course layout and blurred-sample poses are still inferred; the reference fisheye distortion, motion blur and broadcast text are not reproduced.\n\nRound 002 feedback received (24 pairs): tunnel bend now reads as a continuous corridor and overall exposure is closer. Round 003 changes: brighter purple concourse ceiling for the 3-4.5 s structure views; 12.5 s and 13.5 s poses now skim the SW stands/fascia instead of overlooking the whole bowl. Remaining discrepancies: tower gate B2 appears larger/closer at 7.3 s than the reference pole, the 9.4 s video board sits higher/further right than observed, the 17.7 s gate is not overhead as in the reference, and reference fisheye distortion/motion blur are not modelled."
+    },
+    {
+     "round": "004",
+     "action": "submit",
+     "reason": "Round 003 matches the shot structure, course events and tunnel ending; remaining gaps are blurred-sample poses with diminishing returns.",
+     "rendered": false,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy). Final submission: round 003 scene (second revision).\n\nInterpretation of the 24 reference samples (observed): one continuous onboard FPV drone-race shot (no cuts) inside a night-lit football stadium with teal seating, a green field ringed by an asphalt track and teal wall, inflatable white/pink pentagon gates with red bases, lit tower gates, a pink/yellow frame gate, a canopy roof with floodlights and corner video boards. The drone climbs the end stands (0-2 s), goes through a purple/yellow-lit concourse opening (3-4 s, two other lit racing drones visible), returns over the bowl and dives to the field (5-7 s), flies along the south sideline through a pentagon gate (8.3 s), climbs into the far-end stands and an upper concourse (9-11.5 s), flips back out over the stands (12.5-13.5 s), descends past a tower gate to the field (14.6-15.6 s), turns hard on the track (16.7-17.7 s), runs along the sideline toward the tunnel (18.8 s) and enters a purple service tunnel under the stands (19.8-24 s). A broadcast lower-third panel and the drone's own red propellers are visible at fixed screen positions in every frame.\n\nGeometry: rounded-rectangle (superellipse) stadium built from a few ribbon bands (wall, lower bowl, suite fascia with window texture, mezzanine, upper deck, canopy, facade), two concourse openings, primitive gates (pentagon = 5 boxes + bases, tower = 4 columns + platform, frame gates), corner boards as box + emissive panels, a box-section tunnel with a bend, procedural seat/grass/dash textures, point-cloud city lights. Two opponent drones (pink, green LEDs) follow the same racing line ahead of the camera. The camera carries proxy propeller blobs and a plain (text-free) lower-third panel.\n\nCamera/timing: camera path is a centripetal Catmull-Rom spline through one keyframe per reference sample (positions, look targets, roll), then a tunnel-centreline parametrisation from 19.82 s. All state is computed analytically from time; 720 frames at 29.97 fps.\n\nInference vs observation: gate positions, the global course layout, stadium dimensions and the path between samples are inferred; several samples (12.5 s, 13.5 s, 20.9 s) are heavily blurred so their poses are rough guesses. Round 001 render feedback (24 paired frames) was received. Revisions in round 002: fixed the tunnel bend (straight wall extensions blocked the corridor at 20.9-21.9 s; walls are now mitred), darkened the tunnel, suite fascia, canopy and trims to match the night exposure, pointed the 4.2 s camera out into the purple concourse structure, pitched the 9.4 s camera up toward the canopy and video board, moved 12.5 s and 13.5 s poses closer to the stands, corrected the 17.7 s roll (track running up the frame), moved concourse stairs to the image-left side at 11.5 s. Remaining: global course layout and blurred-sample poses are still inferred; the reference fisheye distortion, motion blur and broadcast text are not reproduced.\n\nRound 002 feedback received (24 pairs): tunnel bend now reads as a continuous corridor and overall exposure is closer. Round 003 changes: brighter purple concourse ceiling for the 3-4.5 s structure views; 12.5 s and 13.5 s poses now skim the SW stands/fascia instead of overlooking the whole bowl. Remaining discrepancies: tower gate B2 appears larger/closer at 7.3 s than the reference pole, the 9.4 s video board sits higher/further right than observed, the 17.7 s gate is not overhead as in the reference, and reference fisheye distortion/motion blur are not modelled.\n\nRound 003 feedback received (24 pairs): the concourse views at 3-4.5 s now read purple, but the 12.5 s and 13.5 s poses still show a wider bowl view than the blurred close-up references. Submitting round 003 as the final scene; those two heavily blurred samples, the gate/board placement differences noted above, and the inferred global course layout remain unverified approximations."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     2.88,
+     8.89,
+     14.89,
+     20.9
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 2,
+    "inspection_only_decisions": 1,
+    "render_attempts": 3,
+    "infrastructure_retries": 0,
+    "model_turns": 4,
+    "provider_responses": 0
+   }
+  }
+ }
+}

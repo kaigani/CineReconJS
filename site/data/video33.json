@@ -1,0 +1,109 @@
+{
+ "id": "video33",
+ "n": 33,
+ "reference": {
+  "video": "media/ref/video33.mp4",
+  "poster": "media/poster/ref/video33_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 1122,
+  "fps": 60.0,
+  "duration": 18.7
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video33.mp4",
+   "poster": "media/poster/opus-5-5/video33_0.jpg",
+   "scene": "media/scene/opus-5-5/video33.mjs",
+   "final_round": "003",
+   "scene_sha256": "feb22fedf4cf8cdd31e3c99968a3fb22be4d1367ad36efdb5ce2da5a9adce196",
+   "video_sha256": "ccaebff61d6ae748d180472936bd4d16edd6eba13493c02932451de2e39564a8",
+   "stop": "model_submit",
+   "revisions": 2,
+   "renders": 3,
+   "infra_retries": 0,
+   "turns": 4,
+   "pauses": 1,
+   "inferences": 59,
+   "output_tokens": 189586,
+   "cost": 8.15,
+   "cost_1h": 9.41,
+   "elapsed_seconds": 12385,
+   "submit_reason": "Camera, subject positions, occlusions, pack hand-off and timing match the reference at all 24 samples; remaining differences are proxy-level appearance details.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene with fitted follow camera, goose/pack/woman articulation and background layout.",
+     "rendered": true,
+     "report": "L1 / Proxy reconstruction - CineRecon Three.js sampled-frame baseline (video33, 1280x720, 60 fps, 1122 frames, 18.7 s)\n\nContent (inferred from the 24 timestamped reference samples): one continuous high-angle follow-camera shot, no cuts. A white goose carries a two-roll toilet-paper pack in its beak leftward along a grey street that ends at a dark tiled roof ridge (the roof and brick chimneys sit in the foreground and partly hide the goose around 6.0-7.5 s). A woman (purple sleeves, maroon vest, brown trousers) walks right along the far side of the street from about 7 s, notices the goose at about 10.5 s (thought bubble showing the pack), turns and rushes toward it, bends at about 13 s to pick up the pack the goose dropped, then walks right toward the market stall carrying it while the goose honks and flaps its wings and follows. Background: market stall (red-clothed table with blue trays, toilet-roll stack, A-board, black crates, plant cart), grass patch with curb, bench, lamp pole, green post, puddle, brick building, and a girl kicking a football.\n\nGeometry: boxes, spheres, cylinders, cones and flat polygons only. The goose has a body, neck, head and beak, two legs and two wings as separate parts. The woman has a pelvis, two-segment legs, a bendable torso, a head with hair, and two-segment arms. The pack is two cylinders with a band. Chimneys are brick boxes with a cap and pots. The roof is a set of sloped slabs along a ridge polyline, and the street polygon is clipped at the ridge.\n\nArticulation: goose leg swing and body waddle are tied to the distance walked; the neck tilts (carrying vs. upright), the head lifts during honks, and the wings spread and flap at about 13.5-14.2, 15.1-15.8 and 16.7-18.1 s. Woman: walking/running gait from the distance walked, a torso bend and knee crouch for the pick-up (12.7-13.65 s), and the left arm holding the pack afterwards. Girl: one kick at about 8.9 s, and the ball rolls after it.\n\nCamera and timing: I fitted a perspective camera (vertical FOV 9.9 deg, pitch about 25-28 deg, yaw rotating from about 8 to 32 deg and back to 20 deg, distance zooming from 14 to 20 to 12 units) to static landmarks I marked by hand in all 24 samples (my own least-squares fit). It is interpolated with monotone cubic curves at the sample timestamps. Subject positions come from back-projecting the subjects' ground-contact pixels through the fitted cameras. Every state is computed from absolute time.\n\nObserved vs. inferred: the positions, poses and camera at the 24 sample times are estimated from the reference images. Motion between samples is inferred: walking cadence, the exact timing of the pack drop (about 12.5 s) and pick-up (about 13.3 s), the start of the wing flaps, and the woman's path before she enters the frame.\n\nFeedback: none received yet (initial submission). No render has been inspected."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix colours, goose/chimney/pack scale, ridge position, woman proportions and pick-up layout from round-1 feedback.",
+     "rendered": true,
+     "report": "L1 / Proxy reconstruction - CineRecon Three.js sampled-frame baseline (video33, 1280x720, 60 fps, 1122 frames, 18.7 s)\n\nContent (inferred from the 24 timestamped reference samples): one continuous high-angle follow-camera shot, no cuts. A white goose carries a two-roll toilet-paper pack in its beak leftward along a grey street that ends at a dark tiled roof ridge (the roof and brick chimneys sit in the foreground and partly hide the goose around 6.0-7.5 s). A woman (purple sleeves, maroon vest, brown trousers) walks right along the far side of the street from about 7 s, notices the goose at about 10.5 s (thought bubble showing the pack), turns and rushes toward it, bends at about 13 s to pick up the pack the goose dropped, then walks right toward the market stall carrying it while the goose honks and flaps its wings and follows. Background: market stall (red-clothed table with blue trays, toilet-roll stack, A-board, black crates, plant cart), grass patch with curb, bench, lamp pole, green post, puddle, brick building, and a girl kicking a football.\n\nGeometry: boxes, spheres, cylinders, cones and flat polygons only. The goose has a body, neck, head and beak, two legs and two wings as separate parts. The woman has a pelvis, two-segment legs, a bendable torso, a head with hair, and two-segment arms. The pack is two cylinders with a band. Chimneys are brick boxes with a cap and pots. The roof is a set of sloped slabs along a ridge polyline, and the street polygon is clipped at the ridge.\n\nArticulation: goose leg swing and body waddle are tied to the distance walked; the neck tilts (carrying vs. upright), the head lifts during honks, and the wings spread and flap at about 13.5-14.2, 15.1-15.8 and 16.7-18.1 s. Woman: walking/running gait from the distance walked, a torso bend and knee crouch for the pick-up (12.7-13.65 s), and the left arm holding the pack afterwards. Girl: one kick at about 8.9 s, and the ball rolls after it.\n\nCamera and timing: I fitted a perspective camera (vertical FOV 9.9 deg, pitch about 25-28 deg, yaw rotating from about 8 to 32 deg and back to 20 deg, distance zooming from 14 to 20 to 12 units) to static landmarks I marked by hand in all 24 samples (my own least-squares fit). It is interpolated with monotone cubic curves at the sample timestamps. Subject positions come from back-projecting the subjects' ground-contact pixels through the fitted cameras. Every state is computed from absolute time.\n\nObserved vs. inferred: the positions, poses and camera at the 24 sample times are estimated from the reference images. Motion between samples is inferred: walking cadence, the exact timing of the pack drop (about 12.5 s) and pick-up (about 13.3 s), the start of the wing flaps, and the woman's path before she enters the frame.\n\nFeedback received: round 001 render (24 paired reference/render frames). Camera framing, subject positions and timing were broadly aligned. Revisions in round 002: colours and lighting darkened and desaturated to match sampled reference pixels; goose body shortened and goose scaled down; pack and chimneys (body, cap, pots) made smaller; ridge line moved back to match the reference roof edge (more roof occlusion at about 7.3 s); woman torso and hair widened; thought bubble enlarged; pack drop point moved to the goose's image-right and the woman's pick-up and step-back positions adjusted; wings spread flatter; goose neck stretched forward while running at about 17 s; green post and building slimmed. Remaining: detailed chimney parapet and roof tiles omitted; shading is flat with no shadows; the woman's gesture details are approximate."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Refine dropped-pack pose/position, pick-up reach and agitated arm pose.",
+     "rendered": true,
+     "report": "L1 / Proxy reconstruction - CineRecon Three.js sampled-frame baseline (video33, 1280x720, 60 fps, 1122 frames, 18.7 s)\n\nContent (inferred from the 24 timestamped reference samples): one continuous high-angle follow-camera shot, no cuts. A white goose carries a two-roll toilet-paper pack in its beak leftward along a grey street that ends at a dark tiled roof ridge (the roof and brick chimneys sit in the foreground and partly hide the goose around 6.0-7.5 s). A woman (purple sleeves, maroon vest, brown trousers) walks right along the far side of the street from about 7 s, notices the goose at about 10.5 s (thought bubble showing the pack), turns and rushes toward it, bends at about 13 s to pick up the pack the goose dropped, then walks right toward the market stall carrying it while the goose honks and flaps its wings and follows. Background: market stall (red-clothed table with blue trays, toilet-roll stack, A-board, black crates, plant cart), grass patch with curb, bench, lamp pole, green post, puddle, brick building, and a girl kicking a football.\n\nGeometry: boxes, spheres, cylinders, cones and flat polygons only. The goose has a body, neck, head and beak, two legs and two wings as separate parts. The woman has a pelvis, two-segment legs, a bendable torso, a head with hair, and two-segment arms. The pack is two cylinders with a band. Chimneys are brick boxes with a cap and pots. The roof is a set of sloped slabs along a ridge polyline, and the street polygon is clipped at the ridge.\n\nArticulation: goose leg swing and body waddle are tied to the distance walked; the neck tilts (carrying vs. upright), the head lifts during honks, and the wings spread and flap at about 13.5-14.2, 15.1-15.8 and 16.7-18.1 s. Woman: walking/running gait from the distance walked, a torso bend and knee crouch for the pick-up (12.7-13.65 s), and the left arm holding the pack afterwards. Girl: one kick at about 8.9 s, and the ball rolls after it.\n\nCamera and timing: I fitted a perspective camera (vertical FOV 9.9 deg, pitch about 25-28 deg, yaw rotating from about 8 to 32 deg and back to 20 deg, distance zooming from 14 to 20 to 12 units) to static landmarks I marked by hand in all 24 samples (my own least-squares fit). It is interpolated with monotone cubic curves at the sample timestamps. Subject positions come from back-projecting the subjects' ground-contact pixels through the fitted cameras. Every state is computed from absolute time.\n\nObserved vs. inferred: the positions, poses and camera at the 24 sample times are estimated from the reference images. Motion between samples is inferred: walking cadence, the exact timing of the pack drop (about 12.5 s) and pick-up (about 13.3 s), the start of the wing flaps, and the woman's path before she enters the frame.\n\nFeedback received: round 001 render (24 paired reference/render frames). Camera framing, subject positions and timing were broadly aligned. Revisions in round 002: colours and lighting darkened and desaturated to match sampled reference pixels; goose body shortened and goose scaled down; pack and chimneys (body, cap, pots) made smaller; ridge line moved back to match the reference roof edge (more roof occlusion at about 7.3 s); woman torso and hair widened; thought bubble enlarged; pack drop point moved to the goose's image-right and the woman's pick-up and step-back positions adjusted; wings spread flatter; goose neck stretched forward while running at about 17 s; green post and building slimmed. Remaining: detailed chimney parapet and roof tiles omitted; shading is flat with no shadows; the woman's gesture details are approximate.\nFeedback received: round 002 render. The colours now match the sampled reference pixels within a few levels, the roof now occludes the goose at 7.3 s as in the reference, and the scale of the goose, chimneys and pack is closer to the reference. Revisions in round 003: the dropped pack now lies with its long side toward the camera and sits on the goose's image-right (13.0 s) as in the reference; the woman steps closer for the pick-up; her arms are held out in an agitated pose from 10.9 to 12.7 s."
+    },
+    {
+     "round": "004",
+     "action": "submit",
+     "reason": "Camera, subject positions, occlusions, pack hand-off and timing match the reference at all 24 samples; remaining differences are proxy-level appearance details.",
+     "rendered": false,
+     "report": "L1 / Proxy reconstruction - CineRecon Three.js sampled-frame baseline (video33, 1280x720, 60 fps, 1122 frames, 18.7 s)\n\nContent (inferred from the 24 timestamped reference samples): one continuous high-angle follow-camera shot, no cuts. A white goose carries a two-roll toilet-paper pack in its beak leftward along a grey street that ends at a dark tiled roof ridge (the roof and brick chimneys sit in the foreground and partly hide the goose around 6.0-7.5 s). A woman (purple sleeves, maroon vest, brown trousers) walks right along the far side of the street from about 7 s, notices the goose at about 10.5 s (thought bubble showing the pack), turns and rushes toward it, bends at about 13 s to pick up the pack the goose dropped, then walks right toward the market stall carrying it while the goose honks and flaps its wings and follows. Background: market stall (red-clothed table with blue trays, toilet-roll stack, A-board, black crates, plant cart), grass patch with curb, bench, lamp pole, green post, puddle, brick building, and a girl kicking a football.\n\nGeometry: boxes, spheres, cylinders, cones and flat polygons only. The goose has a body, neck, head and beak, two legs and two wings as separate parts. The woman has a pelvis, two-segment legs, a bendable torso, a head with hair, and two-segment arms. The pack is two cylinders with a band. Chimneys are brick boxes with a cap and pots. The roof is a set of sloped slabs along a ridge polyline, and the street polygon is clipped at the ridge.\n\nArticulation: goose leg swing and body waddle are tied to the distance walked; the neck tilts (carrying vs. upright), the head lifts during honks, and the wings spread and flap at about 13.5-14.2, 15.1-15.8 and 16.7-18.1 s. Woman: walking/running gait from the distance walked, a torso bend and knee crouch for the pick-up (12.7-13.65 s), and the left arm holding the pack afterwards. Girl: one kick at about 8.9 s, and the ball rolls after it.\n\nCamera and timing: I fitted a perspective camera (vertical FOV 9.9 deg, pitch about 25-28 deg, yaw rotating from about 8 to 32 deg and back to 20 deg, distance zooming from 14 to 20 to 12 units) to static landmarks I marked by hand in all 24 samples (my own least-squares fit). It is interpolated with monotone cubic curves at the sample timestamps. Subject positions come from back-projecting the subjects' ground-contact pixels through the fitted cameras. Every state is computed from absolute time.\n\nObserved vs. inferred: the positions, poses and camera at the 24 sample times are estimated from the reference images. Motion between samples is inferred: walking cadence, the exact timing of the pack drop (about 12.5 s) and pick-up (about 13.3 s), the start of the wing flaps, and the woman's path before she enters the frame.\n\nFeedback received: round 001 render (24 paired reference/render frames). Camera framing, subject positions and timing were broadly aligned. Revisions in round 002: colours and lighting darkened and desaturated to match sampled reference pixels; goose body shortened and goose scaled down; pack and chimneys (body, cap, pots) made smaller; ridge line moved back to match the reference roof edge (more roof occlusion at about 7.3 s); woman torso and hair widened; thought bubble enlarged; pack drop point moved to the goose's image-right and the woman's pick-up and step-back positions adjusted; wings spread flatter; goose neck stretched forward while running at about 17 s; green post and building slimmed. Remaining: detailed chimney parapet and roof tiles omitted; shading is flat with no shadows; the woman's gesture details are approximate.\nFeedback received: round 002 render. The colours now match the sampled reference pixels within a few levels, the roof now occludes the goose at 7.3 s as in the reference, and the scale of the goose, chimneys and pack is closer to the reference. Revisions in round 003: the dropped pack now lies with its long side toward the camera and sits on the goose's image-right (13.0 s) as in the reference; the woman steps closer for the pick-up; her arms are held out in an agitated pose from 10.9 to 12.7 s.\nFeedback received: round 003 render. The dropped pack now lies on the goose's image-right at 13.0 s as in the reference, and the woman holds her arms out at 11.4 s. Submitting the round-003 scene. Remaining discrepancies: the proxy figures lack the woman's rounded silhouette, her open-mouth expression and the goose's S-curved neck; the honk marks, roof tiles, the chimney brick parapet and contact shadows are not modelled; the wing-flap timing and gait between samples are inferred, not observed."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     2.24,
+     6.92,
+     11.59,
+     16.27
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 2,
+    "inspection_only_decisions": 1,
+    "render_attempts": 3,
+    "infrastructure_retries": 0,
+    "model_turns": 4,
+    "provider_responses": 0
+   }
+  }
+ }
+}

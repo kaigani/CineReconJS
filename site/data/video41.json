@@ -1,0 +1,135 @@
+{
+ "id": "video41",
+ "n": 41,
+ "reference": {
+  "video": "media/ref/video41.mp4",
+  "poster": "media/poster/ref/video41_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 211,
+  "fps": 23.976,
+  "duration": 8.8
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video41.mp4",
+   "poster": "media/poster/opus-5-5/video41_0.jpg",
+   "scene": "media/scene/opus-5-5/video41.mjs",
+   "final_round": "005",
+   "scene_sha256": "dea87202e6997a820f7cb4a9a476bbb5448cebd03f9f4cf67faf4c0a92b31c7d",
+   "video_sha256": "744c6ccff806daf284d59aeaa3fbbc26e0a0bc29c05e69c161e51f77a7bd2ec4",
+   "stop": "model_submit",
+   "revisions": 4,
+   "renders": 5,
+   "infra_retries": 0,
+   "turns": 6,
+   "pauses": 0,
+   "inferences": 31,
+   "output_tokens": 65634,
+   "cost": 2.57,
+   "cost_1h": 2.97,
+   "elapsed_seconds": 824,
+   "submit_reason": "Round 5 matches layout, head-turn articulation, camera tilt and lighting at L1 fidelity; remaining gaps are DOF blur and appearance detail.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene: OTS man foreground-left, shawled woman mid-right, head turn and camera tilt keyed to samples.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not equivalent to Blender model rankings).\n\nObserved from the 24 reference samples (0.0-8.76 s): one continuous night shot, no cuts. Over-the-shoulder framing: a man in the foreground at image-left, seen from behind, and a woman standing in the mid-ground right of center, wrapped in a red plaid shawl over a tan coat, white collar and beige trousers, against black darkness with drifting smoke and warm firelight. The man's head turns gradually toward image-right and down from about 4.6 s to 6.5 s, revealing his profile. Both subjects shift upward in frame together after about 5.3 s, which I read as a slow downward camera tilt. The woman sways slightly toward image-right (about 1-3 s) and then back. Focus moves from the woman to the man around 5.3-6.1 s.\n\nGeometry: the woman is a beige leg cylinder, a flattened frustum for the shawl with a rounded shoulder cap, two hanging side panels with fringe strips (the open front shows the trousers), shirt and coat-collar boxes, and a head group (hair ellipsoid with a face ellipsoid). The man is a dark torso box with a shoulder, and an articulated head on a neck pivot: skin skull, dark hair cap offset to the back and top, and a jaw box. There is a dark ground, soft procedural haze planes for smoke and a breath plume, and thin letterbox bars.\n\nArticulation and timing: the man's head yaw (20 to 65 deg toward image-right), pitch (-5 to -26 deg) and small lateral shift, the woman's sway and small head roll, and the camera pitch (0 to -1.6 deg) are all monotone-cubic tracks keyed at the sample timestamps (frame/fps at 24000/1001), so update(time) is absolute and deterministic. The frame count and duration follow the metadata. A deterministic flicker drives the off-screen fire point light.\n\nInference rather than observation: motion between samples, the fire position, the depth layout (man about 1.1 m from the camera, woman about 4.2 m, vertical FOV 18 deg), and the smoke paths.\n\nKnown limitations: there is no depth-of-field blur (the harness owns the renderer), so the focus pull is not reproduced. The plaid pattern is reduced to a flat red. There are no facial features, by the L1 rules.\n\nRender feedback: none received yet (initial round)."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix oversaturated lighting, visible ground horizon, oversized man head and unlit head side.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not equivalent to Blender model rankings).\n\nObserved from the 24 reference samples (0.0-8.76 s): one continuous night shot, no cuts. Over-the-shoulder framing: a man in the foreground at image-left, seen from behind, and a woman standing in the mid-ground right of center, wrapped in a red plaid shawl over a tan coat, white collar and beige trousers, against black darkness with drifting smoke and warm firelight. The man's head turns gradually toward image-right and down from about 4.6 s to 6.5 s, revealing his profile. Both subjects shift upward in frame together after about 5.3 s, which I read as a slow downward camera tilt. The woman sways slightly toward image-right (about 1-3 s) and then back. Focus moves from the woman to the man around 5.3-6.1 s.\n\nGeometry: the woman is a beige leg cylinder, a flattened frustum for the shawl with a rounded shoulder cap, two hanging side panels with fringe strips (the open front shows the trousers), shirt and coat-collar boxes, and a head group (hair ellipsoid with a face ellipsoid). The man is a dark torso box with a shoulder, and an articulated head on a neck pivot: skin skull, dark hair cap offset to the back and top, and a jaw box. There is a dark ground, soft procedural haze planes for smoke and a breath plume, and thin letterbox bars.\n\nArticulation and timing: the man's head yaw (20 to 65 deg toward image-right), pitch (-5 to -26 deg) and small lateral shift, the woman's sway and small head roll, and the camera pitch (0 to -1.6 deg) are all monotone-cubic tracks keyed at the sample timestamps (frame/fps at 24000/1001), so update(time) is absolute and deterministic. The frame count and duration follow the metadata. A deterministic flicker drives the off-screen fire point light.\n\nInference rather than observation: motion between samples, the fire position, the depth layout (man about 1.25 m from the camera, woman about 4.2 m, vertical FOV 18 deg), and the smoke paths.\n\nKnown limitations: there is no depth-of-field blur (the harness owns the renderer), so the focus pull is not reproduced. The plaid pattern is reduced to a flat red. There are no facial features, by the L1 rules.\n\nRender feedback: round 1 rendered without errors. I compared pairs 00, 14 and 23 and a full-resolution frame. The woman's placement and size already matched. Problems found: the fire light was too orange and oversaturated under ACES, so the shawl and skin turned red; the ground plane created a visible gray horizon and the background haze was too bright; the man's head was about 40 percent too wide and its camera-facing side was unlit. Round 2 revisions: less saturated warm lights and materials, an unlit near-black ground, a dimmer background haze, the man moved back to 1.25 m with a narrower head and the hair cap limited to the top and back, a side light on the camera-facing side of his head, a narrower right shawl panel, and a raised shirt collar."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Move man torso/head left, light his face side, desaturate colours, reduce late tilt.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not equivalent to Blender model rankings).\n\nObserved from the 24 reference samples (0.0-8.76 s): one continuous night shot, no cuts. Over-the-shoulder framing: a man in the foreground at image-left, seen from behind, and a woman standing in the mid-ground right of center, wrapped in a red plaid shawl over a tan coat, white collar and beige trousers, against black darkness with drifting smoke and warm firelight. The man's head turns gradually toward image-right and down from about 4.6 s to 6.5 s, revealing his profile. Both subjects shift upward in frame together after about 5.3 s, which I read as a slow downward camera tilt. The woman sways slightly toward image-right (about 1-3 s) and then back. Focus moves from the woman to the man around 5.3-6.1 s.\n\nGeometry: the woman is a beige leg cylinder, a flattened frustum for the shawl with a rounded shoulder cap, two hanging side panels with fringe strips (the open front shows the trousers), shirt and coat-collar boxes, and a head group (hair ellipsoid with a face ellipsoid). The man is a dark torso box with a shoulder, and an articulated head on a neck pivot: skin skull, dark hair cap offset to the back and top, and a jaw box. There is a dark ground, soft procedural haze planes for smoke and a breath plume, and thin letterbox bars.\n\nArticulation and timing: the man's head yaw (20 to 65 deg toward image-right), pitch (-5 to -26 deg) and small lateral shift, the woman's sway and small head roll, and the camera pitch (0 to -1.6 deg) are all monotone-cubic tracks keyed at the sample timestamps (frame/fps at 24000/1001), so update(time) is absolute and deterministic. The frame count and duration follow the metadata. A deterministic flicker drives the off-screen fire point light.\n\nInference rather than observation: motion between samples, the fire position, the depth layout (man about 1.25 m from the camera, woman about 4.2 m, vertical FOV 18 deg), and the smoke paths.\n\nKnown limitations: there is no depth-of-field blur (the harness owns the renderer), so the focus pull is not reproduced. The plaid pattern is reduced to a flat red. There are no facial features, by the L1 rules.\n\nRender feedback: round 1 rendered without errors. The woman's placement already matched. Its problems were oversaturated orange lighting, a visible ground horizon, an oversized man's head and an unlit side of his head; round 2 fixed these (less saturated lights, an unlit dark ground, the man moved to 1.25 m with a narrower head, a side light). Round 2 also rendered without errors. Pairs 00, 14, 17 and 23 plus the full-resolution frame 210 showed that the man's shoulder sphere reached image center, his head sat about 30 px too far right late in the shot, his camera-facing face side was still too dark and red, the woman's hair and shawl were still orange-tinted, and the late camera tilt overshot slightly. Round 3 revisions: the torso and shoulder moved left under the head, the head x track was shifted left and the final yaw reduced to about 60 deg, the side light on the man's face strengthened and neutralized, skin, hair and shawl albedos desaturated, and the final camera tilt reduced to -1.4 deg."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Relight man from front-right so back of head stays dark; darker hair.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not equivalent to Blender model rankings).\n\nObserved from the 24 reference samples (0.0-8.76 s): one continuous night shot, no cuts. Over-the-shoulder framing: a man in the foreground at image-left, seen from behind, and a woman standing in the mid-ground right of center, wrapped in a red plaid shawl over a tan coat, white collar and beige trousers, against black darkness with drifting smoke and warm firelight. The man's head turns gradually toward image-right and down from about 4.6 s to 6.5 s, revealing his profile. Both subjects shift upward in frame together after about 5.3 s, which I read as a slow downward camera tilt. The woman sways slightly toward image-right (about 1-3 s) and then back. Focus moves from the woman to the man around 5.3-6.1 s.\n\nGeometry: the woman is a beige leg cylinder, a flattened frustum for the shawl with a rounded shoulder cap, two hanging side panels with fringe strips (the open front shows the trousers), shirt and coat-collar boxes, and a head group (hair ellipsoid with a face ellipsoid). The man is a dark torso box with a shoulder, and an articulated head on a neck pivot: skin skull, dark hair cap offset to the back and top, and a jaw box. There is a dark ground, soft procedural haze planes for smoke and a breath plume, and thin letterbox bars.\n\nArticulation and timing: the man's head yaw (20 to 65 deg toward image-right), pitch (-5 to -26 deg) and small lateral shift, the woman's sway and small head roll, and the camera pitch (0 to -1.6 deg) are all monotone-cubic tracks keyed at the sample timestamps (frame/fps at 24000/1001), so update(time) is absolute and deterministic. The frame count and duration follow the metadata. A deterministic flicker drives the off-screen fire point light.\n\nInference rather than observation: motion between samples, the fire position, the depth layout (man about 1.25 m from the camera, woman about 4.2 m, vertical FOV 18 deg), and the smoke paths.\n\nKnown limitations: there is no depth-of-field blur (the harness owns the renderer), so the focus pull is not reproduced. The plaid pattern is reduced to a flat red. There are no facial features, by the L1 rules.\n\nRender feedback, round 3 (rendered without errors; pairs 00, 15 and 23 inspected): the side light sat between the camera and the man, so it lit the back of his head and the hair read as skin-bright. The reference shows a dark back of head with only the right edge, and later the face, lit. Round 4 revisions: the side light moved in front of and to the right of the man, its intensity lowered, and the hair and skin albedos darkened."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Light camera-facing side of man face after the turn; rounded dark torso.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not equivalent to Blender model rankings).\n\nObserved from the 24 reference samples (0.0-8.76 s): one continuous night shot, no cuts. Over-the-shoulder framing: a man in the foreground at image-left, seen from behind, and a woman standing in the mid-ground right of center, wrapped in a red plaid shawl over a tan coat, white collar and beige trousers, against black darkness with drifting smoke and warm firelight. The man's head turns gradually toward image-right and down from about 4.6 s to 6.5 s, revealing his profile. Both subjects shift upward in frame together after about 5.3 s, which I read as a slow downward camera tilt. The woman sways slightly toward image-right (about 1-3 s) and then back. Focus moves from the woman to the man around 5.3-6.1 s.\n\nGeometry: the woman is a beige leg cylinder, a flattened frustum for the shawl with a rounded shoulder cap, two hanging side panels with fringe strips (the open front shows the trousers), shirt and coat-collar boxes, and a head group (hair ellipsoid with a face ellipsoid). The man is a dark rounded torso cylinder with a shoulder, and an articulated head on a neck pivot: skin skull, dark hair cap offset to the back and top, and a jaw box. There is a dark ground, soft procedural haze planes for smoke and a breath plume, and thin letterbox bars.\n\nArticulation and timing: the man's head yaw (20 to 65 deg toward image-right), pitch (-5 to -26 deg) and small lateral shift, the woman's sway and small head roll, and the camera pitch (0 to -1.6 deg) are all monotone-cubic tracks keyed at the sample timestamps (frame/fps at 24000/1001), so update(time) is absolute and deterministic. The frame count and duration follow the metadata. A deterministic flicker drives the off-screen fire point light.\n\nInference rather than observation: motion between samples, the fire position, the depth layout (man about 1.25 m from the camera, woman about 4.2 m, vertical FOV 18 deg), and the smoke paths.\n\nKnown limitations: there is no depth-of-field blur (the harness owns the renderer), so the focus pull is not reproduced. The plaid pattern is reduced to a flat red. There are no facial features, by the L1 rules.\n\nRender feedback, round 3 (rendered without errors; pairs 00, 15 and 23 inspected): the side light sat between the camera and the man, so it lit the back of his head and the hair read as skin-bright. The reference shows a dark back of head with only the right edge, and later the face, lit. Round 4 revisions: the side light moved in front of and to the right of the man, its intensity lowered, and the hair and skin albedos darkened.\nRender feedback, round 4 (rendered without errors; pairs 00, 13 and 23 inspected): the early frames now matched well, with a dark back of head and a lit right edge. In the late frames the camera-facing temple and cheek were too dark compared with the reference, and the torso box's lit right face read as a pale vertical strip. Round 5 revisions: the side light moved level with the man's head and to his right, and the torso became a dark rounded cylinder."
+    },
+    {
+     "round": "006",
+     "action": "submit",
+     "reason": "Round 5 matches layout, head-turn articulation, camera tilt and lighting at L1 fidelity; remaining gaps are DOF blur and appearance detail.",
+     "rendered": false,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not equivalent to Blender model rankings).\n\nObserved from the 24 reference samples (0.0-8.76 s): one continuous night shot, no cuts. Over-the-shoulder framing: a man in the foreground at image-left, seen from behind, and a woman standing in the mid-ground right of center, wrapped in a red plaid shawl over a tan coat, white collar and beige trousers, against black darkness with drifting smoke and warm firelight. The man's head turns gradually toward image-right and down from about 4.6 s to 6.5 s, revealing his profile. Both subjects shift upward in frame together after about 5.3 s, which I read as a slow downward camera tilt. The woman sways slightly toward image-right (about 1-3 s) and then back. Focus moves from the woman to the man around 5.3-6.1 s.\n\nGeometry: the woman is a beige leg cylinder, a flattened frustum for the shawl with a rounded shoulder cap, two hanging side panels with fringe strips (the open front shows the trousers), shirt and coat-collar boxes, and a head group (hair ellipsoid with a face ellipsoid). The man is a dark rounded torso cylinder with a shoulder, and an articulated head on a neck pivot: skin skull, dark hair cap offset to the back and top, and a jaw box. There is a dark ground, soft procedural haze planes for smoke and a breath plume, and thin letterbox bars.\n\nArticulation and timing: the man's head yaw (20 to 65 deg toward image-right), pitch (-5 to -26 deg) and small lateral shift, the woman's sway and small head roll, and the camera pitch (0 to -1.6 deg) are all monotone-cubic tracks keyed at the sample timestamps (frame/fps at 24000/1001), so update(time) is absolute and deterministic. The frame count and duration follow the metadata. A deterministic flicker drives the off-screen fire point light.\n\nInference rather than observation: motion between samples, the fire position, the depth layout (man about 1.25 m from the camera, woman about 4.2 m, vertical FOV 18 deg), and the smoke paths.\n\nKnown limitations: there is no depth-of-field blur (the harness owns the renderer), so the focus pull is not reproduced. The plaid pattern is reduced to a flat red. There are no facial features, by the L1 rules.\n\nRender feedback, round 3 (rendered without errors; pairs 00, 15 and 23 inspected): the side light sat between the camera and the man, so it lit the back of his head and the hair read as skin-bright. The reference shows a dark back of head with only the right edge, and later the face, lit. Round 4 revisions: the side light moved in front of and to the right of the man, its intensity lowered, and the hair and skin albedos darkened.\nRender feedback, round 4 (rendered without errors; pairs 00, 13 and 23 inspected): the early frames now matched well, with a dark back of head and a lit right edge. In the late frames the camera-facing temple and cheek were too dark compared with the reference, and the torso box's lit right face read as a pale vertical strip. Round 5 revisions: the side light moved level with the man's head and to his right, and the torso became a dark rounded cylinder.\nRound 5 feedback (rendered without errors; pairs 00, 16 and 23 inspected): the man's dark back of head and lit right edge early in the shot, his lit face side after the turn, his torso, the woman's placement, size and sway, and the camera tilt all match the reference at L1 fidelity. I submitted the round 5 scene.\n\nRemaining discrepancies and unverified aspects: there is no depth-of-field, so the woman stays sharp in the late frames where the reference blurs her, and the man is sharp early where the reference is soft. The shawl's plaid is a flat color. The man's face has no profile features (nose and ear are omitted at L1), and the jaw box only approximates his face direction. The man's head reads about 10-20 px right of the reference late in the shot. Smoke and breath are approximate and drift on assumed paths. Motion between samples is interpolated, not observed. I inspected only a subset of the 24 feedback pairs each round."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.06,
+     3.26,
+     5.46,
+     7.66
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
+    "infrastructure_retries": 0,
+    "model_turns": 6,
+    "provider_responses": 0
+   }
+  }
+ }
+}

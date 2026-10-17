@@ -1,0 +1,135 @@
+{
+ "id": "video8",
+ "n": 8,
+ "reference": {
+  "video": "media/ref/video8.mp4",
+  "poster": "media/poster/ref/video8_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 360,
+  "fps": 30.0,
+  "duration": 12.0
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video8.mp4",
+   "poster": "media/poster/opus-5-5/video8_0.jpg",
+   "scene": "media/scene/opus-5-5/video8.mjs",
+   "final_round": "005",
+   "scene_sha256": "f57519cf531677dbcdf83c478cb08831ccd7eb27b3a32c1dbb8df8fe215198df",
+   "video_sha256": "81d45aff34aa5eee68476b8d108c9bdb086d3756ffadb7ae0b288a682eb01799",
+   "stop": "model_submit",
+   "revisions": 4,
+   "renders": 5,
+   "infra_retries": 0,
+   "turns": 6,
+   "pauses": 1,
+   "inferences": 40,
+   "output_tokens": 122506,
+   "cost": 4.79,
+   "cost_1h": 5.55,
+   "elapsed_seconds": 8924,
+   "submit_reason": "Round 005 render matches the single-shot cabin framing, dive/pull-out/level horizon timing, camera handheld motion and pilot head turn closely enough at L1; further gains would be cosmetic.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 cockpit reconstruction with dive/pull-out attitude, handheld camera and pilot head turn.",
+     "rendered": true,
+     "report": "# Report - video8, L1 proxy, CineRecon Three.js sampled-frame baseline (round 001)\n\nRepresentation level: L1 (simple geometric proxies). This is the Three.js sampled-frame baseline, not a protocol-equivalent Blender reproduction.\n\n## Observed in the 24 reference samples\n- One continuous shot (no cuts), 12 s / 360 frames at 30 fps, from the rear seat of a tandem high-wing light aircraft.\n- Main subjects: the front-seat pilot (back view: short light-brown hair, pale-green headset, black fleece top, grey-green harness straps), a black shoulder-harness strap hanging from the ceiling between camera and pilot, the cabin (cream ceiling/upper walls, red vent boxes, overhead radio console upper-left, black window frames, overhead skylight with green-tinted frame, tube-braced windscreen, cream instrument panel), and the farmland/sky outside.\n- 0-4 s: steep nose-down attitude; ground fills windscreen, side windows and (around 1.5-3.6 s) the skylight. 4-8 s: pull-out; the horizon appears first in the left window and rises, tilted higher on the right (slight right bank) and levels by ~8.8 s. 8.8-12 s: roughly level / slightly nose-up flight, horizon near mid-frame.\n- Handheld camera: tilts up and left around 1.5-2.6 s (overhead console and skylight dominant), tilts down ~4-7 s and progressively down again after 9.4 s (seat back visible at the end).\n- Pilot turns his head to his left (image left, sunglasses profile visible) from ~9.6 s to ~11 s and back to forward by ~12 s.\n\n## Model\n- Cabin built from boxes/cylinders in an aircraft group; the camera is a child of that group (eye at the cabin origin, vertical FOV 70 deg).\n- Pilot: hip-pivot group (torso box, shoulder cylinder, collar), articulated head group (skin/hair spheres, sunglasses and nose boxes, headset cups and band) with keyframed head yaw; torso lean keyframed.\n- Outside: large ground plane with an in-memory seeded procedural farmland DataTexture (fields, tree lines, woods, creeks, ponds, buildings, roads), linear haze fog, vertex-coloured sky dome.\n- Animation: aircraft pitch/bank/heading and camera-in-cabin pitch/yaw are Hermite-interpolated keyframes at the sample timestamps, estimated from horizon height/tilt and from the image positions of the instrument panel and pilot head. Everything is an absolute function of time.\n\n## Inference vs evidence\nThe attitudes between samples, the heading change during the dive (the ground layout is generic, not matched), the exact lens FOV and cabin dimensions are inferred. No render feedback has been received yet for this initial version."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix strap orientation, pilot torso/head proxies, seat height, console and outdoor colours after round 1 feedback.",
+     "rendered": true,
+     "report": "# Report - video8, L1 proxy, CineRecon Three.js sampled-frame baseline (round 002)\n\nRepresentation level: L1 (simple geometric proxies). Three.js sampled-frame baseline; not equivalent to Blender model rankings.\n\n## Observed in the 24 reference samples\n- One continuous shot (no cuts), 12 s / 360 frames at 30 fps, from the rear seat of a tandem high-wing light aircraft looking forward over the front pilot.\n- Subjects: front-seat pilot (back view, light-brown hair, pale-green headset, black fleece, dark harness straps), a black shoulder-harness strap hanging from the ceiling between camera and pilot, the cabin (cream ceiling/upper walls, red vent boxes, overhead radio console upper-left, black window frames, skylight with green frame, tube-braced windscreen, cream instrument panel, front seat back) and the farmland/sky outside.\n- 0-4 s steep nose-down attitude (ground in windscreen, side windows and, ~1.5-3.6 s, the skylight); 4-8 s pull-out with the horizon appearing in the left window first and tilted higher on the right (slight right bank); ~8.8-12 s near-level flight with the horizon near mid-frame.\n- Handheld camera tilts up/left ~1.5-2.6 s, down ~4-7 s and progressively down after ~9.4 s.\n- Pilot turns his head to his left (image left; sunglasses profile) ~9.6-11 s and back to forward by ~12 s.\n\n## Model\n- Cabin of boxes/cylinders in an aircraft group; camera child of the cabin (eye at origin, vertical FOV 70 deg).\n- Pilot: hip-pivot group (torso box, rounded shoulder cylinder, collar, neck, harness straps) with keyframed lean; head group (hair skull, face, sunglasses, nose, headset cups/band, mic) with keyframed yaw for the head turn.\n- Outside: ground plane with an in-memory seeded procedural farmland DataTexture, haze fog, vertex-coloured sky dome.\n- Aircraft pitch/bank/heading and camera-in-cabin pitch/yaw are Hermite-interpolated keyframes at the sample times (from horizon height/tilt and panel/head image positions). All state is an absolute function of time.\n\n## Feedback received and revisions\nRound 001 render feedback (24 paired frames) showed: horizon height/tilt and overall cabin framing broadly matching; the ceiling strap rendered edge-on (orientation bug), pilot shoulders too high and torso too boxy with oversized bright harness block, front seat back far too high and bright, head reading as a skin ball, overhead console dominated by a dark strip, overly green ground with heavy black creek lines, pale sky. Round 002 fixes the strap orientation/width, lowers and rounds the shoulders, darkens/narrows harness straps, lowers and greys the seat, rebuilds the head (hair skull, face, neck), adds console knobs, removes the skylight centre rib, retunes ground palette and sky gradient, and thins window frames and the coiled cord.\n\n## Remaining uncertainties\nAttitudes between samples, heading change during the dive, ground layout (generic, not matched), lens FOV and exact cabin dimensions are inferred; the reference lens distortion is not modelled."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Add camera roll, refine pull-out horizon, seat/shoulder/panel proportions after round 2 feedback.",
+     "rendered": true,
+     "report": "# Report - video8, L1 proxy, CineRecon Three.js sampled-frame baseline (round 003)\n\nRepresentation level: L1 (simple geometric proxies). Three.js sampled-frame baseline; not equivalent to Blender model rankings.\n\n## Observed in the 24 reference samples\n- One continuous shot (no cuts), 12 s / 360 frames at 30 fps, from the rear seat of a tandem high-wing light aircraft looking forward over the front pilot.\n- Subjects: front-seat pilot (back view, light-brown hair, pale-green headset, black fleece, dark harness straps), a black shoulder-harness strap hanging from the ceiling between camera and pilot, the cabin (cream ceiling/upper walls, red vent boxes, overhead radio console upper-left, black window frames, skylight with green frame, tube-braced windscreen, cream instrument panel, front seat back) and the farmland/sky outside.\n- 0-4 s steep nose-down attitude (ground in windscreen, side windows and, ~1.5-3.6 s, the skylight); 4-8 s pull-out with the horizon appearing in the left window first and tilted higher on the right (slight right bank); ~8.8-12 s near-level flight with the horizon near mid-frame.\n- Handheld camera tilts up/left ~1.5-2.6 s, down ~4-7 s and progressively down after ~9.4 s.\n- Pilot turns his head to his left (image left; sunglasses profile) ~9.6-11 s and back to forward by ~12 s.\n\n## Model\n- Cabin of boxes/cylinders in an aircraft group; camera child of the cabin (eye at origin, vertical FOV 70 deg).\n- Pilot: hip-pivot group (torso box, rounded shoulder cylinder, collar, neck, harness straps) with keyframed lean; head group (hair skull, face, sunglasses, nose, headset cups/band, mic) with keyframed yaw for the head turn.\n- Outside: ground plane with an in-memory seeded procedural farmland DataTexture, haze fog, vertex-coloured sky dome.\n- Aircraft pitch/bank/heading and camera-in-cabin pitch/yaw are Hermite-interpolated keyframes at the sample times (from horizon height/tilt and panel/head image positions). All state is an absolute function of time.\n\n## Feedback received and revisions\nRound 001 render feedback (24 paired frames) showed: horizon height/tilt and overall cabin framing broadly matching; the ceiling strap rendered edge-on (orientation bug), pilot shoulders too high and torso too boxy with oversized bright harness block, front seat back far too high and bright, head reading as a skin ball, overhead console dominated by a dark strip, overly green ground with heavy black creek lines, pale sky. Round 002 fixes the strap orientation/width, lowers and rounds the shoulders, darkens/narrows harness straps, lowers and greys the seat, rebuilds the head (hair skull, face, neck), adds console knobs, removes the skylight centre rib, retunes ground palette and sky gradient, and thins window frames and the coiled cord.\n\n## Remaining uncertainties\nAttitudes between samples, heading change during the dive, ground layout (generic, not matched), lens FOV and exact cabin dimensions are inferred; the reference lens distortion is not modelled.\n\nRound 002 feedback: strap now reads correctly; remaining issues were a horizon that sat slightly too low/over-tilted in the pull-out (6.2-7.8 s), the front seat back still too high and bright, shoulders slightly low, an over-prominent instrument panel, oversized red boxes, and missing camera roll relative to the cabin (clearly visible around 0.5 s). Round 003 adds a keyframed camera roll track (with the aircraft bank compensated so the measured horizon tilt is preserved), steepens the pull-out pitch by 2-2.5 deg at 6.2-7.8 s, lowers/darkens the seat back, raises the shoulders, shrinks and greys the gauges, shrinks the red boxes, and darkens the hair."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Steeper pull-out pitch at 4-7 s to match horizon height; rounder shoulders, lower seat.",
+     "rendered": true,
+     "report": "# Report - video8, L1 proxy, CineRecon Three.js sampled-frame baseline (round 004)\n\nRepresentation level: L1 (simple geometric proxies). Three.js sampled-frame baseline; not equivalent to Blender model rankings.\n\n## Observed in the 24 reference samples\n- One continuous shot (no cuts), 12 s / 360 frames at 30 fps, from the rear seat of a tandem high-wing light aircraft looking forward over the front pilot.\n- Subjects: front-seat pilot (back view, light-brown hair, pale-green headset, black fleece, dark harness straps), a black shoulder-harness strap hanging from the ceiling between camera and pilot, the cabin (cream ceiling/upper walls, red vent boxes, overhead radio console upper-left, black window frames, skylight with green frame, tube-braced windscreen, cream instrument panel, front seat back) and the farmland/sky outside.\n- 0-4 s steep nose-down attitude (ground in windscreen, side windows and, ~1.5-3.6 s, the skylight); 4-8 s pull-out with the horizon appearing in the left window first and tilted higher on the right (slight right bank); ~8.8-12 s near-level flight with the horizon near mid-frame.\n- Handheld camera tilts up/left ~1.5-2.6 s, down ~4-7 s and progressively down after ~9.4 s.\n- Pilot turns his head to his left (image left; sunglasses profile) ~9.6-11 s and back to forward by ~12 s.\n\n## Model\n- Cabin of boxes/cylinders in an aircraft group; camera child of the cabin (eye at origin, vertical FOV 70 deg).\n- Pilot: hip-pivot group (torso box, rounded shoulder cylinder, collar, neck, harness straps) with keyframed lean; head group (hair skull, face, sunglasses, nose, headset cups/band, mic) with keyframed yaw for the head turn.\n- Outside: ground plane with an in-memory seeded procedural farmland DataTexture, haze fog, vertex-coloured sky dome.\n- Aircraft pitch/bank/heading and camera-in-cabin pitch/yaw are Hermite-interpolated keyframes at the sample times (from horizon height/tilt and panel/head image positions). All state is an absolute function of time.\n\n## Feedback received and revisions\nRound 001 render feedback (24 paired frames) showed: horizon height/tilt and overall cabin framing broadly matching; the ceiling strap rendered edge-on (orientation bug), pilot shoulders too high and torso too boxy with oversized bright harness block, front seat back far too high and bright, head reading as a skin ball, overhead console dominated by a dark strip, overly green ground with heavy black creek lines, pale sky. Round 002 fixes the strap orientation/width, lowers and rounds the shoulders, darkens/narrows harness straps, lowers and greys the seat, rebuilds the head (hair skull, face, neck), adds console knobs, removes the skylight centre rib, retunes ground palette and sky gradient, and thins window frames and the coiled cord.\n\n## Remaining uncertainties\nAttitudes between samples, heading change during the dive, ground layout (generic, not matched), lens FOV and exact cabin dimensions are inferred; the reference lens distortion is not modelled.\n\nRound 002 feedback: strap now reads correctly; remaining issues were a horizon that sat slightly too low/over-tilted in the pull-out (6.2-7.8 s), the front seat back still too high and bright, shoulders slightly low, an over-prominent instrument panel, oversized red boxes, and missing camera roll relative to the cabin (clearly visible around 0.5 s). Round 003 adds a keyframed camera roll track (with the aircraft bank compensated so the measured horizon tilt is preserved), steepens the pull-out pitch by 2-2.5 deg at 6.2-7.8 s, lowers/darkens the seat back, raises the shoulders, shrinks and greys the gauges, shrinks the red boxes, and darkens the hair.\n\nRound 003 feedback: camera roll and seat/shoulder fixes helped; during the pull-out (4.7-6.8 s) the rendered horizon was still 30-45 px too low compared with the reference (horizon not visible at 5.7 s in the reference, only at the very top at 6.2 s). Round 004 pitches the aircraft further nose-down at 4.2-7.3 s (e.g. -28 deg at 5.7 s, -21 deg at 6.2 s, -13.5 deg at 6.8 s), lowers the seat back slightly more and gives the pilot rounded, sloping shoulders."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Level-flight horizon correction at 8.3-10.4 s and simple cumulus proxies.",
+     "rendered": true,
+     "report": "# Report - video8, L1 proxy, CineRecon Three.js sampled-frame baseline (round 005)\n\nRepresentation level: L1 (simple geometric proxies). Three.js sampled-frame baseline; not equivalent to Blender model rankings.\n\n## Observed in the 24 reference samples\n- One continuous shot (no cuts), 12 s / 360 frames at 30 fps, from the rear seat of a tandem high-wing light aircraft looking forward over the front pilot.\n- Subjects: front-seat pilot (back view, light-brown hair, pale-green headset, black fleece, dark harness straps), a black shoulder-harness strap hanging from the ceiling between camera and pilot, the cabin (cream ceiling/upper walls, red vent boxes, overhead radio console upper-left, black window frames, skylight with green frame, tube-braced windscreen, cream instrument panel, front seat back) and the farmland/sky outside.\n- 0-4 s steep nose-down attitude (ground in windscreen, side windows and, ~1.5-3.6 s, the skylight); 4-8 s pull-out with the horizon appearing in the left window first and tilted higher on the right (slight right bank); ~8.8-12 s near-level flight with the horizon near mid-frame.\n- Handheld camera tilts up/left ~1.5-2.6 s, down ~4-7 s and progressively down after ~9.4 s.\n- Pilot turns his head to his left (image left; sunglasses profile) ~9.6-11 s and back to forward by ~12 s.\n\n## Model\n- Cabin of boxes/cylinders in an aircraft group; camera child of the cabin (eye at origin, vertical FOV 70 deg).\n- Pilot: hip-pivot group (torso box, rounded shoulder cylinder, collar, neck, harness straps) with keyframed lean; head group (hair skull, face, sunglasses, nose, headset cups/band, mic) with keyframed yaw for the head turn.\n- Outside: ground plane with an in-memory seeded procedural farmland DataTexture, haze fog, vertex-coloured sky dome.\n- Aircraft pitch/bank/heading and camera-in-cabin pitch/yaw are Hermite-interpolated keyframes at the sample times (from horizon height/tilt and panel/head image positions). All state is an absolute function of time.\n\n## Feedback received and revisions\nRound 001 render feedback (24 paired frames) showed: horizon height/tilt and overall cabin framing broadly matching; the ceiling strap rendered edge-on (orientation bug), pilot shoulders too high and torso too boxy with oversized bright harness block, front seat back far too high and bright, head reading as a skin ball, overhead console dominated by a dark strip, overly green ground with heavy black creek lines, pale sky. Round 002 fixes the strap orientation/width, lowers and rounds the shoulders, darkens/narrows harness straps, lowers and greys the seat, rebuilds the head (hair skull, face, neck), adds console knobs, removes the skylight centre rib, retunes ground palette and sky gradient, and thins window frames and the coiled cord.\n\n## Remaining uncertainties\nAttitudes between samples, heading change during the dive, ground layout (generic, not matched), lens FOV and exact cabin dimensions are inferred; the reference lens distortion is not modelled.\n\nRound 002 feedback: strap now reads correctly; remaining issues were a horizon that sat slightly too low/over-tilted in the pull-out (6.2-7.8 s), the front seat back still too high and bright, shoulders slightly low, an over-prominent instrument panel, oversized red boxes, and missing camera roll relative to the cabin (clearly visible around 0.5 s). Round 003 adds a keyframed camera roll track (with the aircraft bank compensated so the measured horizon tilt is preserved), steepens the pull-out pitch by 2-2.5 deg at 6.2-7.8 s, lowers/darkens the seat back, raises the shoulders, shrinks and greys the gauges, shrinks the red boxes, and darkens the hair.\n\nRound 003 feedback: camera roll and seat/shoulder fixes helped; during the pull-out (4.7-6.8 s) the rendered horizon was still 30-45 px too low compared with the reference (horizon not visible at 5.7 s in the reference, only at the very top at 6.2 s). Round 004 pitches the aircraft further nose-down at 4.2-7.3 s (e.g. -28 deg at 5.7 s, -21 deg at 6.2 s, -13.5 deg at 6.8 s), lowers the seat back slightly more and gives the pilot rounded, sloping shoulders.\n\nRound 004 feedback: pull-out horizon now matches the reference closely at 5.2-6.8 s. In the level phase (8.8-10.4 s) the rendered horizon sat 12-25 px low. Round 005 lowers the nose 1.5-3.5 deg at 8.3-10.4 s and adds seeded procedural cumulus (flattened white ellipsoid clusters) above the aircraft, since the reference sky shows scattered clouds near the horizon."
+    },
+    {
+     "round": "006",
+     "action": "submit",
+     "reason": "Round 005 render matches the single-shot cabin framing, dive/pull-out/level horizon timing, camera handheld motion and pilot head turn closely enough at L1; further gains would be cosmetic.",
+     "rendered": false,
+     "report": "# Report - video8, L1 proxy, CineRecon Three.js sampled-frame baseline (final, submitted round 005 render)\n\nRepresentation level: L1 (simple geometric proxies). Three.js sampled-frame baseline; not equivalent to Blender model rankings.\n\n## Observed in the 24 reference samples\n- One continuous shot (no cuts), 12 s / 360 frames at 30 fps, from the rear seat of a tandem high-wing light aircraft looking forward over the front pilot.\n- Subjects: front-seat pilot (back view, light-brown hair, pale-green headset, black fleece, dark harness straps), a black shoulder-harness strap hanging from the ceiling between camera and pilot, the cabin (cream ceiling/upper walls, red vent boxes, overhead radio console upper-left, black window frames, skylight with green frame, tube-braced windscreen, cream instrument panel, front seat back) and the farmland/sky outside.\n- 0-4 s steep nose-down attitude (ground in windscreen, side windows and, ~1.5-3.6 s, the skylight); 4-8 s pull-out with the horizon appearing in the left window first and tilted higher on the right (slight right bank); ~8.8-12 s near-level flight with the horizon near mid-frame.\n- Handheld camera tilts up/left ~1.5-2.6 s, down ~4-7 s and progressively down after ~9.4 s.\n- Pilot turns his head to his left (image left; sunglasses profile) ~9.6-11 s and back to forward by ~12 s.\n\n## Model\n- Cabin of boxes/cylinders in an aircraft group; camera child of the cabin (eye at origin, vertical FOV 70 deg).\n- Pilot: hip-pivot group (torso box, rounded shoulder cylinder, collar, neck, harness straps) with keyframed lean; head group (hair skull, face, sunglasses, nose, headset cups/band, mic) with keyframed yaw for the head turn.\n- Outside: ground plane with an in-memory seeded procedural farmland DataTexture, haze fog, vertex-coloured sky dome.\n- Aircraft pitch/bank/heading and camera-in-cabin pitch/yaw are Hermite-interpolated keyframes at the sample times (from horizon height/tilt and panel/head image positions). All state is an absolute function of time.\n\n## Feedback received and revisions\nRound 001 render feedback (24 paired frames) showed: horizon height/tilt and overall cabin framing broadly matching; the ceiling strap rendered edge-on (orientation bug), pilot shoulders too high and torso too boxy with oversized bright harness block, front seat back far too high and bright, head reading as a skin ball, overhead console dominated by a dark strip, overly green ground with heavy black creek lines, pale sky. Round 002 fixes the strap orientation/width, lowers and rounds the shoulders, darkens/narrows harness straps, lowers and greys the seat, rebuilds the head (hair skull, face, neck), adds console knobs, removes the skylight centre rib, retunes ground palette and sky gradient, and thins window frames and the coiled cord.\n\n## Remaining uncertainties\nAttitudes between samples, heading change during the dive, ground layout (generic, not matched), lens FOV and exact cabin dimensions are inferred; the reference lens distortion is not modelled.\n\nRound 002 feedback: strap now reads correctly; remaining issues were a horizon that sat slightly too low/over-tilted in the pull-out (6.2-7.8 s), the front seat back still too high and bright, shoulders slightly low, an over-prominent instrument panel, oversized red boxes, and missing camera roll relative to the cabin (clearly visible around 0.5 s). Round 003 adds a keyframed camera roll track (with the aircraft bank compensated so the measured horizon tilt is preserved), steepens the pull-out pitch by 2-2.5 deg at 6.2-7.8 s, lowers/darkens the seat back, raises the shoulders, shrinks and greys the gauges, shrinks the red boxes, and darkens the hair.\n\nRound 003 feedback: camera roll and seat/shoulder fixes helped; during the pull-out (4.7-6.8 s) the rendered horizon was still 30-45 px too low compared with the reference (horizon not visible at 5.7 s in the reference, only at the very top at 6.2 s). Round 004 pitches the aircraft further nose-down at 4.2-7.3 s (e.g. -28 deg at 5.7 s, -21 deg at 6.2 s, -13.5 deg at 6.8 s), lowers the seat back slightly more and gives the pilot rounded, sloping shoulders.\n\nRound 004 feedback: pull-out horizon now matches the reference closely at 5.2-6.8 s. In the level phase (8.8-10.4 s) the rendered horizon sat 12-25 px low. Round 005 lowers the nose 1.5-3.5 deg at 8.3-10.4 s and adds seeded procedural cumulus (flattened white ellipsoid clusters) above the aircraft, since the reference sky shows scattered clouds near the horizon.\n\nRound 005 feedback: level-flight horizon now within roughly 5-10 px of the reference at 8.3-9.4 s, clouds read as scattered cumulus, pull-out horizon and head turn timing match. Submitted as is.\n\nRemaining discrepancies (truthfully unresolved): the reference's wide-angle lens distortion is not modelled; around 1.5-2.6 s the reference camera looks further up/left at the overhead console than the render; the pilot's torso and head are coarse proxies (no visible arms, simplified harness hardware); the instrument panel reads brighter/cleaner than the reference; the ground is a generic procedural farmland that does not match specific reference fields, and the exact attitude/heading during the 0-4 s dive (no horizon visible) is inferred."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.44,
+     4.44,
+     7.44,
+     10.44
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
+    "infrastructure_retries": 0,
+    "model_turns": 6,
+    "provider_responses": 0
+   }
+  }
+ }
+}

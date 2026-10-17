@@ -1,0 +1,122 @@
+{
+ "id": "video31",
+ "n": 31,
+ "reference": {
+  "video": "media/ref/video31.mp4",
+  "poster": "media/poster/ref/video31_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 510,
+  "fps": 60.0,
+  "duration": 8.5
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video31.mp4",
+   "poster": "media/poster/opus-5-5/video31_0.jpg",
+   "scene": "media/scene/opus-5-5/video31.mjs",
+   "final_round": "004",
+   "scene_sha256": "b968c7e6b35f26d4b2f496ab4de8dfc60b5ff40c276052d0998d9deb6b087efb",
+   "video_sha256": "26e5bb015c68f03057c15eae0f8183c6a807af885abf0f5c1f8589603fc16c44",
+   "stop": "model_submit",
+   "revisions": 3,
+   "renders": 4,
+   "infra_retries": 0,
+   "turns": 5,
+   "pauses": 0,
+   "inferences": 38,
+   "output_tokens": 102103,
+   "cost": 4.18,
+   "cost_1h": 4.89,
+   "elapsed_seconds": 1315,
+   "submit_reason": "Round 4 render matches subject count, guard action sequence, camera route, turns and doorway reveal timing; remaining differences are canyon shape and lighting detail beyond L1 proxy scope",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene for first render",
+     "rendered": true,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy).\n\nObserved (24 reference samples, 0-8.48 s): a first-person shooter view walking through tall olive rock-canyon corridors with a bluish floor, a dark-blue rifle held at lower right. The player turns left at a corner (~0.7-1.8 s), a dark-suited guard runs into the corridor (~1.5-1.9 s), approaches while the player fires (muzzle flash, sparks ~2.2-2.9 s), drops his gun (~2.95 s), clutches his head (~3.3 s), takes a head shot with a smoke puff (~3.7 s) and falls (~4.05 s). The player turns right into a narrow canyon with a sunlit tan end wall and sky (~4.4-5.2 s), turns right again (~5.5-6.2 s), walks down a corridor with a ledge step down (~6.3-7.4 s), and approaches a pale-blue doorway with red stairs and a second guard at the top (~7.4-8.48 s).\n\nGeometry: corridors built from axis-aligned boxes (walls 14 m tall, sunlit tan bands on two far walls), floors with a raised light slab at the first corner and a 0.8 m ledge in the last corridor; pale-blue building hall with six red stair boxes and a landing. Unlit per-face shaded materials plus linear fog.\nArticulation: two guard proxies with hips, spine, head, shoulders, elbows, hips and knees; guard 1 runs, walks while aiming, reels, drops his gun (separate analytic projectile), clutches his head and falls by an axis-angle tilt about the feet. Guard 2 stands with a raised arm. Muzzle flash, spark and smoke proxies are timed deterministically.\nCamera: single continuous first-person shot (no cuts), 60 deg vertical FOV, Hermite-interpolated keyframes at every sample time (position, yaw, pitch) with small head bob; the weapon is parented to the camera.\nInference: world layout, distances, the guard's route between samples and the exact turn timings are inferred from the sampled frames; the frames between samples are analytic interpolation.\nFeedback: none received yet (initial round)."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Revised layout (left turn after sunlit wall, hidden doorway), camera timing, guard distances and colours from round 1 feedback",
+     "rendered": true,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy).\n\nObserved (24 reference samples, 0-8.48 s): first-person view through tall olive rock-canyon corridors with a bluish floor and a dark-blue rifle at lower right. The player turns left at a corner (~0.7-1.8 s) onto a raised walkway; a dark-suited guard runs in from the right side passage (~1.5-1.9 s), approaches while the player fires (muzzle flash, sparks ~2.2-2.9 s), is knocked back, drops his gun (~2.95 s), staggers forward clutching his head (~3.3-3.7 s, smoke puff) and falls (~4.05 s). The player turns right into a narrow canyon ending at a sunlit tan wall under blue sky (~4.4-5.2 s), turns left (~5.5-6.3 s), walks a darker corridor with a ledge step down (~6.3-7.5 s) and veers right past a rock fin to a pale-blue doorway with red stairs and a second guard at the top (~7.4-8.48 s).\n\nGeometry: corridors from axis-aligned boxes (14 m walls) with a seeded procedural horizontal-strata multiplier texture, sunlit tan wall faces, raised slab, 0.8 m ledge, rock fin, doorway in a rock face with a pale-blue porch, stair hall, six red steps and a landing. Unlit per-face shaded materials plus linear fog.\nArticulation: two guard proxies (hips, spine, head, shoulders, elbows, hips, knees); guard 1 runs, walks while aiming, is knocked back by hits, drops his gun (separate analytic projectile), staggers forward clutching his head and falls by an axis-angle tilt about the feet. Guard 2 stands with a raised arm. Muzzle flash, sparks and smoke are deterministic time windows.\nCamera: one continuous first-person shot (no cuts), 60 deg vertical FOV, Hermite-interpolated keyframes at every sample time (position, eye height, yaw, pitch) with small head bob; weapon parented to the camera.\nInference: world layout, distances, the guard route between samples and turn timings are inferred; between-sample frames are analytic interpolation.\n\nFeedback received: round 1 render pairs for all 24 samples. Revisions in round 2: the canyon after the sunlit wall now turns LEFT (reference shows the floor opening to the left at 5.53 s) and the final approach veers right around a rock fin so the doorway is hidden until ~7.6 s; the doorway is set in a rock face, smaller and farther, with lower stairs; first corner turn timing corrected (left wall edge positions at 1.10/1.48 s); walkway slab extended so the camera stays high while the guard approaches (guard head below centre at 3.68 s); guard knock-back distances and forward stagger adjusted; darker, desaturated wall/floor colours, stronger fog, strata texture; slimmer rifle and removed the visible proxy hand.\nRemaining/unverified: exact canyon shapes, wall irregularity and lighting pools are not reproduced; the guard's fall direction at 4.05 s is inferred."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Restore right turn after sunlit wall, refit first-corner yaw, eye height and guard distances",
+     "rendered": true,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy).\n\nObserved (24 reference samples, 0-8.48 s): first-person view through tall olive rock-canyon corridors with a bluish floor and a dark-blue rifle at lower right. The player turns left at a corner (~0.4-1.8 s) onto a slightly raised walkway; a dark-suited guard runs in from the right-hand side passage (~1.5-1.9 s), approaches while the player fires (muzzle flash, sparks ~2.2-2.9 s), is held back by hits, drops his gun (~2.95 s), staggers forward hunched and clutching his head (~3.3-3.7 s, smoke puff) and falls (~4.05 s). The player turns right into a narrow canyon ending at a sunlit tan wall under blue sky (~4.4-5.5 s), turns right again along that wall (~5.6-6.3 s), walks a darker corridor with a ledge step down (~6.3-7.5 s) and veers right past a rock fin to a doorway with a pale-blue porch, red stairs and a second guard at the top (~7.6-8.48 s).\n\nGeometry: corridors from axis-aligned boxes (14 m walls) with a seeded procedural horizontal-strata multiplier texture, sunlit tan wall faces with a shadowed part, raised slab, 0.8 m ledge, rock fin, doorway in a rock face, stair hall with six red steps and a landing. Unlit per-face shaded materials plus linear fog.\nArticulation: two guard proxies (hips, spine, head, shoulders, elbows, hips, knees); guard 1 runs, walks while aiming, reacts to hits, drops his gun (separate analytic projectile), staggers forward hunched clutching his head and falls by an axis-angle tilt about the feet. Guard 2 stands with a raised arm. Muzzle flash, sparks and smoke are deterministic time windows.\nCamera: one continuous first-person shot (no cuts), 60 deg vertical FOV, eye ~1.3 m above floor (estimated from guard foot/head positions relative to the horizon), Hermite-interpolated keyframes at every sample time (position, eye height, yaw, pitch) with small head bob; weapon parented to the camera.\nInference: world layout, distances, the guard route between samples and turn timings are inferred; between-sample frames are analytic interpolation.\n\nFeedback received: render pairs for rounds 1 and 2. Round 2 changed layout/colours/door; round 3 corrections: the turn after the sunlit wall is restored to a RIGHT turn (reference 5.53 s still faces the wall, 5.90 s shows the sunlit part at top-left), with the doorway hidden behind a fin until ~7.6 s; first-corner yaw timing re-fitted to the left-wall edge positions at 0.37-1.48 s; eye height lowered; guard distances re-fitted from image heights (about 7-8 m at 2.2 s, ~6 m at 2.6-2.95 s, ~3 m at 3.3 s); darker wall/floor colours.\nRemaining/unverified: exact canyon shapes, wall irregularity and lighting pools are not reproduced; the guard's fall direction at 4.05 s and the camera framing there are inferred."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Colour/fog tuning, narrower final corridor, guard approach timing",
+     "rendered": true,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy).\n\nObserved (24 reference samples, 0-8.48 s): first-person view through tall olive rock-canyon corridors with a bluish floor and a dark-blue rifle at lower right. The player turns left at a corner (~0.4-1.8 s) onto a slightly raised walkway; a dark-suited guard runs in from the right-hand side passage (~1.5-1.9 s), approaches while the player fires (muzzle flash, sparks ~2.2-2.9 s), is held back by hits, drops his gun (~2.95 s), staggers forward hunched and clutching his head (~3.3-3.7 s, smoke puff) and falls (~4.05 s). The player turns right into a narrow canyon ending at a sunlit tan wall under blue sky (~4.4-5.5 s), turns right again along that wall (~5.6-6.3 s), walks a darker corridor with a ledge step down (~6.3-7.5 s) and veers right past a rock fin to a doorway with a pale-blue porch, red stairs and a second guard at the top (~7.6-8.48 s).\n\nGeometry: corridors from axis-aligned boxes (14 m walls) with a seeded procedural horizontal-strata multiplier texture, sunlit tan wall faces with a shadowed part, raised slab, 0.8 m ledge, rock fin, doorway in a rock face, stair hall with six red steps and a landing. Unlit per-face shaded materials plus linear fog.\nArticulation: two guard proxies (hips, spine, head, shoulders, elbows, hips, knees); guard 1 runs, walks while aiming, reacts to hits, drops his gun (separate analytic projectile), staggers forward hunched clutching his head and falls by an axis-angle tilt about the feet. Guard 2 stands with a raised arm. Muzzle flash, sparks and smoke are deterministic time windows.\nCamera: one continuous first-person shot (no cuts), 60 deg vertical FOV, eye ~1.3 m above floor (estimated from guard foot/head positions relative to the horizon), Hermite-interpolated keyframes at every sample time (position, eye height, yaw, pitch) with small head bob; weapon parented to the camera.\nInference: world layout, distances, the guard route between samples and turn timings are inferred; between-sample frames are analytic interpolation.\n\nFeedback received: render pairs for rounds 1, 2 and 3. Round 2 changed layout/colours/door; round 3 corrections: the turn after the sunlit wall is restored to a RIGHT turn (reference 5.53 s still faces the wall, 5.90 s shows the sunlit part at top-left), with the doorway hidden behind a fin until ~7.6 s; first-corner yaw timing re-fitted to the left-wall edge positions at 0.37-1.48 s; eye height lowered; guard distances re-fitted from image heights (about 7-8 m at 2.2 s, ~6 m at 2.6-2.95 s, ~3 m at 3.3 s); darker wall/floor colours.\nRound 4 corrections (from round 3 pairs): darker, less saturated rock colours and fog; last corridor narrowed (reference shows a narrow slot at 6.6-7.0 s); guard 1 reaches ~7.5 m by 2.2 s.\nRemaining/unverified: exact canyon shapes, wall irregularity and lighting pools are not reproduced; the guard's fall direction at 4.05 s and the camera framing there are inferred."
+    },
+    {
+     "round": "005",
+     "action": "submit",
+     "reason": "Round 4 render matches subject count, guard action sequence, camera route, turns and doorway reveal timing; remaining differences are canyon shape and lighting detail beyond L1 proxy scope",
+     "rendered": false,
+     "report": "CineRecon Three.js sampled-frame baseline, representation level L1 (proxy).\n\nObserved (24 reference samples, 0-8.48 s): first-person view through tall olive rock-canyon corridors with a bluish floor and a dark-blue rifle at lower right. The player turns left at a corner (~0.4-1.8 s) onto a slightly raised walkway; a dark-suited guard runs in from the right-hand side passage (~1.5-1.9 s), approaches while the player fires (muzzle flash, sparks ~2.2-2.9 s), is held back by hits, drops his gun (~2.95 s), staggers forward hunched and clutching his head (~3.3-3.7 s, smoke puff) and falls (~4.05 s). The player turns right into a narrow canyon ending at a sunlit tan wall under blue sky (~4.4-5.5 s), turns right again along that wall (~5.6-6.3 s), walks a darker corridor with a ledge step down (~6.3-7.5 s) and veers right past a rock fin to a doorway with a pale-blue porch, red stairs and a second guard at the top (~7.6-8.48 s).\n\nGeometry: corridors from axis-aligned boxes (14 m walls) with a seeded procedural horizontal-strata multiplier texture, sunlit tan wall faces with a shadowed part, raised slab, 0.8 m ledge, rock fin, doorway in a rock face, stair hall with six red steps and a landing. Unlit per-face shaded materials plus linear fog.\nArticulation: two guard proxies (hips, spine, head, shoulders, elbows, hips, knees); guard 1 runs, walks while aiming, reacts to hits, drops his gun (separate analytic projectile), staggers forward hunched clutching his head and falls by an axis-angle tilt about the feet. Guard 2 stands with a raised arm. Muzzle flash, sparks and smoke are deterministic time windows.\nCamera: one continuous first-person shot (no cuts), 60 deg vertical FOV, eye ~1.3 m above floor (estimated from guard foot/head positions relative to the horizon), Hermite-interpolated keyframes at every sample time (position, eye height, yaw, pitch) with small head bob; weapon parented to the camera.\nInference: world layout, distances, the guard route between samples and turn timings are inferred; between-sample frames are analytic interpolation.\n\nFeedback received: render pairs for rounds 1, 2, 3 and 4. Round 2 changed layout/colours/door; round 3 corrections: the turn after the sunlit wall is restored to a RIGHT turn (reference 5.53 s still faces the wall, 5.90 s shows the sunlit part at top-left), with the doorway hidden behind a fin until ~7.6 s; first-corner yaw timing re-fitted to the left-wall edge positions at 0.37-1.48 s; eye height lowered; guard distances re-fitted from image heights (about 7-8 m at 2.2 s, ~6 m at 2.6-2.95 s, ~3 m at 3.3 s); darker wall/floor colours.\nRound 4 corrections (from round 3 pairs): darker, less saturated rock colours and fog; last corridor narrowed (reference shows a narrow slot at 6.6-7.0 s); guard 1 reaches ~7.5 m by 2.2 s.\nRound 4 pairs showed only minor remaining differences in corridor shape and lighting, so the round 4 scene is submitted.\nRemaining/unverified: the guard reads slightly small at 2.2 s; the final doorway has a flat rock face on its left where the reference has a receding curved wall; floor light pools and the porch roof wedge are missing; exact canyon shapes, wall irregularity and lighting pools are not reproduced; the guard's fall direction at 4.05 s and the camera framing there are inferred."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.02,
+     3.15,
+     5.27,
+     7.39
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 3,
+    "inspection_only_decisions": 1,
+    "render_attempts": 4,
+    "infrastructure_retries": 0,
+    "model_turns": 5,
+    "provider_responses": 0
+   }
+  }
+ }
+}

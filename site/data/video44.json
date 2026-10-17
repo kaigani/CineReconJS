@@ -1,0 +1,148 @@
+{
+ "id": "video44",
+ "n": 44,
+ "reference": {
+  "video": "media/ref/video44.mp4",
+  "poster": "media/poster/ref/video44_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 413,
+  "fps": 24.0,
+  "duration": 17.208
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video44.mp4",
+   "poster": "media/poster/opus-5-5/video44_0.jpg",
+   "scene": "media/scene/opus-5-5/video44.mjs",
+   "final_round": "006",
+   "scene_sha256": "783fb3230ff84f394b43571e9335e4f4dd7ea2480eced28be1fac47c8657019a",
+   "video_sha256": "dc8bcc1d5c2393c0469c56a97e7eaf9134a4a180d480422454c0ef67b5721da3",
+   "stop": "model_submit",
+   "revisions": 5,
+   "renders": 6,
+   "infra_retries": 0,
+   "turns": 7,
+   "pauses": 0,
+   "inferences": 39,
+   "output_tokens": 114947,
+   "cost": 4.7,
+   "cost_1h": 5.46,
+   "elapsed_seconds": 1464,
+   "submit_reason": "Round 6 render matches shot structure, camera framing, subject positions/scale, contacts and key events at L1 proxy fidelity; remaining differences are proxy appearance.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete four-shot proxy reconstruction; need render feedback to check framing, scale and lighting.",
+     "rendered": true,
+     "report": null
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix floating suitcase, map placement, shot C horizon, subject positions and tree scale seen in round 1 feedback.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved in the 24 reference samples: meadow, far tree line, windmill; a scout boy (fur hat, olive uniform, orange backpack, yellow top roll, two end-on bedrolls, long stick) and a girl (pink dress, auburn hair, wicker basket, binoculars, yellow suitcase, teal case/red book). Shots (cut instants inferred between samples): A 0-4.1 s boy stands facing image-left, picks a flower (~1.5 s), walks left from ~2.8 s with the camera trucking left; B 4.1-7.83 s girl at frame-left over her suitcase, bends and picks it up (~5.2-5.6 s), walks image-right with camera trucking right; C 7.83-12.33 s boy walks image-left with bouquet and a paper, camera tracking (slightly higher horizon); D/E 12.33 s-end girl walks right, the tracking camera settles, boy enters from image-right (~14.9 s), girl sets the suitcase down (~15.5 s), boy hands her the flowers (~16 s), they study an unfolded map.\n\nGeometry: boxes/cylinders/spheres/cones for kids and props; seeded vertex-coloured ground; ellipsoid tree line; slim weed cones; windmill proxy; camera-attached letterbox bars as in the reference.\nArticulation: hierarchical skeletons (spine, head, shoulders, elbows, hips, knees, ankles), distance-driven gait with stance foot kept on the ground, crouch/bend for pick-up and put-down, a one-bone reach IK so the girl's right hand meets the suitcase handle, arm reach to pick the flower, flower handover, two-handed map holding. Suitcase, bouquet, case and map follow hand world positions.\nCamera: perspective, vFOV 30 deg, height 1.2 m (1.25 in shot C), pitch -8.7 deg (-6.8 in shot C); per-shot analytic truck paths derived from subject screen positions and windmill parallax; hard cuts.\n\nFeedback received: round 1 render pairs for all 24 samples. Revisions in this round: suitcase now rests on the ground at reference positions in shots B and E (was floating at hand height), reach IK added; unfolded map moved to waist/chest height, smaller and tilted (was covering the girl's face); shot C pitch/height corrected to the lower horizon; boy x in shot A walk adjusted; girl moved closer in shot B; trees made lower/smaller; weed cones thinned; D/E camera path shifted slightly.\nRemaining discrepancies/unverified: proxy appearance (flat colours, no grass texture), exact cut frames, unobserved boy speed between shots C and E, approximate handover timing."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Refine shot E map/flower/hand placement, carried-suitcase height, put-down pose and head orientation.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved in the 24 reference samples: meadow, far tree line, windmill; a scout boy (fur hat, olive uniform, orange backpack, yellow top roll, two end-on bedrolls, long stick) and a girl (pink dress, auburn hair, wicker basket, binoculars, yellow suitcase, teal case/red book). Shots (cut instants inferred between samples): A 0-4.1 s boy stands facing image-left, picks a flower (~1.5 s), walks left from ~2.8 s with the camera trucking left; B 4.1-7.83 s girl at frame-left over her suitcase, bends and picks it up (~5.2-5.6 s), walks image-right with camera trucking right; C 7.83-12.33 s boy walks image-left with bouquet and a paper, camera tracking (slightly higher horizon); D/E 12.33 s-end girl walks right, the tracking camera settles, boy enters from image-right (~14.9 s), girl sets the suitcase down (~15.5 s), boy hands her the flowers (~16 s), they study an unfolded map.\n\nGeometry: boxes/cylinders/spheres/cones for kids and props; seeded vertex-coloured ground; ellipsoid tree line; slim weed cones; windmill proxy; camera-attached letterbox bars as in the reference.\nArticulation: hierarchical skeletons (spine, head, shoulders, elbows, hips, knees, ankles), distance-driven gait with stance foot kept on the ground, crouch/bend for pick-up and put-down, a one-bone reach IK so the girl's right hand meets the suitcase handle, arm reach to pick the flower, flower handover, two-handed map holding. Suitcase, bouquet, case and map follow hand world positions.\nCamera: perspective, vFOV 30 deg, height 1.2 m (1.25 in shot C), pitch -8.7 deg (-6.8 in shot C); per-shot analytic truck paths derived from subject screen positions and windmill parallax; hard cuts.\n\nFeedback received: round 1 and round 2 render pairs for all 24 samples. Round 2 fixes: suitcase grounded at reference positions in shots B and E with reach IK; map moved off the girl's face; shot C horizon corrected; shot A walk timing; tree scale. Round 3 fixes: unfolded map now held at waist height in front of the boy (smaller), his paper held low while walking in, girl's bouquet hand lowered to chest height, girl arms lengthened so the carried suitcase hangs lower, put-down pose uses more knee crouch and less torso bend, faces offset forward so head orientation reads, shot C camera slightly farther back.\nRemaining discrepancies/unverified: proxy appearance (flat colours, no grass texture), exact cut frames, unobserved boy speed between shots C and E, approximate handover timing."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Shot C subject scale/framing over time, torso proportions, shot E bouquet height.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved in the 24 reference samples: meadow, far tree line, windmill; a scout boy (fur hat, olive uniform, orange backpack, yellow top roll, two end-on bedrolls, long stick) and a girl (pink dress, auburn hair, wicker basket, binoculars, yellow suitcase, teal case/red book). Shots (cut instants inferred between samples): A 0-4.1 s boy stands facing image-left, picks a flower (~1.5 s), walks left from ~2.8 s with the camera trucking left; B 4.1-7.83 s girl at frame-left over her suitcase, bends and picks it up (~5.2-5.6 s), walks image-right with camera trucking right; C 7.83-12.33 s boy walks image-left with bouquet and a paper, camera tracking (slightly higher horizon); D/E 12.33 s-end girl walks right, the tracking camera settles, boy enters from image-right (~14.9 s), girl sets the suitcase down (~15.5 s), boy hands her the flowers (~16 s), they study an unfolded map.\n\nGeometry: boxes/cylinders/spheres/cones for kids and props; seeded vertex-coloured ground; ellipsoid tree line; slim weed cones; windmill proxy; camera-attached letterbox bars as in the reference.\nArticulation: hierarchical skeletons (spine, head, shoulders, elbows, hips, knees, ankles), distance-driven gait with stance foot kept on the ground, crouch/bend for pick-up and put-down, a one-bone reach IK so the girl's right hand meets the suitcase handle, arm reach to pick the flower, flower handover, two-handed map holding. Suitcase, bouquet, case and map follow hand world positions.\nCamera: perspective, vFOV 30 deg, height 1.2 m (1.25 in shot C), pitch -8.7 deg (-6.8 in shot C); per-shot analytic truck paths derived from subject screen positions and windmill parallax; hard cuts.\n\nFeedback received: round 1 and round 2 render pairs for all 24 samples. Round 2 fixes: suitcase grounded at reference positions in shots B and E with reach IK; map moved off the girl's face; shot C horizon corrected; shot A walk timing; tree scale. Round 3 fixes: unfolded map now held at waist height in front of the boy (smaller), his paper held low while walking in, girl's bouquet hand lowered to chest height, girl arms lengthened so the carried suitcase hangs lower, put-down pose uses more knee crouch and less torso bend, faces offset forward so head orientation reads. Round 4 fixes: shot C camera distance now closes in over the shot (boy grows in frame as in the reference) with adjusted framing offset, slimmer torso depth, girl walks in true profile, boy holds the bouquet lower in shot E.\nRemaining discrepancies/unverified: proxy appearance (flat colours, no grass texture), exact cut frames, unobserved boy speed between shots C and E, approximate handover timing."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Shot B walking depth, shot C camera height, remove distracting cone.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved in the 24 reference samples: meadow, far tree line, windmill; a scout boy (fur hat, olive uniform, orange backpack, yellow top roll, two end-on bedrolls, long stick) and a girl (pink dress, auburn hair, wicker basket, binoculars, yellow suitcase, teal case/red book). Shots (cut instants inferred between samples): A 0-4.1 s boy stands facing image-left, picks a flower (~1.5 s), walks left from ~2.8 s with the camera trucking left; B 4.1-7.83 s girl at frame-left over her suitcase, bends and picks it up (~5.2-5.6 s), walks image-right with camera trucking right; C 7.83-12.33 s boy walks image-left with bouquet and a paper, camera tracking (slightly higher horizon); D/E 12.33 s-end girl walks right, the tracking camera settles, boy enters from image-right (~14.9 s), girl sets the suitcase down (~15.5 s), boy hands her the flowers (~16 s), they study an unfolded map.\n\nGeometry: boxes/cylinders/spheres/cones for kids and props; seeded vertex-coloured ground; ellipsoid tree line; slim weed cones; windmill proxy; camera-attached letterbox bars as in the reference.\nArticulation: hierarchical skeletons (spine, head, shoulders, elbows, hips, knees, ankles), distance-driven gait with stance foot kept on the ground, crouch/bend for pick-up and put-down, a one-bone reach IK so the girl's right hand meets the suitcase handle, arm reach to pick the flower, flower handover, two-handed map holding. Suitcase, bouquet, case and map follow hand world positions.\nCamera: perspective, vFOV 30 deg, height 1.2 m (1.25 in shot C), pitch -8.7 deg (-6.8 in shot C); per-shot analytic truck paths derived from subject screen positions and windmill parallax; hard cuts.\n\nFeedback received: round 1 and round 2 render pairs for all 24 samples. Round 2 fixes: suitcase grounded at reference positions in shots B and E with reach IK; map moved off the girl's face; shot C horizon corrected; shot A walk timing; tree scale. Round 3 fixes: unfolded map now held at waist height in front of the boy (smaller), his paper held low while walking in, girl's bouquet hand lowered to chest height, girl arms lengthened so the carried suitcase hangs lower, put-down pose uses more knee crouch and less torso bend, faces offset forward so head orientation reads. Round 4 fixes: shot C camera distance now closes in over the shot (boy grows in frame as in the reference) with adjusted framing offset, slimmer torso depth, girl walks in true profile, boy holds the bouquet lower in shot E. Round 5 fixes: girl walks nearer the camera in shot B after the pick-up (matches her larger size and lower feet in the reference), shot C camera lowers as it closes in, the picked weed is a thin stem instead of a cone.\nRemaining discrepancies/unverified: proxy appearance (flat colours, no grass texture), exact cut frames, unobserved boy speed between shots C and E, approximate handover timing."
+    },
+    {
+     "round": "006",
+     "action": "render",
+     "reason": "Depth-graded ground colour to better match field tones; geometry/timing unchanged.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved in the 24 reference samples: meadow, far tree line, windmill; a scout boy (fur hat, olive uniform, orange backpack, yellow top roll, two end-on bedrolls, long stick) and a girl (pink dress, auburn hair, wicker basket, binoculars, yellow suitcase, teal case/red book). Shots (cut instants inferred between samples): A 0-4.1 s boy stands facing image-left, picks a flower (~1.5 s), walks left from ~2.8 s with the camera trucking left; B 4.1-7.83 s girl at frame-left over her suitcase, bends and picks it up (~5.2-5.6 s), walks image-right with camera trucking right; C 7.83-12.33 s boy walks image-left with bouquet and a paper, camera tracking (slightly higher horizon); D/E 12.33 s-end girl walks right, the tracking camera settles, boy enters from image-right (~14.9 s), girl sets the suitcase down (~15.5 s), boy hands her the flowers (~16 s), they study an unfolded map.\n\nGeometry: boxes/cylinders/spheres/cones for kids and props; seeded vertex-coloured ground; ellipsoid tree line; slim weed cones; windmill proxy; camera-attached letterbox bars as in the reference.\nArticulation: hierarchical skeletons (spine, head, shoulders, elbows, hips, knees, ankles), distance-driven gait with stance foot kept on the ground, crouch/bend for pick-up and put-down, a one-bone reach IK so the girl's right hand meets the suitcase handle, arm reach to pick the flower, flower handover, two-handed map holding. Suitcase, bouquet, case and map follow hand world positions.\nCamera: perspective, vFOV 30 deg, height 1.2 m (1.25 in shot C), pitch -8.7 deg (-6.8 in shot C); per-shot analytic truck paths derived from subject screen positions and windmill parallax; hard cuts.\n\nFeedback received: round 1 and round 2 render pairs for all 24 samples. Round 2 fixes: suitcase grounded at reference positions in shots B and E with reach IK; map moved off the girl's face; shot C horizon corrected; shot A walk timing; tree scale. Round 3 fixes: unfolded map now held at waist height in front of the boy (smaller), his paper held low while walking in, girl's bouquet hand lowered to chest height, girl arms lengthened so the carried suitcase hangs lower, put-down pose uses more knee crouch and less torso bend, faces offset forward so head orientation reads. Round 4 fixes: shot C camera distance now closes in over the shot (boy grows in frame as in the reference) with adjusted framing offset, slimmer torso depth, girl walks in true profile, boy holds the bouquet lower in shot E. Round 5 fixes: girl walks nearer the camera in shot B after the pick-up (matches her larger size and lower feet in the reference), shot C camera lowers as it closes in, the picked weed is a thin stem instead of a cone. Round 6: ground colour graded with depth (darker olive foreground, golden far field) to match the reference field tones.\nRemaining discrepancies/unverified: proxy appearance (flat colours, no grass texture), exact cut frames, unobserved boy speed between shots C and E, approximate handover timing."
+    },
+    {
+     "round": "007",
+     "action": "submit",
+     "reason": "Round 6 render matches shot structure, camera framing, subject positions/scale, contacts and key events at L1 proxy fidelity; remaining differences are proxy appearance.",
+     "rendered": false,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved in the 24 reference samples: meadow, far tree line, windmill; a scout boy (fur hat, olive uniform, orange backpack, yellow top roll, two end-on bedrolls, long stick) and a girl (pink dress, auburn hair, wicker basket, binoculars, yellow suitcase, teal case/red book). Shots (cut instants inferred between samples): A 0-4.1 s boy stands facing image-left, picks a flower (~1.5 s), walks left from ~2.8 s with the camera trucking left; B 4.1-7.83 s girl at frame-left over her suitcase, bends and picks it up (~5.2-5.6 s), walks image-right with camera trucking right; C 7.83-12.33 s boy walks image-left with bouquet and a paper, camera tracking (slightly higher horizon); D/E 12.33 s-end girl walks right, the tracking camera settles, boy enters from image-right (~14.9 s), girl sets the suitcase down (~15.5 s), boy hands her the flowers (~16 s), they study an unfolded map.\n\nGeometry: boxes/cylinders/spheres/cones for kids and props; seeded vertex-coloured ground; ellipsoid tree line; slim weed cones; windmill proxy; camera-attached letterbox bars as in the reference.\nArticulation: hierarchical skeletons (spine, head, shoulders, elbows, hips, knees, ankles), distance-driven gait with stance foot kept on the ground, crouch/bend for pick-up and put-down, a one-bone reach IK so the girl's right hand meets the suitcase handle, arm reach to pick the flower, flower handover, two-handed map holding. Suitcase, bouquet, case and map follow hand world positions.\nCamera: perspective, vFOV 30 deg, height 1.2 m (1.25 in shot C), pitch -8.7 deg (-6.8 in shot C); per-shot analytic truck paths derived from subject screen positions and windmill parallax; hard cuts.\n\nFeedback received: round 1 and round 2 render pairs for all 24 samples. Round 2 fixes: suitcase grounded at reference positions in shots B and E with reach IK; map moved off the girl's face; shot C horizon corrected; shot A walk timing; tree scale. Round 3 fixes: unfolded map now held at waist height in front of the boy (smaller), his paper held low while walking in, girl's bouquet hand lowered to chest height, girl arms lengthened so the carried suitcase hangs lower, put-down pose uses more knee crouch and less torso bend, faces offset forward so head orientation reads. Round 4 fixes: shot C camera distance now closes in over the shot (boy grows in frame as in the reference) with adjusted framing offset, slimmer torso depth, girl walks in true profile, boy holds the bouquet lower in shot E. Round 5 fixes: girl walks nearer the camera in shot B after the pick-up (matches her larger size and lower feet in the reference), shot C camera lowers as it closes in, the picked weed is a thin stem instead of a cone. Round 6: ground colour graded with depth (darker olive foreground, golden far field) to match the reference field tones. Round 6 feedback reviewed: framing, subject sizes, positions, suitcase contact, and shot E map/bouquet placement match the reference samples at proxy level; submitted round 6 scene.\nRemaining discrepancies/unverified: proxy appearance (flat colours, no grass texture), exact cut frames, unobserved boy speed between shots C and E, approximate handover timing."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     2.06,
+     6.37,
+     10.67,
+     14.97
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ],
+     "006": [
+      "r006_0.jpg",
+      "r006_1.jpg",
+      "r006_2.jpg",
+      "r006_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 5,
+    "inspection_only_decisions": 1,
+    "render_attempts": 6,
+    "infrastructure_retries": 0,
+    "model_turns": 7,
+    "provider_responses": 0
+   }
+  }
+ }
+}

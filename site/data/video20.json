@@ -1,0 +1,135 @@
+{
+ "id": "video20",
+ "n": 20,
+ "reference": {
+  "video": "media/ref/video20.mp4",
+  "poster": "media/poster/ref/video20_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 762,
+  "fps": 60.0,
+  "duration": 12.7
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video20.mp4",
+   "poster": "media/poster/opus-5-5/video20_0.jpg",
+   "scene": "media/scene/opus-5-5/video20.mjs",
+   "final_round": "005",
+   "scene_sha256": "b4da9c7a634799ac2cdec60ed083304561542db555fa488f8639140a1cf230d4",
+   "video_sha256": "f52259d72546f83a6463ded73b9b3079dd48f39f3c7c7b21b996b752576b408e",
+   "stop": "model_submit",
+   "revisions": 4,
+   "renders": 5,
+   "infra_retries": 0,
+   "turns": 6,
+   "pauses": 0,
+   "inferences": 33,
+   "output_tokens": 99354,
+   "cost": 3.96,
+   "cost_1h": 4.64,
+   "elapsed_seconds": 1837,
+   "submit_reason": "Round 5 matches the shot structure, camera framing, turret yaw and key events (launched robot, mech destruction). Remaining differences are appearance and terrain detail beyond what an L1 proxy needs.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene for first render inspection.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol); not a Blender-equivalent reproduction.\n\nObserved (24 reference samples, 0-12.68 s): an armoured, blood-red gunner seated in a twin-barrel pintle turret with a horizontal ammo ring, on a rocky snowy hilltop; red-lit robot enemies across a field below; infantry allies left and right; repeated explosions, smoke columns, red enemy laser bolts, a blue ally bolt, muzzle flashes; a robot thrown into the air and crashing (~8.8-10 s); a pale mech on a rock destroyed by a large blast (~11.6-12.1 s). Grading moves from yellow/overexposed (0-2.8 s) to cool dark grey (3.3 s on).\n\nGeometry: displaced-plane terrain (dome hill + field) with a seeded procedural snow/rock/rust DataTexture; dodecahedron rocks including a right-side outcrop landmark; turret = pedestal, yaw group, pitch group (receiver, twin barrels, handles, drum), torus ammo ring; gunner with torso, helmet, articulated arms and seated legs; allies and robots are box/sphere proxies with hip/knee/shoulder pivots.\n\nCamera/timing: Shot A 0-0.27 s low rear view into a huge yellow explosion (inferred hard cut at 0.27 s). 0.27-3.32 s near-static camera behind-left while the turret yaws from ~80 deg right back to forward. From 3.32 s the camera rides rigidly behind the turret yaw, with keyed small pans (-10..+7 deg) and pitch (-6..-12 deg) estimated from the samples. Firing windows 0.35-2.7 s and 7.95-12.7 s (flash, tracers, barrel recoil). Explosion timings, robot launch arc, mech appearance and runner enemy motion between samples are inference.\n\nFeedback: none received yet (initial round). Unverified: exact cut timing at the start, camera distances, enemy positions, lighting brightness under the harness renderer."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix camera distance/subject scale, ally placement, oversized rocks, smoke and laser scale from round 1 feedback.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol); not a Blender-equivalent reproduction.\n\nObserved (24 reference samples, 0-12.68 s): an armoured, blood-red gunner seated in a twin-barrel pintle turret with a horizontal ammo ring on a rocky snowy hilltop; red-lit robot enemies across the field below; infantry allies left and right; explosions, smoke columns, red enemy bolts, blue ally bolts, muzzle flashes; a robot thrown into the air and crashing (~8.8-10 s); a pale mech on a rock destroyed by a large blast (~11.6-12.1 s). Grading moves from yellow/overexposed (0-2.8 s) to cool dark grey (3.3 s on).\n\nGeometry: displaced-plane terrain (dome hill + field) with seeded procedural snow/rock/rust texture; dodecahedron rocks incl. a right-side outcrop; turret = pedestal, yaw group, pitch group (receiver, long twin barrels, handles, drum), torus ammo ring; articulated gunner (torso, helmet, arms, seated legs); allies and robots are box/sphere proxies with hip/knee/shoulder pivots.\n\nCamera/timing: Shot A 0-0.27 s low rear view into a huge explosion (inferred cut at 0.27 s). 0.27-3.32 s near-static camera behind-left while the turret yaws from ~85 deg right back to forward. From 3.32 s the camera rides behind the turret yaw with keyed pans (-10..+7 deg) and pitch (-6..-12 deg). Firing windows 0.35-2.7 s and 7.95-12.7 s. Between-sample motion is inferred.\n\nFeedback received: round 1 render pairs. Revisions in round 2: camera moved ~1.5x farther from the gunner (subject image size too large), longer barrels and larger ammo ring, allies hidden in shot A and right ally moved down-slope, removed oversized dark foreground rock, thinner laser/tracer geometry with targets kept away from the lens, smaller/lighter smoke, smaller enemies, brighter shot A.\n\nRemaining/unverified: exact cut timing at start, enemy positions, smoke/explosion appearance is coarse."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Rescale gunner/ring, relocate left ally, bring launched robot closer, whiten shot A explosion.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol); not a Blender-equivalent reproduction.\n\nObserved (24 reference samples, 0-12.68 s): an armoured, blood-red gunner seated in a twin-barrel pintle turret with a horizontal ammo ring on a rocky snowy hilltop; red-lit robot enemies across the field below; infantry allies left and right; explosions, smoke columns, red enemy bolts, blue ally bolts, muzzle flashes; a robot thrown into the air and crashing (~8.8-10 s); a pale mech on a rock destroyed by a large blast (~11.6-12.1 s). Grading moves from yellow/overexposed (0-2.8 s) to cool dark grey (3.3 s on).\n\nGeometry: displaced-plane terrain (dome hill + field) with seeded procedural snow/rock/rust texture; dodecahedron rocks incl. a right-side outcrop; turret = pedestal, yaw group, pitch group (receiver, long twin barrels, handles, drum), torus ammo ring; articulated gunner (torso, helmet, arms, seated legs); allies and robots are box/sphere proxies with hip/knee/shoulder pivots.\n\nCamera/timing: Shot A 0-0.27 s low rear view into a huge explosion (inferred cut at 0.27 s). 0.27-3.32 s near-static camera behind-left while the turret yaws from ~85 deg right back to forward. From 3.32 s the camera rides behind the turret yaw with keyed pans (-10..+7 deg) and pitch (-6..-12 deg). Firing windows 0.35-2.7 s and 7.95-12.7 s. Between-sample motion is inferred.\n\nFeedback received: round 1 and round 2 render pairs. Round 2 revisions: camera moved ~1.5x farther from the gunner (subject image size too large), longer barrels and larger ammo ring, allies hidden in shot A and right ally moved down-slope, removed oversized dark foreground rock, thinner laser/tracer geometry with targets kept away from the lens, smaller/lighter smoke, smaller enemies, brighter shot A.\n\nRemaining/unverified: exact cut timing at start, enemy positions, smoke/explosion appearance is coarse.\n\nRound 3 revisions (from round 2 feedback): gunner proxy scaled up 1.2x (seat lowered to keep head height) to match its image size; ammo ring reduced and lightened; left ally now walks down-slope to a far-left firing position matching the 12.68 s sample; launched robot moved closer (~16 m), enlarged, with higher arc and detached gun arm reaching the observed image heights; launch/crash blasts moved with it; shot A explosion whiter and its dust cleared by ~0.9 s; darker warm-phase sky."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Raise/pull back the turret-follow camera so gunner, muzzle and horizon positions match the references.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol); not a Blender-equivalent reproduction.\n\nObserved (24 reference samples, 0-12.68 s): an armoured, blood-red gunner seated in a twin-barrel pintle turret with a horizontal ammo ring on a rocky snowy hilltop; red-lit robot enemies across the field below; infantry allies left and right; explosions, smoke columns, red enemy bolts, blue ally bolts, muzzle flashes; a robot thrown into the air and crashing (~8.8-10 s); a pale mech on a rock destroyed by a large blast (~11.6-12.1 s). Grading moves from yellow/overexposed (0-2.8 s) to cool dark grey (3.3 s on).\n\nGeometry: displaced-plane terrain (dome hill + field) with seeded procedural snow/rock/rust texture; dodecahedron rocks incl. a right-side outcrop; turret = pedestal, yaw group, pitch group (receiver, long twin barrels, handles, drum), torus ammo ring; articulated gunner (torso, helmet, arms, seated legs); allies and robots are box/sphere proxies with hip/knee/shoulder pivots.\n\nCamera/timing: Shot A 0-0.27 s low rear view into a huge explosion (inferred cut at 0.27 s). 0.27-3.32 s near-static camera behind-left while the turret yaws from ~85 deg right back to forward. From 3.32 s the camera rides behind the turret yaw with keyed pans (-10..+7 deg) and pitch (-6..-12 deg). Firing windows 0.35-2.7 s and 7.95-12.7 s. Between-sample motion is inferred.\n\nFeedback received: round 1 and round 2 render pairs. Round 2 revisions: camera moved ~1.5x farther from the gunner (subject image size too large), longer barrels and larger ammo ring, allies hidden in shot A and right ally moved down-slope, removed oversized dark foreground rock, thinner laser/tracer geometry with targets kept away from the lens, smaller/lighter smoke, smaller enemies, brighter shot A.\n\nRemaining/unverified: exact cut timing at start, enemy positions, smoke/explosion appearance is coarse.\n\nRound 3 revisions (from round 2 feedback): gunner proxy scaled up 1.2x (seat lowered to keep head height) to match its image size; ammo ring reduced and lightened; left ally now walks down-slope to a far-left firing position matching the 12.68 s sample; launched robot moved closer (~16 m), enlarged, with higher arc and detached gun arm reaching the observed image heights; launch/crash blasts moved with it; shot A explosion whiter and its dust cleared by ~0.9 s; darker warm-phase sky.\n\nRound 4 revisions (from round 3 feedback): turret-follow camera raised and moved back (3.58 m up, 4.65 m behind pivot) with ~1.5 deg more downward pitch so the gunner sits lower in frame and the muzzle flash lands at the observed height while the horizon stays near the top third; warm-phase camera path re-keyed to meet it continuously at 3.32 s; flatter receiver; brighter self-lit dust in shot A; lighter smoke opacity."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Enlarge gunner/ring, fix mech visibility, relocate robot launch/crash, delay smoke behind fireballs.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol); not a Blender-equivalent reproduction.\n\nObserved (24 reference samples, 0-12.68 s): an armoured, blood-red gunner seated in a twin-barrel pintle turret with a horizontal ammo ring on a rocky snowy hilltop; red-lit robot enemies across the field below; infantry allies left and right; explosions, smoke columns, red enemy bolts, blue ally bolts, muzzle flashes; a robot thrown into the air and crashing (~8.8-10 s); a pale mech on a rock destroyed by a large blast (~11.6-12.1 s). Grading moves from yellow/overexposed (0-2.8 s) to cool dark grey (3.3 s on).\n\nGeometry: displaced-plane terrain (dome hill + field) with seeded procedural snow/rock/rust texture; dodecahedron rocks incl. a right-side outcrop; turret = pedestal, yaw group, pitch group (receiver, long twin barrels, handles, drum), torus ammo ring; articulated gunner (torso, helmet, arms, seated legs); allies and robots are box/sphere proxies with hip/knee/shoulder pivots.\n\nCamera/timing: Shot A 0-0.27 s low rear view into a huge explosion (inferred cut at 0.27 s). 0.27-3.32 s near-static camera behind-left while the turret yaws from ~85 deg right back to forward. From 3.32 s the camera rides behind the turret yaw with keyed pans (-10..+7 deg) and pitch (-6..-12 deg). Firing windows 0.35-2.7 s and 7.95-12.7 s. Between-sample motion is inferred.\n\nFeedback received: round 1 and round 2 render pairs. Round 2 revisions: camera moved ~1.5x farther from the gunner (subject image size too large), longer barrels and larger ammo ring, allies hidden in shot A and right ally moved down-slope, removed oversized dark foreground rock, thinner laser/tracer geometry with targets kept away from the lens, smaller/lighter smoke, smaller enemies, brighter shot A.\n\nRemaining/unverified: exact cut timing at start, enemy positions, smoke/explosion appearance is coarse.\n\nRound 3 revisions (from round 2 feedback): gunner proxy scaled up 1.2x (seat lowered to keep head height) to match its image size; ammo ring reduced and lightened; left ally now walks down-slope to a far-left firing position matching the 12.68 s sample; launched robot moved closer (~16 m), enlarged, with higher arc and detached gun arm reaching the observed image heights; launch/crash blasts moved with it; shot A explosion whiter and its dust cleared by ~0.9 s; darker warm-phase sky.\n\nRound 4 revisions (from round 3 feedback): turret-follow camera raised and moved back (3.58 m up, 4.65 m behind pivot) with ~1.5 deg more downward pitch so the gunner sits lower in frame and the muzzle flash lands at the observed height while the horizon stays near the top third; warm-phase camera path re-keyed to meet it continuously at 3.32 s; flatter receiver; brighter self-lit dust in shot A; lighter smoke opacity.\n\nRound 5 revisions (from round 4 feedback): gunner proxy enlarged to 1.4x (seat lowered, head height kept) and ammo ring widened to match their image footprint behind the gun; white mech given a pale self-lit material so it reads against the dark field; launched robot and its gun arm moved to ~21 m so the arc and crash blast land at the observed image positions; smoke from the centre, crash and mech-destroying blasts now starts after the fireball (delay) instead of occluding it."
+    },
+    {
+     "round": "006",
+     "action": "submit",
+     "reason": "Round 5 matches the shot structure, camera framing, turret yaw and key events (launched robot, mech destruction). Remaining differences are appearance and terrain detail beyond what an L1 proxy needs.",
+     "rendered": false,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol); not a Blender-equivalent reproduction.\n\nObserved (24 reference samples, 0-12.68 s): an armoured, blood-red gunner seated in a twin-barrel pintle turret with a horizontal ammo ring on a rocky snowy hilltop; red-lit robot enemies across the field below; infantry allies left and right; explosions, smoke columns, red enemy bolts, blue ally bolts, muzzle flashes; a robot thrown into the air and crashing (~8.8-10 s); a pale mech on a rock destroyed by a large blast (~11.6-12.1 s). Grading moves from yellow/overexposed (0-2.8 s) to cool dark grey (3.3 s on).\n\nGeometry: displaced-plane terrain (dome hill + field) with seeded procedural snow/rock/rust texture; dodecahedron rocks incl. a right-side outcrop; turret = pedestal, yaw group, pitch group (receiver, long twin barrels, handles, drum), torus ammo ring; articulated gunner (torso, helmet, arms, seated legs); allies and robots are box/sphere proxies with hip/knee/shoulder pivots.\n\nCamera/timing: Shot A 0-0.27 s low rear view into a huge explosion (inferred cut at 0.27 s). 0.27-3.32 s near-static camera behind-left while the turret yaws from ~85 deg right back to forward. From 3.32 s the camera rides behind the turret yaw with keyed pans (-10..+7 deg) and pitch (-6..-12 deg). Firing windows 0.35-2.7 s and 7.95-12.7 s. Between-sample motion is inferred.\n\nFeedback received: round 1 and round 2 render pairs. Round 2 revisions: camera moved ~1.5x farther from the gunner (subject image size too large), longer barrels and larger ammo ring, allies hidden in shot A and right ally moved down-slope, removed oversized dark foreground rock, thinner laser/tracer geometry with targets kept away from the lens, smaller/lighter smoke, smaller enemies, brighter shot A.\n\nRemaining/unverified: exact cut timing at start, enemy positions, smoke/explosion appearance is coarse.\n\nRound 3 revisions (from round 2 feedback): gunner proxy scaled up 1.2x (seat lowered to keep head height) to match its image size; ammo ring reduced and lightened; left ally now walks down-slope to a far-left firing position matching the 12.68 s sample; launched robot moved closer (~16 m), enlarged, with higher arc and detached gun arm reaching the observed image heights; launch/crash blasts moved with it; shot A explosion whiter and its dust cleared by ~0.9 s; darker warm-phase sky.\n\nRound 4 revisions (from round 3 feedback): turret-follow camera raised and moved back (3.58 m up, 4.65 m behind pivot) with ~1.5 deg more downward pitch so the gunner sits lower in frame and the muzzle flash lands at the observed height while the horizon stays near the top third; warm-phase camera path re-keyed to meet it continuously at 3.32 s; flatter receiver; brighter self-lit dust in shot A; lighter smoke opacity.\n\nRound 5 revisions (from round 4 feedback): gunner proxy enlarged to 1.4x (seat lowered, head height kept) and ammo ring widened to match their image footprint behind the gun; white mech given a pale self-lit material so it reads against the dark field; launched robot and its gun arm moved to ~21 m so the arc and crash blast land at the observed image positions; smoke from the centre, crash and mech-destroying blasts now starts after the fireball (delay) instead of occluding it.\n\nRound 5 feedback check: the gunner and ring footprint, muzzle-flash height, white mech on the rock at 11.58 s, the mech-destroying fireball at 12.13 s, and the robot launch arc and crash near frame centre now line up with the reference samples. Submitting the round-5 render.\n\nRemaining discrepancies (not fixed): the terrain is a smooth dome and field without the reference's rising far hills or rocky ridge detail; smoke reads as translucent spheres; the warm phase lacks the reference's dark sky and bokeh; the left ally is visible on the slope in mid-shot samples where the reference shows little; enemy layout is approximate; gunner articulation is limited to the arm pose, recoil and slight lean. The 0.27 s cut, explosion timings between samples, and enemy and ally motion between samples are inferred, not observed."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.52,
+     4.7,
+     7.87,
+     11.05
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
+    "infrastructure_retries": 0,
+    "model_turns": 6,
+    "provider_responses": 0
+   }
+  }
+ }
+}

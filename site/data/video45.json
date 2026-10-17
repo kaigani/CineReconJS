@@ -1,0 +1,161 @@
+{
+ "id": "video45",
+ "n": 45,
+ "reference": {
+  "video": "media/ref/video45.mp4",
+  "poster": "media/poster/ref/video45_0.jpg",
+  "width": 1280,
+  "height": 536,
+  "frames": 429,
+  "fps": 30.0,
+  "duration": 14.3
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video45.mp4",
+   "poster": "media/poster/opus-5-5/video45_0.jpg",
+   "scene": "media/scene/opus-5-5/video45.mjs",
+   "final_round": "007",
+   "scene_sha256": "2f8aeadf6f32200ad9b4a3250ee7c98d0b50a51e0939ca1c9f8e1e37395cadf1",
+   "video_sha256": "fb38ba6a8ebbbf33f926eb7d66a1d7e56fe3ddad5415e8e9d32559a81b8cbd0b",
+   "stop": "model_submit",
+   "revisions": 6,
+   "renders": 7,
+   "infra_retries": 0,
+   "turns": 8,
+   "pauses": 0,
+   "inferences": 43,
+   "output_tokens": 241195,
+   "cost": 7.27,
+   "cost_1h": 8.08,
+   "elapsed_seconds": 2800,
+   "submit_reason": "Layout, camera framing and event timing match the reference at most samples; remaining mismatches are inconsistent scale cues and fine detail, which are low priority at L1.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene of the locker room, hall, viewmodel and enemies.",
+     "rendered": true,
+     "report": "# Report - video45, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nLevel: L1 (proxy). Protocol: Three.js sampled-frame baseline (24 timestamped reference samples, 1280x536, 30 fps, 429 frames, 14.3 s). Not equivalent to Blender model rankings.\n\nScene interpretation (from samples): a first-person shooter clip inside a beige corrugated-wall locker room. North wall: 9-locker bank (blue graffiti) and a large two-pane window onto a dark industrial building / bright sky. South wall: a wide doorway to a cooler grey hall (skull + purple tag graffiti, second doorway, exit sign) with a 9-locker bank (black and red graffiti) east of it and safety signs west of it. East wall: white suits, helmets, bench. West wall: sinks and a bin.\n\nGeometry: boxes/planes/cylinders/spheres only; graffiti as procedural seeded scribble textures (no text). Enemies: two articulated humanoid proxies (hips, torso, head, legs, arms, gun, muzzle flash). Viewmodel parented to the camera: gold pistol (slide, grip), purple gloves, bare forearms with watch bands; a purple knife for 4.75-7.1 s.\n\nCamera/timing: keyframed camera position/yaw/pitch at each sample time, cubic Hermite in between; player turns left continuously from facing south (~5.0 s) through north (5.6 s), west (6.2 s) to south (6.8 s), approaches the doorway, then backs away facing the doorway. Pistol draw at 0 s, knife phase ~4.75-7.1 s, pistol draw/inspect 7.1-9.7 s, shots with recoil and muzzle flash at 9.8, 10.5, 11.45, 13.5 s. Enemy A walks in the far room, comes through the second doorway, jumps toward the door (~11.0-11.35 s) firing, is shot and falls (11.45 s); hidden after 12.1 s (inference). Enemy B walks across the far doorway 12.5-14.3 s.\n\nObserved vs inferred: poses at the 24 sample times are estimated from the images; everything between samples (turn direction during fast flicks, enemy paths, shot times other than the visible flash at 10.53 s) is inference. Smoke, motion blur and graffiti text are not reproduced.\n\nFeedback: none received yet (initial round)."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix lighting, room proportions, viewmodel scale/orientation and several camera keys after round 1 feedback.",
+     "rendered": true,
+     "report": "# Report - video45, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nLevel: L1 (proxy). Protocol: Three.js sampled-frame baseline (24 timestamped reference samples, 1280x536, 30 fps, 429 frames, 14.3 s). Not equivalent to Blender model rankings.\n\nScene interpretation (from samples): a first-person shooter clip inside a beige corrugated-wall locker room. North wall: 9-locker bank (blue graffiti) and a large two-pane window onto a dark industrial building / bright sky. South wall: a wide doorway to a cooler grey hall (skull + purple tag graffiti, second doorway, exit sign) with a 9-locker bank (black and red graffiti) east of it and safety signs west of it. East wall: white suits, helmets, bench. West wall: sinks and a bin.\n\nGeometry: boxes/planes/cylinders/spheres only; graffiti as procedural seeded scribble textures (no text). Enemies: two articulated humanoid proxies (hips, torso, head, legs, arms, gun, muzzle flash). Viewmodel parented to the camera: gold pistol (slide, grip), purple gloves, bare forearms with watch bands; a purple knife for 4.75-7.1 s.\n\nCamera/timing: keyframed camera position/yaw/pitch at each sample time, cubic Hermite in between; player turns left continuously from facing south (~5.0 s) through north (5.6 s), west (6.2 s) to south (6.8 s), approaches the doorway, then backs away facing the doorway. Pistol draw at 0 s, knife phase ~4.75-7.1 s, pistol draw/inspect 7.1-9.7 s, shots with recoil and muzzle flash at 9.8, 10.5, 11.45, 13.5 s. Enemy A walks in the far room, comes through the second doorway, jumps toward the door (~11.0-11.35 s) firing, is shot and falls (11.45 s); hidden after 12.1 s (inference). Enemy B walks across the far doorway 12.5-14.3 s.\n\nObserved vs inferred: poses at the 24 sample times are estimated from the images; everything between samples (turn direction during fast flicks, enemy paths, shot times other than the visible flash at 10.53 s) is inference. Smoke, motion blur and graffiti text are not reproduced.\n\nFeedback received: round 001 render (24 paired frames). Revisions in round 002: brighter lighting and lit ceiling; taller lockers (2.5 m), larger window (y 0.95-2.75, x -0.1..3.1), taller 3.0 m doorway and 3.8 m ceiling; room widened east, suits moved to fronto-parallel positions NE and SE; smaller, rotated pistol viewmodel with thinner forearms; camera keys re-fit at samples 2,3,4,6,8,9,10,15; enemy jump moved deeper into the hall."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Re-fit locker/window proportions, camera distances at several samples, and pistol orientation.",
+     "rendered": true,
+     "report": "# Report - video45, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nLevel: L1 (proxy). Protocol: Three.js sampled-frame baseline (24 timestamped reference samples, 1280x536, 30 fps, 429 frames, 14.3 s). Not equivalent to Blender model rankings.\n\nScene interpretation (from samples): a first-person shooter clip inside a beige corrugated-wall locker room. North wall: 9-locker bank (blue graffiti) and a large two-pane window onto a dark industrial building / bright sky. South wall: a wide doorway to a cooler grey hall (skull + purple tag graffiti, second doorway, exit sign) with a 9-locker bank (black and red graffiti) east of it and safety signs west of it. East wall: white suits, helmets, bench. West wall: sinks and a bin.\n\nGeometry: boxes/planes/cylinders/spheres only; graffiti as procedural seeded scribble textures (no text). Enemies: two articulated humanoid proxies (hips, torso, head, legs, arms, gun, muzzle flash). Viewmodel parented to the camera: gold pistol (slide, grip), purple gloves, bare forearms with watch bands; a purple knife for 4.75-7.1 s.\n\nCamera/timing: keyframed camera position/yaw/pitch at each sample time, cubic Hermite in between; player turns left continuously from facing south (~5.0 s) through north (5.6 s), west (6.2 s) to south (6.8 s), approaches the doorway, then backs away facing the doorway. Pistol draw at 0 s, knife phase ~4.75-7.1 s, pistol draw/inspect 7.1-9.7 s, shots with recoil and muzzle flash at 9.8, 10.5, 11.45, 13.5 s. Enemy A walks in the far room, comes through the second doorway, jumps toward the door (~11.0-11.35 s) firing, is shot and falls (11.45 s); hidden after 12.1 s (inference). Enemy B walks across the far doorway 12.5-14.3 s.\n\nObserved vs inferred: poses at the 24 sample times are estimated from the images; everything between samples (turn direction during fast flicks, enemy paths, shot times other than the visible flash at 10.53 s) is inference. Smoke, motion blur and graffiti text are not reproduced.\n\nFeedback received: renders of rounds 001 and 002 (24 paired frames each). Round 002: brighter lighting, larger window, taller door, suits repositioned, smaller viewmodel, camera re-fits. Round 003: locker height back to 2.2 m and window enlarged to y 0.75-2.95 (fit from samples 2, 3, 9); camera distance/pitch re-fit at samples 0, 2, 3, 5, 6, 8, 10, 13 (sample 6 now hugs the wall so the locker bank is seen end-on); pistol pose re-oriented (barrel pitched up toward screen centre) to match the image-space slide direction."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Crouch at clip start, wider north lockers, camera re-fits at samples 0/1/7, flatter pistol angle.",
+     "rendered": true,
+     "report": "# Report - video45, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nLevel: L1 (proxy). Protocol: Three.js sampled-frame baseline (24 timestamped reference samples, 1280x536, 30 fps, 429 frames, 14.3 s). Not equivalent to Blender model rankings.\n\nScene interpretation (from samples): a first-person shooter clip inside a beige corrugated-wall locker room. North wall: 9-locker bank (blue graffiti) and a large two-pane window onto a dark industrial building / bright sky. South wall: a wide doorway to a cooler grey hall (skull + purple tag graffiti, second doorway, exit sign) with a 9-locker bank (black and red graffiti) east of it and safety signs west of it. East wall: white suits, helmets, bench. West wall: sinks and a bin.\n\nGeometry: boxes/planes/cylinders/spheres only; graffiti as procedural seeded scribble textures (no text). Enemies: two articulated humanoid proxies (hips, torso, head, legs, arms, gun, muzzle flash). Viewmodel parented to the camera: gold pistol (slide, grip), purple gloves, bare forearms with watch bands; a purple knife for 4.75-7.1 s.\n\nCamera/timing: keyframed camera position/yaw/pitch at each sample time, cubic Hermite in between; player turns left continuously from facing south (~5.0 s) through north (5.6 s), west (6.2 s) to south (6.8 s), approaches the doorway, then backs away facing the doorway. Pistol draw at 0 s, knife phase ~4.75-7.1 s, pistol draw/inspect 7.1-9.7 s, shots with recoil and muzzle flash at 9.8, 10.5, 11.45, 13.5 s. Enemy A walks in the far room, comes through the second doorway, jumps toward the door (~11.0-11.35 s) firing, is shot and falls (11.45 s); hidden after 12.1 s (inference). Enemy B walks across the far doorway 12.5-14.3 s.\n\nObserved vs inferred: poses at the 24 sample times are estimated from the images; everything between samples (turn direction during fast flicks, enemy paths, shot times other than the visible flash at 10.53 s) is inference. Smoke, motion blur and graffiti text are not reproduced.\n\nFeedback received: renders of rounds 001 and 002 (24 paired frames each). Round 002: brighter lighting, larger window, taller door, suits repositioned, smaller viewmodel, camera re-fits. Round 003: locker height back to 2.2 m and window enlarged to y 0.75-2.95 (fit from samples 2, 3, 9); camera distance/pitch re-fit at samples 0, 2, 3, 5, 6, 8, 10, 13 (sample 6 now hugs the wall so the locker bank is seen end-on); pistol pose re-oriented (barrel pitched up toward screen centre) to match the image-space slide direction. Round 004: start of clip modelled as crouched (eye 1.15 m, rising to 1.6 m by 1.05 s) because sample 0 shows level verticals with the horizon at locker-handle height; north lockers widened to 0.46 m; camera re-fit at samples 0, 1, 7; pistol pitch reduced so the on-screen slide angle matches."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Wider and taller south doorway to match door/locker ratios; camera re-fit at samples 1 and 12.",
+     "rendered": true,
+     "report": "# Report - video45, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nLevel: L1 (proxy). Protocol: Three.js sampled-frame baseline (24 timestamped reference samples, 1280x536, 30 fps, 429 frames, 14.3 s). Not equivalent to Blender model rankings.\n\nScene interpretation (from samples): a first-person shooter clip inside a beige corrugated-wall locker room. North wall: 9-locker bank (blue graffiti) and a large two-pane window onto a dark industrial building / bright sky. South wall: a wide doorway to a cooler grey hall (skull + purple tag graffiti, second doorway, exit sign) with a 9-locker bank (black and red graffiti) east of it and safety signs west of it. East wall: white suits, helmets, bench. West wall: sinks and a bin.\n\nGeometry: boxes/planes/cylinders/spheres only; graffiti as procedural seeded scribble textures (no text). Enemies: two articulated humanoid proxies (hips, torso, head, legs, arms, gun, muzzle flash). Viewmodel parented to the camera: gold pistol (slide, grip), purple gloves, bare forearms with watch bands; a purple knife for 4.75-7.1 s.\n\nCamera/timing: keyframed camera position/yaw/pitch at each sample time, cubic Hermite in between; player turns left continuously from facing south (~5.0 s) through north (5.6 s), west (6.2 s) to south (6.8 s), approaches the doorway, then backs away facing the doorway. Pistol draw at 0 s, knife phase ~4.75-7.1 s, pistol draw/inspect 7.1-9.7 s, shots with recoil and muzzle flash at 9.8, 10.5, 11.45, 13.5 s. Enemy A walks in the far room, comes through the second doorway, jumps toward the door (~11.0-11.35 s) firing, is shot and falls (11.45 s); hidden after 12.1 s (inference). Enemy B walks across the far doorway 12.5-14.3 s.\n\nObserved vs inferred: poses at the 24 sample times are estimated from the images; everything between samples (turn direction during fast flicks, enemy paths, shot times other than the visible flash at 10.53 s) is inference. Smoke, motion blur and graffiti text are not reproduced.\n\nFeedback received: renders of rounds 001 and 002 (24 paired frames each). Round 002: brighter lighting, larger window, taller door, suits repositioned, smaller viewmodel, camera re-fits. Round 003: locker height back to 2.2 m and window enlarged to y 0.75-2.95 (fit from samples 2, 3, 9); camera distance/pitch re-fit at samples 0, 2, 3, 5, 6, 8, 10, 13 (sample 6 now hugs the wall so the locker bank is seen end-on); pistol pose re-oriented (barrel pitched up toward screen centre) to match the image-space slide direction. Round 004: start of clip modelled as crouched (eye 1.15 m, rising to 1.6 m by 1.05 s) because sample 0 shows level verticals with the horizon at locker-handle height; north lockers widened to 0.46 m; camera re-fit at samples 0, 1, 7; pistol pitch reduced so the on-screen slide angle matches. Round 005: south doorway widened to 4.6 m and raised to 3.3 m (door-to-locker image-width ratio in samples 15-17 and 20-23 is about 1.1-1.5; sample 18 is inconsistent with this and remains a discrepancy), signs and SW pillar shifted west; camera re-fit at samples 1 and 12."
+    },
+    {
+     "round": "006",
+     "action": "render",
+     "reason": "Sign board layout/size and camera re-fit at samples 12 and 15.",
+     "rendered": true,
+     "report": "# Report - video45, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nLevel: L1 (proxy). Protocol: Three.js sampled-frame baseline (24 timestamped reference samples, 1280x536, 30 fps, 429 frames, 14.3 s). Not equivalent to Blender model rankings.\n\nScene interpretation (from samples): a first-person shooter clip inside a beige corrugated-wall locker room. North wall: 9-locker bank (blue graffiti) and a large two-pane window onto a dark industrial building / bright sky. South wall: a wide doorway to a cooler grey hall (skull + purple tag graffiti, second doorway, exit sign) with a 9-locker bank (black and red graffiti) east of it and safety signs west of it. East wall: white suits, helmets, bench. West wall: sinks and a bin.\n\nGeometry: boxes/planes/cylinders/spheres only; graffiti as procedural seeded scribble textures (no text). Enemies: two articulated humanoid proxies (hips, torso, head, legs, arms, gun, muzzle flash). Viewmodel parented to the camera: gold pistol (slide, grip), purple gloves, bare forearms with watch bands; a purple knife for 4.75-7.1 s.\n\nCamera/timing: keyframed camera position/yaw/pitch at each sample time, cubic Hermite in between; player turns left continuously from facing south (~5.0 s) through north (5.6 s), west (6.2 s) to south (6.8 s), approaches the doorway, then backs away facing the doorway. Pistol draw at 0 s, knife phase ~4.75-7.1 s, pistol draw/inspect 7.1-9.7 s, shots with recoil and muzzle flash at 9.8, 10.5, 11.45, 13.5 s. Enemy A walks in the far room, comes through the second doorway, jumps toward the door (~11.0-11.35 s) firing, is shot and falls (11.45 s); hidden after 12.1 s (inference). Enemy B walks across the far doorway 12.5-14.3 s.\n\nObserved vs inferred: poses at the 24 sample times are estimated from the images; everything between samples (turn direction during fast flicks, enemy paths, shot times other than the visible flash at 10.53 s) is inference. Smoke, motion blur and graffiti text are not reproduced.\n\nFeedback received: renders of rounds 001 and 002 (24 paired frames each). Round 002: brighter lighting, larger window, taller door, suits repositioned, smaller viewmodel, camera re-fits. Round 003: locker height back to 2.2 m and window enlarged to y 0.75-2.95 (fit from samples 2, 3, 9); camera distance/pitch re-fit at samples 0, 2, 3, 5, 6, 8, 10, 13 (sample 6 now hugs the wall so the locker bank is seen end-on); pistol pose re-oriented (barrel pitched up toward screen centre) to match the image-space slide direction. Round 004: start of clip modelled as crouched (eye 1.15 m, rising to 1.6 m by 1.05 s) because sample 0 shows level verticals with the horizon at locker-handle height; north lockers widened to 0.46 m; camera re-fit at samples 0, 1, 7; pistol pitch reduced so the on-screen slide angle matches. Round 005: south doorway widened to 4.6 m and raised to 3.3 m (door-to-locker image-width ratio in samples 15-17 and 20-23 is about 1.1-1.5; sample 18 is inconsistent with this and remains a discrepancy), signs and SW pillar shifted west; camera re-fit at samples 1 and 12. Round 006: safety-sign board enlarged with icon column on image-left (east) and blue text column on image-right; camera re-fit at samples 12 and 15."
+    },
+    {
+     "round": "007",
+     "action": "render",
+     "reason": "Extend sink counter and re-fit camera at samples 5 and 9.",
+     "rendered": true,
+     "report": "# Report - video45, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nLevel: L1 (proxy). Protocol: Three.js sampled-frame baseline (24 timestamped reference samples, 1280x536, 30 fps, 429 frames, 14.3 s). Not equivalent to Blender model rankings.\n\nScene interpretation (from samples): a first-person shooter clip inside a beige corrugated-wall locker room. North wall: 9-locker bank (blue graffiti) and a large two-pane window onto a dark industrial building / bright sky. South wall: a wide doorway to a cooler grey hall (skull + purple tag graffiti, second doorway, exit sign) with a 9-locker bank (black and red graffiti) east of it and safety signs west of it. East wall: white suits, helmets, bench. West wall: sinks and a bin.\n\nGeometry: boxes/planes/cylinders/spheres only; graffiti as procedural seeded scribble textures (no text). Enemies: two articulated humanoid proxies (hips, torso, head, legs, arms, gun, muzzle flash). Viewmodel parented to the camera: gold pistol (slide, grip), purple gloves, bare forearms with watch bands; a purple knife for 4.75-7.1 s.\n\nCamera/timing: keyframed camera position/yaw/pitch at each sample time, cubic Hermite in between; player turns left continuously from facing south (~5.0 s) through north (5.6 s), west (6.2 s) to south (6.8 s), approaches the doorway, then backs away facing the doorway. Pistol draw at 0 s, knife phase ~4.75-7.1 s, pistol draw/inspect 7.1-9.7 s, shots with recoil and muzzle flash at 9.8, 10.5, 11.45, 13.5 s. Enemy A walks in the far room, comes through the second doorway, jumps toward the door (~11.0-11.35 s) firing, is shot and falls (11.45 s); hidden after 12.1 s (inference). Enemy B walks across the far doorway 12.5-14.3 s.\n\nObserved vs inferred: poses at the 24 sample times are estimated from the images; everything between samples (turn direction during fast flicks, enemy paths, shot times other than the visible flash at 10.53 s) is inference. Smoke, motion blur and graffiti text are not reproduced.\n\nFeedback received: renders of rounds 001 and 002 (24 paired frames each). Round 002: brighter lighting, larger window, taller door, suits repositioned, smaller viewmodel, camera re-fits. Round 003: locker height back to 2.2 m and window enlarged to y 0.75-2.95 (fit from samples 2, 3, 9); camera distance/pitch re-fit at samples 0, 2, 3, 5, 6, 8, 10, 13 (sample 6 now hugs the wall so the locker bank is seen end-on); pistol pose re-oriented (barrel pitched up toward screen centre) to match the image-space slide direction. Round 004: start of clip modelled as crouched (eye 1.15 m, rising to 1.6 m by 1.05 s) because sample 0 shows level verticals with the horizon at locker-handle height; north lockers widened to 0.46 m; camera re-fit at samples 0, 1, 7; pistol pitch reduced so the on-screen slide angle matches. Round 005: south doorway widened to 4.6 m and raised to 3.3 m (door-to-locker image-width ratio in samples 15-17 and 20-23 is about 1.1-1.5; sample 18 is inconsistent with this and remains a discrepancy), signs and SW pillar shifted west; camera re-fit at samples 1 and 12. Round 006: safety-sign board enlarged with icon column on image-left (east) and blue text column on image-right; camera re-fit at samples 12 and 15. Round 007: west-wall sink counter extended north (three basins, z -4.6..1.2) to satisfy samples 5, 6, 8 and 10 together; camera re-fit at samples 5 and 9."
+    },
+    {
+     "round": "008",
+     "action": "submit",
+     "reason": "Layout, camera framing and event timing match the reference at most samples; remaining mismatches are inconsistent scale cues and fine detail, which are low priority at L1.",
+     "rendered": false,
+     "report": "# Report: video45, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nLevel: L1 (proxy). Protocol: Three.js sampled-frame baseline (24 timestamped reference samples, 1280x536, 30 fps, 429 frames, 14.3 s). This is not equivalent to Blender model rankings, and no scores are claimed.\n\nSubmitted scene: round 007's render. That is the most recently rendered scene and the one being submitted.\n\nScene interpretation (from the samples): a first-person shooter clip in a beige locker room.\n- North wall: a 9-locker bank with blue graffiti, and a large two-pane window looking onto a dark industrial building and a bright sky.\n- South wall: a wide (4.6 m) doorway into a cooler grey hall. The hall has skull and purple-tag graffiti, a second doorway and an exit sign. A 9-locker bank with black and red graffiti stands east of the doorway, and safety signs are west of it.\n- Suits and helmets hang on the north-east and south-east walls. A sink counter and a bin are on the west wall.\n\nGeometry: only boxes, planes, cylinders and spheres. Graffiti is shown as seeded procedural scribble textures; no text is reproduced.\n- Enemies: two articulated humanoid proxies (hips, torso, head, swinging legs, arms, gun, muzzle flash).\n- First-person viewmodel, parented to the camera: a gold pistol (slide, frame, grip), purple gloves, and bare forearms with watch bands. A purple knife replaces the pistol from about 4.75 s to 7.1 s.\n\nCamera and timing: the camera position, yaw and pitch are keyframed at the 24 sample times, with cubic Hermite interpolation in between.\n- The player starts crouched (eye height 1.15 m) and stands by 1.05 s.\n- The player strafes in front of the window, then flicks left along the window wall (3.1-3.7 s) and looks through the window (4.3 s).\n- The player then turns continuously left: south at 5.0 s, north at 5.6 s, west at 6.2 s, south at 6.8 s.\n- The player moves up to the doorway (7.4-8.7 s), then backs away facing the doorway (9.3-14.3 s).\n\nViewmodel and enemy events:\n- Pistol draw at 0 s. Knife from about 4.75 s to 7.1 s. Pistol draw/inspect from 7.1 s to 9.7 s.\n- Shots, each with recoil and a muzzle flash, at 9.8, 10.5, 11.45 and 13.5 s.\n- Enemy A walks in the far room and comes through the second doorway. It jumps toward the camera while firing (about 11.0-11.35 s), is shot at 11.45 s and falls. It is hidden after 12.1 s.\n- Enemy B walks across the far doorway from 12.5 s to 14.3 s.\n\nObserved vs inferred: the poses at the 24 sample times are estimated from the images. Everything between samples is inference. This includes the direction of fast flicks, enemy paths, the crouch-to-stand timing, and every shot time except the flash visible at 10.53 s.\n\nFeedback and revisions: rendered paired feedback was received for rounds 001-007.\n- Round 002: lighting brightened; window and door enlarged; suits repositioned; viewmodel scale reduced.\n- Round 003: locker and window proportions re-fit; camera distances re-fit; pistol re-oriented.\n- Round 004: crouched start added; north lockers widened; camera re-fit at samples 0, 1 and 7.\n- Round 005: doorway widened to 4.6 m and raised.\n- Round 006: sign board resized and laid out; camera re-fit at samples 12 and 15.\n- Round 007: sink counter extended; camera re-fit at samples 5 and 9.\n\nRemaining discrepancies:\n- Sample 18: the doorway looks narrower relative to the lockers than our single-plane layout allows. This conflicts with samples 15-17 and 20-23, which we matched instead.\n- Sample 10 (facing west along the south lockers) is only roughly matched.\n- The room's ceiling grating, smoke puffs, motion blur and graffiti lettering are not reproduced.\n- The viewmodel is a coarse box proxy. Its pose during the inspect and draw animations is approximate.\n- The enemy's exact poses and timing between samples, and whether the body stays visible after it falls, are not verified."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.72,
+     5.29,
+     8.87,
+     12.44
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ],
+     "006": [
+      "r006_0.jpg",
+      "r006_1.jpg",
+      "r006_2.jpg",
+      "r006_3.jpg"
+     ],
+     "007": [
+      "r007_0.jpg",
+      "r007_1.jpg",
+      "r007_2.jpg",
+      "r007_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 6,
+    "inspection_only_decisions": 1,
+    "render_attempts": 7,
+    "infrastructure_retries": 0,
+    "model_turns": 8,
+    "provider_responses": 0
+   }
+  }
+ }
+}

@@ -1,0 +1,135 @@
+{
+ "id": "video48",
+ "n": 48,
+ "reference": {
+  "video": "media/ref/video48.mp4",
+  "poster": "media/poster/ref/video48_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 810,
+  "fps": 59.94,
+  "duration": 13.514
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video48.mp4",
+   "poster": "media/poster/opus-5-5/video48_0.jpg",
+   "scene": "media/scene/opus-5-5/video48.mjs",
+   "final_round": "005",
+   "scene_sha256": "3de3a44a7fa17674e55b3753cc1b64291444b486b7d2c1575675c5181568660c",
+   "video_sha256": "daec978fb10a679d6d9c5a6942d734dd4e3dcbbfd8815c83a9f6312cb271bc24",
+   "stop": "model_submit",
+   "revisions": 4,
+   "renders": 5,
+   "infra_retries": 0,
+   "turns": 6,
+   "pauses": 0,
+   "inferences": 37,
+   "output_tokens": 93386,
+   "cost": 3.98,
+   "cost_1h": 4.69,
+   "elapsed_seconds": 1558,
+   "submit_reason": "Camera path, hero placement and timing, cut structure and main street layout match the reference samples well at L1; further changes would be small appearance tweaks.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete proxy scene: chase camera following an articulated web-swinging hero through a street canyon.",
+     "rendered": true,
+     "report": "# video48 - L1 (Proxy) reconstruction, Three.js sampled-frame baseline\n\nRepresentation: L1 proxy. Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved (24 reference samples): a single red/blue costumed hero web-swings forward along a city street canyon on an overcast day, followed by a third-person chase camera that keeps him near image centre. Phases seen: swinging down the street past a dark glass tower on the left (0-3 s), release and launch upward with the camera looking up at the sky (3.5-4.7 s), a head-first dive with the camera looking steeply down at the street (5.3-7.0 s), pull-out into a swing in a street with a yellow/blue \"W\" billboard on the left and a purple sign further on, with a skybridge far ahead (7.6-8.8 s), a high flip/inverted fall above the rooftops with a river on the left horizon (9.4-10.6 s), then another dive and swing that revisits the same billboards and skybridge (11.1-13.5 s).\n\nGeometry: instanced box buildings on a seeded city grid (main street facades at x=+-9 m), landmark dark tower with antenna, skybridge box, flat billboard planes, sphere trees, box cars, road/ground/water planes, gradient sky dome and fog. Hero: articulated proxy (torso, pelvis, head sphere, two-segment arms and legs with shoulder/elbow/hip/knee joints) with pose presets (reach, vee, hang, spread, dive, split, invert, tuck) blended over time and whole-body pitch/roll for flips and dives. Web: a thin cylinder from the right hand to a fixed world anchor during swing intervals.\n\nCamera/timing: camera height, pitch, yaw and forward progress are keyframed at the sample timestamps (monotone cubic interpolation); hero placement is derived from his observed screen position and an estimated depth at each sample. Inference: the reappearance of the same billboards/skybridge/storefronts suggests a hard cut at ~10.85 s back to the earlier street position (exact cut time is unobserved, between samples at 10.56 and 11.14 s). Speeds, depths, fov (58 deg) and building layout are estimates.\n\nFeedback: none received yet (initial round). Unverified: all framing, sizes and timing between samples."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Rescaled street canyon and building heights, raised camera in overhead phases, corrected steep upward view and lateral camera offsets.",
+     "rendered": true,
+     "report": "# video48 - L1 (Proxy) reconstruction, Three.js sampled-frame baseline\n\nRepresentation: L1 proxy. Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved (24 reference samples): a single red/blue costumed hero web-swings forward along a city street canyon on an overcast day, followed by a third-person chase camera that keeps him near image centre. Phases seen: swinging down the street past a dark glass tower on the left (0-3 s), release and launch upward with the camera looking up at the sky (3.5-4.7 s), a head-first dive with the camera looking steeply down at the street (5.3-7.0 s), pull-out into a swing in a street with a yellow/blue \"W\" billboard on the left and a purple sign further on, with a skybridge far ahead (7.6-8.8 s), a high flip/inverted fall above the rooftops with a river on the left horizon (9.4-10.6 s), then another dive and swing that revisits the same billboards and skybridge (11.1-13.5 s).\n\nGeometry: instanced box buildings on a seeded city grid (main street facades at x=+-9 m), landmark dark tower with antenna, skybridge box, flat billboard planes, sphere trees, box cars, road/ground/water planes, gradient sky dome and fog. Hero: articulated proxy (torso, pelvis, head sphere, two-segment arms and legs with shoulder/elbow/hip/knee joints) with pose presets (reach, vee, hang, spread, dive, split, invert, tuck) blended over time and whole-body pitch/roll for flips and dives. Web: a thin cylinder from the right hand to a fixed world anchor during swing intervals.\n\nCamera/timing: camera height, pitch, yaw and forward progress are keyframed at the sample timestamps (monotone cubic interpolation); hero placement is derived from his observed screen position and an estimated depth at each sample. Inference: the reappearance of the same billboards/skybridge/storefronts suggests a hard cut at ~10.85 s back to the earlier street position (exact cut time is unobserved, between samples at 10.56 and 11.14 s). Speeds, depths, fov (58 deg) and building layout are estimates.\n\nFeedback received: round 001 render pairs (24 matched timestamps). Revisions in round 002: street widened (facades at +-16 m), building heights reduced and palette lightened with stronger haze to match the low-rise overcast city, camera raised during the launch/dive phases (up to ~105 m), steeper upward pitch (80 deg) at 3.5 s, lateral camera offsets toward the near facade at 1.2 s, 7.6 s, 11.1 s and 13.5 s, billboards and skybridge repositioned. Remaining: building facades have no window detail (L1), exact hero poses, depths and speeds are estimates; cut time unverified."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Fix empty sky views at 3.5 s and 4.1 s, refine canyon wall heights and lateral camera offsets.",
+     "rendered": true,
+     "report": "# video48 - L1 (Proxy) reconstruction, Three.js sampled-frame baseline\n\nRepresentation: L1 proxy. Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved (24 reference samples): a single red/blue costumed hero web-swings forward along a city street canyon on an overcast day, followed by a third-person chase camera that keeps him near image centre. Phases seen: swinging down the street past a dark glass tower on the left (0-3 s), release and launch upward with the camera looking up at the sky (3.5-4.7 s), a head-first dive with the camera looking steeply down at the street (5.3-7.0 s), pull-out into a swing in a street with a yellow/blue \"W\" billboard on the left and a purple sign further on, with a skybridge far ahead (7.6-8.8 s), a high flip/inverted fall above the rooftops with a river on the left horizon (9.4-10.6 s), then another dive and swing that revisits the same billboards and skybridge (11.1-13.5 s).\n\nGeometry: instanced box buildings on a seeded city grid (main street facades at x=+-9 m), landmark dark tower with antenna, skybridge box, flat billboard planes, sphere trees, box cars, road/ground/water planes, gradient sky dome and fog. Hero: articulated proxy (torso, pelvis, head sphere, two-segment arms and legs with shoulder/elbow/hip/knee joints) with pose presets (reach, vee, hang, spread, dive, split, invert, tuck) blended over time and whole-body pitch/roll for flips and dives. Web: a thin cylinder from the right hand to a fixed world anchor during swing intervals.\n\nCamera/timing: camera height, pitch, yaw and forward progress are keyframed at the sample timestamps (monotone cubic interpolation); hero placement is derived from his observed screen position and an estimated depth at each sample. Inference: the reappearance of the same billboards/skybridge/storefronts suggests a hard cut at ~10.85 s back to the earlier street position (exact cut time is unobserved, between samples at 10.56 and 11.14 s). Speeds, depths, fov (58 deg) and building layout are estimates.\n\nFeedback received: round 001 render pairs (24 matched timestamps). Revisions in round 002: street widened (facades at +-16 m), building heights reduced and palette lightened with stronger haze to match the low-rise overcast city, camera raised during the launch/dive phases (up to ~105 m), steeper upward pitch (80 deg) at 3.5 s, lateral camera offsets toward the near facade at 1.2 s, 7.6 s, 11.1 s and 13.5 s, billboards and skybridge repositioned. Remaining: building facades have no window detail (L1), exact hero poses, depths and speeds are estimates; cut time unverified.\n\nRound 003 revisions (from round 002 feedback): tall canyon walls forced around the 3.5 s upward view, camera lowered to 14 m with 78 deg pitch and 30 deg roll there; camera turned right (yaw -30) at 4.1 s toward an added dark glass block seen from below; landmark tower moved 10 m farther; camera shifted toward the right facade at 1.2-1.8 s and 7.6 s; street-front heights overridden to match observed low/tall walls (low brick at 8.2 s, tall gray at 7.6/11.1 s, W/purple sign buildings, taller right-side cluster beyond z=-480 seen at 9.4 s, 12.3 s and 13.5 s)."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Re-solve tower and billboard placement, open up rooftop views, adjust post-cut progress.",
+     "rendered": true,
+     "report": "# video48 - L1 (Proxy) reconstruction, Three.js sampled-frame baseline\n\nRepresentation: L1 proxy. Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved (24 reference samples): a single red/blue costumed hero web-swings forward along a city street canyon on an overcast day, followed by a third-person chase camera that keeps him near image centre. Phases seen: swinging down the street past a dark glass tower on the left (0-3 s), release and launch upward with the camera looking up at the sky (3.5-4.7 s), a head-first dive with the camera looking steeply down at the street (5.3-7.0 s), pull-out into a swing in a street with a yellow/blue \"W\" billboard on the left and a purple sign further on, with a skybridge far ahead (7.6-8.8 s), a high flip/inverted fall above the rooftops with a river on the left horizon (9.4-10.6 s), then another dive and swing that revisits the same billboards and skybridge (11.1-13.5 s).\n\nGeometry: instanced box buildings on a seeded city grid (main street facades at x=+-9 m), landmark dark tower with antenna, skybridge box, flat billboard planes, sphere trees, box cars, road/ground/water planes, gradient sky dome and fog. Hero: articulated proxy (torso, pelvis, head sphere, two-segment arms and legs with shoulder/elbow/hip/knee joints) with pose presets (reach, vee, hang, spread, dive, split, invert, tuck) blended over time and whole-body pitch/roll for flips and dives. Web: a thin cylinder from the right hand to a fixed world anchor during swing intervals.\n\nCamera/timing: camera height, pitch, yaw and forward progress are keyframed at the sample timestamps (monotone cubic interpolation); hero placement is derived from his observed screen position and an estimated depth at each sample. Inference: the reappearance of the same billboards/skybridge/storefronts suggests a hard cut at ~10.85 s back to the earlier street position (exact cut time is unobserved, between samples at 10.56 and 11.14 s). Speeds, depths, fov (58 deg) and building layout are estimates.\n\nFeedback received: round 001 render pairs (24 matched timestamps). Revisions in round 002: street widened (facades at +-16 m), building heights reduced and palette lightened with stronger haze to match the low-rise overcast city, camera raised during the launch/dive phases (up to ~105 m), steeper upward pitch (80 deg) at 3.5 s, lateral camera offsets toward the near facade at 1.2 s, 7.6 s, 11.1 s and 13.5 s, billboards and skybridge repositioned. Remaining: building facades have no window detail (L1), exact hero poses, depths and speeds are estimates; cut time unverified.\n\nRound 003 revisions (from round 002 feedback): tall canyon walls forced around the 3.5 s upward view, camera lowered to 14 m with 78 deg pitch and 30 deg roll there; camera turned right (yaw -30) at 4.1 s toward an added dark glass block seen from below; landmark tower moved 10 m farther; camera shifted toward the right facade at 1.2-1.8 s and 7.6 s; street-front heights overridden to match observed low/tall walls (low brick at 8.2 s, tall gray at 7.6/11.1 s, W/purple sign buildings, taller right-side cluster beyond z=-480 seen at 9.4 s, 12.3 s and 13.5 s).\n\nRound 004 revisions (from round 003 feedback): landmark tower moved toward the street centre line and camera yaw/lateral keys at 0-1.8 s re-solved so the tower lands at its observed image position; W billboard moved farther ahead (z=-400) and lower so it appears lower-left at both 7.6 s and 11.7 s; low brick block on the right after the tall gray block; right-side tall cluster pushed farther (beyond z=-600) so the 8.8-10.6 s rooftop views stay open; camera raised at 8.8 s; second-pass progress after the cut sped up so the purple-sign building is passed by 12.9 s."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Add near right-side walls along the first street segment.",
+     "rendered": true,
+     "report": "# video48 - L1 (Proxy) reconstruction, Three.js sampled-frame baseline\n\nRepresentation: L1 proxy. Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved (24 reference samples): a single red/blue costumed hero web-swings forward along a city street canyon on an overcast day, followed by a third-person chase camera that keeps him near image centre. Phases seen: swinging down the street past a dark glass tower on the left (0-3 s), release and launch upward with the camera looking up at the sky (3.5-4.7 s), a head-first dive with the camera looking steeply down at the street (5.3-7.0 s), pull-out into a swing in a street with a yellow/blue \"W\" billboard on the left and a purple sign further on, with a skybridge far ahead (7.6-8.8 s), a high flip/inverted fall above the rooftops with a river on the left horizon (9.4-10.6 s), then another dive and swing that revisits the same billboards and skybridge (11.1-13.5 s).\n\nGeometry: instanced box buildings on a seeded city grid (main street facades at x=+-9 m), landmark dark tower with antenna, skybridge box, flat billboard planes, sphere trees, box cars, road/ground/water planes, gradient sky dome and fog. Hero: articulated proxy (torso, pelvis, head sphere, two-segment arms and legs with shoulder/elbow/hip/knee joints) with pose presets (reach, vee, hang, spread, dive, split, invert, tuck) blended over time and whole-body pitch/roll for flips and dives. Web: a thin cylinder from the right hand to a fixed world anchor during swing intervals.\n\nCamera/timing: camera height, pitch, yaw and forward progress are keyframed at the sample timestamps (monotone cubic interpolation); hero placement is derived from his observed screen position and an estimated depth at each sample. Inference: the reappearance of the same billboards/skybridge/storefronts suggests a hard cut at ~10.85 s back to the earlier street position (exact cut time is unobserved, between samples at 10.56 and 11.14 s). Speeds, depths, fov (58 deg) and building layout are estimates.\n\nFeedback received: round 001 render pairs (24 matched timestamps). Revisions in round 002: street widened (facades at +-16 m), building heights reduced and palette lightened with stronger haze to match the low-rise overcast city, camera raised during the launch/dive phases (up to ~105 m), steeper upward pitch (80 deg) at 3.5 s, lateral camera offsets toward the near facade at 1.2 s, 7.6 s, 11.1 s and 13.5 s, billboards and skybridge repositioned. Remaining: building facades have no window detail (L1), exact hero poses, depths and speeds are estimates; cut time unverified.\n\nRound 003 revisions (from round 002 feedback): tall canyon walls forced around the 3.5 s upward view, camera lowered to 14 m with 78 deg pitch and 30 deg roll there; camera turned right (yaw -30) at 4.1 s toward an added dark glass block seen from below; landmark tower moved 10 m farther; camera shifted toward the right facade at 1.2-1.8 s and 7.6 s; street-front heights overridden to match observed low/tall walls (low brick at 8.2 s, tall gray at 7.6/11.1 s, W/purple sign buildings, taller right-side cluster beyond z=-480 seen at 9.4 s, 12.3 s and 13.5 s).\n\nRound 004 revisions (from round 003 feedback): landmark tower moved toward the street centre line and camera yaw/lateral keys at 0-1.8 s re-solved so the tower lands at its observed image position; W billboard moved farther ahead (z=-400) and lower so it appears lower-left at both 7.6 s and 11.7 s; low brick block on the right after the tall gray block; right-side tall cluster pushed farther (beyond z=-600) so the 8.8-10.6 s rooftop views stay open; camera raised at 8.8 s; second-pass progress after the cut sped up so the purple-sign building is passed by 12.9 s.\n\nRound 005 revisions (from round 004 feedback): added two near right-hand wall blocks (red brick, then gray) closer to the street line along the first street so the right side is close and tall at 0.6-1.8 s as in the reference; street trees removed where they would intersect those blocks and the tower."
+    },
+    {
+     "round": "006",
+     "action": "submit",
+     "reason": "Camera path, hero placement and timing, cut structure and main street layout match the reference samples well at L1; further changes would be small appearance tweaks.",
+     "rendered": false,
+     "report": "# video48 - L1 (Proxy) reconstruction, Three.js sampled-frame baseline\n\nRepresentation: L1 proxy. Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved (24 reference samples): a single red/blue costumed hero web-swings forward along a city street canyon on an overcast day, followed by a third-person chase camera that keeps him near image centre. Phases seen: swinging down the street past a dark glass tower on the left (0-3 s), release and launch upward with the camera looking up at the sky (3.5-4.7 s), a head-first dive with the camera looking steeply down at the street (5.3-7.0 s), pull-out into a swing in a street with a yellow/blue \"W\" billboard on the left and a purple sign further on, with a skybridge far ahead (7.6-8.8 s), a high flip/inverted fall above the rooftops with a river on the left horizon (9.4-10.6 s), then another dive and swing that revisits the same billboards and skybridge (11.1-13.5 s).\n\nGeometry: instanced box buildings on a seeded city grid (main street facades at x=+-9 m), landmark dark tower with antenna, skybridge box, flat billboard planes, sphere trees, box cars, road/ground/water planes, gradient sky dome and fog. Hero: articulated proxy (torso, pelvis, head sphere, two-segment arms and legs with shoulder/elbow/hip/knee joints) with pose presets (reach, vee, hang, spread, dive, split, invert, tuck) blended over time and whole-body pitch/roll for flips and dives. Web: a thin cylinder from the right hand to a fixed world anchor during swing intervals.\n\nCamera/timing: camera height, pitch, yaw and forward progress are keyframed at the sample timestamps (monotone cubic interpolation); hero placement is derived from his observed screen position and an estimated depth at each sample. Inference: the reappearance of the same billboards/skybridge/storefronts suggests a hard cut at ~10.85 s back to the earlier street position (exact cut time is unobserved, between samples at 10.56 and 11.14 s). Speeds, depths, fov (58 deg) and building layout are estimates.\n\nFeedback received: round 001 render pairs (24 matched timestamps). Revisions in round 002: street widened (facades at +-16 m), building heights reduced and palette lightened with stronger haze to match the low-rise overcast city, camera raised during the launch/dive phases (up to ~105 m), steeper upward pitch (80 deg) at 3.5 s, lateral camera offsets toward the near facade at 1.2 s, 7.6 s, 11.1 s and 13.5 s, billboards and skybridge repositioned. Remaining: building facades have no window detail (L1), exact hero poses, depths and speeds are estimates; cut time unverified.\n\nRound 003 revisions (from round 002 feedback): tall canyon walls forced around the 3.5 s upward view, camera lowered to 14 m with 78 deg pitch and 30 deg roll there; camera turned right (yaw -30) at 4.1 s toward an added dark glass block seen from below; landmark tower moved 10 m farther; camera shifted toward the right facade at 1.2-1.8 s and 7.6 s; street-front heights overridden to match observed low/tall walls (low brick at 8.2 s, tall gray at 7.6/11.1 s, W/purple sign buildings, taller right-side cluster beyond z=-480 seen at 9.4 s, 12.3 s and 13.5 s).\n\nRound 004 revisions (from round 003 feedback): landmark tower moved toward the street centre line and camera yaw/lateral keys at 0-1.8 s re-solved so the tower lands at its observed image position; W billboard moved farther ahead (z=-400) and lower so it appears lower-left at both 7.6 s and 11.7 s; low brick block on the right after the tall gray block; right-side tall cluster pushed farther (beyond z=-600) so the 8.8-10.6 s rooftop views stay open; camera raised at 8.8 s; second-pass progress after the cut sped up so the purple-sign building is passed by 12.9 s.\n\nRound 005 revisions (from round 004 feedback): added two near right-hand wall blocks (red brick, then gray) closer to the street line along the first street so the right side is close and tall at 0.6-1.8 s as in the reference; street trees removed where they would intersect those blocks and the tower.\n\nSubmission (round 006): submitting the round 005 render. Round 005 feedback confirmed the near right walls at 0-1.8 s now match the reference layout. Remaining discrepancies: no facade or window detail and plain sky without clouds (intentional for L1); the hero's poses are approximate presets (the reference shows more asymmetric hanging and diving poses); the web is drawn thicker and more continuously visible than in the reference; building layout away from the main street is procedural; the 4.1 s and 3.5 s upward views only roughly match the reference building arrangement; the hard cut at ~10.85 s, the travel speeds and the hero depths are inferred and were not observed directly."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.62,
+     5.0,
+     8.38,
+     11.76
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
+    "infrastructure_retries": 0,
+    "model_turns": 6,
+    "provider_responses": 0
+   }
+  }
+ }
+}

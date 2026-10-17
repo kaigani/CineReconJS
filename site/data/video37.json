@@ -1,0 +1,96 @@
+{
+ "id": "video37",
+ "n": 37,
+ "reference": {
+  "video": "media/ref/video37.mp4",
+  "poster": "media/poster/ref/video37_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 441,
+  "fps": 23.963,
+  "duration": 18.403
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video37.mp4",
+   "poster": "media/poster/opus-5-5/video37_0.jpg",
+   "scene": "media/scene/opus-5-5/video37.mjs",
+   "final_round": "002",
+   "scene_sha256": "04394be7b8162a76287aff436079fb395877fa058779be66437d9ee91ab3b793",
+   "video_sha256": "4445730e485c68e9cedb682ca4bf26193e58b6a70ae0be3b9a0272de6960e381",
+   "stop": "model_submit",
+   "revisions": 1,
+   "renders": 2,
+   "infra_retries": 0,
+   "turns": 3,
+   "pauses": 1,
+   "inferences": 20,
+   "output_tokens": 107585,
+   "cost": 3.05,
+   "cost_1h": 3.33,
+   "elapsed_seconds": 10635,
+   "submit_reason": "Round 002 render matches camera path, subject positions, gateway entry timing and final board framing across all samples; remaining errors are minor.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene: hotel, hedge maze with gateway, hut, map board, articulated runners, keyed pan/truck camera.",
+     "rendered": true,
+     "report": "# video37 reconstruction report (round 001)\n\nRepresentation level: L1 (proxy). Three.js sampled-frame baseline (native inspect-revise protocol); not a Blender-equivalent ranking.\n\nObserved from the 24 reference samples: one continuous shot, no cuts. A woman in a red jacket and a boy in a plaid shirt walk from a large wooden hotel (t=0-1.6 s), start running right, and the camera pans right (about 26 deg of yaw over ~0-7 s) while trucking right along a tall topiary hedge-maze wall at constant height. They pass a bench, lamp posts, a waste bin and a wooden ticket hut, then turn into the arched maze gateway (~13-14.4 s). A roofed wooden map board in the foreground slides in from the right, and the camera decelerates and holds on it (~16.8-18.4 s).\n\nGeometry: hotel as boxes with prism roofs; hedge as wall boxes with box towers and cone tops, a gateway made of pillar and lintel boxes, a darker interior hedge visible through the arch; ground planes for lawn, gravel path, asphalt road and footpath; a flattened sphere hill with sphere tree clusters; benches, bins, lamps, hut, conifers; map board built from posts, a roof, panels and a procedural DataTexture maze poster (no text).\nArticulation: both people are hierarchies with pelvis, torso, head, thighs and knees, and shoulders and elbows. The gait phase comes from precomputed arc length, so it is absolute-time deterministic. Walk blends into run by speed, the pelvis height keeps the lowest foot on the ground, and the woman's arms reach forward while she runs.\nCamera: a PerspectiveCamera (vertical FOV 29.4 deg) at height 1.5 m, pitched up 3.9 deg. The x position and yaw are monotone-cubic tracks keyed at every sample time, estimated from the image positions of the lamps, hedge towers, hut and hotel chimney.\nTiming: the native timeline is time = frame/fps. The people tracks are keyed at the sample times; they are hidden once they are inside the maze behind the board (t > 15.4 s).\n\nInference vs observation: the positions between samples, the 3D depths (estimated from relative sizes and parallax), the people's paths before and after they become visible, and the maze interior are all inferred.\nFeedback: none received yet (initial round). Unverified: lighting intensity semantics, exact framing, and exact hotel layout."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix runner timing at the gateway, oversized rocks, colours, and the board roof after round-001 comparison.",
+     "rendered": true,
+     "report": "# video37 reconstruction report (round 002)\n\nRepresentation level: L1 (proxy). Three.js sampled-frame baseline (native inspect-revise protocol); not a Blender-equivalent ranking.\n\nObserved from the 24 reference samples: one continuous shot, no cuts. A woman in a red jacket and a boy in a plaid shirt walk from a large wooden hotel (t=0-1.6 s), start running right, and the camera pans right (about 26 deg of yaw over ~0-7 s) while trucking right along a tall topiary hedge-maze wall at constant height. They pass a bench, lamp posts, a waste bin and a wooden ticket hut, then turn into the arched maze gateway (~13-14.4 s). A roofed wooden map board in the foreground slides in from the right, and the camera decelerates and holds on it (~16.8-18.4 s).\n\nGeometry: hotel as boxes with prism roofs; hedge as wall boxes with box towers and cone tops, a gateway made of pillar and lintel boxes, a darker interior hedge visible through the arch; ground planes for lawn, gravel path, asphalt road and footpath; a flattened sphere hill with sphere tree clusters; benches, bins, lamps, hut, conifers; map board built from posts, a roof, panels and a procedural DataTexture maze poster (no text).\nArticulation: both people are hierarchies with pelvis, torso, head, thighs and knees, and shoulders and elbows. The gait phase comes from precomputed arc length, so it is absolute-time deterministic. Walk blends into run by speed, the pelvis height keeps the lowest foot on the ground, and the woman's arms reach forward while she runs.\nCamera: a PerspectiveCamera (vertical FOV 29.4 deg) at height 1.5 m, pitched up 3.9 deg. The x position and yaw are monotone-cubic tracks keyed at every sample time, estimated from the image positions of the lamps, hedge towers, hut and hotel chimney.\nTiming: the native timeline is time = frame/fps. The people tracks are keyed at the sample times; they are hidden once they are inside the maze behind the board (t > 15.4 s).\n\nInference vs observation: the positions between samples, the 3D depths (estimated from relative sizes and parallax), the people's paths before and after they become visible, and the maze interior are all inferred.\nFeedback: round 001 render pairs (all 24) inspected. Camera framing, hedge/tower/hut/lamp/gateway placement and board width matched well. Revisions in round 002: oversized rocks shrunk; sky made bluer; hedge, hotel and hut colours lightened; hill trees made smaller and more numerous; hut roof pitched; board roof lowered and thickened; runner positions at 12-14.4 s corrected (they stay on the forecourt until about 14.4 s, then enter the arch). Unverified: lighting intensity semantics, exact framing, and exact hotel layout."
+    },
+    {
+     "round": "003",
+     "action": "submit",
+     "reason": "Round 002 render matches camera path, subject positions, gateway entry timing and final board framing across all samples; remaining errors are minor.",
+     "rendered": false,
+     "report": "# video37 reconstruction report (final, submitted round 002 render)\n\nRepresentation level: L1 (proxy). Three.js sampled-frame baseline (native inspect-revise protocol); not a Blender-equivalent ranking.\n\nObserved from the 24 reference samples: one continuous shot, no cuts. A woman in a red jacket and a boy in a plaid shirt walk from a large wooden hotel (t=0-1.6 s), start running right, and the camera pans right (about 26 deg of yaw over ~0-7 s) while trucking right along a tall topiary hedge-maze wall at constant height. They pass a bench, lamp posts, a waste bin and a wooden ticket hut, then turn into the arched maze gateway (~13-14.4 s). A roofed wooden map board in the foreground slides in from the right, and the camera decelerates and holds on it (~16.8-18.4 s).\n\nGeometry: hotel as boxes with prism roofs; hedge as wall boxes with box towers and cone tops, a gateway made of pillar and lintel boxes, a darker interior hedge visible through the arch; ground planes for lawn, gravel path, asphalt road and footpath; a flattened sphere hill with sphere tree clusters; benches, bins, lamps, hut, conifers; map board built from posts, a roof, panels and a procedural DataTexture maze poster (no text).\nArticulation: both people are hierarchies with pelvis, torso, head, thighs and knees, and shoulders and elbows. The gait phase comes from precomputed arc length, so it is absolute-time deterministic. Walk blends into run by speed, the pelvis height keeps the lowest foot on the ground, and the woman's arms reach forward while she runs.\nCamera: a PerspectiveCamera (vertical FOV 29.4 deg) at height 1.5 m, pitched up 3.9 deg. The x position and yaw are monotone-cubic tracks keyed at every sample time, estimated from the image positions of the lamps, hedge towers, hut and hotel chimney.\nTiming: the native timeline is time = frame/fps. The people tracks are keyed at the sample times; they are hidden once they are inside the maze behind the board (t > 15.4 s).\n\nInference vs observation: the positions between samples, the 3D depths (estimated from relative sizes and parallax), the people's paths before and after they become visible, and the maze interior are all inferred.\nFeedback: round 001 render pairs (all 24) inspected. Camera framing, hedge/tower/hut/lamp/gateway placement and board width matched well. Revisions in round 002: oversized rocks shrunk; sky made bluer; hedge, hotel and hut colours lightened; hill trees made smaller and more numerous; hut roof pitched; board roof lowered and thickened; runner positions at 12-14.4 s corrected (they stay on the forecourt until about 14.4 s, then enter the arch). Unverified: lighting intensity semantics, exact framing, and exact hotel layout.\n\nRound 002 feedback (all 24 pairs) was inspected. The runner positions at the gateway now match within roughly 10-20 px; camera framing, the hedge towers, lamps, hut and board matched across the shot. Remaining discrepancies: at 13.56 s the map board enters about 150 px early; the hut sits about 0.5 m too far left in the frames before 9 s; the hotel layout and its windows are simplified; the hedge-wall arch reliefs and the maze-map text are omitted (at L1 the map is a procedural pattern); the lighting is flat and has no cast shadows. Motion between the sampled frames is inferred."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     2.21,
+     6.81,
+     11.41,
+     16.01
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 1,
+    "inspection_only_decisions": 1,
+    "render_attempts": 2,
+    "infrastructure_retries": 0,
+    "model_turns": 3,
+    "provider_responses": 0
+   }
+  }
+ }
+}

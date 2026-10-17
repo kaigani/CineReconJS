@@ -1,0 +1,122 @@
+{
+ "id": "video25",
+ "n": 25,
+ "reference": {
+  "video": "media/ref/video25.mp4",
+  "poster": "media/poster/ref/video25_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 1439,
+  "fps": 59.94,
+  "duration": 24.023
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video25.mp4",
+   "poster": "media/poster/opus-5-5/video25_0.jpg",
+   "scene": "media/scene/opus-5-5/video25.mjs",
+   "final_round": "004",
+   "scene_sha256": "573c68bfe7e583c5381f27653b6519ad1ecabc2746e2ad49969200316d82b4cd",
+   "video_sha256": "00024145973d2c9d2d72553621aeafd4a2c2ebdccd3ddb246bbd334a65e819c7",
+   "stop": "model_submit",
+   "revisions": 3,
+   "renders": 4,
+   "infra_retries": 0,
+   "turns": 5,
+   "pauses": 1,
+   "inferences": 40,
+   "output_tokens": 74756,
+   "cost": 3.96,
+   "cost_1h": 4.73,
+   "elapsed_seconds": 111201,
+   "submit_reason": "Track, both cars, chase camera, hairpin interaction and landmarks match the reference samples well at L1; remaining differences are minor placement/appearance details.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene: track, two cars, chase camera, landmarks.",
+     "rendered": true,
+     "report": "# video25 - L1 proxy reconstruction (Three.js sampled-frame baseline)\n\nRepresentation level: L1 (simple geometric proxies). Protocol: CineRecon Three.js sampled-frame baseline; not equivalent to Blender model rankings.\n\n## Observed in the 24 reference samples\n- One continuous chase-camera shot (no cuts), dusk lighting, of a yellow wide-body coupe with a rear wing seen from behind; tail lights always lit, a centre brake light lit roughly 13.5-15.6 s.\n- A white coupe runs ahead the whole time: far ahead (~100 m) early, the gap closes into a right-hand hairpin (13.5-17.7 s) where the two cars are almost side by side (white on the inside/right), then the white car pulls away along the final straight.\n- Track sequence: start straight with overhead \"Deep Forest\" gantry, grandstand + catch fence on the left, big screen on the right; braking boards; right-hand turn 1 near an oblique overpass bridge; fast section with forest on the right; gentle left bend; braking boards; right hairpin with grandstand/billboards on the outside; final straight with a left wall, an overhead GT gantry, a big screen on the right and a lit tunnel portal at the end.\n\n## Model\n- Track: a centreline integrated deterministically from keyed speed and yaw-rate profiles (precomputed table, sampled by absolute time). Asphalt ribbon 15 m wide, edge lines, red/white kerbs, green run-off, walls, translucent catch fences with posts.\n- Cars: box body, cabin (dark glass), wing on struts, emissive tail lights with additive glow, plate light, diffuser, four wheels that spin with travelled distance; front wheels steer from path curvature (counter-steer during the hairpin slide). Yellow car has a slip angle through the hairpin.\n- White car: same proxy in white, positioned by a keyed arclength gap and lateral offset relative to the yellow car.\n- Environment: grandstand wedges, pit building, gantries, overpass, billboards, crane pole, light tower, instanced tree proxies (cones/spheres), hills and distant mountain cones, gradient sky dome with a warm glow toward the final-straight direction, fog.\n- Camera: chase camera 6.5 m behind and 1.75 m above the yellow car, pitched ~4 deg down, 50 deg vertical FOV, yaw = lagged (0.45 s box-average) heading of the car, so the car stays centred and the view lags in corners.\n- Timing: time = frame/fps on the reference timeline, 1439 frames; no retiming.\n\n## Inference vs observation\nPositions between samples, exact track curvature, speeds, gap profile and landmark placements are estimated from apparent image sizes/positions in the samples. Road elevation changes (uphill near turn 1) are not modelled.\n\n## Feedback\nInitial generation; no render feedback received yet."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix missing road (ground depth issue), retime hairpin and white-car gap, landmark and appearance fixes.",
+     "rendered": true,
+     "report": "# video25 - L1 proxy reconstruction (Three.js sampled-frame baseline), revision 1\n\nRepresentation level: L1 (simple geometric proxies). Protocol: CineRecon Three.js sampled-frame baseline; not equivalent to Blender model rankings.\n\n## Observed in the 24 reference samples\n- One continuous chase-camera shot (no cuts) at dusk, behind a yellow wide-body coupe with a rear wing. Its tail lights are always on, and a centre brake light is lit around 13.5-15.6 s.\n- A white coupe is ahead the whole time. It is about 100 m ahead early on, the gap closes into a right-hand hairpin (14.5-19.5 s) where the cars come almost side by side with the white car on the inside, and then the white car pulls away along the final straight.\n- Track sequence: start straight with an overhead \"Deep Forest\" gantry, a grandstand and catch fence on the left and a big screen on the right; braking boards; right-hand turn 1 near an oblique overpass; a fast section with forest on the right; a gentle left bend; braking boards; the right hairpin with grandstands and billboards on the outside; and a final straight with a left wall, an overhead GT gantry, a big screen on the right and a lit tunnel portal at the end.\n\n## Model\n- Track: a centreline integrated deterministically from keyed speed and yaw-rate profiles (precomputed table, sampled by absolute time). It has a 15 m asphalt ribbon, edge lines, red/white kerbs, green run-off, walls, and translucent catch fences with posts.\n- Cars: each car is a box body with a cabin (dark glass), a wing on struts, emissive tail lights with a small additive glow, a plate light and a diffuser. Its four wheels spin with distance travelled, and the front wheels steer from path curvature, with counter-steer during the hairpin slide. The yellow car has a slip angle through the hairpin.\n- White car: the same proxy in white, positioned by a keyed arclength gap and lateral offset relative to the yellow car.\n- Environment: grandstand wedges, a pit building, gantries, the overpass, billboards, a crane pole, a light tower, instanced trees, distant hills and mountain cones, a gradient sky dome and fog.\n- Camera: 6.5 m behind and 1.75 m above the yellow car, pitched about 4 deg down, 50 deg vertical FOV. Its yaw is the car's velocity heading averaged over the last 0.3 s.\n- Timing: time = frame/fps on the reference timeline, 1439 frames, no retiming.\n\n## Render feedback received (round 1) and revisions\n- Bug: the asphalt, kerbs and lines vanished from many frames (about 2 s, 11-16 s and 19-24 s). Cause: a single 14 km ground quad with depth/clipping imprecision. Fix: the ground is now subdivided, lowered to -0.25 m and polygon-offset, and track strips are not frustum-culled.\n- Hairpin timing: in the reference the heading barely changes until about 15.6 s and then turns hard until about 19.5 s. The yaw-rate profile was re-timed to match, and kerbs, walls and grandstands were moved with it.\n- White-car gap: retuned to the image sizes seen in the reference. It was too close in the hairpin and at the end.\n- Turn 1 starts 0.2 s later. The overpass is shorter and placed further on, and the Zurich board was moved so it is visible.\n- Appearance: smaller tail-light glows, a more yellow body, lighter trees, broader and more distant mountains, nearby hills pushed away, and a smaller tunnel hill.\n\n## Remaining uncertainties\nExact track curvature, speeds, landmark positions and road elevation (uphill near turn 1, not modelled) are inferred from the samples. The motion between samples is interpolated."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Hairpin white-car visibility, screen occlusion, overpass placement, tail-light colour.",
+     "rendered": true,
+     "report": "# video25 - L1 proxy reconstruction (Three.js sampled-frame baseline), revision 2\n\nRepresentation level: L1 (simple geometric proxies). Protocol: CineRecon Three.js sampled-frame baseline; not equivalent to Blender model rankings.\n\n## Observed in the 24 reference samples\n- One continuous chase-camera shot (no cuts) at dusk, behind a yellow wide-body coupe with a rear wing. Its tail lights are always on, and a centre brake light is lit around 13.5-15.6 s.\n- A white coupe is ahead the whole time. It is about 100 m ahead early on, the gap closes into a right-hand hairpin (14.5-19.5 s) where the cars come almost side by side with the white car on the inside, and then the white car pulls away along the final straight.\n- Track sequence: start straight with an overhead \"Deep Forest\" gantry, a grandstand and catch fence on the left and a big screen on the right; braking boards; right-hand turn 1 near an oblique overpass; a fast section with forest on the right; a gentle left bend; braking boards; the right hairpin with grandstands and billboards on the outside; and a final straight with a left wall, an overhead GT gantry, a big screen on the right and a lit tunnel portal at the end.\n\n## Model\n- Track: a centreline integrated deterministically from keyed speed and yaw-rate profiles (precomputed table, sampled by absolute time). It has a 15 m asphalt ribbon, edge lines, red/white kerbs, green run-off, walls, and translucent catch fences with posts.\n- Cars: each car is a box body with a cabin (dark glass), a wing on struts, emissive tail lights with a small additive glow, a plate light and a diffuser. Its four wheels spin with distance travelled, and the front wheels steer from path curvature, with counter-steer during the hairpin slide. The yellow car has a slip angle through the hairpin.\n- White car: the same proxy in white, positioned by a keyed arclength gap and lateral offset relative to the yellow car.\n- Environment: grandstand wedges, a pit building, gantries, the overpass, billboards, a crane pole, a light tower, instanced trees, distant hills and mountain cones, a gradient sky dome and fog.\n- Camera: 6.5 m behind and 1.75 m above the yellow car, pitched about 4 deg down, 50 deg vertical FOV. Its yaw is the car's velocity heading averaged over the last 0.3 s.\n- Timing: time = frame/fps on the reference timeline, 1439 frames, no retiming.\n\n## Render feedback received (round 1) and revisions\n- Bug: the asphalt, kerbs and lines vanished from many frames (about 2 s, 11-16 s and 19-24 s). Cause: a single 14 km ground quad with depth/clipping imprecision. Fix: the ground is now subdivided, lowered to -0.25 m and polygon-offset, and track strips are not frustum-culled.\n- Hairpin timing: in the reference the heading barely changes until about 15.6 s and then turns hard until about 19.5 s. The yaw-rate profile was re-timed to match, and kerbs, walls and grandstands were moved with it.\n- White-car gap: retuned to the image sizes seen in the reference. It was too close in the hairpin and at the end.\n- Turn 1 starts 0.2 s later. The overpass is shorter and placed further on, and the Zurich board was moved so it is visible.\n- Appearance: smaller tail-light glows, a more yellow body, lighter trees, broader and more distant mountains, nearby hills pushed away, and a smaller tunnel hill.\n\n## Remaining uncertainties\nExact track curvature, speeds, landmark positions and road elevation (uphill near turn 1, not modelled) are inferred from the samples. The motion between samples is interpolated.\n\n## Render feedback received (round 2) and revisions\n- Round 2 render: the road, kerbs and lines now render in all 24 samples. Camera framing, the start gantry, the GT gantry and the tunnel position match the reference reasonably well.\n- At 16.7 s the white car was hidden behind the yellow car. Its gap and inside offset in the hairpin were increased, and the yellow car's apex offset was reduced.\n- The big screen on the right of the final straight was hidden by tree proxies. Trees in front of it were removed, and the right-side forest there was pushed back.\n- At 2-3 s the overpass looked too large on the right. It was shifted along its axis so it reads further away and more centred.\n- Tail lights were made redder, with smaller glows."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Unhide final-straight screen and move hairpin billboard outward.",
+     "rendered": true,
+     "report": "# video25 - L1 proxy reconstruction (Three.js sampled-frame baseline), revision 3\n\nRepresentation level: L1 (simple geometric proxies). Protocol: CineRecon Three.js sampled-frame baseline; not equivalent to Blender model rankings.\n\n## Observed in the 24 reference samples\n- One continuous chase-camera shot (no cuts) at dusk, behind a yellow wide-body coupe with a rear wing. Its tail lights are always on, and a centre brake light is lit around 13.5-15.6 s.\n- A white coupe is ahead the whole time. It is about 100 m ahead early on, the gap closes into a right-hand hairpin (14.5-19.5 s) where the cars come almost side by side with the white car on the inside, and then the white car pulls away along the final straight.\n- Track sequence: start straight with an overhead \"Deep Forest\" gantry, a grandstand and catch fence on the left and a big screen on the right; braking boards; right-hand turn 1 near an oblique overpass; a fast section with forest on the right; a gentle left bend; braking boards; the right hairpin with grandstands and billboards on the outside; and a final straight with a left wall, an overhead GT gantry, a big screen on the right and a lit tunnel portal at the end.\n\n## Model\n- Track: a centreline integrated deterministically from keyed speed and yaw-rate profiles (precomputed table, sampled by absolute time). It has a 15 m asphalt ribbon, edge lines, red/white kerbs, green run-off, walls, and translucent catch fences with posts.\n- Cars: each car is a box body with a cabin (dark glass), a wing on struts, emissive tail lights with a small additive glow, a plate light and a diffuser. Its four wheels spin with distance travelled, and the front wheels steer from path curvature, with counter-steer during the hairpin slide. The yellow car has a slip angle through the hairpin.\n- White car: the same proxy in white, positioned by a keyed arclength gap and lateral offset relative to the yellow car.\n- Environment: grandstand wedges, a pit building, gantries, the overpass, billboards, a crane pole, a light tower, instanced trees, distant hills and mountain cones, a gradient sky dome and fog.\n- Camera: 6.5 m behind and 1.75 m above the yellow car, pitched about 4 deg down, 50 deg vertical FOV. Its yaw is the car's velocity heading averaged over the last 0.3 s.\n- Timing: time = frame/fps on the reference timeline, 1439 frames, no retiming.\n\n## Render feedback received (round 1) and revisions\n- Bug: the asphalt, kerbs and lines vanished from many frames (about 2 s, 11-16 s and 19-24 s). Cause: a single 14 km ground quad with depth/clipping imprecision. Fix: the ground is now subdivided, lowered to -0.25 m and polygon-offset, and track strips are not frustum-culled.\n- Hairpin timing: in the reference the heading barely changes until about 15.6 s and then turns hard until about 19.5 s. The yaw-rate profile was re-timed to match, and kerbs, walls and grandstands were moved with it.\n- White-car gap: retuned to the image sizes seen in the reference. It was too close in the hairpin and at the end.\n- Turn 1 starts 0.2 s later. The overpass is shorter and placed further on, and the Zurich board was moved so it is visible.\n- Appearance: smaller tail-light glows, a more yellow body, lighter trees, broader and more distant mountains, nearby hills pushed away, and a smaller tunnel hill.\n\n## Remaining uncertainties\nExact track curvature, speeds, landmark positions and road elevation (uphill near turn 1, not modelled) are inferred from the samples. The motion between samples is interpolated.\n\n## Render feedback received (round 2) and revisions\n- Round 2 render: the road, kerbs and lines now render in all 24 samples. Camera framing, the start gantry, the GT gantry and the tunnel position match the reference reasonably well.\n- At 16.7 s the white car was hidden behind the yellow car. Its gap and inside offset in the hairpin were increased, and the yellow car's apex offset was reduced.\n- The big screen on the right of the final straight was hidden by tree proxies. Trees in front of it were removed, and the right-side forest there was pushed back.\n- At 2-3 s the overpass looked too large on the right. It was shifted along its axis so it reads further away and more centred.\n- Tail lights were made redder, with smaller glows.\n\n## Render feedback received (round 3) and revisions\n- Round 3 render: the white car is now visible ahead-right of the yellow car at 16.7 s and on the right at 17.7 s, as in the reference.\n- The final-straight big screen was still hidden by tree proxies. It was moved slightly closer (rigid offset 60 m ahead, 32 m right of the 19.8 s frame), and trees within 40 m of it are now excluded.\n- At 17.7 s the hairpin billboard appeared too central. It was moved further to the outside (22 m left)."
+    },
+    {
+     "round": "005",
+     "action": "submit",
+     "reason": "Track, both cars, chase camera, hairpin interaction and landmarks match the reference samples well at L1; remaining differences are minor placement/appearance details.",
+     "rendered": false,
+     "report": "# video25 - L1 proxy reconstruction (Three.js sampled-frame baseline), revision 3\n\nRepresentation level: L1 (simple geometric proxies). Protocol: CineRecon Three.js sampled-frame baseline; not equivalent to Blender model rankings.\n\n## Observed in the 24 reference samples\n- One continuous chase-camera shot (no cuts) at dusk, behind a yellow wide-body coupe with a rear wing. Its tail lights are always on, and a centre brake light is lit around 13.5-15.6 s.\n- A white coupe is ahead the whole time. It is about 100 m ahead early on, the gap closes into a right-hand hairpin (14.5-19.5 s) where the cars come almost side by side with the white car on the inside, and then the white car pulls away along the final straight.\n- Track sequence: start straight with an overhead \"Deep Forest\" gantry, a grandstand and catch fence on the left and a big screen on the right; braking boards; right-hand turn 1 near an oblique overpass; a fast section with forest on the right; a gentle left bend; braking boards; the right hairpin with grandstands and billboards on the outside; and a final straight with a left wall, an overhead GT gantry, a big screen on the right and a lit tunnel portal at the end.\n\n## Model\n- Track: a centreline integrated deterministically from keyed speed and yaw-rate profiles (precomputed table, sampled by absolute time). It has a 15 m asphalt ribbon, edge lines, red/white kerbs, green run-off, walls, and translucent catch fences with posts.\n- Cars: each car is a box body with a cabin (dark glass), a wing on struts, emissive tail lights with a small additive glow, a plate light and a diffuser. Its four wheels spin with distance travelled, and the front wheels steer from path curvature, with counter-steer during the hairpin slide. The yellow car has a slip angle through the hairpin.\n- White car: the same proxy in white, positioned by a keyed arclength gap and lateral offset relative to the yellow car.\n- Environment: grandstand wedges, a pit building, gantries, the overpass, billboards, a crane pole, a light tower, instanced trees, distant hills and mountain cones, a gradient sky dome and fog.\n- Camera: 6.5 m behind and 1.75 m above the yellow car, pitched about 4 deg down, 50 deg vertical FOV. Its yaw is the car's velocity heading averaged over the last 0.3 s.\n- Timing: time = frame/fps on the reference timeline, 1439 frames, no retiming.\n\n## Render feedback received (round 1) and revisions\n- Bug: the asphalt, kerbs and lines vanished from many frames (about 2 s, 11-16 s and 19-24 s). Cause: a single 14 km ground quad with depth/clipping imprecision. Fix: the ground is now subdivided, lowered to -0.25 m and polygon-offset, and track strips are not frustum-culled.\n- Hairpin timing: in the reference the heading barely changes until about 15.6 s and then turns hard until about 19.5 s. The yaw-rate profile was re-timed to match, and kerbs, walls and grandstands were moved with it.\n- White-car gap: retuned to the image sizes seen in the reference. It was too close in the hairpin and at the end.\n- Turn 1 starts 0.2 s later. The overpass is shorter and placed further on, and the Zurich board was moved so it is visible.\n- Appearance: smaller tail-light glows, a more yellow body, lighter trees, broader and more distant mountains, nearby hills pushed away, and a smaller tunnel hill.\n\n## Remaining uncertainties\nExact track curvature, speeds, landmark positions and road elevation (uphill near turn 1, not modelled) are inferred from the samples. The motion between samples is interpolated.\n\n## Render feedback received (round 2) and revisions\n- Round 2 render: the road, kerbs and lines now render in all 24 samples. Camera framing, the start gantry, the GT gantry and the tunnel position match the reference reasonably well.\n- At 16.7 s the white car was hidden behind the yellow car. Its gap and inside offset in the hairpin were increased, and the yellow car's apex offset was reduced.\n- The big screen on the right of the final straight was hidden by tree proxies. Trees in front of it were removed, and the right-side forest there was pushed back.\n- At 2-3 s the overpass looked too large on the right. It was shifted along its axis so it reads further away and more centred.\n- Tail lights were made redder, with smaller glows.\n\n## Render feedback received (round 3) and revisions\n- Round 3 render: the white car is now visible ahead-right of the yellow car at 16.7 s and on the right at 17.7 s, as in the reference.\n- The final-straight big screen was still hidden by tree proxies. It was moved slightly closer (rigid offset 60 m ahead, 32 m right of the 19.8 s frame), and trees within 40 m of it are now excluded.\n- At 17.7 s the hairpin billboard appeared too central. It was moved further to the outside (22 m left).\n\n## Render feedback received (round 4) and submission\n- Round 4 render: the final-straight big screen is now visible at the matching image position at 18.7-19.8 s. The rest of the sequence is unchanged from round 3.\n- Submitted scene: the round 4 render (revision 3).\n- Remaining discrepancies:\n  - The hairpin billboard reads more central than in the reference at 17.7 s.\n  - Road elevation (uphill after turn 1) is not modelled.\n  - Landmark positions such as the crane pole, overpass and boards are approximate.\n  - Proxy car shapes are boxy, with a large dark rear-glass block.\n  - Lighting is darker and flatter than the reference's dusk glow, and there is no headlight pool on the road.\n  - Between-sample motion is interpolated from keyed profiles and was not checked frame by frame."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     2.88,
+     8.89,
+     14.89,
+     20.9
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 3,
+    "inspection_only_decisions": 1,
+    "render_attempts": 4,
+    "infrastructure_retries": 0,
+    "model_turns": 5,
+    "provider_responses": 0
+   }
+  }
+ }
+}

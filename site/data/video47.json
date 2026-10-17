@@ -1,0 +1,122 @@
+{
+ "id": "video47",
+ "n": 47,
+ "reference": {
+  "video": "media/ref/video47.mp4",
+  "poster": "media/poster/ref/video47_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 630,
+  "fps": 59.94,
+  "duration": 10.511
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video47.mp4",
+   "poster": "media/poster/opus-5-5/video47_0.jpg",
+   "scene": "media/scene/opus-5-5/video47.mjs",
+   "final_round": "004",
+   "scene_sha256": "e9a21bb59993255da7817d93b67a5bbf67fff7aadf353ec9688cdabe5c03eb9a",
+   "video_sha256": "7a18b5e6018f7ed32772c5ff2639d437d69c36e9e56a896d47d77671e78f7ec3",
+   "stop": "model_submit",
+   "revisions": 3,
+   "renders": 4,
+   "infra_retries": 0,
+   "turns": 5,
+   "pauses": 0,
+   "inferences": 28,
+   "output_tokens": 88801,
+   "cost": 3.43,
+   "cost_1h": 4.04,
+   "elapsed_seconds": 1334,
+   "submit_reason": "Counts, shot structure, camera framing, landing/leap/ride/flight events match the samples at proxy level; further changes are minor.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene: run, landing, leap, cut, takeoff and flight.",
+     "rendered": true,
+     "report": "# Report - video47, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nLevel: L1 (proxy). This is the Three.js sampled-frame baseline. It is not a protocol-equivalent reproduction of Blender model rankings.\n\n## Observed in the 24 reference samples\n- 0-3.2 s: a red-haired rider in dark maroon clothing, with a bow on her back, runs away from the camera along a pale dirt path. A third-person camera sits behind and above her and is yawed right, so she and the path's vanishing point sit left of centre. There are trees and red flower beds on the left, and a green hill, a red-dirt slope and thin trees on the right.\n- 3.65-5.0 s: the camera is low and tilted up, with the sun at upper right. A large dark purple winged machine with a blue glowing crest lands on the path, flaring its wings, and faces image-left. The rider leaps up beside it (4.55 s) and flips high above its back (5.02 s).\n- 5.47-10.49 s: a different viewpoint (treated as a cut). The mount, carrying the rider, takes off from low near the ground, beats its wings and climbs. It then glides away from the camera on the left of frame while the camera follows behind-right, climbing and turning right. The path recedes ahead, with rock spires, a cliff, red flowers and trees.\n\n## Geometry and articulation\n- Rider: an articulated proxy with pelvis, torso, head with a hair block, a bow, and 2-segment arms and legs. It uses a procedural run cycle, a tucked forward flip for the leap, and a seated riding pose attached to a saddle anchor on the mount.\n- Mount: an ellipsoid body, a neck and head pivot, an emissive crest, a cone tail, and two-segment wings (shoulder plus elbow, with 3 tip feathers each). It also has two-segment legs. Wings flap, fold and glide; legs extend for landing and tuck in flight.\n- Environment: a ground plane, path strips, scaled-sphere hills, bushes and flower beds, cylinder-and-sphere trees, cone rocks, a gradient sky dome, clouds and a sun disc. Separate environment groups are used for the two locations.\n\n## Camera and timing\n- Follow camera until 3.25 s, then a fast blend (3.25-3.55 s) to the low landing view. A hard cut at 5.25 s goes to the flight shot. The flight camera path is integrated deterministically from heading and speed keys at init time.\n- All motion is sampled absolutely from time, using keyframe Hermite curves and analytic cycles.\n\n## Inference / uncertainty\n- Whether 3.2-3.65 s is a cut or a continuous camera move is inferred. The exact cut time between 5.02 and 5.47 s is inferred. So are the mount's facing during landing, the rider's path between samples, the wing-beat phase between samples, and all world distances.\n- The HUD overlay in the reference is not reproduced (it is UI, not scene).\n\n## Feedback\n- Initial generation; no render feedback has been received yet."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix run-camera distance, mount scale, flight orientation and leg tuck.",
+     "rendered": true,
+     "report": "# Report - video47, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nLevel: L1 (proxy). This is the Three.js sampled-frame baseline. It is not a protocol-equivalent reproduction of Blender model rankings.\n\n## Observed in the 24 reference samples\n- 0-3.2 s: a red-haired rider in dark maroon clothing, with a bow on her back, runs away from the camera along a pale dirt path. A third-person camera sits behind and above her and is yawed right, so she and the path's vanishing point sit left of centre. There are trees and red flower beds on the left, and a green hill, a red-dirt slope and thin trees on the right.\n- 3.65-5.0 s: the camera is low and tilted up, with the sun at upper right. A large dark purple winged machine with a blue glowing crest lands on the path, flaring its wings, and faces image-left. The rider leaps up beside it (4.55 s) and flips high above its back (5.02 s).\n- 5.47-10.49 s: a different viewpoint (treated as a cut). The mount, carrying the rider, takes off from low near the ground, beats its wings and climbs. It then glides away from the camera on the left of frame while the camera follows behind-right, climbing and turning right. The path recedes ahead, with rock spires, a cliff, red flowers and trees.\n\n## Geometry and articulation\n- Rider: an articulated proxy with pelvis, torso, head with a hair block, a bow, and 2-segment arms and legs. It uses a procedural run cycle, a tucked forward flip for the leap, and a seated riding pose attached to a saddle anchor on the mount.\n- Mount: an ellipsoid body, a neck and head pivot, an emissive crest, a cone tail, and two-segment wings (shoulder plus elbow, with 3 tip feathers each). It also has two-segment legs. Wings flap, fold and glide; legs extend for landing and tuck in flight.\n- Environment: a ground plane, path strips, scaled-sphere hills, bushes and flower beds, cylinder-and-sphere trees, cone rocks, a gradient sky dome, clouds and a sun disc. Separate environment groups are used for the two locations.\n\n## Camera and timing\n- Follow camera until 3.25 s, then a fast blend (3.25-3.55 s) to the low landing view. A hard cut at 5.25 s goes to the flight shot. The flight camera path is integrated deterministically from heading and speed keys at init time.\n- All motion is sampled absolutely from time, using keyframe Hermite curves and analytic cycles.\n\n## Inference / uncertainty\n- Whether 3.2-3.65 s is a cut or a continuous camera move is inferred. The exact cut time between 5.02 and 5.47 s is inferred. So are the mount's facing during landing, the rider's path between samples, the wing-beat phase between samples, and all world distances.\n- The HUD overlay in the reference is not reproduced (it is UI, not scene).\n\n## Feedback\n- Round 001 render feedback (24 paired frames) received. Round 002 changes: the run camera is pulled back to 6 m and set higher with less downward pitch, so the rider is smaller, matching the samples. The dirt path is wider, and trees are moved farther and made smaller. The mount is scaled to 0.7, because it was about 1.5x too large in the landing shot. In the flight shot the mount now faces about 35 deg right of the camera view, so its left side and diagonal wing spread are seen as in the samples. Camera travel is offset 10 deg right, the flight path bends, and the legs tuck fully in flight."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Tune run-camera framing, landing-mount pose/position and flight leg tuck.",
+     "rendered": true,
+     "report": "# Report - video47, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nLevel: L1 (proxy). This is the Three.js sampled-frame baseline. It is not a protocol-equivalent reproduction of Blender model rankings.\n\n## Observed in the 24 reference samples\n- 0-3.2 s: a red-haired rider in dark maroon clothing, with a bow on her back, runs away from the camera along a pale dirt path. A third-person camera sits behind and above her and is yawed right, so she and the path's vanishing point sit left of centre. There are trees and red flower beds on the left, and a green hill, a red-dirt slope and thin trees on the right.\n- 3.65-5.0 s: the camera is low and tilted up, with the sun at upper right. A large dark purple winged machine with a blue glowing crest lands on the path, flaring its wings, and faces image-left. The rider leaps up beside it (4.55 s) and flips high above its back (5.02 s).\n- 5.47-10.49 s: a different viewpoint (treated as a cut). The mount, carrying the rider, takes off from low near the ground, beats its wings and climbs. It then glides away from the camera on the left of frame while the camera follows behind-right, climbing and turning right. The path recedes ahead, with rock spires, a cliff, red flowers and trees.\n\n## Geometry and articulation\n- Rider: an articulated proxy with pelvis, torso, head with a hair block, a bow, and 2-segment arms and legs. It uses a procedural run cycle, a tucked forward flip for the leap, and a seated riding pose attached to a saddle anchor on the mount.\n- Mount: an ellipsoid body, a neck and head pivot, an emissive crest, a cone tail, and two-segment wings (shoulder plus elbow, with 3 tip feathers each). It also has two-segment legs. Wings flap, fold and glide; legs extend for landing and tuck in flight.\n- Environment: a ground plane, path strips, scaled-sphere hills, bushes and flower beds, cylinder-and-sphere trees, cone rocks, a gradient sky dome, clouds and a sun disc. Separate environment groups are used for the two locations.\n\n## Camera and timing\n- Follow camera until 3.25 s, then a fast blend (3.25-3.55 s) to the low landing view. A hard cut at 5.25 s goes to the flight shot. The flight camera path is integrated deterministically from heading and speed keys at init time.\n- All motion is sampled absolutely from time, using keyframe Hermite curves and analytic cycles.\n\n## Inference / uncertainty\n- Whether 3.2-3.65 s is a cut or a continuous camera move is inferred. The exact cut time between 5.02 and 5.47 s is inferred. So are the mount's facing during landing, the rider's path between samples, the wing-beat phase between samples, and all world distances.\n- The HUD overlay in the reference is not reproduced (it is UI, not scene).\n\n## Feedback\n- Round 003 changes: run camera retuned (2.6 m high, 5 m behind, -9 deg pitch). Landing mount moved further left and lower at 3.65 s; standing posture is more upright with raised neck and wings. Flight legs fold under the body instead of trailing. Flight mount is slightly closer, and early flight camera pitch adjusted.\n- Round 001 render feedback (24 paired frames) received. Round 002 changes: the run camera is pulled back to 6 m and set higher with less downward pitch, so the rider is smaller, matching the samples. The dirt path is wider, and trees are moved farther and made smaller. The mount is scaled to 0.7, because it was about 1.5x too large in the landing shot. In the flight shot the mount now faces about 35 deg right of the camera view, so its left side and diagonal wing spread are seen as in the samples. Camera travel is offset 10 deg right, the flight path bends, and the legs tuck fully in flight."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Flatten takeoff wing spread and neck right after the cut.",
+     "rendered": true,
+     "report": "# Report - video47, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nLevel: L1 (proxy). This is the Three.js sampled-frame baseline. It is not a protocol-equivalent reproduction of Blender model rankings.\n\n## Observed in the 24 reference samples\n- 0-3.2 s: a red-haired rider in dark maroon clothing, with a bow on her back, runs away from the camera along a pale dirt path. A third-person camera sits behind and above her and is yawed right, so she and the path's vanishing point sit left of centre. There are trees and red flower beds on the left, and a green hill, a red-dirt slope and thin trees on the right.\n- 3.65-5.0 s: the camera is low and tilted up, with the sun at upper right. A large dark purple winged machine with a blue glowing crest lands on the path, flaring its wings, and faces image-left. The rider leaps up beside it (4.55 s) and flips high above its back (5.02 s).\n- 5.47-10.49 s: a different viewpoint (treated as a cut). The mount, carrying the rider, takes off from low near the ground, beats its wings and climbs. It then glides away from the camera on the left of frame while the camera follows behind-right, climbing and turning right. The path recedes ahead, with rock spires, a cliff, red flowers and trees.\n\n## Geometry and articulation\n- Rider: an articulated proxy with pelvis, torso, head with a hair block, a bow, and 2-segment arms and legs. It uses a procedural run cycle, a tucked forward flip for the leap, and a seated riding pose attached to a saddle anchor on the mount.\n- Mount: an ellipsoid body, a neck and head pivot, an emissive crest, a cone tail, and two-segment wings (shoulder plus elbow, with 3 tip feathers each). It also has two-segment legs. Wings flap, fold and glide; legs extend for landing and tuck in flight.\n- Environment: a ground plane, path strips, scaled-sphere hills, bushes and flower beds, cylinder-and-sphere trees, cone rocks, a gradient sky dome, clouds and a sun disc. Separate environment groups are used for the two locations.\n\n## Camera and timing\n- Follow camera until 3.25 s, then a fast blend (3.25-3.55 s) to the low landing view. A hard cut at 5.25 s goes to the flight shot. The flight camera path is integrated deterministically from heading and speed keys at init time.\n- All motion is sampled absolutely from time, using keyframe Hermite curves and analytic cycles.\n\n## Inference / uncertainty\n- Whether 3.2-3.65 s is a cut or a continuous camera move is inferred. The exact cut time between 5.02 and 5.47 s is inferred. So are the mount's facing during landing, the rider's path between samples, the wing-beat phase between samples, and all world distances.\n- The HUD overlay in the reference is not reproduced (it is UI, not scene).\n\n## Feedback\n- Round 004 changes: after the cut the mount wings are spread flat and the neck is lowered at once, matching the low horizontal-wing takeoff in the 5.47 and 5.94 s samples.\n- Round 003 changes: run camera retuned (2.6 m high, 5 m behind, -9 deg pitch). Landing mount moved further left and lower at 3.65 s; standing posture is more upright with raised neck and wings. Flight legs fold under the body instead of trailing. Flight mount is slightly closer, and early flight camera pitch adjusted.\n- Round 001 render feedback (24 paired frames) received. Round 002 changes: the run camera is pulled back to 6 m and set higher with less downward pitch, so the rider is smaller, matching the samples. The dirt path is wider, and trees are moved farther and made smaller. The mount is scaled to 0.7, because it was about 1.5x too large in the landing shot. In the flight shot the mount now faces about 35 deg right of the camera view, so its left side and diagonal wing spread are seen as in the samples. Camera travel is offset 10 deg right, the flight path bends, and the legs tuck fully in flight."
+    },
+    {
+     "round": "005",
+     "action": "submit",
+     "reason": "Counts, shot structure, camera framing, landing/leap/ride/flight events match the samples at proxy level; further changes are minor.",
+     "rendered": false,
+     "report": "# Report - video47, L1 proxy, CineRecon Three.js sampled-frame baseline\n\nLevel: L1 (proxy). This is the Three.js sampled-frame baseline. It is not a protocol-equivalent reproduction of Blender model rankings.\n\n## Observed in the 24 reference samples\n- 0-3.2 s: a red-haired rider in dark maroon clothing, with a bow on her back, runs away from the camera along a pale dirt path. A third-person camera sits behind and above her and is yawed right, so she and the path's vanishing point sit left of centre. There are trees and red flower beds on the left, and a green hill, a red-dirt slope and thin trees on the right.\n- 3.65-5.0 s: the camera is low and tilted up, with the sun at upper right. A large dark purple winged machine with a blue glowing crest lands on the path, flaring its wings, and faces image-left. The rider leaps up beside it (4.55 s) and flips high above its back (5.02 s).\n- 5.47-10.49 s: a different viewpoint (treated as a cut). The mount, carrying the rider, takes off from low near the ground, beats its wings and climbs. It then glides away from the camera on the left of frame while the camera follows behind-right, climbing and turning right. The path recedes ahead, with rock spires, a cliff, red flowers and trees.\n\n## Geometry and articulation\n- Rider: an articulated proxy with pelvis, torso, head with a hair block, a bow, and 2-segment arms and legs. It uses a procedural run cycle, a tucked forward flip for the leap, and a seated riding pose attached to a saddle anchor on the mount.\n- Mount: an ellipsoid body, a neck and head pivot, an emissive crest, a cone tail, and two-segment wings (shoulder plus elbow, with 3 tip feathers each). It also has two-segment legs. Wings flap, fold and glide; legs extend for landing and tuck in flight.\n- Environment: a ground plane, path strips, scaled-sphere hills, bushes and flower beds, cylinder-and-sphere trees, cone rocks, a gradient sky dome, clouds and a sun disc. Separate environment groups are used for the two locations.\n\n## Camera and timing\n- Follow camera until 3.25 s, then a fast blend (3.25-3.55 s) to the low landing view. A hard cut at 5.25 s goes to the flight shot. The flight camera path is integrated deterministically from heading and speed keys at init time.\n- All motion is sampled absolutely from time, using keyframe Hermite curves and analytic cycles.\n\n## Inference / uncertainty\n- Whether 3.2-3.65 s is a cut or a continuous camera move is inferred. The exact cut time between 5.02 and 5.47 s is inferred. So are the mount's facing during landing, the rider's path between samples, the wing-beat phase between samples, and all world distances.\n- The HUD overlay in the reference is not reproduced (it is UI, not scene).\n\n## Feedback\n- Submitted after inspecting round 004 renders. Remaining discrepancies: the flap phase differs at some samples (for example 6.39 s). Exact environment layout and vegetation density are simplified. The landing-shot transition (3.25-3.55 s blend) is inferred. Mount appearance is a coarse proxy. The reference HUD is omitted.\n- Round 004 changes: after the cut the mount wings are spread flat and the neck is lowered at once, matching the low horizontal-wing takeoff in the 5.47 and 5.94 s samples.\n- Round 003 changes: run camera retuned (2.6 m high, 5 m behind, -9 deg pitch). Landing mount moved further left and lower at 3.65 s; standing posture is more upright with raised neck and wings. Flight legs fold under the body instead of trailing. Flight mount is slightly closer, and early flight camera pitch adjusted.\n- Round 001 render feedback (24 paired frames) received. Round 002 changes: the run camera is pulled back to 6 m and set higher with less downward pitch, so the rider is smaller, matching the samples. The dirt path is wider, and trees are moved farther and made smaller. The mount is scaled to 0.7, because it was about 1.5x too large in the landing shot. In the flight shot the mount now faces about 35 deg right of the camera view, so its left side and diagonal wing spread are seen as in the samples. Camera travel is offset 10 deg right, the flight path bends, and the legs tuck fully in flight."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.26,
+     3.89,
+     6.52,
+     9.14
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 3,
+    "inspection_only_decisions": 1,
+    "render_attempts": 4,
+    "infrastructure_retries": 0,
+    "model_turns": 5,
+    "provider_responses": 0
+   }
+  }
+ }
+}

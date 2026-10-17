@@ -1,0 +1,122 @@
+{
+ "id": "video10",
+ "n": 10,
+ "reference": {
+  "video": "media/ref/video10.mp4",
+  "poster": "media/poster/ref/video10_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 576,
+  "fps": 23.976,
+  "duration": 24.065
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video10.mp4",
+   "poster": "media/poster/opus-5-5/video10_0.jpg",
+   "scene": "media/scene/opus-5-5/video10.mjs",
+   "final_round": "004",
+   "scene_sha256": "38cffa6e3ad1d89c3dddcdbc3a7434010d77ffa7915391ba82f8d91d5059c8f2",
+   "video_sha256": "865daa62bc7c71c24bc3c43dc6b0fb0f91f14b9fb8a12e6aa523b588b4a6286d",
+   "stop": "model_submit",
+   "revisions": 3,
+   "renders": 4,
+   "infra_retries": 0,
+   "turns": 5,
+   "pauses": 1,
+   "inferences": 34,
+   "output_tokens": 159610,
+   "cost": 5.63,
+   "cost_1h": 6.4,
+   "elapsed_seconds": 8945,
+   "submit_reason": "Round 4 render matches subjects, ordering of events, camera path and framing well enough for L1. Further edits were giving only small gains; the remaining differences are geometric approximations noted in the report.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete proxy reconstruction of the freeway dance take for first render feedback.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved (24 reference samples, 0-23.98 s): a sunny elevated freeway jammed with cars, a concrete median barrier and outer walls, letterboxed 2.55:1 picture. A single continuous steadicam-style take (whip pan near 2 s, no hard cuts identified). Opening: a maroon car facing camera with dancers on its hood/roof, a man in a mustard jacket and red cap over a blonde woman in red against the hood, a woman in blue and a man in a light-blue shirt dancing at left. Camera whips past the couple and looks down the lane; a man in white shirt, red tie and black trousers climbs out of the driver door of a teal car, walks toward camera, turns right past a white car where a woman in purple kicks from the window, jumps onto the median, dances on it with arms spread, jumps down, crosses the right-hand lanes, walks/dances along a lane gap past a man in a yellow shirt and black cap leaning out of a grey car, reaches a car whose door opens; a woman in a denim shirt and pink headband steps out and the two walk toward the retreating camera side by side (man image-left, woman image-right). Background people dance and wave on car roofs.\n\nGeometry: cars are box body + dark glass cabin box + roof slab + cylinder wheels; the teal car driver door and the denim woman's car passenger door are separate hinged groups. People are articulated proxies (box torso/pelvis, sphere head, hair/cap/headband/tie proxies, two-segment arms and legs, box feet) with root, spine, head, shoulder, elbow, hip and knee joints. Freeway: road slab, median box, wall boxes, neighbouring jammed roadways with simplified cars, sphere tree clumps, vertex-colour sky dome. Letterbox bars are black planes parented to the camera.\n\nArticulation/timing (inferred between samples): teal door opens 2.6-3.3 s, closes 5.8-6.4 s; man exits 3.3-5.2 s, walks 5.6-8.3 s, jumps onto the median 8.9-9.75 s, dances there until 11.8 s, jumps down 11.8-12.25 s, crosses lanes 12.5-13.6 s, walks/turns in the gap 14-17 s, leans on the car at 17.7 s; car door opens 18.0-18.7 s; woman exits 18.3-19.8 s; door closes 20.45-21.3 s; pair walks toward camera 20.8-24 s. Walk cycles and dance waves are analytic functions of absolute time; every transform is set from time on each call (deterministic, seekable). Camera follows a Hermite spline through per-sample position/target keys with a constant 37.4 deg vertical FOV.\n\nInference vs observation: subject positions in one consistent 3D layout were inferred from the 2D samples. The car geography in the samples is partly contradictory, so some background car placements and the hero's in-between paths are approximations. All motion between samples is inferred.\n\nRender feedback received: none yet (initial submission). Remaining uncertainties: absolute subject scales per frame, exact camera heights, crowd counts, and colours under the harness lighting."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix washed-out sky and lighting, distracting crowd and trees, and several camera framings seen in round 1 feedback.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved (24 reference samples, 0-23.98 s): a sunny elevated freeway jammed with cars, a concrete median barrier and outer walls, letterboxed 2.55:1 picture. A single continuous steadicam-style take (whip pan near 2 s, no hard cuts identified). Opening: a maroon car facing camera with dancers on its hood/roof, a man in a mustard jacket and red cap over a blonde woman in red against the hood, a woman in blue and a man in a light-blue shirt dancing at left. Camera whips past the couple and looks down the lane; a man in white shirt, red tie and black trousers climbs out of the driver door of a teal car, walks toward camera, turns right past a white car where a woman in purple kicks from the window, jumps onto the median, dances on it with arms spread, jumps down, crosses the right-hand lanes, walks/dances along a lane gap past a man in a yellow shirt and black cap leaning out of a grey car, reaches a car whose door opens; a woman in a denim shirt and pink headband steps out and the two walk toward the retreating camera side by side (man image-left, woman image-right). Background people dance and wave on car roofs.\n\nGeometry: cars are box body + dark glass cabin box + roof slab + cylinder wheels; the teal car driver door and the denim woman's car passenger door are separate hinged groups. People are articulated proxies (box torso/pelvis, sphere head, hair/cap/headband/tie proxies, two-segment arms and legs, box feet) with root, spine, head, shoulder, elbow, hip and knee joints. Freeway: road slab, median box, wall boxes, neighbouring jammed roadways with simplified cars, sphere tree clumps, vertex-colour sky dome. Letterbox bars are black planes parented to the camera.\n\nArticulation/timing (inferred between samples): teal door opens 2.6-3.3 s, closes 5.8-6.4 s; man exits 3.3-5.2 s, walks 5.6-8.3 s, jumps onto the median 8.9-9.75 s, dances there until 11.8 s, jumps down 11.8-12.25 s, crosses lanes 12.5-13.6 s, walks/turns in the gap 14-17 s, leans on the car at 17.7 s; car door opens 18.0-18.7 s; woman exits 18.3-19.8 s; door closes 20.45-21.3 s; pair walks toward camera 20.8-24 s. Walk cycles and dance waves are analytic functions of absolute time; every transform is set from time on each call (deterministic, seekable). Camera follows a Hermite spline through per-sample position/target keys with a constant 37.4 deg vertical FOV.\n\nInference vs observation: subject positions in one consistent 3D layout were inferred from the 2D samples. The car geography in the samples is partly contradictory, so some background car placements and the hero's in-between paths are approximations. All motion between samples is inferred.\n\nRender feedback received: round 001 paired frames (24 samples). Revisions in round 002: bluer sky gradient and dimmer lighting (render was washed out); oversized green tree hills replaced by a low distant tree line; lighter window glass; background crowd moved further back, snapped to real car roofs, T-pose arms replaced by raised waving; opening camera moved closer to the maroon car; blue-shirt man repositioned; median-dance camera lowered and moved closer; elevated camera at 12.5 s raised; final walk-toward-camera framing widened (heads were cut off); curly-haired and blonde window passengers moved further down their lane; hero man moved further back at the 19.8 s door reveal. Remaining discrepancies: car geography around the teal/maroon cars at 4-8 s only approximate (maroon car not visible at right at 4.2 s), proxy figures lack the motion blur of the whip pan, and crowd density is lower than in the reference."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Improve facing readability, opening and closing framings, and the 12.5 s view based on round 2 feedback.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved (24 reference samples, 0-23.98 s): a sunny elevated freeway jammed with cars, a concrete median barrier and outer walls, letterboxed 2.55:1 picture. A single continuous steadicam-style take (whip pan near 2 s, no hard cuts identified). Opening: a maroon car facing camera with dancers on its hood/roof, a man in a mustard jacket and red cap over a blonde woman in red against the hood, a woman in blue and a man in a light-blue shirt dancing at left. Camera whips past the couple and looks down the lane; a man in white shirt, red tie and black trousers climbs out of the driver door of a teal car, walks toward camera, turns right past a white car where a woman in purple kicks from the window, jumps onto the median, dances on it with arms spread, jumps down, crosses the right-hand lanes, walks/dances along a lane gap past a man in a yellow shirt and black cap leaning out of a grey car, reaches a car whose door opens; a woman in a denim shirt and pink headband steps out and the two walk toward the retreating camera side by side (man image-left, woman image-right). Background people dance and wave on car roofs.\n\nGeometry: cars are box body + dark glass cabin box + roof slab + cylinder wheels; the teal car driver door and the denim woman's car passenger door are separate hinged groups. People are articulated proxies (box torso/pelvis, sphere head, hair/cap/headband/tie proxies, two-segment arms and legs, box feet) with root, spine, head, shoulder, elbow, hip and knee joints. Freeway: road slab, median box, wall boxes, neighbouring jammed roadways with simplified cars, sphere tree clumps, vertex-colour sky dome. Letterbox bars are black planes parented to the camera.\n\nArticulation/timing (inferred between samples): teal door opens 2.6-3.3 s, closes 5.8-6.4 s; man exits 3.3-5.2 s, walks 5.6-8.3 s, jumps onto the median 8.9-9.75 s, dances there until 11.8 s, jumps down 11.8-12.25 s, crosses lanes 12.5-13.6 s, walks/turns in the gap 14-17 s, leans on the car at 17.7 s; car door opens 18.0-18.7 s; woman exits 18.3-19.8 s; door closes 20.45-21.3 s; pair walks toward camera 20.8-24 s. Walk cycles and dance waves are analytic functions of absolute time; every transform is set from time on each call (deterministic, seekable). Camera follows a Hermite spline through per-sample position/target keys with a constant 37.4 deg vertical FOV.\n\nInference vs observation: subject positions in one consistent 3D layout were inferred from the 2D samples. The car geography in the samples is partly contradictory, so some background car placements and the hero's in-between paths are approximations. All motion between samples is inferred.\n\nRender feedback received: round 001 and round 002 paired frames. Round 002 changes: bluer sky, dimmer lighting, low distant tree line, lighter glass, crowd moved back and placed on real car roofs, several camera framings fixed. Round 003 changes: back-of-head hair so facing direction is readable (the hero is seen from behind at 8.3 s and 15.6 s), opening framing centred on the couple at the maroon car, median-dance camera pulled back slightly, 12.5 s elevated view lowered and moved toward the dark car, final pair placed closer together and framed tighter with heads lower in frame, curly-haired passenger moved further down her lane, yellow-shirt man shifted so he stays at the right edge at the end. Remaining discrepancies: car geography around the teal/maroon cars at 4-8 s is only approximate (maroon car not visible at right at 4.2 s), no motion blur on the 2 s whip pan, crowd density lower than reference, the 19.8 s door-frame foreground is only partly reproduced."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Small framing fixes for the median jump, the 20.9 s pair staging and the 3.1 s foreground dancer.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved (24 reference samples, 0-23.98 s): a sunny elevated freeway jammed with cars, a concrete median barrier and outer walls, letterboxed 2.55:1 picture. A single continuous steadicam-style take (whip pan near 2 s, no hard cuts identified). Opening: a maroon car facing camera with dancers on its hood/roof, a man in a mustard jacket and red cap over a blonde woman in red against the hood, a woman in blue and a man in a light-blue shirt dancing at left. Camera whips past the couple and looks down the lane; a man in white shirt, red tie and black trousers climbs out of the driver door of a teal car, walks toward camera, turns right past a white car where a woman in purple kicks from the window, jumps onto the median, dances on it with arms spread, jumps down, crosses the right-hand lanes, walks/dances along a lane gap past a man in a yellow shirt and black cap leaning out of a grey car, reaches a car whose door opens; a woman in a denim shirt and pink headband steps out and the two walk toward the retreating camera side by side (man image-left, woman image-right). Background people dance and wave on car roofs.\n\nGeometry: cars are box body + dark glass cabin box + roof slab + cylinder wheels; the teal car driver door and the denim woman's car passenger door are separate hinged groups. People are articulated proxies (box torso/pelvis, sphere head, hair/cap/headband/tie proxies, two-segment arms and legs, box feet) with root, spine, head, shoulder, elbow, hip and knee joints. Freeway: road slab, median box, wall boxes, neighbouring jammed roadways with simplified cars, sphere tree clumps, vertex-colour sky dome. Letterbox bars are black planes parented to the camera.\n\nArticulation/timing (inferred between samples): teal door opens 2.6-3.3 s, closes 5.8-6.4 s; man exits 3.3-5.2 s, walks 5.6-8.3 s, jumps onto the median 8.9-9.75 s, dances there until 11.8 s, jumps down 11.8-12.25 s, crosses lanes 12.5-13.6 s, walks/turns in the gap 14-17 s, leans on the car at 17.7 s; car door opens 18.0-18.7 s; woman exits 18.3-19.8 s; door closes 20.45-21.3 s; pair walks toward camera 20.8-24 s. Walk cycles and dance waves are analytic functions of absolute time; every transform is set from time on each call (deterministic, seekable). Camera follows a Hermite spline through per-sample position/target keys with a constant 37.4 deg vertical FOV.\n\nInference vs observation: subject positions in one consistent 3D layout were inferred from the 2D samples. The car geography in the samples is partly contradictory, so some background car placements and the hero's in-between paths are approximations. All motion between samples is inferred.\n\nRender feedback received: paired frames from rounds 001-003. Round 002: bluer sky, dimmer lighting, low distant tree line, lighter glass, crowd moved back onto real car roofs, several camera framings fixed. Round 003: back-of-head hair so facing direction reads, opening framing centred on the couple, 12.5 s view lowered, final pair closer together and framed tighter, passengers repositioned. Round 004: camera pulled back for the 9.4 s jump onto the median, hero man placed left-foreground of the woman at 20.9 s, yellow-top dancer shifted toward the left edge at 3.1 s. Remaining discrepancies: car geography around the teal/maroon cars at 4-8 s is only approximate (maroon car not visible at right at 4.2 s), no motion blur on the 2 s whip pan, crowd density lower than reference, the 19.8 s door-frame foreground is only partly reproduced, and the 12.5 s elevated view does not match the reference lane layout closely."
+    },
+    {
+     "round": "005",
+     "action": "submit",
+     "reason": "Round 4 render matches subjects, ordering of events, camera path and framing well enough for L1. Further edits were giving only small gains; the remaining differences are geometric approximations noted in the report.",
+     "rendered": false,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nObserved (24 reference samples, 0-23.98 s): a sunny elevated freeway jammed with cars, a concrete median barrier and outer walls, letterboxed 2.55:1 picture. A single continuous steadicam-style take (whip pan near 2 s, no hard cuts identified). Opening: a maroon car facing camera with dancers on its hood/roof, a man in a mustard jacket and red cap over a blonde woman in red against the hood, a woman in blue and a man in a light-blue shirt dancing at left. Camera whips past the couple and looks down the lane; a man in white shirt, red tie and black trousers climbs out of the driver door of a teal car, walks toward camera, turns right past a white car where a woman in purple kicks from the window, jumps onto the median, dances on it with arms spread, jumps down, crosses the right-hand lanes, walks/dances along a lane gap past a man in a yellow shirt and black cap leaning out of a grey car, reaches a car whose door opens; a woman in a denim shirt and pink headband steps out and the two walk toward the retreating camera side by side (man image-left, woman image-right). Background people dance and wave on car roofs.\n\nGeometry: cars are box body + dark glass cabin box + roof slab + cylinder wheels; the teal car driver door and the denim woman's car passenger door are separate hinged groups. People are articulated proxies (box torso/pelvis, sphere head, hair/cap/headband/tie proxies, two-segment arms and legs, box feet) with root, spine, head, shoulder, elbow, hip and knee joints. Freeway: road slab, median box, wall boxes, neighbouring jammed roadways with simplified cars, sphere tree clumps, vertex-colour sky dome. Letterbox bars are black planes parented to the camera.\n\nArticulation/timing (inferred between samples): teal door opens 2.6-3.3 s, closes 5.8-6.4 s; man exits 3.3-5.2 s, walks 5.6-8.3 s, jumps onto the median 8.9-9.75 s, dances there until 11.8 s, jumps down 11.8-12.25 s, crosses lanes 12.5-13.6 s, walks/turns in the gap 14-17 s, leans on the car at 17.7 s; car door opens 18.0-18.7 s; woman exits 18.3-19.8 s; door closes 20.45-21.3 s; pair walks toward camera 20.8-24 s. Walk cycles and dance waves are analytic functions of absolute time; every transform is set from time on each call (deterministic, seekable). Camera follows a Hermite spline through per-sample position/target keys with a constant 37.4 deg vertical FOV.\n\nInference vs observation: subject positions in one consistent 3D layout were inferred from the 2D samples. The car geography in the samples is partly contradictory, so some background car placements and the hero's in-between paths are approximations. All motion between samples is inferred.\n\nRender feedback received: paired frames from rounds 001-003. Round 002: bluer sky, dimmer lighting, low distant tree line, lighter glass, crowd moved back onto real car roofs, several camera framings fixed. Round 003: back-of-head hair so facing direction reads, opening framing centred on the couple, 12.5 s view lowered, final pair closer together and framed tighter, passengers repositioned. Round 004: camera pulled back for the 9.4 s jump onto the median, hero man placed left-foreground of the woman at 20.9 s, yellow-top dancer shifted toward the left edge at 3.1 s. Remaining discrepancies: car geography around the teal/maroon cars at 4-8 s is only approximate (maroon car not visible at right at 4.2 s), no motion blur on the 2 s whip pan, crowd density lower than reference, the 19.8 s door-frame foreground is only partly reproduced, and the 12.5 s elevated view does not match the reference lane layout closely. Round 004 feedback checked: the jump framing improved; at 20.9 s the bowing man is somewhat closer to camera than in the reference. Submitted as the round 004 render."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     2.89,
+     8.9,
+     14.92,
+     20.94
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 3,
+    "inspection_only_decisions": 1,
+    "render_attempts": 4,
+    "infrastructure_retries": 0,
+    "model_turns": 5,
+    "provider_responses": 0
+   }
+  }
+ }
+}

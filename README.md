@@ -128,6 +128,10 @@ The [first-pass Astra baseline](examples/astra_baseline/) preserves one native `
 
 These are native sampled-frame experiments with their own provenance, not API-harness leaderboard entries or paper-equivalent scores. Their records identify the actual stopping condition, known counters, missing token telemetry, and the operational safety ceiling. The original evaluator and paid judge were not run.
 
+### Results gallery
+
+The [`site/`](site/) directory is a static results page: a side-by-side summary of the native Opus 5.5 L1 cohort (all 50 videos) and the Astra `video1` run, plus a gallery where every reference video can be played in sync with each model's final reconstruction, with per-revision frames, the model's own round notes, and the final `scene.mjs`. It reports run statistics only; no judge scores are claimed. Rebuild its generated data and web-sized media from preserved runs with `python examples/opus_native/build_site.py --astra-artifact <dir>`, and preview with `python -m http.server --directory site`. `.github/workflows/pages.yml` deploys it to GitHub Pages (repository Settings → Pages → Source: GitHub Actions).
+
 ## Compare models
 
 Copy [the batch example](configs/threejs.batch.example.json) within `configs/`, then replace its model IDs and endpoints. Each row selects a prepared task, configuration, model, endpoint, round budget, token cap, and scene seed. Task paths are relative to the spec file. Add one row per model configuration, video, and level.

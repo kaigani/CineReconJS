@@ -1,0 +1,179 @@
+{
+ "id": "video1",
+ "n": 1,
+ "reference": {
+  "video": "media/ref/video1.mp4",
+  "poster": "media/poster/ref/video1_0.jpg",
+  "width": 1910,
+  "height": 1080,
+  "frames": 384,
+  "fps": 23.976,
+  "duration": 16.057
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video1.mp4",
+   "poster": "media/poster/opus-5-5/video1_0.jpg",
+   "scene": "media/scene/opus-5-5/video1.mjs",
+   "final_round": "006",
+   "scene_sha256": "d3028ee094ecc4b6cee57930a04a42e37717e41691d541b60a134a73798150c4",
+   "video_sha256": "33c5d1ede8adc43143914b05b693649a6d5fb6a9eb9de578f505c88c80b9a978",
+   "stop": "model_submit",
+   "revisions": 5,
+   "renders": 6,
+   "infra_retries": 0,
+   "turns": 7,
+   "pauses": 0,
+   "inferences": 42,
+   "output_tokens": 147669,
+   "cost": 6.14,
+   "cost_1h": 7.15,
+   "elapsed_seconds": 2135,
+   "submit_reason": "All shots, subjects, timing and major poses now match the reference layout at the L1 proxy level; remaining differences are minor framing and appearance.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene with all eight shots, articulated figures and orbit camera.",
+     "rendered": true,
+     "report": "# Report - round 001 (initial scene)\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol). Not a protocol-equivalent reproduction of Blender rankings.\n\n## Observed in the 24 reference samples\n- Rooftop standoff: an agent in an olive-brown suit (white shirt) fires a pistol at a figure in a long black coat who dodges, bends far backward in a slow-motion orbit while bullets with ripple trails pass over him, is grazed, and ends lying on his back with two pistols on the floor.\n- Shots inferred from samples: agent low-angle medium shot (f0); frontal full shot of the coated figure in steam aiming two pistols then lowering them (f17, f33); extreme close-up down the agent's gun barrel (f50, f67); wide shot from behind the figure toward the agent and glass tower (f83-f133); continuous orbit around the backward-bending figure from behind-right, over the right side (high), to the front and left side (f150-f316); close-ups of shoulder and thigh grazes (f333, f350); overhead shot of the figure lying on his back (f366, f383).\n\n## Geometry / articulation\n- Two articulated humans built from boxes, cylinders and spheres (torso, pelvis, head + hair cap, upper/lower arms, hands, thighs, shins, feet); legs solved with two-bone IK so feet stay planted; the coated figure has a separate open cone coat skirt that hangs/flares.\n- Environment: tiled roof deck, parapets, right railing, raised helipad slab with stairs and proxy helicopter, water tank with pipe, glass tower with a gold column, side towers, hazy distant city blocks, steam puffs (translucent spheres), pistols as box proxies, slow-motion bullets with translucent torus ripple trails.\n\n## Camera / timing\n- Hard cuts (inferred placement between samples): 0.40 s, 1.75 s, 3.10 s, 5.90 s, 13.60 s, 14.25 s, 14.95 s. Orbit and pose keyframes at sample timestamps with Hermite/Catmull-Rom interpolation; update is absolute in time.\n\n## Inference vs observation\n- Cut times, the exact moment the pistols are dropped, bullet timing, and the fall between 13.6 s and 15.0 s are inferred; no samples show them directly.\n\n## Feedback\n- None received yet (initial submission)."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix gun close-up axis, frontal lens, crouched dodge poses, tracking-shot framing, knees-forward bullet-time pose and oblique final view.",
+     "rendered": true,
+     "report": "# Report - round 002\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol). Not a protocol-equivalent reproduction of Blender rankings.\n\n## Feedback received (round 001 render, 24 paired frames)\n- Gun close-up (f50/f67) showed the hand and gun from below/inside the hand; frontal shot (f17) showed foreshortened arms above the head; wide shot (f83-f133) had Neo too upright with the agent hidden behind his head; f150/f167 framing too close (agent too small); bullet-time legs did not push the knees forward; final overhead was straight-down whereas the reference is an oblique view from the feet.\n\n## Revisions in this round\n- Agent moved to (-1.9, 0, -10) and turned to face Neo; agent-shot and gun-close-up cameras defined in the agent's local frame so the camera sits on the barrel axis with the face upper-right.\n- Frontal shot uses a longer lens (26 deg) from 4.6 m; arms aim level.\n- Wide shot camera lowered to 1.0 m and moved to 3.3 m behind Neo; crouched dodge poses (pelvis 0.55-0.72 m) with twisting torso and arm gestures from the samples.\n- New long-lens (30 deg) tracking shot 5.9-7.3 s arcing to Neo's right, solved so Neo/agent image positions and sizes approximate f150/f167; the orbit (7.3-13.6 s) is re-keyed with a moderate elevation for f183-f216.\n- Bullet-time legs: feet planted ahead of pelvis so knees push forward; raised left arm, free right arm swept back.\n- Overhead end shot now oblique from the feet side; floor darkened in that shot (lighting change); dropped pistols only appear in that shot.\n- Glass facade contrast reduced; helicopter moved so it appears at top-left in f167.\n\n## Inference vs observation\n- Cut times (0.40, 1.75, 3.10, 5.90, 13.60, 14.25, 14.95 s), the 7.3 s transition into the orbit, bullet timing, gun drop and fall are inferred between samples.\n\n## Remaining known discrepancies\n- Coat is a simple cone; steam is a set of translucent ellipsoids; close-ups at f333/f350 are only approximate dark-fabric framings."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Fix pistol grip/close-up, crouch knees, shoulder-hung coat, tracking-shot distance and end-shot framing.",
+     "rendered": true,
+     "report": "# Report - round 003\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol). Not a protocol-equivalent reproduction of Blender rankings.\n\n## Feedback received (round 002 render)\n- Frontal shot (f17/f33) and the agent position in the wide shot (agent visible left of Neo's head at f83) now matched well.\n- Gun close-up still showed the slide's underside receding from the hand (hand sphere in front of the slide); the dodge poses still read as standing; the coat (attached at the waist) hid the head in bullet-time and in the final overhead; f167 framing too close with an oversized helicopter; f183 showed too little of the helipad; f350 floor was at the top instead of the right.\n\n## Revisions in this round\n- Pistol proxy rebuilt so the hand wraps the grip and the slide sits above it; gun close-up camera raised to barrel height.\n- Knee IK hint mirrored per leg (knees can splay outward); crouch poses lowered (pelvis 0.50-0.68 m) with forward/sideways torso lean.\n- Coat skirt now hangs from the shoulders (up to 1.25 m, clamped at the floor) so it drapes to the floor during the backbend and lies beside the head at the end.\n- Tracking shot camera pulled back (4.6 m) with the raised arm lowered at f167; helipad extended toward Neo and helicopter repositioned; orbit start pitched up so the helipad wall shows.\n- Agent close shot moved closer, arm points toward the lens; overhead end shot moved closer; thigh close-up rolled so the floor sits image-right.\n\n## Inference vs observation\n- Cut times (0.40, 1.75, 3.10, 5.90, 13.60, 14.25, 14.95 s), the 7.3 s transition into the orbit, bullet timing, gun drop and fall are inferred between samples.\n\n## Remaining known discrepancies\n- Coat is a single open cone; steam is translucent ellipsoids; close-ups at f333/f350 are approximate dark-fabric framings; helicopter placement in f183 does not match."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Unblock the head from the coat in bullet-time and final shot, lighten steam, lower agent arm.",
+     "rendered": true,
+     "report": "# Report - round 004\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol). Not a protocol-equivalent reproduction of Blender rankings.\n\n## Feedback received (round 003 render)\n- Pistol close-up now reads as slide above a gripping hand with the face upper-right; crouched dodges and agent placement in the wide shot are close to the reference; tracking shot sizes at f150/f167 roughly match.\n- Remaining problems: the shoulder-hung coat cone occluded the head at f233/f266 and in the final overhead (f383); steam too dense in late orbit frames; agent's arm at f0 not low enough.\n\n## Revisions in this round\n- Coat hangs from the upper back (offset toward the back normal, so below the torso when bent backward), slightly narrower, flare toward the head reduced, and its radius shrinks when the figure lies on the floor so it bunches beside the head.\n- Steam opacity reduced; agent's arm at f0 points down toward the lens; hand spheres slightly smaller; helicopter shifted.\n\n## Inference vs observation\n- Cut times (0.40, 1.75, 3.10, 5.90, 13.60, 14.25, 14.95 s), the 7.3 s transition into the orbit, bullet timing, gun drop and fall are inferred between samples.\n\n## Remaining known discrepancies\n- Coat is a single open cone; steam is translucent ellipsoids; close-ups at f333/f350 approximate; helicopter position in f183 does not match the reference."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Fix camera collision with the water tank at 6.26 s and minor orbit/arm framing.",
+     "rendered": true,
+     "report": "# Report - round 005\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol). Not a protocol-equivalent reproduction of Blender rankings.\n\n## Feedback received (round 004 render)\n- Head now visible in the final overhead shot; coat drapes under the body during the backbend.\n- Regression found at f150 (6.26 s): the tracking-shot camera sat inside the water-tank pipe, so the frame was blocked (brown/red). At f233 the head was hidden behind the shoulder from the low camera; agent arm at f0 slightly too low.\n\n## Revisions in this round\n- Water tank, pipe and valve moved further behind Neo (z = 7.5) so no camera path intersects them; it still sits image-left behind Neo in the frontal shot.\n- Orbit camera at 9.72 s raised to 0.95 m so the head is visible; orbit target at 12.51 s moved toward the head; agent arm at f0 angled toward image centre.\n\n## Inference vs observation\n- Cut times (0.40, 1.75, 3.10, 5.90, 13.60, 14.25, 14.95 s), the 7.3 s transition into the orbit, bullet timing, gun drop and fall are inferred between samples.\n\n## Remaining known discrepancies\n- Coat is a single open cone; steam is translucent ellipsoids; close-ups at f333/f350 approximate; helicopter position in f183 does not match."
+    },
+    {
+     "round": "006",
+     "action": "render",
+     "reason": "Side-on framing for the 9.72 s bullet-time sample.",
+     "rendered": true,
+     "report": "# Report - round 006\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol). Not a protocol-equivalent reproduction of Blender rankings.\n\n## Feedback received (round 005 render)\n- f150 is no longer blocked: Neo with arms spread, agent right of him firing, glass tower and column behind, matching the reference layout.\n- f233 still showed the body end-on (head hidden behind the torso) because the orbit angle at 9.72 s was too far toward the front.\n\n## Revisions in this round\n- Orbit key at 9.72 s changed to a near side-on low view (118 deg, 2.3 m, 0.85 m high) so the body spans the frame head-left / legs-right as in the reference.\n\n## Inference vs observation\n- Cut times (0.40, 1.75, 3.10, 5.90, 13.60, 14.25, 14.95 s), the 7.3 s transition into the orbit, bullet timing, gun drop and fall are inferred between samples.\n\n## Remaining known discrepancies\n- Coat is a single open cone; steam is translucent ellipsoids; close-ups at f333/f350 approximate; helicopter position in f183 does not match."
+    },
+    {
+     "round": "007",
+     "action": "submit",
+     "reason": "All shots, subjects, timing and major poses now match the reference layout at the L1 proxy level; remaining differences are minor framing and appearance.",
+     "rendered": false,
+     "report": "# Final report (submission of the round 006 render)\n\nRepresentation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (native inspect-revise protocol). This is not a protocol-equivalent reproduction of Blender model rankings, and no scoring results are claimed.\n\n## Scene summary\n- Subjects: two articulated human proxies. The figure in the long black coat (\"Neo\") and the agent in an olive-brown suit with a white shirt panel are built from boxes, cylinders and spheres: torso, pelvis, head with hair cap, upper and lower arms, hands, thighs, shins and feet. Legs use two-bone IK with per-leg knee hints, so the feet stay planted while the knees bend forward or outward. Neo's coat is an open cone hung from the upper back. It flares during the dodges, drapes to the floor in the backbend and bunches up when he lies down. Pistols are box proxies: two in Neo's hands until 1.75 s, one in the agent's hand, and two on the floor in the final shot.\n- Environment: tiled roof deck, parapets, a railing on the right, a raised helipad with stairs and a proxy helicopter, a water tank with pipe and valve, a glass tower with a gold column, side towers, hazy distant city blocks, translucent steam puffs, and slow-motion bullets with translucent ring ripple trails. Fog and the colours approximate the hazy green-grey grade. The floor is darker in the overhead end shot.\n- Camera and timing (24000/1001 fps, 384 frames, 1910x1080). Shots: (A) 0-0.40 s, low-angle medium shot of the agent raising his pistol. (B) 0.40-1.75 s, frontal long-lens full shot of Neo in steam aiming two pistols, then lowering them. (C) 1.75-3.10 s, extreme close-up down the agent's barrel. (D) 3.10-5.90 s, wide shot from behind Neo of the crouching dodges, with the agent firing in the distance. (E1) 5.90-7.30 s, long-lens tracking shot arcing to Neo's right as he starts to lean back. (E2) 7.30-13.60 s, bullet-time orbit from his right side, over the top, low across the front and around to his left side while he bends nearly horizontal. (F, G) 13.60-14.95 s, close-ups of the grazed shoulder and thigh. (H) 14.95-16.016 s, oblique overhead from the feet of Neo lying on his back between the two pistols. Poses and cameras are keyed at the sample timestamps and interpolated analytically (Hermite). update() depends only on absolute time.\n\n## Observed vs inferred\n- Observed: the 24 reference samples (layout, subject identities, poses, camera angles at those timestamps).\n- Inferred: all cut times, the boundary at 7.3 s between the tracking shot and the orbit, the timing and paths of the bullets, when the pistols are dropped, the fall between 13.6 s and 15.0 s, and all motion between samples.\n\n## Feedback used (renders of rounds 001-006)\n- Fixed in turn: the gun close-up axis and pistol construction, a long lens for the frontal shot, the agent's position and facing, the crouched dodge poses, the tracking-shot distances, knees pushed forward in the backbend, coat attachment and occlusion of the head, the oblique end shot, and a camera collision with the water tank at 6.26 s.\n\n## Remaining discrepancies\n- Proxy coat and steam are coarse. Neo appears somewhat larger than in the reference at f167, and the helicopter is too large there. The helicopter's position at f183 does not match. The crouches in the wide shot are shallower than in the reference. The shoulder and thigh close-ups (f333, f350) only approximate dark fabric against the floor. The fall from 13.6 s to 15.0 s is not sampled and is inferred."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     1.93,
+     5.94,
+     9.96,
+     13.97
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ],
+     "006": [
+      "r006_0.jpg",
+      "r006_1.jpg",
+      "r006_2.jpg",
+      "r006_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 5,
+    "inspection_only_decisions": 1,
+    "render_attempts": 6,
+    "infrastructure_retries": 0,
+    "model_turns": 7,
+    "provider_responses": 0
+   }
+  },
+  "gpt-6-astra": {
+   "id": "gpt-6-astra",
+   "video": "media/gpt-6-astra/video1.mp4",
+   "poster": "media/poster/gpt-6-astra/video1_0.jpg",
+   "scene": "media/scene/gpt-6-astra/video1.mjs",
+   "final_round": "004",
+   "scene_sha256": "c6da7d9b979cc800d301ecfb94b71aadcf2a75cc72a55ed15c7d1f185ecad3f4",
+   "stop": "model_submit",
+   "revisions": 4,
+   "renders": 5,
+   "infra_retries": 0,
+   "turns": 6,
+   "pauses": 0,
+   "inferences": null,
+   "output_tokens": null,
+   "cost": null,
+   "cost_1h": null,
+   "elapsed_seconds": 5377,
+   "submit_reason": "I judge this rendered version sufficient for submission as an editable L1 geometric proxy: the principal scene structure, shot progression, and action are represented, and the targeted silhouette and framing corrections have been checked in rendered pixels. I am stopping with the remaining visual inaccuracies documented; this is a model-selected submission, not a claim of photorealistic or quantitatively evaluated accuracy.",
+   "rounds": [],
+   "history": null,
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
+    "infrastructure_retries": 0,
+    "model_turns": 6,
+    "provider_responses": null
+   }
+  }
+ }
+}

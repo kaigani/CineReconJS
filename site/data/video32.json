@@ -1,0 +1,148 @@
+{
+ "id": "video32",
+ "n": 32,
+ "reference": {
+  "video": "media/ref/video32.mp4",
+  "poster": "media/poster/ref/video32_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 147,
+  "fps": 30.0,
+  "duration": 4.9
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video32.mp4",
+   "poster": "media/poster/opus-5-5/video32_0.jpg",
+   "scene": "media/scene/opus-5-5/video32.mjs",
+   "final_round": "006",
+   "scene_sha256": "eac19678371626aa67713c74589d0abf26f9c492d9e6fd249fff4f2c6db55f2d",
+   "video_sha256": "29e4d14fe3928d92b958b4efc36c0cb3f63bcac65db825c89ed159610063f8b3",
+   "stop": "model_submit",
+   "revisions": 5,
+   "renders": 6,
+   "infra_retries": 0,
+   "turns": 7,
+   "pauses": 0,
+   "inferences": 56,
+   "output_tokens": 145464,
+   "cost": 6.27,
+   "cost_1h": 7.25,
+   "elapsed_seconds": 2323,
+   "submit_reason": "Round 6 render matches camera path, subject positions, timing, colors and key interactions across all 24 samples; remaining differences are proxy-appearance level.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete L1 proxy scene: pond, gardener, goose path to the open gate, fitted follow camera.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nScene: lawn plane, polygonal pond with rock proxies, reeds, lily pads and a small dock; curved grey path with an upper-left branch; a leaning tree trunk; slatted bench with a blue cloth; two seed sacks; brick walls with hedge boxes, an orange hose tube, an open wooden gate (hinged at the wall end, swung toward the camera), stepping slabs, a brick pillar, a notice board, a red lawn mower, a raised carrot bed and a planter.\n\nSubjects: one gardener (articulated boxes/cylinders: hips, knees, shoulders, elbows, head with cap, radio in left hand) and one goose (ellipsoid body, articulated neck/head with beak, flapping wings, stepping legs).\n\nAction/timing (observed in the 24 samples): goose flaps behind the wading gardener (0-0.45 s), lands on the grass behind him (~0.6 s), walks right/away across the lawn, crosses onto the path (~2.3 s), turns toward the gate (3.4-3.8 s), honks/grabs at the gate edge (~3.7-4.1 s, white burst lines) and walks through the gateway onto the slabs (4.2-4.87 s). The gardener turns from facing camera to facing away (0.4-0.85 s), steps up out of the pond (~1.1-1.6 s) and walks slowly after the goose, leaving frame left near 4 s.\n\nCamera: single continuous shot, no cuts. Fixed 45 deg pitch, 14 deg vertical FOV; target position, small yaw drift (0 to ~8 deg) and distance (zoom out to ~3.4 s, back in by ~4.0 s) were fitted by a small least-squares fit to static landmarks (pond rock, bench, trunk, sacks, gate, slabs, pillar, board) across the samples, then interpolated with cubic Hermite splines.\n\nInference vs observation: positions at sample times come from the reference images; motion between samples, leg/wing cycles and the gate staying open throughout are inferred. No render feedback has been received yet for this initial version."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix display colors (raw palette), shrink characters/props ~0.72-0.75 to match reference image sizes, lower walls, narrower board, forward goose neck while walking.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nScene: lawn plane, polygonal pond with rock proxies, reeds, lily pads and a small dock; curved grey path with an upper-left branch; a leaning tree trunk; slatted bench with a blue cloth; two pillow-shaped seed sacks; low brick walls with hedge boxes, an orange hose tube, a shovel, an open wooden gate (hinged at the wall end, swung toward the camera), stepping slabs, a brick pillar, a notice board, a red lawn mower, a raised carrot bed and a planter.\n\nSubjects: one gardener (articulated: hips, knees, shoulders, elbows, head with cap, radio in left hand) and one goose (ellipsoid body, articulated neck/head with beak, flapping wings during the take-off/landing, stepping legs).\n\nAction/timing (from the 24 samples): goose flaps behind the wading gardener (0-0.45 s), lands on the grass behind/right of him (~0.6 s), walks right/away across the lawn with neck forward, reaches the path (~2.3 s), turns toward the gate (3.4-3.8 s), grabs/honks at the gate edge (~3.7-4.1 s, white burst lines), then walks through the gateway onto the slabs (4.2-4.87 s). The gardener turns from facing camera to facing away (0.4-0.85 s), steps up out of the pond (~1.1-1.6 s) and walks slowly after the goose, leaving frame left near 4 s.\n\nCamera: one continuous shot, no cuts. Fixed 45 deg pitch, 14 deg vertical FOV; target, slight yaw drift (0 to ~8 deg) and distance (zoom out to ~3.4 s, back in by ~4.0 s) fitted by least squares to static landmarks across the samples and spline-interpolated.\n\nFeedback received: round 1 render. Camera framing and object placement matched well; characters and props were ~1.3-1.4x too large, colors rendered much darker than the reference (output behaved as un-encoded), walls/hedges were too tall, the board too wide, and the walking goose's neck too upright. Revision 2 corrects these (raw display colors, flatter lighting, ~0.72-0.75 scale on gardener/goose, lower walls, narrower board, smaller mower, forward neck, hidden folded wings).\n\nInference vs observation: positions at sample times come from the reference images; motion between samples, leg/wing cycles and the gate staying open throughout are inferred. Not yet verified: the effect of the color change and rescaling (pending render)."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Disable tone mapping on materials to recover saturated pastel colors; gardener upper-body lean at start; taller bench; mower handle orientation; planter size.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nScene: lawn plane, polygonal pond with rock proxies, reeds, lily pads and a small dock; curved grey path with an upper-left branch; a leaning tree trunk; slatted bench with a blue cloth; two pillow-shaped seed sacks; low brick walls with hedge boxes, an orange hose tube, a shovel, an open wooden gate (hinged at the wall end, swung toward the camera), stepping slabs, a brick pillar, a notice board, a red lawn mower, a raised carrot bed and a planter.\n\nSubjects: one gardener (articulated: hips, knees, waist lean, shoulders, elbows, head with cap, radio in left hand) and one goose (ellipsoid body, articulated neck/head with beak, flapping wings during take-off/landing, stepping legs).\n\nAction/timing (from the 24 samples): goose flaps behind the wading, bent-over gardener (0-0.45 s), lands on the grass behind/right of him (~0.6 s), walks right/away across the lawn with neck forward, reaches the path (~2.3 s), turns toward the gate (3.4-3.8 s), grabs/honks at the gate edge (~3.7-4.1 s, white burst lines), then walks through the gateway onto the slabs (4.2-4.87 s). The gardener straightens and turns from facing camera to facing away (0-0.85 s), steps up out of the pond (~1.1-1.6 s) and walks slowly after the goose, leaving frame left near 4 s.\n\nCamera: one continuous shot, no cuts. Fixed 45 deg pitch, 14 deg vertical FOV; target, slight yaw drift (0 to ~8 deg) and distance (zoom out to ~3.4 s, back in by ~4.0 s) fitted by least squares to static landmarks across the samples and spline-interpolated.\n\nFeedback received and revisions: Round 1 - framing/placement good; objects ~1.3-1.4x too large, colors too dark, walls too tall. Round 2 - sizes fixed (0.72-0.75 scale), but colors came out grey/desaturated; pixel comparison of rounds 1 and 2 indicated a compressive tone curve on a linear output. Round 3 opts materials out of tone mapping with raw display colors, adds a waist pivot so the gardener is bent over at the start, makes the bench taller, turns the mower handle toward the upper left and enlarges the planter.\n\nInference vs observation: positions at sample times come from the reference images; motion between samples, leg/wing cycles and the gate staying open throughout are inferred. The round 3 color result is not yet verified."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Correct lighting scale (r180 Lambert divides by PI; lights now sum to ~PI) with sRGB palette sampled from reference; enable soft sun shadows following the camera.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nScene: lawn plane, polygonal pond with rock proxies, reeds, lily pads and a small dock; curved grey path with an upper-left branch; a leaning tree trunk; slatted bench with a blue cloth; two pillow-shaped seed sacks; low brick walls with hedge boxes, an orange hose tube, a shovel, an open wooden gate (hinged at the wall end, swung toward the camera), stepping slabs, a brick pillar, a notice board, a red lawn mower, a raised carrot bed and a planter.\n\nSubjects: one gardener (articulated: hips, knees, waist lean, shoulders, elbows, head with cap, radio in left hand) and one goose (ellipsoid body, articulated neck/head with beak, flapping wings during take-off/landing, stepping legs).\n\nAction/timing (from the 24 samples): goose flaps behind the wading, bent-over gardener (0-0.45 s), lands on the grass behind/right of him (~0.6 s), walks right/away across the lawn with neck forward, reaches the path (~2.3 s), turns toward the gate (3.4-3.8 s), grabs/honks at the gate edge (~3.7-4.1 s, white burst lines), then walks through the gateway onto the slabs (4.2-4.87 s). The gardener straightens and turns from facing camera to facing away (0-0.85 s), steps up out of the pond (~1.1-1.6 s) and walks slowly after the goose, leaving frame left near 4 s.\n\nCamera: one continuous shot, no cuts. Fixed 45 deg pitch, 14 deg vertical FOV; target, slight yaw drift (0 to ~8 deg) and distance (zoom out to ~3.4 s, back in by ~4.0 s) fitted by least squares to static landmarks across the samples and spline-interpolated.\n\nFeedback received and revisions: Round 1 - framing/placement good; objects ~1.3-1.4x too large, colors too dark, walls too tall. Round 2 - sizes fixed (0.72-0.75 scale) but colors grey. Round 3 - waist lean, taller bench, mower/planter fixes; disabling tone mapping alone did not fix colors. The render metadata in my round output (three r180, sRGB output, ACES) explained it: physically based Lambert lighting divides by PI, so the scene was lit at ~1/3. Round 4 restores the sRGB palette (colors re-sampled from the reference images), sets ambient+sun to ~PI with tone mapping disabled per material, and replaces blob shadows with soft sun shadows that follow the camera target.\n\nInference vs observation: positions at sample times come from the reference images; motion between samples, leg/wing cycles and the gate staying open throughout are inferred. The round 4 color and shadow result is not yet verified."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Fix opening interaction (goose lower, on gardener's back; gardener upright, facing camera then turning right), smaller goose, box sacks, mower handle, trunk/shovel/planter tweaks.",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nScene: lawn plane, polygonal pond with rock proxies, reeds, lily pads and a small dock; curved grey path with an upper-left branch; a leaning tree trunk; slatted bench with a blue cloth; two pillow-shaped seed sacks; low brick walls with hedge boxes, an orange hose tube, a shovel, an open wooden gate (hinged at the wall end, swung toward the camera), stepping slabs, a brick pillar, a notice board, a red lawn mower, a raised carrot bed and a planter.\n\nSubjects: one gardener (articulated: hips, knees, waist lean, shoulders, elbows, head with cap, radio in left hand) and one goose (ellipsoid body, articulated neck/head with beak, flapping wings during take-off/landing, stepping legs).\n\nAction/timing (from the 24 samples): goose flaps behind the wading, bent-over gardener (0-0.45 s), lands on the grass behind/right of him (~0.6 s), walks right/away across the lawn with neck forward, reaches the path (~2.3 s), turns toward the gate (3.4-3.8 s), grabs/honks at the gate edge (~3.7-4.1 s, white burst lines), then walks through the gateway onto the slabs (4.2-4.87 s). The gardener straightens and turns from facing camera to facing away (0-0.85 s), steps up out of the pond (~1.1-1.6 s) and walks slowly after the goose, leaving frame left near 4 s.\n\nCamera: one continuous shot, no cuts. Fixed 45 deg pitch, 14 deg vertical FOV; target, slight yaw drift (0 to ~8 deg) and distance (zoom out to ~3.4 s, back in by ~4.0 s) fitted by least squares to static landmarks across the samples and spline-interpolated.\n\nFeedback received and revisions: Round 1 - framing/placement good; objects ~1.3-1.4x too large, colors too dark, walls too tall. Round 2 - sizes fixed (0.72-0.75 scale) but colors grey. Round 3 - waist lean, taller bench, mower/planter fixes; disabling tone mapping alone did not fix colors. The render metadata in my round output (three r180, sRGB output, ACES) explained it: physically based Lambert lighting divides by PI, so the scene was lit at ~1/3. Round 4 restores the sRGB palette (colors re-sampled from the reference images), sets ambient+sun to ~PI with tone mapping disabled per material, and replaces blob shadows with soft sun shadows that follow the camera target. Round 4 colors and shadows matched the reference closely; round 5 corrects the opening interaction (goose lower and directly on the gardener's back at 0.2-0.43 s, gardener upright and facing camera before turning right toward the landed goose at 0.63-0.83 s), shrinks the goose body, reshapes sacks as flat boxes, fixes the mower handle direction and adjusts trunk, shovel and planter.\n\nInference vs observation: positions at sample times come from the reference images; motion between samples, leg/wing cycles and the gate staying open throughout are inferred. Round 5 changes are not yet verified by a render."
+    },
+    {
+     "round": "006",
+     "action": "render",
+     "reason": "Fold the goose wings by ~0.58 s so the landed goose at 0.63 s matches the reference (wings folded).",
+     "rendered": true,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nScene: lawn plane, polygonal pond with rock proxies, reeds, lily pads and a small dock; curved grey path with an upper-left branch; a leaning tree trunk; slatted bench with a blue cloth; two pillow-shaped seed sacks; low brick walls with hedge boxes, an orange hose tube, a shovel, an open wooden gate (hinged at the wall end, swung toward the camera), stepping slabs, a brick pillar, a notice board, a red lawn mower, a raised carrot bed and a planter.\n\nSubjects: one gardener (articulated: hips, knees, waist lean, shoulders, elbows, head with cap, radio in left hand) and one goose (ellipsoid body, articulated neck/head with beak, flapping wings during take-off/landing, stepping legs).\n\nAction/timing (from the 24 samples): goose flaps behind the wading, bent-over gardener (0-0.45 s), lands on the grass behind/right of him (~0.6 s), walks right/away across the lawn with neck forward, reaches the path (~2.3 s), turns toward the gate (3.4-3.8 s), grabs/honks at the gate edge (~3.7-4.1 s, white burst lines), then walks through the gateway onto the slabs (4.2-4.87 s). The gardener straightens and turns from facing camera to facing away (0-0.85 s), steps up out of the pond (~1.1-1.6 s) and walks slowly after the goose, leaving frame left near 4 s.\n\nCamera: one continuous shot, no cuts. Fixed 45 deg pitch, 14 deg vertical FOV; target, slight yaw drift (0 to ~8 deg) and distance (zoom out to ~3.4 s, back in by ~4.0 s) fitted by least squares to static landmarks across the samples and spline-interpolated.\n\nFeedback received and revisions: Round 1 - framing/placement good; objects ~1.3-1.4x too large, colors too dark, walls too tall. Round 2 - sizes fixed (0.72-0.75 scale) but colors grey. Round 3 - waist lean, taller bench, mower/planter fixes; disabling tone mapping alone did not fix colors. The render metadata in my round output (three r180, sRGB output, ACES) explained it: physically based Lambert lighting divides by PI, so the scene was lit at ~1/3. Round 4 restores the sRGB palette (colors re-sampled from the reference images), sets ambient+sun to ~PI with tone mapping disabled per material, and replaces blob shadows with soft sun shadows that follow the camera target. Round 4 colors and shadows matched the reference closely; round 5 corrects the opening interaction (goose lower and directly on the gardener's back at 0.2-0.43 s, gardener upright and facing camera before turning right toward the landed goose at 0.63-0.83 s), shrinks the goose body, reshapes sacks as flat boxes, fixes the mower handle direction and adjusts trunk, shovel and planter.\n\nInference vs observation: positions at sample times come from the reference images; motion between samples, leg/wing cycles and the gate staying open throughout are inferred. Round 5 render confirmed the opening interaction improvements; round 6 only folds the wings earlier (by ~0.58 s) to match the landed goose at 0.63 s."
+    },
+    {
+     "round": "007",
+     "action": "submit",
+     "reason": "Round 6 render matches camera path, subject positions, timing, colors and key interactions across all 24 samples; remaining differences are proxy-appearance level.",
+     "rendered": false,
+     "report": "Representation level: L1 (proxy). CineRecon Three.js sampled-frame baseline (not a Blender-protocol reproduction).\n\nScene: lawn plane, polygonal pond with rock proxies, reeds, lily pads and a small dock; curved grey path with an upper-left branch; a leaning tree trunk; slatted bench with a blue cloth; two pillow-shaped seed sacks; low brick walls with hedge boxes, an orange hose tube, a shovel, an open wooden gate (hinged at the wall end, swung toward the camera), stepping slabs, a brick pillar, a notice board, a red lawn mower, a raised carrot bed and a planter.\n\nSubjects: one gardener (articulated: hips, knees, waist lean, shoulders, elbows, head with cap, radio in left hand) and one goose (ellipsoid body, articulated neck/head with beak, flapping wings during take-off/landing, stepping legs).\n\nAction/timing (from the 24 samples): goose flaps behind the wading, bent-over gardener (0-0.45 s), lands on the grass behind/right of him (~0.6 s), walks right/away across the lawn with neck forward, reaches the path (~2.3 s), turns toward the gate (3.4-3.8 s), grabs/honks at the gate edge (~3.7-4.1 s, white burst lines), then walks through the gateway onto the slabs (4.2-4.87 s). The gardener straightens and turns from facing camera to facing away (0-0.85 s), steps up out of the pond (~1.1-1.6 s) and walks slowly after the goose, leaving frame left near 4 s.\n\nCamera: one continuous shot, no cuts. Fixed 45 deg pitch, 14 deg vertical FOV; target, slight yaw drift (0 to ~8 deg) and distance (zoom out to ~3.4 s, back in by ~4.0 s) fitted by least squares to static landmarks across the samples and spline-interpolated.\n\nFeedback received and revisions: Round 1 - framing/placement good; objects ~1.3-1.4x too large, colors too dark, walls too tall. Round 2 - sizes fixed (0.72-0.75 scale) but colors grey. Round 3 - waist lean, taller bench, mower/planter fixes; disabling tone mapping alone did not fix colors. The render metadata in my round output (three r180, sRGB output, ACES) explained it: physically based Lambert lighting divides by PI, so the scene was lit at ~1/3. Round 4 restores the sRGB palette (colors re-sampled from the reference images), sets ambient+sun to ~PI with tone mapping disabled per material, and replaces blob shadows with soft sun shadows that follow the camera target. Round 4 colors and shadows matched the reference closely; round 5 corrects the opening interaction (goose lower and directly on the gardener's back at 0.2-0.43 s, gardener upright and facing camera before turning right toward the landed goose at 0.63-0.83 s), shrinks the goose body, reshapes sacks as flat boxes, fixes the mower handle direction and adjusts trunk, shovel and planter.\n\nInference vs observation: positions at sample times come from the reference images; motion between samples, leg/wing cycles and the gate staying open throughout are inferred. Round 5 render confirmed the opening interaction improvements; Round 6 folded the wings earlier and its render confirmed the landed goose at 0.63 s has folded wings. Submitted: round 6.\n\nRemaining discrepancies (observed in round 6 feedback): proxy shapes are boxy (no face, simplified wing fans, flat-box sacks, no grass tufts or flower details); the gardener's turn and arm pose during the first 0.4 s only approximate the reference; the goose's flapping in the air is a simple two-plate wing proxy; the honk effect is a small white burst; hose and gate positions are approximate; motion between the 24 samples is interpolated and not directly verified."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     0.59,
+     1.81,
+     3.04,
+     4.26
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ],
+     "006": [
+      "r006_0.jpg",
+      "r006_1.jpg",
+      "r006_2.jpg",
+      "r006_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 5,
+    "inspection_only_decisions": 1,
+    "render_attempts": 6,
+    "infrastructure_retries": 0,
+    "model_turns": 7,
+    "provider_responses": 0
+   }
+  }
+ }
+}

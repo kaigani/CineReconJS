@@ -1,0 +1,122 @@
+{
+ "id": "video19",
+ "n": 19,
+ "reference": {
+  "video": "media/ref/video19.mp4",
+  "poster": "media/poster/ref/video19_0.jpg",
+  "width": 1280,
+  "height": 720,
+  "frames": 140,
+  "fps": 23.976,
+  "duration": 5.839
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video19.mp4",
+   "poster": "media/poster/opus-5-5/video19_0.jpg",
+   "scene": "media/scene/opus-5-5/video19.mjs",
+   "final_round": "004",
+   "scene_sha256": "4c2222a5862aedb2b1c962ca6debb70286a3a06f5a9bd3293ea3e4a9df8a1d19",
+   "video_sha256": "27d687323b6f5cab67158995766f5cc575f9a2c79138559b934d31c0f05b8f45",
+   "stop": "model_submit",
+   "revisions": 3,
+   "renders": 4,
+   "infra_retries": 0,
+   "turns": 5,
+   "pauses": 0,
+   "inferences": 23,
+   "output_tokens": 84623,
+   "cost": 3.09,
+   "cost_1h": 3.65,
+   "elapsed_seconds": 911,
+   "submit_reason": "All four shots, cuts, head rotation, arm reach and menu/screen events match the references at proxy level; remaining differences are appearance-level",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete four-shot proxy scene",
+     "rendered": true,
+     "report": "# video19 reconstruction report (L1 / Proxy, CineRecon Three.js sampled-frame baseline)\n\nRound 001 (initial scene, no render feedback received yet).\n\nObserved from the 24 reference samples:\n- Four shots. A (t 0-~2.35 s): telephoto over-the-shoulder view behind a black mirrorless camera on a tripod (left foreground), operator's hand pressing back buttons, LCD menu with yellow highlight moving Interval -> Choose start -> Start, then screen turning off (~1.9 s); mannequin head on white turntable at right in front of white backdrop. B (~2.35-~3.65 s): wider view from the same side; operator's dark-sleeved arm reaches in from upper-left to the top of the camera and withdraws. C (~3.65-~4.9 s): low frontal close-up of head on the two-tier turntable; head begins rotating toward image-right around 4.0 s. D (~4.9-5.84 s): frontal medium-wide shot, letterboxed top, head continues turning to image-right; light stand right, LED bar above backdrop.\n- Lower-third graphics \"REMOTE CONTROL\" (red outline) and \"Ecommerce\" (black box, white border) are post overlays; reproduced only as untextured proxy rectangles (text omitted at L1). Top letterbox bar in shot D reproduced.\n\nGeometry: boxes/cylinders/spheres for table, backdrop (unlit white), walls, light stand and two LED bars, two-tier turntable (static base + rotating platter), mannequin (bust, neck, cranium, jaw, ears), camera (body, grip, hump, lens, hinged tilted LCD with menu highlight bars), operator (torso, head, shoulder, upper arm, forearm, palm, finger, thumb) with analytic two-bone IK.\nCamera: four static per-shot cameras with hard cuts at frames ~57, ~88, ~118 (cut frames inferred between samples). Focal lengths estimated from relative image sizes (A ~9 deg, B ~13 deg, C ~26 deg, D ~30 deg vertical FOV).\nTiming: head yaw 0 until ~4.0 s then rising to ~47 deg by end (piecewise linear, inferred between samples). Menu highlight changes at ~0.40/0.64 s, screen off at 1.88 s (inferred). Arm reach keyframes 2.3-3.7 s.\nInference/uncertainty: exact cut frames, intermediate arm path, overlay animation, and world scale are inferred. No render feedback yet."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix shot-B arm reach, backdrop brightness, camera proportions",
+     "rendered": true,
+     "report": "# video19 reconstruction report (L1 / Proxy, CineRecon Three.js sampled-frame baseline)\n\nRound 002. Feedback received: round 001 render (24 paired frames). Revisions: brighter untonemapped backdrop, slightly shorter backdrop, smaller camera viewfinder hump, camera lowered ~1.5 cm, shot-A wrist moved left, shot-B reach re-keyed so the hand comes from the left near the lens and grips the back-left of the camera with a thicker sleeve coming from the upper-left, longer arm segments.\n\nObserved from the 24 reference samples:\n- Four shots. A (t 0-~2.35 s): telephoto over-the-shoulder view behind a black mirrorless camera on a tripod (left foreground), operator's hand pressing back buttons, LCD menu with yellow highlight moving Interval -> Choose start -> Start, then screen turning off (~1.9 s); mannequin head on white turntable at right in front of white backdrop. B (~2.35-~3.65 s): wider view from the same side; operator's dark-sleeved arm reaches in from upper-left to the top of the camera and withdraws. C (~3.65-~4.9 s): low frontal close-up of head on the two-tier turntable; head begins rotating toward image-right around 4.0 s. D (~4.9-5.84 s): frontal medium-wide shot, letterboxed top, head continues turning to image-right; light stand right, LED bar above backdrop.\n- Lower-third graphics \"REMOTE CONTROL\" (red outline) and \"Ecommerce\" (black box, white border) are post overlays; reproduced only as untextured proxy rectangles (text omitted at L1). Top letterbox bar in shot D reproduced.\n\nGeometry: boxes/cylinders/spheres for table, backdrop (unlit white), walls, light stand and two LED bars, two-tier turntable (static base + rotating platter), mannequin (bust, neck, cranium, jaw, ears), camera (body, grip, hump, lens, hinged tilted LCD with menu highlight bars), operator (torso, head, shoulder, upper arm, forearm, palm, finger, thumb) with analytic two-bone IK.\nCamera: four static per-shot cameras with hard cuts at frames ~57, ~88, ~118 (cut frames inferred between samples). Focal lengths estimated from relative image sizes (A ~9 deg, B ~13 deg, C ~26 deg, D ~30 deg vertical FOV).\nTiming: head yaw 0 until ~4.0 s then rising to ~47 deg by end (piecewise linear, inferred between samples). Menu highlight changes at ~0.40/0.64 s, screen off at 1.88 s (inferred). Arm reach keyframes 2.3-3.7 s.\nInference/uncertainty: exact cut frames, intermediate arm path, overlay animation, and world scale are inferred. Round 001 feedback showed shot A, C, D framing roughly matching; main mismatches were the shot-B arm path, backdrop brightness, and camera hump size."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Refine shot-D camera distance/FOV, lens size, wall tone",
+     "rendered": true,
+     "report": "# video19 reconstruction report (L1 / Proxy, CineRecon Three.js sampled-frame baseline)\n\nRound 003. Feedback received for rounds 001-002. Round 002 changes: brighter backdrop, shot-B reach re-keyed, camera proportions. Round 003 changes: shot-D camera moved farther back (z 2.2, ~19 deg vertical FOV, lower pitch) so backdrop/turntable size ratio matches better; larger camera lens; slightly lighter walls.\n\nObserved from the 24 reference samples:\n- Four shots. A (t 0-~2.35 s): telephoto over-the-shoulder view behind a black mirrorless camera on a tripod (left foreground), operator's hand pressing back buttons, LCD menu with yellow highlight moving Interval -> Choose start -> Start, then screen turning off (~1.9 s); mannequin head on white turntable at right in front of white backdrop. B (~2.35-~3.65 s): wider view from the same side; operator's dark-sleeved arm reaches in from upper-left to the top of the camera and withdraws. C (~3.65-~4.9 s): low frontal close-up of head on the two-tier turntable; head begins rotating toward image-right around 4.0 s. D (~4.9-5.84 s): frontal medium-wide shot, letterboxed top, head continues turning to image-right; light stand right, LED bar above backdrop.\n- Lower-third graphics \"REMOTE CONTROL\" (red outline) and \"Ecommerce\" (black box, white border) are post overlays; reproduced only as untextured proxy rectangles (text omitted at L1). Top letterbox bar in shot D reproduced.\n\nGeometry: boxes/cylinders/spheres for table, backdrop (unlit white), walls, light stand and two LED bars, two-tier turntable (static base + rotating platter), mannequin (bust, neck, cranium, jaw, ears), camera (body, grip, hump, lens, hinged tilted LCD with menu highlight bars), operator (torso, head, shoulder, upper arm, forearm, palm, finger, thumb) with analytic two-bone IK.\nCamera: four static per-shot cameras with hard cuts at frames ~57, ~88, ~118 (cut frames inferred between samples). Focal lengths estimated from relative image sizes (A ~9 deg, B ~13 deg, C ~26 deg, D ~19 deg vertical FOV).\nTiming: head yaw 0 until ~4.0 s then rising to ~47 deg by end (piecewise linear, inferred between samples). Menu highlight changes at ~0.40/0.64 s, screen off at 1.88 s (inferred). Arm reach keyframes 2.3-3.7 s.\nInference/uncertainty: exact cut frames, intermediate arm path, overlay animation, and world scale are inferred. Round 001 feedback showed shot A, C, D framing roughly matching; main mismatches were the shot-B arm path, backdrop brightness, and camera hump size."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Minor backdrop, light bar and head-proxy refinements",
+     "rendered": true,
+     "report": "# video19 reconstruction report (L1 / Proxy, CineRecon Three.js sampled-frame baseline)\n\nRound 004. Round 004 changes: backdrop shifted 2.5 cm left and 1 cm down, LED bar tilt reduced, jaw proxy elongated to read as a face block. Earlier: Feedback received for rounds 001-002. Round 002 changes: brighter backdrop, shot-B reach re-keyed, camera proportions. Round 003 changes: shot-D camera moved farther back (z 2.2, ~19 deg vertical FOV, lower pitch) so backdrop/turntable size ratio matches better; larger camera lens; slightly lighter walls.\n\nObserved from the 24 reference samples:\n- Four shots. A (t 0-~2.35 s): telephoto over-the-shoulder view behind a black mirrorless camera on a tripod (left foreground), operator's hand pressing back buttons, LCD menu with yellow highlight moving Interval -> Choose start -> Start, then screen turning off (~1.9 s); mannequin head on white turntable at right in front of white backdrop. B (~2.35-~3.65 s): wider view from the same side; operator's dark-sleeved arm reaches in from upper-left to the top of the camera and withdraws. C (~3.65-~4.9 s): low frontal close-up of head on the two-tier turntable; head begins rotating toward image-right around 4.0 s. D (~4.9-5.84 s): frontal medium-wide shot, letterboxed top, head continues turning to image-right; light stand right, LED bar above backdrop.\n- Lower-third graphics \"REMOTE CONTROL\" (red outline) and \"Ecommerce\" (black box, white border) are post overlays; reproduced only as untextured proxy rectangles (text omitted at L1). Top letterbox bar in shot D reproduced.\n\nGeometry: boxes/cylinders/spheres for table, backdrop (unlit white), walls, light stand and two LED bars, two-tier turntable (static base + rotating platter), mannequin (bust, neck, cranium, jaw, ears), camera (body, grip, hump, lens, hinged tilted LCD with menu highlight bars), operator (torso, head, shoulder, upper arm, forearm, palm, finger, thumb) with analytic two-bone IK.\nCamera: four static per-shot cameras with hard cuts at frames ~57, ~88, ~118 (cut frames inferred between samples). Focal lengths estimated from relative image sizes (A ~9 deg, B ~13 deg, C ~26 deg, D ~19 deg vertical FOV).\nTiming: head yaw 0 until ~4.0 s then rising to ~47 deg by end (piecewise linear, inferred between samples). Menu highlight changes at ~0.40/0.64 s, screen off at 1.88 s (inferred). Arm reach keyframes 2.3-3.7 s.\nInference/uncertainty: exact cut frames, intermediate arm path, overlay animation, and world scale are inferred. Round 001 feedback showed shot A, C, D framing roughly matching; main mismatches were the shot-B arm path, backdrop brightness, and camera hump size."
+    },
+    {
+     "round": "005",
+     "action": "submit",
+     "reason": "All four shots, cuts, head rotation, arm reach and menu/screen events match the references at proxy level; remaining differences are appearance-level",
+     "rendered": false,
+     "report": "# video19 reconstruction report (L1 / Proxy, CineRecon Three.js sampled-frame baseline)\n\nSubmitted scene: round 004 render (4 rendered rounds, 3 revisions after the initial scene).\n\nObserved from the 24 reference samples:\n- Four shots with hard cuts. A (t 0 to ~2.35 s): telephoto over-the-shoulder view behind a black mirrorless camera on a tripod (left foreground). The operator's hand presses the back buttons, the LCD menu highlight moves Interval -> Choose start -> Start, and the screen turns off at ~1.9 s. The mannequin head sits on a white turntable at right, in front of a white backdrop. B (~2.35 to ~3.65 s): wider view from the same side. The operator's dark-sleeved arm reaches in from the left/upper-left, grips the back/top-left of the camera, then withdraws. C (~3.65 to ~4.9 s): low frontal close-up of the head on the two-tier turntable. The turntable starts rotating at ~4.0 s and the face turns toward image-right. D (~4.9 to 5.84 s): frontal medium-wide shot with a letterbox bar at the top, and the head keeps turning to image-right (~33 to 47 deg yaw). A light stand is at right and an LED bar sits above the backdrop.\n- The lower-third graphics (\"REMOTE CONTROL\" red outline frame; \"Ecommerce\" black box with white border, fading in at ~4.75 s) are post-production overlays. They are reproduced only as untextured camera-attached rectangles, with the text omitted at L1. The shot-D top letterbox bar is reproduced.\n\nGeometry: boxes, cylinders and spheres for the table, the unlit white backdrop, the walls and floor, the light stand with its boom and two LED bars, the two-tier turntable (static base with groove and control button, rotating platter), the mannequin (bust, neck, cranium, jaw block, ears), the camera (body, grip, viewfinder hump, lens, hinged tilted LCD with menu highlight bars, ball head and column) and the operator (torso, head, shoulder, upper arm, forearm, palm, finger, thumb). The arm is posed by analytic two-bone IK from keyed wrist and fingertip targets.\nCamera: four static per-shot perspective cameras with hard cuts at frames ~57, ~88 and ~118. Each cut frame is inferred between adjacent samples. Estimated vertical FOVs: A ~9 deg, B ~13 deg, C ~26 deg, D ~19 deg.\nTiming: the head and platter yaw is 0 until ~4.0 s, then rises piecewise-linearly to ~47 deg at the end. Menu highlight changes at ~0.40 and 0.64 s, screen off at 1.88 s, small finger presses, arm reach keyframes 2.3 to 3.7 s.\n\nFeedback and revisions: round 001 matched framing in A, C and D, but the shot-B arm path was wrong and the backdrop was grey. Round 002 brightened the backdrop (not tone-mapped), re-keyed the shot-B reach and resized the camera parts. Round 003 moved the shot-D camera farther back with a narrower FOV, which fixed the backdrop-to-turntable proportions, and enlarged the lens. Round 004 made small backdrop, LED-bar and jaw-proxy adjustments.\n\nRemaining discrepancies and uncertainty: the backdrop extent cannot match exactly in every shot at once (it is slightly too wide in C and slightly misplaced in B). The hand and arm are blocky proxies with no motion blur, and the blurred foreground mass of the operator's head and shoulder in shot B is only partly represented. The mannequin proxy has no facial features, so its orientation reads mainly from the jaw block and ears. Overlay text is not reproduced. Lighting and tone are flatter than the reference. Exact cut frames, intermediate arm motion, world scale and the overlay animation curves are inferred, not observed."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     0.7,
+     2.16,
+     3.62,
+     5.08
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 3,
+    "inspection_only_decisions": 1,
+    "render_attempts": 4,
+    "infrastructure_retries": 0,
+    "model_turns": 5,
+    "provider_responses": 0
+   }
+  }
+ }
+}

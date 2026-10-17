@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CineReconJS — video reconstruction as editable Three.js scenes</title>
+<meta name="description" content="Native Opus 5.5 run on all 50 CineRecon reference videos at L1: side-by-side summary and a gallery to inspect every reconstruction.">
+<link rel="icon" href="assets/cinerecon-logo.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+
+<header class="nav">
+  <a class="brand" href="#top"><img src="assets/cinerecon-logo.png" alt="" width="32" height="32"><span>CineReconJS</span></a>
+  <nav>
+    <a href="#method">Method</a>
+    <a href="#results">Results</a>
+    <a href="#compare">Side by side</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#notes">Notes</a>
+    <a class="gh" href="https://github.com/kaigani/CineReconJS">GitHub</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <img class="hero-logo" src="assets/cinerecon-logo.png" alt="" width="120" height="120">
+  <h1>CineReconJS</h1>
+  <p class="lede">Can a vision model rebuild a film clip as an editable, animated Three.js scene? Here is Claude Opus 5.5 attempting all 50 CineRecon reference videos at L1 (geometric proxies), with every reconstruction open to inspection.</p>
+  <dl class="stats" id="hero-stats"></dl>
+  <div class="buttons">
+    <a class="btn primary" href="#gallery">Open the gallery</a>
+    <a class="btn" href="#compare">Side-by-side player</a>
+    <a class="btn" href="https://github.com/kaigani/CineReconJS">Repository</a>
+    <a class="btn" href="https://cinerecon.github.io/">Original CineRecon</a>
+  </div>
+</section>
+
+<section id="method" class="band">
+  <div class="wrap">
+    <h2>How a run works</h2>
+    <p class="sub">CineReconJS adapts <a href="https://cinerecon.github.io/">CineRecon</a>'s Blender benchmark to Three.js. The model never sees the video file; it sees 24 timestamped frames and writes code.</p>
+    <ol class="steps">
+      <li><b>Sample</b><span>24 frames spread uniformly over the full reference video, endpoints included.</span></li>
+      <li><b>Write</b><span>The model returns <code>scene.mjs</code>: geometry, materials, lights, an animated camera and object motion.</span></li>
+      <li><b>Render</b><span>Headless Chromium renders every frame at the source resolution and frame rate into an MP4.</span></li>
+      <li><b>Inspect</b><span>The model gets matched reference/render pairs and decides whether to revise or submit.</span></li>
+      <li><b>Submit</b><span>The model chooses when to stop. A 10-revision ceiling existed but was never reached.</span></li>
+    </ol>
+    <div class="levels">
+      <div class="card on"><h3>L1 · Proxy</h3><p>Simple geometric proxies preserving subjects, proportions, spatial relations, contacts, motion and camera timing. <b>This run.</b></p></div>
+      <div class="card"><h3>L2 · Simplified</h3><p>Recognizable subjects, silhouettes, materials and articulated actions. Not run.</p></div>
+      <div class="card"><h3>L3 · Detailed</h3><p>Instance-specific geometry, appearance and imaging characteristics. Not run.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="results" class="wrap">
+  <h2>Results</h2>
+  <p class="sub">Run statistics for each model on the same task: reconstruct a reference video at L1 from 24 sampled frames, refine from rendered feedback, then submit.</p>
+
+  <div class="notice">
+    <b>No quality scores yet.</b> The original CineRecon judge has not been run on these reconstructions, so this page reports what the models did (revisions, renders, cost, stopping) and shows the videos. It does not rank them. Judge scoring would be a separate, paid step.
+  </div>
+
+  <div class="table-scroll"><table class="summary" id="summary-table"></table></div>
+  <p class="foot" id="cost-footnote"></p>
+
+  <div class="charts">
+    <figure class="chart">
+      <figcaption><b>Revisions before submit</b><span>Opus 5.5 · number of videos by changed scene revisions</span></figcaption>
+      <div id="chart-revisions" class="bars hist"></div>
+    </figure>
+    <figure class="chart wide">
+      <figcaption><b>Estimated API cost per video</b><span>Opus 5.5 · USD, hypothetical list price · click a bar to inspect that video</span></figcaption>
+      <div id="chart-cost" class="bars cost"></div>
+    </figure>
+  </div>
+</section>
+
+<section id="compare" class="band">
+  <div class="wrap">
+    <h2>Side by side</h2>
+    <p class="sub">Reference on the left, reconstruction on the right, playing in sync. Pick any of the 50 videos.</p>
+    <div class="selector">
+      <button class="icon" id="cmp-prev" aria-label="Previous video">‹</button>
+      <input type="range" id="cmp-range" min="1" max="50" value="1" aria-label="Video number">
+      <button class="icon" id="cmp-next" aria-label="Next video">›</button>
+      <output id="cmp-count">1 / 50</output>
+    </div>
+    <div id="cmp-player"></div>
+    <div class="cmp-meta">
+      <span id="cmp-meta"></span>
+      <button class="btn small" id="cmp-open">Full inspector →</button>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="wrap">
+  <h2>Gallery</h2>
+  <p class="sub">All reference videos with each model's final reconstruction. Select a card to play it in sync with the reference, read the model's own notes for every revision, and view the final scene source.</p>
+  <div class="toolbar">
+    <div class="tabs" id="gallery-models" role="tablist" aria-label="Model"></div>
+    <label>Sort
+      <select id="gallery-sort">
+        <option value="n">Video number</option>
+        <option value="revisions-desc">Most revisions</option>
+        <option value="revisions-asc">Fewest revisions</option>
+        <option value="cost-desc">Highest cost</option>
+        <option value="cost-asc">Lowest cost</option>
+      </select>
+    </label>
+    <label class="search">Find <input type="search" id="gallery-find" placeholder="video number" inputmode="numeric"></label>
+    <span class="count" id="gallery-count"></span>
+  </div>
+  <p class="foot" id="gallery-note"></p>
+  <div class="grid" id="gallery-grid"></div>
+</section>
+
+<section id="notes" class="band">
+  <div class="wrap narrow">
+    <h2>Read this before comparing anything</h2>
+    <ul class="notes">
+      <li><b>Not protocol-equivalent to the paper.</b> The upstream benchmark's Blender agent sees the whole video and uses tools. These runs use sampled frames and a Three.js runtime, so short events can fall between samples. Scores or rankings from one backend do not transfer to the other.</li>
+      <li><b>Native agent runs.</b> Opus 5.5 ran as a Claude Code subagent on a subscription, not via an API harness. Cost is a hypothetical API list-price estimate from transcript token usage, not a bill. Rendering used native Windows Chromium with software WebGL, outside the README's disposable-sandbox guidance.</li>
+      <li><b>Self-chosen stopping.</b> Every Opus run ended by <code>model_submit</code>. Revision counts reflect when the model judged itself done, not a fixed budget.</li>
+      <li><b>Paused runs.</b> 18 runs were paused by subscription session limits; their elapsed times include the pause and are not comparable. Costs here reprice the cache re-write after a pause as a cache read.</li>
+      <li><b>Astra covers one video.</b> GPT-6 Astra ran video1 only, with a disclosed 90-minute operational ceiling and no token telemetry. It is shown for comparison on that clip, not as a cohort.</li>
+      <li><b>Reference media rights.</b> The reference clips are third-party material. Copyright remains with the rights holders, and upstream notes that redistribution permissions are under review. Videos here are downscaled to 640 px for inspection.</li>
+    </ul>
+    <p>Full per-run caveats are in the repository's cohort report. Method, tracking rules and validation: <a href="https://github.com/kaigani/CineReconJS#readme">README</a> · <a href="https://github.com/kaigani/CineReconJS/blob/main/docs/RUN_TRACKING.md">run tracking</a> · <a href="https://github.com/kaigani/CineReconJS/tree/main/examples/astra_iterative">Astra record</a>. Dataset, annotations and evaluator come from <a href="https://github.com/Unc1eW4ng/CineRecon">Unc1eW4ng/CineRecon</a>.</p>
+  </div>
+</section>
+</main>
+
+<footer>CineReconJS · MIT-licensed code and docs · reference videos excluded from that license</footer>
+
+<dialog id="inspector" aria-label="Clip inspector">
+  <div class="insp-head">
+    <button class="icon" id="insp-prev" aria-label="Previous video">‹</button>
+    <h3 id="insp-title"></h3>
+    <button class="icon" id="insp-next" aria-label="Next video">›</button>
+    <span class="spacer"></span>
+    <button class="icon" id="insp-close" aria-label="Close">×</button>
+  </div>
+  <div class="insp-body">
+    <div id="insp-player"></div>
+    <div class="tabs sub-tabs" id="insp-tabs" role="tablist"></div>
+    <div id="insp-panel"></div>
+  </div>
+</dialog>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

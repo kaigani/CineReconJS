@@ -1,0 +1,135 @@
+{
+ "id": "video49",
+ "n": 49,
+ "reference": {
+  "video": "media/ref/video49.mp4",
+  "poster": "media/poster/ref/video49_0.jpg",
+  "width": 1152,
+  "height": 720,
+  "frames": 378,
+  "fps": 60.0,
+  "duration": 6.3
+ },
+ "models": {
+  "opus-5-5": {
+   "id": "opus-5-5",
+   "video": "media/opus-5-5/video49.mp4",
+   "poster": "media/poster/opus-5-5/video49_0.jpg",
+   "scene": "media/scene/opus-5-5/video49.mjs",
+   "final_round": "005",
+   "scene_sha256": "0efdad9484c6bb69d797e3fc0ac3231820f8f29580b1e86fc9772fed4ccecd75",
+   "video_sha256": "9794de6f254f9b6cfa3e9a7a8159f911ff5c37a740514a804ebba5f46d36b97d",
+   "stop": "model_submit",
+   "revisions": 4,
+   "renders": 5,
+   "infra_retries": 0,
+   "turns": 6,
+   "pauses": 0,
+   "inferences": 36,
+   "output_tokens": 168642,
+   "cost": 6.26,
+   "cost_1h": 7.22,
+   "elapsed_seconds": 1981,
+   "submit_reason": "Round 5 render matches subject layout, gate push, courtyard approach, camera framing and weapon timeline across all samples; remaining gaps are minor trail/grenade placement and proxy appearance.",
+   "rounds": [
+    {
+     "round": "001",
+     "action": "render",
+     "reason": "Initial complete proxy scene for first render inspection.",
+     "rendered": true,
+     "report": "L1 proxy reconstruction, CineRecon Three.js sampled-frame baseline (video49, 1152x720, 60 fps, 378 frames, 6.3 s).\n\nGeometry: one continuous first-person shot. A ramped lane (vertex-coloured heightfield: grey road, sandy right side) climbs to a gate wall (extruded shape with pointed arch) holding two door leaves on hinge pivots; red \"B\" strokes and two lying barrels to the right of the arch; on the left a flat wall, a round tower protruding into the lane, a tall building and two crates (wide crate + tall white crate); on the right a pole, sandstone block stacks, a round building, and a distant building. Beyond the gate, a courtyard frame holds the crate with stacked cardboard boxes (main target), a back wall with round arch, a covered passage at right, a large blue-banded building with a corner tower at left, concrete slabs, a side-on car, and a tree. Sky is a vertex-coloured dome.\n\nArticulation / actions: camera-attached viewmodel with two sleeve+glove arms posed by keyframes; knife held in the first ~0.5 s, empty switch, grenade held 1.0-2.2 s, both-hand pin pull at ~1.9 s, left hand extended while the right hand winds back, right-arm throw at ~3.95-4.1 s, then M4 rifle draw (raised near 5.2 s, settled from 5.5 s). The door leaves are slightly ajar and are pushed open (about 10 -> 50 deg) as the camera passes through at 2.75-3.3 s. The thrown grenade follows an analytic ballistic arc into the arch behind the crate with a blue trail made of preallocated cylinder segments, visible from 4.25 s.\n\nCamera and timing: a single shot with no cuts; vertical FOV 74 deg; positions, yaw and pitch keyed at all 24 sample times (estimated from gate/crate image sizes and positions) and Hermite-interpolated; eye height follows the ground. Yaw turns left about 45 deg during the door passage, then the camera advances slowly on the crate with small right/left yaw corrections.\n\nObserved vs inferred: key poses come from the 24 reference samples; motion between samples, exact ramp shape, door angles, grenade flight path and the out-of-view layout are inferred. No render feedback has been received yet for this initial version."
+    },
+    {
+     "round": "002",
+     "action": "render",
+     "reason": "Fix ramp occlusion, courtyard proportions, door timing and viewmodel poses.",
+     "rendered": true,
+     "report": "L1 proxy reconstruction, CineRecon Three.js sampled-frame baseline (video49, 1152x720, 60 fps, 378 frames, 6.3 s).\n\nGeometry: one continuous first-person shot. A gently ramped lane (vertex-coloured heightfield, grey road / sandy right side) climbs to a gate wall (extruded shape with pointed arch) with two hinged door leaves; red \"B\" strokes and two lying barrels right of the arch; left side: flat wall, a round tower protruding into the lane, a tall building, a wide crate and a tall white crate; right side: pole, sandstone block stacks, a round building, distant building. Beyond the gate a courtyard frame holds the crate with a tall stack of cardboard boxes (main target), a back wall with a round-topped arch, a covered passage at right, a large blue-banded building with a low round corner tower at left, concrete slabs, a side-on car, and a tree. Vertex-coloured sky dome.\n\nArticulation / actions: camera-attached viewmodel with two sleeve+glove arms posed by keyframes; knife (0-0.5 s), empty weapon switch, grenade held (1.0-2.2 s), two-hand pin pull (~1.9 s), left hand extended while the right winds back, right-arm throw (3.9-4.1 s), M4 rifle draw (raised ~5.2 s, settled from 5.5 s). Door leaves start slightly ajar and are pushed open (about 10 -> 50 deg) as the camera passes through (2.5-3.3 s). The thrown grenade follows an analytic ballistic arc into the arch behind the crate; a blue trail of preallocated cylinder segments appears from 4.25 s.\n\nCamera and timing: single shot, no cuts; vertical FOV 74 deg; position/yaw/pitch keyed at the 24 sample times and Hermite-interpolated; eye height follows the ground; ~45 deg left turn during the gate passage, then a slow approach to the crate with a small leftward drift and growing right yaw at the end.\n\nFeedback received (round 1 render): the lane ramp was too steep (its crest hid the gate in early frames), the crate blended with the ground, the box stack and back-wall arch were too small, the car was too far, the rifle too thin, the grenade hand too far right, and the doors were not open enough at 2.73 s while the camera was not far enough through the gate at 3.0 s. Revisions: lower/gentler ramp with matching pitch keys, relocated right-side pole/blocks/tower and left tower by triangulation across samples, lighter crate and darker ground, taller box stack and arch, nearer car, earlier door push, deeper camera positions at 3.0/3.28 s, thicker rifle and re-posed hands, grenade launch point moved right/up.\n\nObserved vs inferred: key poses come from the 24 samples; between-sample motion, ramp profile, door angles, grenade path and unseen layout are inferred. Remaining: proxy appearance only; pitch values in early frames are estimates."
+    },
+    {
+     "round": "003",
+     "action": "render",
+     "reason": "Fix pitch sign, courtyard strafe path, door and skyline proportions.",
+     "rendered": true,
+     "report": "L1 proxy reconstruction, CineRecon Three.js sampled-frame baseline (video49, 1152x720, 60 fps, 378 frames, 6.3 s).\n\nGeometry: one continuous first-person shot. A gently ramped lane (vertex-coloured heightfield, grey road / sandy right side) climbs to a gate wall (extruded shape with pointed arch) with two hinged door leaves; red \"B\" strokes and two lying barrels right of the arch; left side: flat wall, a round tower protruding into the lane, a tall building, a wide crate and a tall white crate; right side: pole, sandstone block stacks, a round building, distant building. Beyond the gate a courtyard frame holds the crate with a tall stack of cardboard boxes (main target), a back wall with a round-topped arch, a covered passage at right, a large blue-banded building with a low round corner tower at left, concrete slabs, a side-on car, and a tree. Vertex-coloured sky dome.\n\nArticulation / actions: camera-attached viewmodel with two sleeve+glove arms posed by keyframes; knife (0-0.5 s), empty weapon switch, grenade held (1.0-2.2 s), two-hand pin pull (~1.9 s), left hand extended while the right winds back, right-arm throw (3.9-4.1 s), M4 rifle draw (raised ~5.2 s, settled from 5.5 s). Door leaves start slightly ajar and are pushed open (about 10 -> 50 deg) as the camera passes through (2.5-3.3 s). The thrown grenade follows an analytic ballistic arc into the arch behind the crate; a blue trail of preallocated cylinder segments appears from 4.25 s.\n\nCamera and timing: single shot, no cuts; vertical FOV 74 deg; position/yaw/pitch keyed at the 24 sample times and Hermite-interpolated; eye height follows the ground; ~45 deg left turn during the gate passage, then a slow approach to the crate with a small leftward drift and growing right yaw at the end.\n\nFeedback received: round 1 render (ramp crest hid the gate, crate blended with ground, box stack and arch too small, car too far, thin rifle, grenade hand too far right, late door push, camera not far enough through the gate). Round 2 render: gate now visible but too low in early frames and too high mid-lane (pitch keys had the wrong sign), right block stacks too large, right door leaf too wide at 2.73 s, box stack too tall, grenade trail not slanted enough after the throw. Revisions in round 3: corrected pitch sign (lane frames and courtyard entry), smaller right-side blocks, much taller distant building matching the skyline above the gate, faster right-door opening, box stack height reduced, and a courtyard camera path that strafes right before the throw then drifts left while yawing right to keep the crate framed (gives the slanted trail and earlier car exit).\n\nObserved vs inferred: key poses come from the 24 samples; between-sample motion, ramp profile, door angles, grenade path and unseen layout are inferred. Remaining: proxy appearance only; pitch values in early frames are estimates."
+    },
+    {
+     "round": "004",
+     "action": "render",
+     "reason": "Re-solve courtyard camera path from crate/arch edges; fix skyline height and door-passage yaw.",
+     "rendered": true,
+     "report": "L1 proxy reconstruction, CineRecon Three.js sampled-frame baseline (video49, 1152x720, 60 fps, 378 frames, 6.3 s).\n\nGeometry: one continuous first-person shot. A gently ramped lane (vertex-coloured heightfield, grey road / sandy right side) climbs to a gate wall (extruded shape with pointed arch) with two hinged door leaves; red \"B\" strokes and two lying barrels right of the arch; left side: flat wall, a round tower protruding into the lane, a tall building, a wide crate and a tall white crate; right side: pole, sandstone block stacks, a round building, and a tall distant building above the gate skyline. Beyond the gate a courtyard frame holds the crate with a stack of cardboard boxes (main target), a back wall with a round-topped arch, a covered passage at right, a large blue-banded building with a low round corner tower at left, concrete slabs, a side-on car, and a tree. Vertex-coloured sky dome.\n\nArticulation / actions: camera-attached viewmodel with two sleeve+glove arms posed by keyframes; knife (0-0.5 s), empty weapon switch, grenade held (1.0-2.2 s), two-hand pin pull (~1.9 s), left hand extended while the right winds back, right-arm throw (3.9-4.1 s), M4 rifle draw (raised ~5.2 s, settled from 5.5 s). Door leaves start slightly ajar and are pushed open (about 10 -> 50 deg) as the camera passes through (2.5-3.3 s). The thrown grenade follows an analytic ballistic arc into the arch behind the crate; a blue trail of preallocated cylinder segments is shown from 4.25 s.\n\nCamera and timing: single shot, no cuts; vertical FOV 74 deg; position/yaw/pitch keyed at the 24 sample times and Hermite-interpolated; eye height follows the ground; ~45 deg left turn during the gate passage. In the courtyard the camera advances on the crate while strafing slightly left (to ~4.7 s) and then back right, with yaw solved per sample from the crate edges and arch edge (right yaw up to ~10 deg, ending with a slight left yaw).\n\nFeedback received and revisions: round 1 render showed a ramp crest hiding the gate, crate blending with ground, undersized box stack/arch, car too far, thin rifle, misplaced grenade hand and a late door push; fixed in round 2 (gentler ramp, triangulated side landmarks, recoloured crate, larger arch, nearer car, thicker rifle, earlier push). Round 2 render showed wrong-sign pitch keys, oversized side blocks, a too-wide right door leaf, too-tall box stack and too-steep trail; fixed in round 3. Round 3 render showed the distant building too tall, the right door/jamb offset at 2.73 s, and at close range the arch hidden behind the crate (camera too far left); round 4 lowers the distant building, reduces yaw at 2.73 s and re-solves the courtyard camera path (a, b, yaw) from crate and arch edge positions in samples 15-23.\n\nObserved vs inferred: key poses come from the 24 samples; between-sample motion, ramp profile, door angles, grenade path and unseen layout are inferred. Remaining discrepancies: proxy appearance only (no textures, people outlines, posters, wires, palm details); early-lane pitch values and the exact trail slant are approximate."
+    },
+    {
+     "round": "005",
+     "action": "render",
+     "reason": "Flatter grenade arc, gate-passage camera fix, held-grenade visibility.",
+     "rendered": true,
+     "report": "L1 proxy reconstruction, CineRecon Three.js sampled-frame baseline (video49, 1152x720, 60 fps, 378 frames, 6.3 s).\n\nGeometry: one continuous first-person shot. A gently ramped lane (vertex-coloured heightfield, grey road / sandy right side) climbs to a gate wall (extruded shape with pointed arch) with two hinged door leaves; red \"B\" strokes and two lying barrels right of the arch; left side: flat wall, a round tower protruding into the lane, a tall building, a wide crate and a tall white crate; right side: pole, sandstone block stacks, a round building, and a tall distant building above the gate skyline. Beyond the gate a courtyard frame holds the crate with a stack of cardboard boxes (main target), a back wall with a round-topped arch, a covered passage at right, a large blue-banded building with a low round corner tower at left, concrete slabs, a side-on car, and a tree. Vertex-coloured sky dome.\n\nArticulation / actions: camera-attached viewmodel with two sleeve+glove arms posed by keyframes; knife (0-0.5 s), empty weapon switch, grenade held (1.0-2.2 s), two-hand pin pull (~1.9 s), left hand extended while the right winds back, right-arm throw (3.9-4.1 s), M4 rifle draw (raised ~5.2 s, settled from 5.5 s). Door leaves start slightly ajar and are pushed open (about 10 -> 50 deg) as the camera passes through (2.5-3.3 s). The thrown grenade follows an analytic ballistic arc into the arch behind the crate; a blue trail of preallocated cylinder segments is shown from 4.25 s.\n\nCamera and timing: single shot, no cuts; vertical FOV 74 deg; position/yaw/pitch keyed at the 24 sample times and Hermite-interpolated; eye height follows the ground; ~45 deg left turn during the gate passage. In the courtyard the camera advances on the crate while strafing slightly left (to ~4.7 s) and then back right, with yaw solved per sample from the crate edges and arch edge (right yaw up to ~10 deg, ending with a slight left yaw).\n\nFeedback received and revisions: round 1 render showed a ramp crest hiding the gate, crate blending with ground, undersized box stack/arch, car too far, thin rifle, misplaced grenade hand and a late door push; fixed in round 2 (gentler ramp, triangulated side landmarks, recoloured crate, larger arch, nearer car, thicker rifle, earlier push). Round 2 render showed wrong-sign pitch keys, oversized side blocks, a too-wide right door leaf, too-tall box stack and too-steep trail; fixed in round 3. Round 3 render showed the distant building too tall, the right door/jamb offset at 2.73 s, and at close range the arch hidden behind the crate (camera too far left); round 4 lowered the distant building and re-solved the courtyard camera path (a, b, yaw) from crate and arch edge positions in samples 15-23. Round 4 render matched crate/arch framing at close range; remaining issues were a too-vertical grenade trail, the camera slightly too close to the gate at 2.73 s, and the held grenade showing while the right hand was lowered; round 5 lowers the throw arc, moves the 2.73 s camera back with a little more left yaw, restricts held-grenade visibility, and adjusts the distant building height.\n\nObserved vs inferred: key poses come from the 24 samples; between-sample motion, ramp profile, door angles, grenade path and unseen layout are inferred. Remaining discrepancies: proxy appearance only (no textures, people outlines, posters, wires, palm details); early-lane pitch values and the exact trail slant are approximate."
+    },
+    {
+     "round": "006",
+     "action": "submit",
+     "reason": "Round 5 render matches subject layout, gate push, courtyard approach, camera framing and weapon timeline across all samples; remaining gaps are minor trail/grenade placement and proxy appearance.",
+     "rendered": false,
+     "report": "L1 proxy reconstruction, CineRecon Three.js sampled-frame baseline (video49, 1152x720, 60 fps, 378 frames, 6.3 s).\n\nGeometry: one continuous first-person shot. A gently ramped lane (vertex-coloured heightfield, grey road / sandy right side) climbs to a gate wall (extruded shape with pointed arch) with two hinged door leaves; red \"B\" strokes and two lying barrels right of the arch; left side: flat wall, a round tower protruding into the lane, a tall building, a wide crate and a tall white crate; right side: pole, sandstone block stacks, a round building, and a tall distant building above the gate skyline. Beyond the gate a courtyard frame holds the crate with a stack of cardboard boxes (main target), a back wall with a round-topped arch, a covered passage at right, a large blue-banded building with a low round corner tower at left, concrete slabs, a side-on car, and a tree. Vertex-coloured sky dome.\n\nArticulation / actions: camera-attached viewmodel with two sleeve+glove arms posed by keyframes; knife (0-0.5 s), empty weapon switch, grenade held (1.0-2.2 s), two-hand pin pull (~1.9 s), left hand extended while the right winds back, right-arm throw (3.9-4.1 s), M4 rifle draw (raised ~5.2 s, settled from 5.5 s). Door leaves start slightly ajar and are pushed open (about 10 -> 50 deg) as the camera passes through (2.5-3.3 s). The thrown grenade follows an analytic ballistic arc into the arch behind the crate; a blue trail of preallocated cylinder segments is shown from 4.25 s.\n\nCamera and timing: single shot, no cuts; vertical FOV 74 deg; position/yaw/pitch keyed at the 24 sample times and Hermite-interpolated; eye height follows the ground; ~45 deg left turn during the gate passage. In the courtyard the camera advances on the crate while strafing slightly left (to ~4.7 s) and then back right, with yaw solved per sample from the crate edges and arch edge (right yaw up to ~10 deg, ending with a slight left yaw).\n\nFeedback received and revisions: round 1 render showed a ramp crest hiding the gate, crate blending with ground, undersized box stack/arch, car too far, thin rifle, misplaced grenade hand and a late door push; fixed in round 2 (gentler ramp, triangulated side landmarks, recoloured crate, larger arch, nearer car, thicker rifle, earlier push). Round 2 render showed wrong-sign pitch keys, oversized side blocks, a too-wide right door leaf, too-tall box stack and too-steep trail; fixed in round 3. Round 3 render showed the distant building too tall, the right door/jamb offset at 2.73 s, and at close range the arch hidden behind the crate (camera too far left); round 4 lowered the distant building and re-solved the courtyard camera path (a, b, yaw) from crate and arch edge positions in samples 15-23. Round 4 render matched crate/arch framing at close range; remaining issues were a too-vertical grenade trail, the camera slightly too close to the gate at 2.73 s, and the held grenade showing while the right hand was lowered; round 5 lowers the throw arc, moves the 2.73 s camera back with a little more left yaw, restricts held-grenade visibility, and adjusts the distant building height.\n\nRound 5 render: gate-passage framing at 2.73 s now matches the door/jamb layout closely, and the trail is slanted after 4.6 s as in the reference; side effect is that at 4.37 s the trail already leans right whereas the reference shows it vertical, and the airborne grenade at 4.1 s sits right of and lower than the reference position. This round-5 scene is the submitted version.\n\nObserved vs inferred: key poses come from the 24 samples; between-sample motion, ramp profile, door angles, grenade path and unseen layout are inferred. Remaining discrepancies: proxy appearance only (no textures, people outlines, posters, wires, palm details); early-lane pitch values and the exact trail slant are approximate."
+    }
+   ],
+   "history": {
+    "reference": [
+     "ref_0.jpg",
+     "ref_1.jpg",
+     "ref_2.jpg",
+     "ref_3.jpg"
+    ],
+    "times": [
+     0.76,
+     2.33,
+     3.91,
+     5.48
+    ],
+    "rounds": {
+     "001": [
+      "r001_0.jpg",
+      "r001_1.jpg",
+      "r001_2.jpg",
+      "r001_3.jpg"
+     ],
+     "002": [
+      "r002_0.jpg",
+      "r002_1.jpg",
+      "r002_2.jpg",
+      "r002_3.jpg"
+     ],
+     "003": [
+      "r003_0.jpg",
+      "r003_1.jpg",
+      "r003_2.jpg",
+      "r003_3.jpg"
+     ],
+     "004": [
+      "r004_0.jpg",
+      "r004_1.jpg",
+      "r004_2.jpg",
+      "r004_3.jpg"
+     ],
+     "005": [
+      "r005_0.jpg",
+      "r005_1.jpg",
+      "r005_2.jpg",
+      "r005_3.jpg"
+     ]
+    }
+   },
+   "counts": {
+    "initial_generations": 1,
+    "scene_revisions": 4,
+    "inspection_only_decisions": 1,
+    "render_attempts": 5,
+    "infrastructure_retries": 0,
+    "model_turns": 6,
+    "provider_responses": 0
+   }
+  }
+ }
+}
